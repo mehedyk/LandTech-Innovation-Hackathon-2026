@@ -2,3 +2,7 @@ node_modules
 dist
 .env
 .DS_Store
+
+# Research papers are third-party: keep them local, never commit them
+docs/sources/
+*.pdf
