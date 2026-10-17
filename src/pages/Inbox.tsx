@@ -1,14 +1,16 @@
 import { useMemo, useState } from 'react';
 import { Chip, PageTitle, SeverityChip, link, tone } from '../components/ui.tsx';
 import type { Alert, Checkpoint, Severity } from '../engine/types.ts';
-import { CHECKPOINT_LABEL, RULES, SEVERITY, baseAlerts, deedByUid, mouzaOf } from '../lib/registry.ts';
-import { DECISION_LABEL, useDecisions, type Decision } from '../lib/decisions.ts';
+import { describe, ruleTitle } from '../lib/alerts.ts';
+import { useDecisions, type Decision } from '../lib/decisions.ts';
+import { useLang } from '../lib/i18n.tsx';
+import { SEVERITY, baseAlerts, deedByUid, mouzaOf } from '../lib/registry.ts';
 
 const keyOf = (a: Alert) => `${a.record}:${a.rule}`;
 
 function Seg<T extends string>({ value, onChange, options }: { value: T; onChange: (v: T) => void; options: { v: T; label: string }[] }) {
   return (
-    <div className="inline-flex overflow-hidden rounded border border-line bg-white text-sm" role="group">
+    <div className="inline-flex flex-wrap overflow-hidden rounded border border-line bg-white text-sm" role="group">
       {options.map((o) => (
         <button key={o.v} type="button" aria-pressed={value === o.v} onClick={() => onChange(o.v)}
           className={`px-3 py-1.5 ${value === o.v ? 'bg-ink text-white' : 'text-ink hover:bg-mist'}`}>{o.label}</button>
@@ -18,6 +20,7 @@ function Seg<T extends string>({ value, onChange, options }: { value: T; onChang
 }
 
 export default function Inbox() {
+  const { t, lang } = useLang();
   const [sev, setSev] = useState<Severity | 'all'>('all');
   const [cp, setCp] = useState<Checkpoint | 'all'>('all');
   const [decisions, setDecision] = useDecisions();
@@ -32,14 +35,12 @@ export default function Inbox() {
 
   return (
     <>
-      <PageTitle title="Alerts for officers">
-        Every alert says why it was raised and which records to open. {open} of {baseAlerts.length} are still waiting for a decision. Decisions are saved in this browser only.
-      </PageTitle>
+      <PageTitle title={t('inbox.title')}>{t('inbox.intro', { open, total: baseAlerts.length })}</PageTitle>
       <div className="mb-6 flex flex-wrap gap-3">
-        <Seg value={cp} onChange={setCp} options={[{ v: 'all', label: 'Both checkpoints' }, { v: 'pre-registration', label: 'Before registration' }, { v: 'pre-mutation', label: 'Before mutation' }]} />
-        <Seg value={sev} onChange={setSev} options={[{ v: 'all', label: 'All' }, { v: 'block', label: 'Hold' }, { v: 'review', label: 'Review' }, { v: 'info', label: 'Note' }]} />
+        <Seg value={cp} onChange={setCp} options={[{ v: 'all', label: t('inbox.bothCp') }, { v: 'pre-registration', label: t('cp.pre-registration') }, { v: 'pre-mutation', label: t('cp.pre-mutation') }]} />
+        <Seg value={sev} onChange={setSev} options={[{ v: 'all', label: t('inbox.all') }, { v: 'block', label: t('sev.block') }, { v: 'review', label: t('sev.review') }, { v: 'info', label: t('sev.info') }]} />
       </div>
-      {rows.length === 0 && <p>No alerts match these filters. Choose “All” to see everything.</p>}
+      {rows.length === 0 && <p>{t('inbox.empty')}</p>}
       <ul className="divide-y divide-line border-y border-line">
         {rows.map((a) => {
           const d = deedByUid.get(a.record);
@@ -48,26 +49,24 @@ export default function Inbox() {
             <li key={keyOf(a)} className={`border-l-4 py-4 pl-4 ${tone[a.severity].edge}`}>
               <p className="flex flex-wrap items-center gap-2">
                 <SeverityChip severity={a.severity} />
-                <b className="text-ink">{RULES[a.rule].title}</b>
-                <Chip>{CHECKPOINT_LABEL[a.checkpoint]}</Chip>
+                <b className="text-ink">{ruleTitle(a.rule, lang)}</b>
+                <Chip>{t(`cp.${a.checkpoint}`)}</Chip>
               </p>
-              <p className="mt-1 max-w-3xl">{a.message}</p>
+              <p className="mt-1 max-w-3xl">{describe(a, lang)}</p>
               <p className="mt-1 text-sm">
-                Deed {d?.deed_no} · {d?.seller} to {d?.buyer} · {mouzaOf(d?.mouza_id ?? '')?.name} ·{' '}
-                <a className={link} href={`#/cases/${a.lineage}`}>Open parcel {a.lineage}</a>
+                {t('inbox.deedLine', { dno: d?.deed_no ?? '', seller: d?.seller ?? '', buyer: d?.buyer ?? '', mouza: mouzaOf(d?.mouza_id ?? '')?.name ?? '' })} ·{' '}
+                <a className={link} href={`#/cases/${a.lineage}`}>{t('v.openParcel', { id: a.lineage })}</a>
               </p>
               <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
                 {dec ? (
                   <>
-                    <Chip ok={dec !== 'dismiss'}>{DECISION_LABEL[dec]}</Chip>
-                    <button className={link} type="button" onClick={() => setDecision(keyOf(a), null)}>Undo</button>
+                    <Chip ok={dec !== 'dismiss'}>{t(`dec.${dec}Done`)}</Chip>
+                    <button className={link} type="button" onClick={() => setDecision(keyOf(a), null)}>{t('dec.undo')}</button>
                   </>
                 ) : (
                   (['hold', 'dismiss', 'escalate'] as Decision[]).map((x) => (
                     <button key={x} type="button" onClick={() => setDecision(keyOf(a), x)}
-                      className="rounded border border-line bg-white px-3 py-1 text-ink hover:border-brand">
-                      {x === 'hold' ? 'Confirm hold' : x === 'dismiss' ? 'Dismiss' : 'Escalate'}
-                    </button>
+                      className="rounded border border-line bg-white px-3 py-1 text-ink hover:border-brand">{t(`dec.${x}`)}</button>
                   ))
                 )}
               </div>
