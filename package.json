@@ -1,0 +1,6 @@
+{
+  "name": "ardh",
+  "private": true,
+  "type": "module",
+  "scripts": { "eval": "node scripts/evaluate.ts" }
+}
