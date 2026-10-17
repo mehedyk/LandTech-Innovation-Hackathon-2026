@@ -1,28 +1,24 @@
-# Concept Note Outline — Team Ardh (PDF, max 3 pages)
+# Concept note outline: Team Ardh (PDF, **max 3 pages**)
 
-> Rulebook says **3 pages**; the organizers' email says 4. Stay at 3 until they confirm.
-> Facts marked (verify) need a source link before you cite them.
+> Rulebook: 3 pages. The organizers' email says 4. Stay at 3 until they confirm.
 
-**Page 1 — Problem & why it matters**
-- Chosen problem: **P3 — Catch Fraud & Double-Selling** (Track: Digital Land Records, Verification & Digitization)
-- The gap: deed, khatian, registration and mutation sit in separate places, and nobody cross-checks them before a sale is accepted.
-- Why it matters in Bangladesh: land conflicts drive most civil disputes (Law Ministry figure reported by Observer BD, June 2026, "over 70%" — verify); e-mutation and QR khatians exist, but discrepancies in survey records remain (BRAC BIGD study).
-- Who uses it: Sub-Registry officers (primary), AC Land offices, banks (double mortgage), citizens ("check before you buy"), courts (record trail).
+**Page 1: Problem and why it matters**
+- Chosen problem: **P3, Catch Fraud & Double-Selling** (Track: Digital Land Records, Verification & Digitization).
+- Gap: deed, khatian chain and mutation are held by different offices; nobody cross-checks them before a sale or mutation is accepted. Khatian alone is not conclusive proof of ownership.
+- Why it matters: use the sourced facts from `RESEARCH_NOTES.md` (open each DOI first).
+- Who uses it: Sub-Registrar (primary), AC Land office (mutation), banks, courts, citizens (read-only later).
 
-**Page 2 — Solution, architecture, tech stack**
-- One diagram: Deed submitted → Fraud engine (seller holding, pending sales, area) → Status (registered / flagged / blocked) → Mutation approval updates live holdings → Audit chain.
-- Key design choices: DB-level checks (Postgres triggers + row locks on the parcel) so two simultaneous sales cannot both pass; holdings change only via `approve_mutation()`; append-only hash-chained audit log; fingerprint verification exposes no personal data.
-- Stack: React, Vite, TypeScript, Tailwind, Supabase (Postgres + RLS).
-- Data: dummy only; no NID, no real records, no scraping.
+**Page 2: Solution, architecture, stack**
+- Diagram: Deed or mutation request → **Ardh Guard engine** (rules over deed + khatian chain + mutation history) → Alert with reasons → Officer decision (confirm hold / dismiss / escalate) → Audit.
+- Two checkpoints: pre-registration, pre-mutation.
+- Design choices: explainable rules, human-in-the-loop, never decides ownership, dummy data only.
+- Stack: TypeScript engine, React + Vite + Tailwind, Supabase (decisions and audit).
 
-**Page 3 — Features, nationwide use, roadmap, team**
-- Main features (6 bullets from the README).
-- Nationwide path: pilot at one Sub-Registry office → integrate with the national land portal under a formal agreement → district rollout; bank/court read-only access.
-- Roadmap v1 → v2 and Limitations (honest; judges marked you down for missing this before).
-- Team: Mehedy (leader), Jobayer, faculty mentor Zannatul Mawa Koli, industry mentor MD. Tahamid Hassan Sadib.
+**Page 3: Features, evaluation, nationwide path, roadmap, team**
+- Features: check-a-deed, alert inbox, case timeline, benchmark, in-app roadmap and limitations.
+- Evaluation: labelled synthetic benchmark; honest caveats.
+- Path: pilot at one sub-registry office and its AC Land office → inter-office data sharing under a formal agreement → district rollout.
+- Roadmap v1 → v2 (OCR intake for P1, Bangla name matching, lineage resolution, ML ranking after rules, owner alerts) and Limitations.
+- Team: S.M. Mehedy Kawser (leader), Jobayer; faculty mentor Zannatul Mawa Koli; industry mentor MD. Tahamid Hassan Sadib.
 
-**Before exporting**
-- [ ] Name the problem as **P3** in the first paragraph
-- [ ] Architecture diagram included
-- [ ] AI tools listed
-- [ ] Exactly 3 pages
+**Before exporting:** [ ] names P3 in paragraph 1 · [ ] architecture diagram · [ ] AI tools listed · [ ] exactly 3 pages · [ ] every citation opened and checked
