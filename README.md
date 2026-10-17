@@ -27,6 +27,13 @@ A second pair of eyes at **two moments**: before a deed is registered, and befor
 
 <p align="center"><img src="assets/flow.svg" alt="Flow: request arrives, Ardh Guard runs 8 checks, alert with reasons, officer decides" width="880"></p>
 
+### Two languages, two views
+
+- **Bangla by default**, with an English toggle. The Bangla is written by context, not word for word: land-office terms follow how people say them (দলিল, খতিয়ান, নামজারি, দাগ, শতাংশ). See [`docs/GLOSSARY_BN.md`](docs/GLOSSARY_BN.md).
+- **Citizen / buyer** view: a plain-language "check before you buy" page that never shows details of other people's deeds.
+- **Officer / admin** view: deed checks, alerts and decisions, parcels, benchmark.
+- **Both** shows every page together (the default for judges). The switch is a demo control, not a login.
+
 The classic double sale, as Ardh Guard sees it:
 
 ```mermaid
@@ -47,7 +54,8 @@ sequenceDiagram
 
 | | |
 |---|---|
-| **Check a deed**<br>Enter a deed, get hold, review or clear with reasons.<br><img src="docs/media/check.png" alt="Check a deed screen showing a Hold verdict"> | **Alerts for officers**<br>Filter by checkpoint and severity, then decide.<br><img src="docs/media/alerts.png" alt="Alerts inbox"> |
+| **Check a deed (officer, Bangla)**<br>Enter a deed, get hold, review or clear with reasons.<br><img src="docs/media/check.png" alt="Check a deed screen in Bangla showing a Hold verdict"> | **Check before you buy (citizen)**<br>Plain-language warning, record history and next steps.<br><img src="docs/media/buy.png" alt="Citizen check before you buy page"> |
+| **Same screen in English**<br>One tap on the language toggle.<br><img src="docs/media/check-en.png" alt="Check a deed screen in English"> | **Alerts for officers**<br>Filter by checkpoint and severity, then decide.<br><img src="docs/media/alerts.png" alt="Alerts inbox"> |
 | **Parcels**<br>The CS, SA, RS, BS chain with deeds and mutations.<br><img src="docs/media/parcel.png" alt="Parcel page"> | **Benchmark**<br>Which planted anomalies the rules caught, with caveats.<br><img src="docs/media/benchmark.png" alt="Benchmark page"> |
 | **How it works**<br>The flow, the two checkpoints and all eight checks.<br><img src="docs/media/how.png" alt="How it works page"> | **Roadmap and limits**<br>What is built, what is next, what it cannot do.<br><img src="docs/media/roadmap.png" alt="Roadmap and limits page"> |
 
@@ -99,7 +107,7 @@ npm install
 npm run dev        # web app on http://localhost:5173
 npm run build      # typecheck + production build
 npm run eval       # benchmark in the terminal (Node 22.18 or newer)
-npm test           # 12 engine checks: 6 live scenarios + 6 planted anomalies
+npm test           # engine checks (6 live scenarios, 6 planted anomalies) + language checks (every string in Bangla and English, no unresolved placeholders, citizen text leaks nothing)
 ```
 
 <details>
@@ -107,9 +115,9 @@ npm test           # 12 engine checks: 6 live scenarios + 6 planted anomalies
 
 ```
 src/engine/      rules, types, benchmark evaluation (no dependencies)
-src/pages/       Check, Inbox (alerts), Cases (parcels), Benchmark, HowItWorks, About
+src/pages/       Check (officer), Buy (citizen), Inbox (alerts), Cases (parcels), Benchmark, HowItWorks, About
 src/components/  chain strip and UI pieces
-src/lib/         dummy data access, officer decisions store
+src/lib/         dummy data access, strings.ts (Bangla + English), language and role providers, officer decisions
 data/            dummy registry (JSON/CSV), generator script, labelled anomalies, notes
 docs/            plan, research notes, source triage, concept note outline, media
 scripts/         evaluate.ts, test-rules.ts, make-media.py (README screenshots)
@@ -125,16 +133,18 @@ supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
 
 - **Claude (Anthropic):** project planning, drafting the rules engine, UI code and documentation. The team reviewed everything and can explain every file.
 - **Consensus.app:** literature search reports, summarised in [`docs/SOURCES.md`](docs/SOURCES.md).
-- No AI model runs inside the app and none was trained.
+- No AI model runs inside the app and none was trained. Planned AI features are listed in the roadmap above.
 - _TODO: add any other tools you used._
 
 ## Roadmap
 
 | | Scope | Status |
 |---|---|---|
-| **v1 (Round 1)** | Rules engine, check a deed, alerts with officer decisions, parcel pages, benchmark, in-app docs | Built |
-| **v1.1 (final round)** | Coherent-chain seed and chain-break rule · owner alert and dispute hold · saved decisions with audit trail (Supabase) · Bangla name matching · a "messy but innocent" benchmark slice | Next |
-| **v2** | Plot lineage across surveys (splits, merges, renumbering) · pilot with one sub-registry and AC Land office under a formal agreement · ML ranking after the rules · scan intake for old khatians (P1) | Later |
+| **v1 (Round 1)** | Rules engine (8 checks) · check a deed · alerts with officer decisions · parcel pages · citizen "check before you buy" page · benchmark · Bangla (default) and English · citizen / officer / both views · in-app docs | Built |
+| **v1.1 (final round)** | Coherent-chain seed and chain-break rule · owner alert and dispute hold · saved decisions with audit trail (Supabase) · sign-in and role-based access · Bangla name matching · **AI: plain-language case summaries in Bangla and English** (pretrained model, officer reviews) · a "messy but innocent" benchmark slice | Next |
+| **v2** | Plot lineage across surveys · pilot with one sub-registry and AC Land office under a formal agreement · **AI: Bangla OCR for scanned khatians and deeds** (pretrained, officer confirms, the P1 problem) · **AI: ML risk ranking after the rules** once there is enough realistic data (rules and reasons stay) · mortgage, court-case and land-tax checks for citizens | Later |
+
+> All AI items are **plans**. There is no AI model in the app today. Where a model is needed we will use pretrained models (for example from Hugging Face) and list them here.
 
 **Changes since Round 1:** _TODO: list them here before the final._
 
@@ -143,8 +153,10 @@ supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
 - All data is made up. A real pilot needs an agreement with the land authorities.
 - The benchmark is small and the rules were written knowing the planted anomalies.
 - Chain-break detection is untested: the seed has no coherent ownership chains.
-- Names are matched exactly; Bangla spelling variants are not handled.
+- Names are matched exactly; Bangla spelling variants are not handled, and the dummy names are in Latin script.
 - Each parcel arrives with a lineage id. Linking plots across surveys is the hard part in reality.
+- The citizen / officer / both switch is a demo control, not sign-in or access control.
+- The citizen page does not check mortgages, court cases or land tax.
 - Ardh Guard flags cases for officers. It does not decide ownership and is not a legal title check.
 
 More in [`docs/`](docs): [plan](docs/PLAN.md) · [research notes](docs/RESEARCH_NOTES.md) · [sources](docs/SOURCES.md) · [concept note outline](docs/CONCEPT_NOTE_OUTLINE.md)
