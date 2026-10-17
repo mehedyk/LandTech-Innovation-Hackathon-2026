@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "eval": "node scripts/evaluate.ts"
+    "eval": "node scripts/evaluate.ts",
+    "test": "node scripts/test-rules.ts"
   },
   "dependencies": {
     "react": "^19.3.1",
