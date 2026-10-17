@@ -3,6 +3,7 @@ import About from './pages/About.tsx';
 import Benchmark from './pages/Benchmark.tsx';
 import Cases from './pages/Cases.tsx';
 import Check from './pages/Check.tsx';
+import HowItWorks from './pages/HowItWorks.tsx';
 import Inbox from './pages/Inbox.tsx';
 import { baseAlerts } from './lib/registry.ts';
 import mark from '../assets/logo-mark.svg';
@@ -12,6 +13,7 @@ const NAV = [
   { to: 'alerts', label: 'Alerts' },
   { to: 'cases', label: 'Parcels' },
   { to: 'benchmark', label: 'Benchmark' },
+  { to: 'how', label: 'How it works' },
   { to: 'about', label: 'Roadmap and limits' },
 ];
 
@@ -54,6 +56,7 @@ export default function App() {
         {page === 'alerts' ? <Inbox />
           : page === 'cases' ? <Cases id={id} />
           : page === 'benchmark' ? <Benchmark />
+          : page === 'how' ? <HowItWorks />
           : page === 'about' ? <About />
           : <Check />}
       </main>
