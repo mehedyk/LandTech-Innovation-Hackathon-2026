@@ -29,4 +29,5 @@ export type Alert = {
   rule: RuleId; severity: Severity; checkpoint: Checkpoint; record: string; lineage: string;
   message: string;      // plain-language reason shown to the officer
   evidence: string[];   // record ids the officer can open
+  params: Record<string, string | number>; // structured facts, so the UI can phrase the reason in any language
 };
