@@ -12,13 +12,17 @@
   --color-caution-soft: #fdf0d3;
   --color-danger: #b42318;
   --color-danger-soft: #fde7e4;
-  --font-sans: 'Segoe UI', system-ui, -apple-system, 'Noto Sans Bengali', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Segoe UI', 'Nirmala UI', system-ui, -apple-system, 'Noto Sans Bengali', 'Helvetica Neue', Arial, sans-serif;
 }
 
 html { background: var(--color-paper); color: var(--color-body); font-family: var(--font-sans); }
 body { margin: 0; font-variant-numeric: tabular-nums; }
 h1, h2, h3 { color: var(--color-ink); letter-spacing: -0.01em; }
 :focus-visible { outline: 3px solid var(--color-brand); outline-offset: 2px; border-radius: 4px; }
+
+/* Bangla needs more line height, and negative tracking breaks its conjuncts. */
+html[lang='bn'] body { line-height: 1.75; }
+html[lang='bn'] h1, html[lang='bn'] h2, html[lang='bn'] h3 { letter-spacing: 0; line-height: 1.4; }
 
 /* One deliberate moment: the verdict lands when a check finishes. */
 @keyframes verdict-in { from { opacity: 0; transform: scale(.985); } to { opacity: 1; transform: none; } }
