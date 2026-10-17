@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 170" width="880" height="170" role="img" aria-label="How a check flows: request, Ardh Guard checks, alert with reasons, officer decides">
+  <title>How an Ardh Guard check flows</title>
+  <style>
+    :root { --ink:#0f1f26; --sub:#3d5159; --line:#9fb4b4; --box:#ffffff; --brand:#0f766e; --soft:#d9f1ed; --amber:#f59e0b; }
+    @media (prefers-color-scheme: dark) { :root { --ink:#f1f5f9; --sub:#a9bcc2; --line:#4b6168; --box:#13262d; --soft:#0f3b38; } }
+    .t  { font: 700 17px 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif; fill: var(--ink); }
+    .s  { font: 500 13px 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif; fill: var(--sub); }
+    .box { fill: var(--box); stroke: var(--line); stroke-width: 2; animation: glow 8s ease-in-out infinite; }
+    .b0 { animation-delay: 0s; } .b1 { animation-delay: 2s; } .b2 { animation-delay: 4s; } .b3 { animation-delay: 6s; }
+    .rail { stroke: var(--line); stroke-width: 3; stroke-dasharray: 6 6; }
+    @keyframes glow { 0% { stroke: var(--line); fill: var(--box); } 4%, 20% { stroke: var(--brand); fill: var(--soft); } 28%, 100% { stroke: var(--line); fill: var(--box); } }
+    @media (prefers-reduced-motion: reduce) { .box { animation: none; } }
+  </style>
+  <path class="rail" d="M210 85 H230 M430 85 H450 M650 85 H670"/>
+  <rect class="box b0" x="10"  y="40" width="200" height="90" rx="10"/>
+  <rect class="box b1" x="230" y="40" width="200" height="90" rx="10"/>
+  <rect class="box b2" x="450" y="40" width="200" height="90" rx="10"/>
+  <rect class="box b3" x="670" y="40" width="200" height="90" rx="10"/>
+  <g text-anchor="middle">
+    <text class="t" x="110" y="80">Deed or mutation</text><text class="s" x="110" y="102">request arrives</text>
+    <text class="t" x="330" y="80">Ardh Guard</text><text class="s" x="330" y="102">8 explainable checks</text>
+    <text class="t" x="550" y="80">Alert with reasons</text><text class="s" x="550" y="102">what, why, which records</text>
+    <text class="t" x="770" y="80">Officer decides</text><text class="s" x="770" y="102">hold, dismiss or escalate</text>
+  </g>
+  <circle r="8" fill="var(--amber)">
+    <animateMotion dur="8s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;0.75;1" path="M110 150 H770"/>
+  </circle>
+  <line x1="110" y1="150" x2="770" y2="150" stroke="var(--line)" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
+</svg>
