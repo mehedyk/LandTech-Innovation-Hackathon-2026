@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0f1f26;
+  --color-body: #3d5159;
+  --color-paper: #fafcfc;
+  --color-mist: #eaf1f1;
+  --color-line: #d3dfdf;
+  --color-brand: #0f766e;
+  --color-brand-soft: #d9f1ed;
+  --color-caution: #8a5200;
+  --color-caution-soft: #fdf0d3;
+  --color-danger: #b42318;
+  --color-danger-soft: #fde7e4;
+  --font-sans: 'Segoe UI', system-ui, -apple-system, 'Noto Sans Bengali', 'Helvetica Neue', Arial, sans-serif;
+}
+
+html { background: var(--color-paper); color: var(--color-body); font-family: var(--font-sans); }
+body { margin: 0; font-variant-numeric: tabular-nums; }
+h1, h2, h3 { color: var(--color-ink); letter-spacing: -0.01em; }
+:focus-visible { outline: 3px solid var(--color-brand); outline-offset: 2px; border-radius: 4px; }
+
+/* One deliberate moment: the verdict lands when a check finishes. */
+@keyframes verdict-in { from { opacity: 0; transform: scale(.985); } to { opacity: 1; transform: none; } }
+.verdict-in { animation: verdict-in .22s ease-out; }
+@media (prefers-reduced-motion: reduce) { .verdict-in { animation: none; } }
