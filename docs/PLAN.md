@@ -35,6 +35,8 @@ This is what cost marks last time, so it lives *in the app*, not only in the REA
 - **How it works page:** architecture diagram, the 8 rules with plain-language examples, the two checkpoints.
 - **Data & AI page:** exactly what data and which AI tools were used (mirrors the README).
 
+**Phase 2 status:** done. The app has How it works (flow, two checkpoints, all 8 checks with examples), Roadmap and limits, and Data and AI used (inside Roadmap and limits). Engine tests: `npm test`.
+
 ## Phase 3: Submission pack (Sunday 1–6 PM)
 | Item | Notes |
 |---|---|
