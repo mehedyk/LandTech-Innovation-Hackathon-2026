@@ -7,7 +7,7 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "eval": "node scripts/evaluate.ts",
-    "test": "node scripts/test-rules.ts"
+    "test": "node scripts/test-rules.ts && node scripts/test-i18n.ts"
   },
   "dependencies": {
     "react": "^19.3.1",
