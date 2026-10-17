@@ -26,6 +26,8 @@ An explainable conflict-detection layer that checks a deed against the khatian c
 
 **Done when:** a stranger can open the live link and run the "double sale" demo in 30 seconds.
 
+**Status:** built locally (Check a deed, Alerts, Parcels, Benchmark, Roadmap and limits). Remaining for Phase 1: push to GitHub and deploy to Vercel for the live link.
+
 ## Phase 2: In-product documentation (Sunday late morning)
 This is what cost marks last time, so it lives *in the app*, not only in the README.
 - **Roadmap page:** v1 → v1.1 → v2 with the "what we will do next" list (below).
