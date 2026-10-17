@@ -23,11 +23,14 @@ An explainable **conflict-detection layer** at two checkpoints: **before registr
 | Mutation area mismatch | Mutation changed a different area than the deed |
 | Registered, not mutated | Record of rights still shows the old owner |
 
-> **Status:** engine + labelled benchmark done; web UI in progress.
+> **Status:** Phase 1 done: engine, labelled benchmark and a working web front end (Check a deed, Alerts, Parcels, Benchmark, Roadmap and limits).
 
-## Try the engine
+## Run it
 ```bash
-node scripts/evaluate.ts     # Node >= 22.18, no install needed
+npm install
+npm run dev          # web app, no backend needed (runs on the dummy data in /data)
+npm run build        # typecheck + production build
+npm run eval         # engine benchmark in the terminal (Node >= 22.18)
 ```
 Result on the dummy benchmark: 8/8 evaluable anomalies detected, 0 false positives on 25 deeds. This is a **regression test on small synthetic data**, not a measure of real-world accuracy. See `data/DATA_README.md`.
 
