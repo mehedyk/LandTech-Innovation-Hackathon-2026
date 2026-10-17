@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Severity } from '../engine/types.ts';
-import { SEVERITY } from '../lib/registry.ts';
+import { useLang } from '../lib/i18n.tsx';
 
 export const tone: Record<Severity, { edge: string; chip: string; panel: string }> = {
   block: { edge: 'border-l-danger', chip: 'bg-danger-soft text-danger', panel: 'bg-danger-soft border-danger' },
@@ -9,7 +9,8 @@ export const tone: Record<Severity, { edge: string; chip: string; panel: string 
 };
 
 export function SeverityChip({ severity }: { severity: Severity }) {
-  return <span className={`inline-block rounded px-2 py-0.5 text-sm font-semibold ${tone[severity].chip}`}>{SEVERITY[severity].label}</span>;
+  const { t } = useLang();
+  return <span className={`inline-block whitespace-nowrap rounded px-2 py-0.5 text-sm font-semibold ${tone[severity].chip}`}>{t(`sev.${severity}`)}</span>;
 }
 
 export function Chip({ children, ok }: { children: ReactNode; ok?: boolean }) {
