@@ -1,3 +1,5 @@
+> Full drafts now exist: `docs/concept-note/CONCEPT_NOTE.en.md` and `CONCEPT_NOTE.bn.md`. This outline stays as the checklist.
+
 # Concept note outline: Team Ardh (PDF, **max 3 pages**)
 
 > Rulebook: 3 pages. The organizers' email says 4. Stay at 3 until they confirm.
