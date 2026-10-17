@@ -19,6 +19,6 @@
 - Evaluation: labelled synthetic benchmark; honest caveats.
 - Path: pilot at one sub-registry office and its AC Land office → inter-office data sharing under a formal agreement → district rollout.
 - Roadmap v1 → v2 (OCR intake for P1, Bangla name matching, lineage resolution, ML ranking after rules, owner alerts) and Limitations.
-- Team: S.M. Mehedy Kawser (leader), Jobayer; faculty mentor Zannatul Mawa Koli; industry mentor MD. Tahamid Hassan Sadib.
+- Team: Jobayer (leader), S.M. Mehedy Kawser; faculty mentor Zannatul Mawa Koli; industry mentor MD. Tahamid Hassan Sadib.
 
 **Before exporting:** [ ] names P3 in paragraph 1 · [ ] architecture diagram · [ ] AI tools listed · [ ] exactly 3 pages · [ ] every citation opened and checked

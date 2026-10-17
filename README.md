@@ -61,8 +61,8 @@ TypeScript rules engine · React · Vite · Tailwind CSS · Supabase (officer de
 ## Team
 | | |
 |---|---|
-| **S.M. Mehedy Kawser** (Team Leader) | [@mehedyk](https://github.com/mehedyk) |
-| **Jobayer** | _TODO: GitHub link_ |
+| **Jobayer** (Team Leader) | [@MJZ-Hossen](https://github.com/MJZ-Hossen) |
+| **S.M. Mehedy Kawser** | [@mehedyk](https://github.com/mehedyk) |
 | Faculty mentor | Zannatul Mawa Koli |
 | Industry mentor | MD. Tahamid Hassan Sadib (CSE-TECH) |
 
