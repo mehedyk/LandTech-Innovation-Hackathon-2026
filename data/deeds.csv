@@ -1,0 +1,26 @@
+deed_uid,deed_no,type,registration_date,sub_registry,mouza_id,seller,seller_party_id,buyer,buyer_party_id,schedule_survey,schedule_plot_no,area_sold_dec,share_sold,qr_valid,signature_consistent
+D0001,9334/2020,sale,2020-07-14,Mollahat SRO,M002,Billal Hossain,P0003,Karim Sarker,P0005,BS,831,49.27,1/2,True,True
+D0002,3596/2019,sale,2019-06-07,Sreepur SRO,M003,Faruk Chowdhury,P0008,Kabir Biswas,P0009,BS,778,67.99,full,True,True
+D0003,1780/2021,sale,2021-06-08,Faridpur Sadar SRO,M001,Shafiq Howlader,P0012,Habib Howlader,P0013,BS,812,117.22,full,True,True
+D0004,6720/2018,sale,2018-09-19,Mollahat SRO,M002,Mizan Miah,P0015,Sumon Chowdhury,P0017,BS,1010,62.68,1/2,True,True
+D0005,5797/2023,sale,2023-05-31,Sreepur SRO,M003,Jamal Mia,P0019,Rahim Mia,P0021,BS,515,121.31,full,True,True
+D0006,8410/2023,sale,2023-07-11,Sreepur SRO,M003,Jamal Mia,P0019,Sumon Mia,P0022,BS,515,121.31,full,True,True
+D0007,3088/2022,sale,2022-08-29,Faridpur Sadar SRO,M001,Hasan Akand,P0025,Habib Miah,P0026,BS,472,66.14,full,True,True
+D0008,4147/2025,sale,2025-04-05,Mollahat SRO,M002,Habib Sarker,P0018,Jamal Howlader,P0028,BS,857,167.14,full,True,True
+D0009,8486/2024,sale,2024-10-07,Sreepur SRO,M003,Karim Akand,P0031,Anwar Talukder,P0032,BS,459,52.9,1/2,True,True
+D0010,9217/2022,sale,2022-01-23,Faridpur Sadar SRO,M001,Mizan Bhuiyan,P0035,Mizan Akand,P0037,BS,1181,168.3,full,True,True
+D0011,1576/2022,sale,2022-08-11,Faridpur Sadar SRO,M001,Mizan Bhuiyan,P0035,Rahim Akand,P0038,BS,1181,144.26,full,True,True
+D0012,3969/2016,sale,2016-11-19,Mollahat SRO,M002,Abdul Talukder,P0041,Anwar Akand,P0042,BS,345,124.65,full,True,True
+D0013,7065/2018,sale,2018-03-02,Sreepur SRO,M003,Habib Biswas,P0045,Rahim Khan,P0046,BS,847,224.66,full,True,True
+D0014,3471/2024,sale,2024-04-18,Faridpur Sadar SRO,M001,Salam Khan,P0051,Karim Mia,P0052,BS,874,56.75,full,True,True
+D0015,3470/2016,sale,2016-10-19,Mollahat SRO,M002,Nasir Miah,P0055,Shafiq Chowdhury,P0056,BS,499,18.45,1/2,True,True
+D0016,6962/2023,sale,2023-06-02,Sreepur SRO,M003,Nasir Khan,P0058,Rahim Sarker,P0059,BS,566,256.97,full,True,True
+D0017,4554/2017,sale,2017-12-16,Faridpur Sadar SRO,M001,Nasir Khan,P0058,Abdul Mia,P0062,BS,638,31.07,full,True,True
+D0018,7422/2021,sale,2021-08-25,Mollahat SRO,M002,Hasan Biswas,P0065,Sumon Biswas,P0066,BS,957,74.51,full,True,True
+D0019,3700/2019,sale,2019-01-22,Faridpur Sadar SRO,M001,Billal Talukder,P0073,Faruk Howlader,P0074,BS,1271,102.92,full,True,True
+D0020,9157/2025,sale,2025-10-17,Mollahat SRO,M002,Karim Biswas,P0077,Rafiq Bhuiyan,P0078,BS,1195,138.32,full,True,True
+D0021,6588/2024,sale,2024-01-30,Sreepur SRO,M003,Rafiq Howlader,P0080,Habib Mia,P0082,RS,433,213.73,full,True,True
+D0022,1209/2018,sale,2018-09-18,Faridpur Sadar SRO,M001,Anwar Miah,P0084,Rahim Hossain,P0085,BS,690,126.92,full,True,True
+D0023,3003/2025,sale,2025-01-05,Mollahat SRO,M002,Mizan Chowdhury,P0086,Karim Mia,P0052,BS,465,139.45,full,False,False
+D0024,8137/2017,sale,2017-11-17,Sreepur SRO,M003,Abdul Akand,P0027,Abdul Howlader,P0068,BS,385,142.17,1/2,True,True
+D0025,8701/2020,sale,2020-09-16,Faridpur Sadar SRO,M001,Karim Sarker,P0005,Abdul Sheikh,P0092,BS,577,101.52,1/2,True,True

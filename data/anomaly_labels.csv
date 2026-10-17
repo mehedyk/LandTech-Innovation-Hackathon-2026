@@ -1,0 +1,10 @@
+lineage,problem_area,anomaly,records
+L03,P3,deed_vs_mutation_area_mismatch,"[""D0003""]"
+L05,P3,duplicate_sale,"[""D0005"", ""D0006""]"
+L07,P4,rejected_then_resubmitted,"[""D0008""]"
+L09,P3,overlapping_transfer_area_exceeds_plot,"[""D0010"", ""D0011""]"
+L12,P3,ownership_share_conflict,"[""D0014""]"
+L14,P4,registered_not_mutated,"[""D0016""]"
+L17,P3,chain_break_SA_to_RS_no_link_deed,"[""K0066"", ""K0067""]"
+L20,P5,khas_claim_conflicts_with_deed,"[""D0021"", ""K0080""]"
+L22,P2,invalid_qr_and_signature_mismatch,"[""D0023""]"

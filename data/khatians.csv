@@ -1,0 +1,97 @@
+khatian_uid,survey,mouza_id,khatian_no,plot_no,owners,area_dec,land_class,survey_year,lineage
+K0001,CS,M002,95,548,"[{""name"": ""Salam Biswas"", ""party_id"": ""P0001"", ""share"": ""1""}]",98.54,cultivated,1910,L01
+K0002,SA,M002,259,573,"[{""name"": ""Salam Biswas"", ""party_id"": ""P0001"", ""share"": ""1""}]",98.54,cultivated,1960,L01
+K0003,RS,M002,921,642,"[{""name"": ""Jamal Akand"", ""party_id"": ""P0002"", ""share"": ""1""}]",98.54,cultivated,2010,L01
+K0004,BS,M002,18,831,"[{""name"": ""Billal Hossain"", ""party_id"": ""P0003"", ""share"": ""1/2""}, {""name"": ""Amena Howlader"", ""party_id"": ""P0004"", ""share"": ""1/2""}]",98.54,cultivated,2005,L01
+K0005,CS,M003,188,488,"[{""name"": ""Salam Talukder"", ""party_id"": ""P0006"", ""share"": ""1""}]",271.95,cultivated,1910,L02
+K0006,SA,M003,142,542,"[{""name"": ""Salam Talukder"", ""party_id"": ""P0006"", ""share"": ""1""}]",271.95,cultivated,1960,L02
+K0007,RS,M003,1172,592,"[{""name"": ""Kabir Sarker"", ""party_id"": ""P0007"", ""share"": ""1""}]",271.95,cultivated,2010,L02
+K0008,BS,M003,2955,778,"[{""name"": ""Faruk Chowdhury"", ""party_id"": ""P0008"", ""share"": ""1""}]",271.95,homestead,2012,L02
+K0009,CS,M001,46,574,"[{""name"": ""Karim Howlader"", ""party_id"": ""P0010"", ""share"": ""1""}]",234.45,cultivated,1910,L03
+K0010,SA,M001,394,590,"[{""name"": ""Karim Howlader"", ""party_id"": ""P0010"", ""share"": ""1""}]",234.45,cultivated,1960,L03
+K0011,RS,M001,700,657,"[{""name"": ""Faruk Mia"", ""party_id"": ""P0011"", ""share"": ""1""}]",234.45,cultivated,2010,L03
+K0012,BS,M001,1997,812,"[{""name"": ""Shafiq Howlader"", ""party_id"": ""P0012"", ""share"": ""1""}]",234.45,cultivated,2005,L03
+K0013,CS,M002,274,663,"[{""name"": ""Karim Howlader"", ""party_id"": ""P0010"", ""share"": ""1""}]",125.36,cultivated,1910,L04
+K0014,SA,M002,8,708,"[{""name"": ""Karim Howlader"", ""party_id"": ""P0010"", ""share"": ""1""}]",125.36,cultivated,1960,L04
+K0015,RS,M002,214,777,"[{""name"": ""Sumon Khan"", ""party_id"": ""P0014"", ""share"": ""1""}]",125.36,cultivated,1990,L04
+K0016,BS,M002,42,1010,"[{""name"": ""Mizan Miah"", ""party_id"": ""P0015"", ""share"": ""1/2""}, {""name"": ""Nasima Hossain"", ""party_id"": ""P0016"", ""share"": ""1/2""}]",125.36,cultivated,2018,L04
+K0017,CS,M003,116,120,"[{""name"": ""Sumon Khan"", ""party_id"": ""P0014"", ""share"": ""1""}]",242.62,cultivated,1910,L05
+K0018,SA,M003,146,162,"[{""name"": ""Sumon Khan"", ""party_id"": ""P0014"", ""share"": ""1""}]",242.62,cultivated,1960,L05
+K0019,RS,M003,1140,231,"[{""name"": ""Habib Sarker"", ""party_id"": ""P0018"", ""share"": ""1""}]",242.62,cultivated,2000,L05
+K0020,BS,M003,2664,515,"[{""name"": ""Jamal Mia"", ""party_id"": ""P0019"", ""share"": ""1/2""}, {""name"": ""Morzina Khan"", ""party_id"": ""P0020"", ""share"": ""1/2""}]",242.62,homestead,2005,L05
+K0021,CS,M001,268,125,"[{""name"": ""Nasir Mia"", ""party_id"": ""P0023"", ""share"": ""1""}]",132.28,cultivated,1910,L06
+K0022,SA,M001,787,152,"[{""name"": ""Nasir Mia"", ""party_id"": ""P0023"", ""share"": ""1""}]",132.28,cultivated,1960,L06
+K0023,RS,M001,1068,277,"[{""name"": ""Billal Biswas"", ""party_id"": ""P0024"", ""share"": ""1""}]",132.28,cultivated,2000,L06
+K0024,BS,M001,1881,472,"[{""name"": ""Hasan Akand"", ""party_id"": ""P0025"", ""share"": ""1""}]",132.28,homestead,2012,L06
+K0025,CS,M002,148,561,"[{""name"": ""Abdul Akand"", ""party_id"": ""P0027"", ""share"": ""1""}]",167.14,cultivated,1925,L07
+K0026,SA,M002,754,589,"[{""name"": ""Abdul Akand"", ""party_id"": ""P0027"", ""share"": ""1""}]",167.14,cultivated,1960,L07
+K0027,RS,M002,904,755,"[{""name"": ""Kabir Biswas"", ""party_id"": ""P0009"", ""share"": ""1""}]",167.14,cultivated,2000,L07
+K0028,BS,M002,2332,857,"[{""name"": ""Habib Sarker"", ""party_id"": ""P0018"", ""share"": ""1""}]",167.14,pond,2012,L07
+K0029,CS,M003,218,215,"[{""name"": ""Jamal Hossain"", ""party_id"": ""P0029"", ""share"": ""1""}]",105.8,cultivated,1925,L08
+K0030,SA,M003,792,245,"[{""name"": ""Jamal Hossain"", ""party_id"": ""P0029"", ""share"": ""1""}]",105.8,cultivated,1960,L08
+K0031,RS,M003,1229,397,"[{""name"": ""Faruk Bhuiyan"", ""party_id"": ""P0030"", ""share"": ""1""}]",105.8,cultivated,2000,L08
+K0032,BS,M003,1786,459,"[{""name"": ""Karim Akand"", ""party_id"": ""P0031"", ""share"": ""1/2""}, {""name"": ""Morzina Khan"", ""party_id"": ""P0020"", ""share"": ""1/2""}]",105.8,homestead,2005,L08
+K0033,CS,M001,166,882,"[{""name"": ""Faruk Khan"", ""party_id"": ""P0033"", ""share"": ""1""}]",240.43,cultivated,1925,L09
+K0034,SA,M001,361,926,"[{""name"": ""Faruk Khan"", ""party_id"": ""P0033"", ""share"": ""1""}]",240.43,cultivated,1960,L09
+K0035,RS,M001,138,1058,"[{""name"": ""Kabir Howlader"", ""party_id"": ""P0034"", ""share"": ""1""}]",240.43,cultivated,2000,L09
+K0036,BS,M001,2309,1181,"[{""name"": ""Mizan Bhuiyan"", ""party_id"": ""P0035"", ""share"": ""1/2""}, {""name"": ""Rabeya Hossain"", ""party_id"": ""P0036"", ""share"": ""1/2""}]",240.43,homestead,2012,L09
+K0037,CS,M002,281,121,"[{""name"": ""Faruk Akand"", ""party_id"": ""P0039"", ""share"": ""1""}]",249.3,cultivated,1925,L10
+K0038,SA,M002,858,166,"[{""name"": ""Faruk Akand"", ""party_id"": ""P0039"", ""share"": ""1""}]",249.3,cultivated,1960,L10
+K0039,RS,M002,876,205,"[{""name"": ""Shafiq Hossain"", ""party_id"": ""P0040"", ""share"": ""1""}]",249.3,cultivated,2000,L10
+K0040,BS,M002,2115,345,"[{""name"": ""Abdul Talukder"", ""party_id"": ""P0041"", ""share"": ""1""}]",249.3,cultivated,2005,L10
+K0041,CS,M003,279,559,"[{""name"": ""Jamal Chowdhury"", ""party_id"": ""P0043"", ""share"": ""1""}]",224.66,cultivated,1936,L11
+K0042,SA,M003,660,566,"[{""name"": ""Jamal Chowdhury"", ""party_id"": ""P0043"", ""share"": ""1""}]",224.66,cultivated,1960,L11
+K0043,RS,M003,1066,631,"[{""name"": ""Habib Talukder"", ""party_id"": ""P0044"", ""share"": ""1""}]",224.66,cultivated,2010,L11
+K0044,BS,M003,1929,847,"[{""name"": ""Habib Biswas"", ""party_id"": ""P0045"", ""share"": ""1""}]",224.66,homestead,2005,L11
+K0045,CS,M001,216,509,"[{""name"": ""Anwar Sarker"", ""party_id"": ""P0047"", ""share"": ""1""}]",56.75,cultivated,1910,L12
+K0046,SA,M001,205,527,"[{""name"": ""Anwar Sarker"", ""party_id"": ""P0047"", ""share"": ""1""}]",56.75,cultivated,1960,L12
+K0047,RS,M001,429,678,"[{""name"": ""Shafiq Khan"", ""party_id"": ""P0048"", ""share"": ""1""}]",56.75,cultivated,2000,L12
+K0048,BS,M001,1686,874,"[{""name"": ""Salam Khan"", ""party_id"": ""P0051"", ""share"": ""1/2""}, {""name"": ""Rafiq Sheikh"", ""party_id"": ""P0049"", ""share"": ""1/2""}]",56.75,homestead,2018,L12
+K0049,CS,M002,118,196,"[{""name"": ""Abdul Miah"", ""party_id"": ""P0053"", ""share"": ""1""}]",36.91,cultivated,1925,L13
+K0050,SA,M002,402,251,"[{""name"": ""Abdul Miah"", ""party_id"": ""P0053"", ""share"": ""1""}]",36.91,cultivated,1960,L13
+K0051,RS,M002,694,328,"[{""name"": ""Habib Bhuiyan"", ""party_id"": ""P0054"", ""share"": ""1""}]",36.91,cultivated,1990,L13
+K0052,BS,M002,573,499,"[{""name"": ""Nasir Miah"", ""party_id"": ""P0055"", ""share"": ""1/2""}, {""name"": ""Rabeya Hossain"", ""party_id"": ""P0036"", ""share"": ""1/2""}]",36.91,homestead,2005,L13
+K0053,CS,M003,191,202,"[{""name"": ""Jamal Bhuiyan"", ""party_id"": ""P0057"", ""share"": ""1""}]",256.97,cultivated,1936,L14
+K0054,SA,M003,681,228,"[{""name"": ""Jamal Bhuiyan"", ""party_id"": ""P0057"", ""share"": ""1""}]",256.97,cultivated,1960,L14
+K0055,RS,M003,174,294,"[{""name"": ""Sumon Mia"", ""party_id"": ""P0022"", ""share"": ""1""}]",256.97,cultivated,1990,L14
+K0056,BS,M003,2047,566,"[{""name"": ""Nasir Khan"", ""party_id"": ""P0058"", ""share"": ""1""}]",256.97,pond,2012,L14
+K0057,CS,M001,13,352,"[{""name"": ""Rafiq Khan"", ""party_id"": ""P0060"", ""share"": ""1""}]",124.26,cultivated,1910,L15
+K0058,SA,M001,196,409,"[{""name"": ""Rafiq Khan"", ""party_id"": ""P0060"", ""share"": ""1""}]",124.26,cultivated,1960,L15
+K0059,RS,M001,1091,499,"[{""name"": ""Sumon Bhuiyan"", ""party_id"": ""P0061"", ""share"": ""1""}]",124.26,cultivated,1990,L15
+K0060,BS,M001,2513,638,"[{""name"": ""Nasir Khan"", ""party_id"": ""P0058"", ""share"": ""1""}]",124.26,pond,2018,L15
+K0061,CS,M002,249,612,"[{""name"": ""Kabir Khan"", ""party_id"": ""P0063"", ""share"": ""1""}]",74.51,cultivated,1925,L16
+K0062,SA,M002,395,648,"[{""name"": ""Kabir Khan"", ""party_id"": ""P0063"", ""share"": ""1""}]",74.51,cultivated,1960,L16
+K0063,RS,M002,925,713,"[{""name"": ""Rahim Sheikh"", ""party_id"": ""P0064"", ""share"": ""1""}]",74.51,cultivated,2000,L16
+K0064,BS,M002,2344,957,"[{""name"": ""Hasan Biswas"", ""party_id"": ""P0065"", ""share"": ""1""}]",74.51,pond,2012,L16
+K0065,CS,M003,3,347,"[{""name"": ""Nasir Akand"", ""party_id"": ""P0067"", ""share"": ""1""}]",64.13,cultivated,1910,L17
+K0066,SA,M003,756,407,"[{""name"": ""Nasir Akand"", ""party_id"": ""P0067"", ""share"": ""1""}]",64.13,cultivated,1960,L17
+K0067,RS,M003,430,481,"[{""name"": ""Kabir Talukder"", ""party_id"": ""P0071"", ""share"": ""1""}]",64.13,cultivated,2010,L17
+K0068,BS,M003,1134,676,"[{""name"": ""Faruk Talukder"", ""party_id"": ""P0069"", ""share"": ""1/2""}, {""name"": ""Rokeya Howlader"", ""party_id"": ""P0070"", ""share"": ""1/2""}]",64.13,pond,2012,L17
+K0069,CS,M001,137,879,"[{""name"": ""Mizan Miah"", ""party_id"": ""P0015"", ""share"": ""1""}]",205.84,cultivated,1936,L18
+K0070,SA,M001,568,886,"[{""name"": ""Mizan Miah"", ""party_id"": ""P0015"", ""share"": ""1""}]",205.84,cultivated,1960,L18
+K0071,RS,M001,658,973,"[{""name"": ""Kabir Akand"", ""party_id"": ""P0072"", ""share"": ""1""}]",205.84,cultivated,2000,L18
+K0072,BS,M001,2861,1271,"[{""name"": ""Billal Talukder"", ""party_id"": ""P0073"", ""share"": ""1""}]",205.84,pond,2005,L18
+K0073,CS,M002,113,847,"[{""name"": ""Jamal Miah"", ""party_id"": ""P0075"", ""share"": ""1""}]",138.32,cultivated,1936,L19
+K0074,SA,M002,547,872,"[{""name"": ""Jamal Miah"", ""party_id"": ""P0075"", ""share"": ""1""}]",138.32,cultivated,1960,L19
+K0075,RS,M002,232,960,"[{""name"": ""Habib Akand"", ""party_id"": ""P0076"", ""share"": ""1""}]",138.32,cultivated,1990,L19
+K0076,BS,M002,1447,1195,"[{""name"": ""Karim Biswas"", ""party_id"": ""P0077"", ""share"": ""1""}]",138.32,pond,2012,L19
+K0077,CS,M003,177,234,"[{""name"": ""Faruk Sarker"", ""party_id"": ""P0079"", ""share"": ""1""}]",213.73,cultivated,1925,L20
+K0078,SA,M003,440,285,"[{""name"": ""Faruk Sarker"", ""party_id"": ""P0079"", ""share"": ""1""}]",213.73,cultivated,1960,L20
+K0079,RS,M003,754,433,"[{""name"": ""Rafiq Howlader"", ""party_id"": ""P0080"", ""share"": ""1""}]",213.73,cultivated,1990,L20
+K0080,BS,M003,334,610,"[{""name"": ""Government of Bangladesh (Khas)"", ""party_id"": ""P0081"", ""share"": ""1""}]",213.73,khas,2018,L20
+K0081,CS,M001,16,438,"[{""name"": ""Habib Sarker"", ""party_id"": ""P0018"", ""share"": ""1""}]",253.84,cultivated,1936,L21
+K0082,SA,M001,583,496,"[{""name"": ""Habib Sarker"", ""party_id"": ""P0018"", ""share"": ""1""}]",253.84,cultivated,1960,L21
+K0083,RS,M001,161,621,"[{""name"": ""Sumon Sheikh"", ""party_id"": ""P0083"", ""share"": ""1""}]",253.84,cultivated,2000,L21
+K0084,BS,M001,2860,690,"[{""name"": ""Anwar Miah"", ""party_id"": ""P0084"", ""share"": ""1""}]",253.84,pond,2018,L21
+K0085,CS,M002,196,122,"[{""name"": ""Anwar Miah"", ""party_id"": ""P0084"", ""share"": ""1""}]",278.9,cultivated,1925,L22
+K0086,SA,M002,449,131,"[{""name"": ""Anwar Miah"", ""party_id"": ""P0084"", ""share"": ""1""}]",278.9,cultivated,1960,L22
+K0087,RS,M002,1109,258,"[{""name"": ""Faruk Bhuiyan"", ""party_id"": ""P0030"", ""share"": ""1""}]",278.9,cultivated,2010,L22
+K0088,BS,M002,2230,465,"[{""name"": ""Mizan Chowdhury"", ""party_id"": ""P0086"", ""share"": ""1/2""}, {""name"": ""Amena Howlader"", ""party_id"": ""P0004"", ""share"": ""1/2""}]",278.9,cultivated,2012,L22
+K0089,CS,M003,285,115,"[{""name"": ""Rafiq Sarker"", ""party_id"": ""P0087"", ""share"": ""1""}]",284.34,cultivated,1936,L23
+K0090,SA,M003,730,133,"[{""name"": ""Rafiq Sarker"", ""party_id"": ""P0087"", ""share"": ""1""}]",284.34,cultivated,1960,L23
+K0091,RS,M003,841,312,"[{""name"": ""Shafiq Talukder"", ""party_id"": ""P0088"", ""share"": ""1""}]",284.34,cultivated,2000,L23
+K0092,BS,M003,1510,385,"[{""name"": ""Abdul Akand"", ""party_id"": ""P0027"", ""share"": ""1/2""}, {""name"": ""Shirin Chowdhury"", ""party_id"": ""P0089"", ""share"": ""1/2""}]",284.34,pond,2012,L23
+K0093,CS,M001,82,321,"[{""name"": ""Hasan Bhuiyan"", ""party_id"": ""P0090"", ""share"": ""1""}]",203.04,cultivated,1925,L24
+K0094,SA,M001,45,326,"[{""name"": ""Hasan Bhuiyan"", ""party_id"": ""P0090"", ""share"": ""1""}]",203.04,cultivated,1960,L24
+K0095,RS,M001,1346,482,"[{""name"": ""Abdul Chowdhury"", ""party_id"": ""P0091"", ""share"": ""1""}]",203.04,cultivated,1990,L24
+K0096,BS,M001,2581,577,"[{""name"": ""Karim Sarker"", ""party_id"": ""P0005"", ""share"": ""1/2""}, {""name"": ""Shirin Chowdhury"", ""party_id"": ""P0089"", ""share"": ""1/2""}]",203.04,cultivated,2012,L24

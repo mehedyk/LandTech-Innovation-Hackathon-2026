@@ -1,0 +1,244 @@
+{
+  "labelled_anomalies": 9,
+  "evaluable": 8,
+  "detected": 8,
+  "recall": 1,
+  "deeds_total": 25,
+  "deeds_flagged": 8,
+  "false_positive_deeds": [],
+  "precision_on_deeds": 1,
+  "per_anomaly": [
+    {
+      "lineage": "L03",
+      "anomaly": "deed_vs_mutation_area_mismatch",
+      "area": "P3",
+      "evaluable": true,
+      "detected": true,
+      "rules": [
+        "MUTATION_AREA_MISMATCH"
+      ]
+    },
+    {
+      "lineage": "L05",
+      "anomaly": "duplicate_sale",
+      "area": "P3",
+      "evaluable": true,
+      "detected": true,
+      "rules": [
+        "OVERLAPPING_SALE"
+      ]
+    },
+    {
+      "lineage": "L07",
+      "anomaly": "rejected_then_resubmitted",
+      "area": "P4",
+      "evaluable": true,
+      "detected": true,
+      "rules": [
+        "REJECTED_THEN_RESUBMITTED"
+      ]
+    },
+    {
+      "lineage": "L09",
+      "anomaly": "overlapping_transfer_area_exceeds_plot",
+      "area": "P3",
+      "evaluable": true,
+      "detected": true,
+      "rules": [
+        "SHARE_OVERRUN",
+        "OVERLAPPING_SALE",
+        "REGISTERED_NOT_MUTATED"
+      ]
+    },
+    {
+      "lineage": "L12",
+      "anomaly": "ownership_share_conflict",
+      "area": "P3",
+      "evaluable": true,
+      "detected": true,
+      "rules": [
+        "SHARE_OVERRUN"
+      ]
+    },
+    {
+      "lineage": "L14",
+      "anomaly": "registered_not_mutated",
+      "area": "P4",
+      "evaluable": true,
+      "detected": true,
+      "rules": [
+        "REGISTERED_NOT_MUTATED"
+      ]
+    },
+    {
+      "lineage": "L17",
+      "anomaly": "chain_break_SA_to_RS_no_link_deed",
+      "area": "P3",
+      "evaluable": false,
+      "detected": false,
+      "rules": []
+    },
+    {
+      "lineage": "L20",
+      "anomaly": "khas_claim_conflicts_with_deed",
+      "area": "P5",
+      "evaluable": true,
+      "detected": true,
+      "rules": [
+        "KHAS_CONFLICT",
+        "REGISTERED_NOT_MUTATED"
+      ]
+    },
+    {
+      "lineage": "L22",
+      "anomaly": "invalid_qr_and_signature_mismatch",
+      "area": "P2",
+      "evaluable": true,
+      "detected": true,
+      "rules": [
+        "INVALID_QR_OR_SIGNATURE"
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "rule": "MUTATION_AREA_MISMATCH",
+      "severity": "review",
+      "checkpoint": "pre-mutation",
+      "record": "D0003",
+      "lineage": "L03",
+      "message": "Mutation MC0003 changed 187.56 dec but the deed transfers 117.22 dec.",
+      "evidence": [
+        "D0003",
+        "MC0003"
+      ]
+    },
+    {
+      "rule": "SHARE_OVERRUN",
+      "severity": "block",
+      "checkpoint": "pre-registration",
+      "record": "D0010",
+      "lineage": "L09",
+      "message": "Mizan Bhuiyan holds 1/2 (120.22 dec) in K0036 but this deed sells 168.3 dec.",
+      "evidence": [
+        "D0010",
+        "K0036"
+      ]
+    },
+    {
+      "rule": "SHARE_OVERRUN",
+      "severity": "block",
+      "checkpoint": "pre-registration",
+      "record": "D0011",
+      "lineage": "L09",
+      "message": "Mizan Bhuiyan holds 1/2 (120.22 dec) in K0036 but this deed sells 144.26 dec.",
+      "evidence": [
+        "D0011",
+        "K0036"
+      ]
+    },
+    {
+      "rule": "OVERLAPPING_SALE",
+      "severity": "block",
+      "checkpoint": "pre-registration",
+      "record": "D0011",
+      "lineage": "L09",
+      "message": "Mizan Bhuiyan already sold 168.30 dec of this parcel (9217/2022); with this deed the total is 312.56 dec, above the 120.22 dec on record.",
+      "evidence": [
+        "D0011",
+        "D0010"
+      ]
+    },
+    {
+      "rule": "REGISTERED_NOT_MUTATED",
+      "severity": "review",
+      "checkpoint": "pre-mutation",
+      "record": "D0011",
+      "lineage": "L09",
+      "message": "Registered 1528 days ago with no mutation case; the record of rights still shows the old owner.",
+      "evidence": [
+        "D0011"
+      ]
+    },
+    {
+      "rule": "REGISTERED_NOT_MUTATED",
+      "severity": "review",
+      "checkpoint": "pre-mutation",
+      "record": "D0016",
+      "lineage": "L14",
+      "message": "Registered 1233 days ago with no mutation case; the record of rights still shows the old owner.",
+      "evidence": [
+        "D0016"
+      ]
+    },
+    {
+      "rule": "OVERLAPPING_SALE",
+      "severity": "block",
+      "checkpoint": "pre-registration",
+      "record": "D0006",
+      "lineage": "L05",
+      "message": "Jamal Mia already sold 121.31 dec of this parcel (5797/2023); with this deed the total is 242.62 dec, above the 121.31 dec on record.",
+      "evidence": [
+        "D0006",
+        "D0005"
+      ]
+    },
+    {
+      "rule": "KHAS_CONFLICT",
+      "severity": "block",
+      "checkpoint": "pre-registration",
+      "record": "D0021",
+      "lineage": "L20",
+      "message": "Latest record (K0080, BS) shows this plot as khas/government land, but Rafiq Howlader is selling it.",
+      "evidence": [
+        "D0021",
+        "K0080"
+      ]
+    },
+    {
+      "rule": "REGISTERED_NOT_MUTATED",
+      "severity": "review",
+      "checkpoint": "pre-mutation",
+      "record": "D0021",
+      "lineage": "L20",
+      "message": "Registered 991 days ago with no mutation case; the record of rights still shows the old owner.",
+      "evidence": [
+        "D0021"
+      ]
+    },
+    {
+      "rule": "SHARE_OVERRUN",
+      "severity": "block",
+      "checkpoint": "pre-registration",
+      "record": "D0014",
+      "lineage": "L12",
+      "message": "Salam Khan holds 1/2 (28.38 dec) in K0048 but this deed sells 56.75 dec.",
+      "evidence": [
+        "D0014",
+        "K0048"
+      ]
+    },
+    {
+      "rule": "INVALID_QR_OR_SIGNATURE",
+      "severity": "block",
+      "checkpoint": "pre-registration",
+      "record": "D0023",
+      "lineage": "L22",
+      "message": "Deed 3003/2025: QR code does not verify and signature is inconsistent with the earlier record.",
+      "evidence": [
+        "D0023"
+      ]
+    },
+    {
+      "rule": "REJECTED_THEN_RESUBMITTED",
+      "severity": "info",
+      "checkpoint": "pre-mutation",
+      "record": "D0008",
+      "lineage": "L07",
+      "message": "Mutation was rejected (missing dag schedule / DCR) and has been resubmitted.",
+      "evidence": [
+        "D0008"
+      ]
+    }
+  ]
+}

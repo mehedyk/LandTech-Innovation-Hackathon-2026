@@ -1,0 +1,3162 @@
+{
+ "_meta": {
+  "note": "FICTIONAL SYNTHETIC DATA - not real persons or parcels",
+  "seed": 20261017,
+  "generated_for": "land-software P1-P5 testing"
+ },
+ "mouzas": [
+  {
+   "mouza_id": "M001",
+   "name": "Dakshin Char Rampur",
+   "upazila": "Sadar",
+   "district": "Faridpur"
+  },
+  {
+   "mouza_id": "M002",
+   "name": "Uttar Baliadi",
+   "upazila": "Mollahat",
+   "district": "Bagerhat"
+  },
+  {
+   "mouza_id": "M003",
+   "name": "Shaheb Bari",
+   "upazila": "Sreepur",
+   "district": "Gazipur"
+  }
+ ],
+ "parties": [
+  {
+   "party_id": "P0001",
+   "name": "Salam Biswas"
+  },
+  {
+   "party_id": "P0002",
+   "name": "Jamal Akand"
+  },
+  {
+   "party_id": "P0003",
+   "name": "Billal Hossain"
+  },
+  {
+   "party_id": "P0004",
+   "name": "Amena Howlader"
+  },
+  {
+   "party_id": "P0005",
+   "name": "Karim Sarker"
+  },
+  {
+   "party_id": "P0006",
+   "name": "Salam Talukder"
+  },
+  {
+   "party_id": "P0007",
+   "name": "Kabir Sarker"
+  },
+  {
+   "party_id": "P0008",
+   "name": "Faruk Chowdhury"
+  },
+  {
+   "party_id": "P0009",
+   "name": "Kabir Biswas"
+  },
+  {
+   "party_id": "P0010",
+   "name": "Karim Howlader"
+  },
+  {
+   "party_id": "P0011",
+   "name": "Faruk Mia"
+  },
+  {
+   "party_id": "P0012",
+   "name": "Shafiq Howlader"
+  },
+  {
+   "party_id": "P0013",
+   "name": "Habib Howlader"
+  },
+  {
+   "party_id": "P0014",
+   "name": "Sumon Khan"
+  },
+  {
+   "party_id": "P0015",
+   "name": "Mizan Miah"
+  },
+  {
+   "party_id": "P0016",
+   "name": "Nasima Hossain"
+  },
+  {
+   "party_id": "P0017",
+   "name": "Sumon Chowdhury"
+  },
+  {
+   "party_id": "P0018",
+   "name": "Habib Sarker"
+  },
+  {
+   "party_id": "P0019",
+   "name": "Jamal Mia"
+  },
+  {
+   "party_id": "P0020",
+   "name": "Morzina Khan"
+  },
+  {
+   "party_id": "P0021",
+   "name": "Rahim Mia"
+  },
+  {
+   "party_id": "P0022",
+   "name": "Sumon Mia"
+  },
+  {
+   "party_id": "P0023",
+   "name": "Nasir Mia"
+  },
+  {
+   "party_id": "P0024",
+   "name": "Billal Biswas"
+  },
+  {
+   "party_id": "P0025",
+   "name": "Hasan Akand"
+  },
+  {
+   "party_id": "P0026",
+   "name": "Habib Miah"
+  },
+  {
+   "party_id": "P0027",
+   "name": "Abdul Akand"
+  },
+  {
+   "party_id": "P0028",
+   "name": "Jamal Howlader"
+  },
+  {
+   "party_id": "P0029",
+   "name": "Jamal Hossain"
+  },
+  {
+   "party_id": "P0030",
+   "name": "Faruk Bhuiyan"
+  },
+  {
+   "party_id": "P0031",
+   "name": "Karim Akand"
+  },
+  {
+   "party_id": "P0032",
+   "name": "Anwar Talukder"
+  },
+  {
+   "party_id": "P0033",
+   "name": "Faruk Khan"
+  },
+  {
+   "party_id": "P0034",
+   "name": "Kabir Howlader"
+  },
+  {
+   "party_id": "P0035",
+   "name": "Mizan Bhuiyan"
+  },
+  {
+   "party_id": "P0036",
+   "name": "Rabeya Hossain"
+  },
+  {
+   "party_id": "P0037",
+   "name": "Mizan Akand"
+  },
+  {
+   "party_id": "P0038",
+   "name": "Rahim Akand"
+  },
+  {
+   "party_id": "P0039",
+   "name": "Faruk Akand"
+  },
+  {
+   "party_id": "P0040",
+   "name": "Shafiq Hossain"
+  },
+  {
+   "party_id": "P0041",
+   "name": "Abdul Talukder"
+  },
+  {
+   "party_id": "P0042",
+   "name": "Anwar Akand"
+  },
+  {
+   "party_id": "P0043",
+   "name": "Jamal Chowdhury"
+  },
+  {
+   "party_id": "P0044",
+   "name": "Habib Talukder"
+  },
+  {
+   "party_id": "P0045",
+   "name": "Habib Biswas"
+  },
+  {
+   "party_id": "P0046",
+   "name": "Rahim Khan"
+  },
+  {
+   "party_id": "P0047",
+   "name": "Anwar Sarker"
+  },
+  {
+   "party_id": "P0048",
+   "name": "Shafiq Khan"
+  },
+  {
+   "party_id": "P0049",
+   "name": "Rafiq Sheikh"
+  },
+  {
+   "party_id": "P0050",
+   "name": "Amena Sheikh"
+  },
+  {
+   "party_id": "P0051",
+   "name": "Salam Khan"
+  },
+  {
+   "party_id": "P0052",
+   "name": "Karim Mia"
+  },
+  {
+   "party_id": "P0053",
+   "name": "Abdul Miah"
+  },
+  {
+   "party_id": "P0054",
+   "name": "Habib Bhuiyan"
+  },
+  {
+   "party_id": "P0055",
+   "name": "Nasir Miah"
+  },
+  {
+   "party_id": "P0056",
+   "name": "Shafiq Chowdhury"
+  },
+  {
+   "party_id": "P0057",
+   "name": "Jamal Bhuiyan"
+  },
+  {
+   "party_id": "P0058",
+   "name": "Nasir Khan"
+  },
+  {
+   "party_id": "P0059",
+   "name": "Rahim Sarker"
+  },
+  {
+   "party_id": "P0060",
+   "name": "Rafiq Khan"
+  },
+  {
+   "party_id": "P0061",
+   "name": "Sumon Bhuiyan"
+  },
+  {
+   "party_id": "P0062",
+   "name": "Abdul Mia"
+  },
+  {
+   "party_id": "P0063",
+   "name": "Kabir Khan"
+  },
+  {
+   "party_id": "P0064",
+   "name": "Rahim Sheikh"
+  },
+  {
+   "party_id": "P0065",
+   "name": "Hasan Biswas"
+  },
+  {
+   "party_id": "P0066",
+   "name": "Sumon Biswas"
+  },
+  {
+   "party_id": "P0067",
+   "name": "Nasir Akand"
+  },
+  {
+   "party_id": "P0068",
+   "name": "Abdul Howlader"
+  },
+  {
+   "party_id": "P0069",
+   "name": "Faruk Talukder"
+  },
+  {
+   "party_id": "P0070",
+   "name": "Rokeya Howlader"
+  },
+  {
+   "party_id": "P0071",
+   "name": "Kabir Talukder"
+  },
+  {
+   "party_id": "P0072",
+   "name": "Kabir Akand"
+  },
+  {
+   "party_id": "P0073",
+   "name": "Billal Talukder"
+  },
+  {
+   "party_id": "P0074",
+   "name": "Faruk Howlader"
+  },
+  {
+   "party_id": "P0075",
+   "name": "Jamal Miah"
+  },
+  {
+   "party_id": "P0076",
+   "name": "Habib Akand"
+  },
+  {
+   "party_id": "P0077",
+   "name": "Karim Biswas"
+  },
+  {
+   "party_id": "P0078",
+   "name": "Rafiq Bhuiyan"
+  },
+  {
+   "party_id": "P0079",
+   "name": "Faruk Sarker"
+  },
+  {
+   "party_id": "P0080",
+   "name": "Rafiq Howlader"
+  },
+  {
+   "party_id": "P0081",
+   "name": "Government of Bangladesh (Khas)"
+  },
+  {
+   "party_id": "P0082",
+   "name": "Habib Mia"
+  },
+  {
+   "party_id": "P0083",
+   "name": "Sumon Sheikh"
+  },
+  {
+   "party_id": "P0084",
+   "name": "Anwar Miah"
+  },
+  {
+   "party_id": "P0085",
+   "name": "Rahim Hossain"
+  },
+  {
+   "party_id": "P0086",
+   "name": "Mizan Chowdhury"
+  },
+  {
+   "party_id": "P0087",
+   "name": "Rafiq Sarker"
+  },
+  {
+   "party_id": "P0088",
+   "name": "Shafiq Talukder"
+  },
+  {
+   "party_id": "P0089",
+   "name": "Shirin Chowdhury"
+  },
+  {
+   "party_id": "P0090",
+   "name": "Hasan Bhuiyan"
+  },
+  {
+   "party_id": "P0091",
+   "name": "Abdul Chowdhury"
+  },
+  {
+   "party_id": "P0092",
+   "name": "Abdul Sheikh"
+  }
+ ],
+ "parcel_lineages": [
+  {
+   "lineage": "L01",
+   "mouza_id": "M002",
+   "area_dec": 98.54,
+   "cs": "K0001",
+   "sa": "K0002",
+   "rs": "K0003",
+   "bs": "K0004"
+  },
+  {
+   "lineage": "L02",
+   "mouza_id": "M003",
+   "area_dec": 271.95,
+   "cs": "K0005",
+   "sa": "K0006",
+   "rs": "K0007",
+   "bs": "K0008"
+  },
+  {
+   "lineage": "L03",
+   "mouza_id": "M001",
+   "area_dec": 234.45,
+   "cs": "K0009",
+   "sa": "K0010",
+   "rs": "K0011",
+   "bs": "K0012"
+  },
+  {
+   "lineage": "L04",
+   "mouza_id": "M002",
+   "area_dec": 125.36,
+   "cs": "K0013",
+   "sa": "K0014",
+   "rs": "K0015",
+   "bs": "K0016"
+  },
+  {
+   "lineage": "L05",
+   "mouza_id": "M003",
+   "area_dec": 242.62,
+   "cs": "K0017",
+   "sa": "K0018",
+   "rs": "K0019",
+   "bs": "K0020"
+  },
+  {
+   "lineage": "L06",
+   "mouza_id": "M001",
+   "area_dec": 132.28,
+   "cs": "K0021",
+   "sa": "K0022",
+   "rs": "K0023",
+   "bs": "K0024"
+  },
+  {
+   "lineage": "L07",
+   "mouza_id": "M002",
+   "area_dec": 167.14,
+   "cs": "K0025",
+   "sa": "K0026",
+   "rs": "K0027",
+   "bs": "K0028"
+  },
+  {
+   "lineage": "L08",
+   "mouza_id": "M003",
+   "area_dec": 105.8,
+   "cs": "K0029",
+   "sa": "K0030",
+   "rs": "K0031",
+   "bs": "K0032"
+  },
+  {
+   "lineage": "L09",
+   "mouza_id": "M001",
+   "area_dec": 240.43,
+   "cs": "K0033",
+   "sa": "K0034",
+   "rs": "K0035",
+   "bs": "K0036"
+  },
+  {
+   "lineage": "L10",
+   "mouza_id": "M002",
+   "area_dec": 249.3,
+   "cs": "K0037",
+   "sa": "K0038",
+   "rs": "K0039",
+   "bs": "K0040"
+  },
+  {
+   "lineage": "L11",
+   "mouza_id": "M003",
+   "area_dec": 224.66,
+   "cs": "K0041",
+   "sa": "K0042",
+   "rs": "K0043",
+   "bs": "K0044"
+  },
+  {
+   "lineage": "L12",
+   "mouza_id": "M001",
+   "area_dec": 56.75,
+   "cs": "K0045",
+   "sa": "K0046",
+   "rs": "K0047",
+   "bs": "K0048"
+  },
+  {
+   "lineage": "L13",
+   "mouza_id": "M002",
+   "area_dec": 36.91,
+   "cs": "K0049",
+   "sa": "K0050",
+   "rs": "K0051",
+   "bs": "K0052"
+  },
+  {
+   "lineage": "L14",
+   "mouza_id": "M003",
+   "area_dec": 256.97,
+   "cs": "K0053",
+   "sa": "K0054",
+   "rs": "K0055",
+   "bs": "K0056"
+  },
+  {
+   "lineage": "L15",
+   "mouza_id": "M001",
+   "area_dec": 124.26,
+   "cs": "K0057",
+   "sa": "K0058",
+   "rs": "K0059",
+   "bs": "K0060"
+  },
+  {
+   "lineage": "L16",
+   "mouza_id": "M002",
+   "area_dec": 74.51,
+   "cs": "K0061",
+   "sa": "K0062",
+   "rs": "K0063",
+   "bs": "K0064"
+  },
+  {
+   "lineage": "L17",
+   "mouza_id": "M003",
+   "area_dec": 64.13,
+   "cs": "K0065",
+   "sa": "K0066",
+   "rs": "K0067",
+   "bs": "K0068"
+  },
+  {
+   "lineage": "L18",
+   "mouza_id": "M001",
+   "area_dec": 205.84,
+   "cs": "K0069",
+   "sa": "K0070",
+   "rs": "K0071",
+   "bs": "K0072"
+  },
+  {
+   "lineage": "L19",
+   "mouza_id": "M002",
+   "area_dec": 138.32,
+   "cs": "K0073",
+   "sa": "K0074",
+   "rs": "K0075",
+   "bs": "K0076"
+  },
+  {
+   "lineage": "L20",
+   "mouza_id": "M003",
+   "area_dec": 213.73,
+   "cs": "K0077",
+   "sa": "K0078",
+   "rs": "K0079",
+   "bs": "K0080"
+  },
+  {
+   "lineage": "L21",
+   "mouza_id": "M001",
+   "area_dec": 253.84,
+   "cs": "K0081",
+   "sa": "K0082",
+   "rs": "K0083",
+   "bs": "K0084"
+  },
+  {
+   "lineage": "L22",
+   "mouza_id": "M002",
+   "area_dec": 278.9,
+   "cs": "K0085",
+   "sa": "K0086",
+   "rs": "K0087",
+   "bs": "K0088"
+  },
+  {
+   "lineage": "L23",
+   "mouza_id": "M003",
+   "area_dec": 284.34,
+   "cs": "K0089",
+   "sa": "K0090",
+   "rs": "K0091",
+   "bs": "K0092"
+  },
+  {
+   "lineage": "L24",
+   "mouza_id": "M001",
+   "area_dec": 203.04,
+   "cs": "K0093",
+   "sa": "K0094",
+   "rs": "K0095",
+   "bs": "K0096"
+  }
+ ],
+ "khatians": [
+  {
+   "khatian_uid": "K0001",
+   "survey": "CS",
+   "mouza_id": "M002",
+   "khatian_no": "95",
+   "plot_no": "548",
+   "owners": [
+    {
+     "name": "Salam Biswas",
+     "party_id": "P0001",
+     "share": "1"
+    }
+   ],
+   "area_dec": 98.54,
+   "land_class": "cultivated",
+   "survey_year": 1910,
+   "lineage": "L01"
+  },
+  {
+   "khatian_uid": "K0002",
+   "survey": "SA",
+   "mouza_id": "M002",
+   "khatian_no": "259",
+   "plot_no": "573",
+   "owners": [
+    {
+     "name": "Salam Biswas",
+     "party_id": "P0001",
+     "share": "1"
+    }
+   ],
+   "area_dec": 98.54,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L01"
+  },
+  {
+   "khatian_uid": "K0003",
+   "survey": "RS",
+   "mouza_id": "M002",
+   "khatian_no": "921",
+   "plot_no": "642",
+   "owners": [
+    {
+     "name": "Jamal Akand",
+     "party_id": "P0002",
+     "share": "1"
+    }
+   ],
+   "area_dec": 98.54,
+   "land_class": "cultivated",
+   "survey_year": 2010,
+   "lineage": "L01"
+  },
+  {
+   "khatian_uid": "K0004",
+   "survey": "BS",
+   "mouza_id": "M002",
+   "khatian_no": "18",
+   "plot_no": "831",
+   "owners": [
+    {
+     "name": "Billal Hossain",
+     "party_id": "P0003",
+     "share": "1/2"
+    },
+    {
+     "name": "Amena Howlader",
+     "party_id": "P0004",
+     "share": "1/2"
+    }
+   ],
+   "area_dec": 98.54,
+   "land_class": "cultivated",
+   "survey_year": 2005,
+   "lineage": "L01"
+  },
+  {
+   "khatian_uid": "K0005",
+   "survey": "CS",
+   "mouza_id": "M003",
+   "khatian_no": "188",
+   "plot_no": "488",
+   "owners": [
+    {
+     "name": "Salam Talukder",
+     "party_id": "P0006",
+     "share": "1"
+    }
+   ],
+   "area_dec": 271.95,
+   "land_class": "cultivated",
+   "survey_year": 1910,
+   "lineage": "L02"
+  },
+  {
+   "khatian_uid": "K0006",
+   "survey": "SA",
+   "mouza_id": "M003",
+   "khatian_no": "142",
+   "plot_no": "542",
+   "owners": [
+    {
+     "name": "Salam Talukder",
+     "party_id": "P0006",
+     "share": "1"
+    }
+   ],
+   "area_dec": 271.95,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L02"
+  },
+  {
+   "khatian_uid": "K0007",
+   "survey": "RS",
+   "mouza_id": "M003",
+   "khatian_no": "1172",
+   "plot_no": "592",
+   "owners": [
+    {
+     "name": "Kabir Sarker",
+     "party_id": "P0007",
+     "share": "1"
+    }
+   ],
+   "area_dec": 271.95,
+   "land_class": "cultivated",
+   "survey_year": 2010,
+   "lineage": "L02"
+  },
+  {
+   "khatian_uid": "K0008",
+   "survey": "BS",
+   "mouza_id": "M003",
+   "khatian_no": "2955",
+   "plot_no": "778",
+   "owners": [
+    {
+     "name": "Faruk Chowdhury",
+     "party_id": "P0008",
+     "share": "1"
+    }
+   ],
+   "area_dec": 271.95,
+   "land_class": "homestead",
+   "survey_year": 2012,
+   "lineage": "L02"
+  },
+  {
+   "khatian_uid": "K0009",
+   "survey": "CS",
+   "mouza_id": "M001",
+   "khatian_no": "46",
+   "plot_no": "574",
+   "owners": [
+    {
+     "name": "Karim Howlader",
+     "party_id": "P0010",
+     "share": "1"
+    }
+   ],
+   "area_dec": 234.45,
+   "land_class": "cultivated",
+   "survey_year": 1910,
+   "lineage": "L03"
+  },
+  {
+   "khatian_uid": "K0010",
+   "survey": "SA",
+   "mouza_id": "M001",
+   "khatian_no": "394",
+   "plot_no": "590",
+   "owners": [
+    {
+     "name": "Karim Howlader",
+     "party_id": "P0010",
+     "share": "1"
+    }
+   ],
+   "area_dec": 234.45,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L03"
+  },
+  {
+   "khatian_uid": "K0011",
+   "survey": "RS",
+   "mouza_id": "M001",
+   "khatian_no": "700",
+   "plot_no": "657",
+   "owners": [
+    {
+     "name": "Faruk Mia",
+     "party_id": "P0011",
+     "share": "1"
+    }
+   ],
+   "area_dec": 234.45,
+   "land_class": "cultivated",
+   "survey_year": 2010,
+   "lineage": "L03"
+  },
+  {
+   "khatian_uid": "K0012",
+   "survey": "BS",
+   "mouza_id": "M001",
+   "khatian_no": "1997",
+   "plot_no": "812",
+   "owners": [
+    {
+     "name": "Shafiq Howlader",
+     "party_id": "P0012",
+     "share": "1"
+    }
+   ],
+   "area_dec": 234.45,
+   "land_class": "cultivated",
+   "survey_year": 2005,
+   "lineage": "L03"
+  },
+  {
+   "khatian_uid": "K0013",
+   "survey": "CS",
+   "mouza_id": "M002",
+   "khatian_no": "274",
+   "plot_no": "663",
+   "owners": [
+    {
+     "name": "Karim Howlader",
+     "party_id": "P0010",
+     "share": "1"
+    }
+   ],
+   "area_dec": 125.36,
+   "land_class": "cultivated",
+   "survey_year": 1910,
+   "lineage": "L04"
+  },
+  {
+   "khatian_uid": "K0014",
+   "survey": "SA",
+   "mouza_id": "M002",
+   "khatian_no": "8",
+   "plot_no": "708",
+   "owners": [
+    {
+     "name": "Karim Howlader",
+     "party_id": "P0010",
+     "share": "1"
+    }
+   ],
+   "area_dec": 125.36,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L04"
+  },
+  {
+   "khatian_uid": "K0015",
+   "survey": "RS",
+   "mouza_id": "M002",
+   "khatian_no": "214",
+   "plot_no": "777",
+   "owners": [
+    {
+     "name": "Sumon Khan",
+     "party_id": "P0014",
+     "share": "1"
+    }
+   ],
+   "area_dec": 125.36,
+   "land_class": "cultivated",
+   "survey_year": 1990,
+   "lineage": "L04"
+  },
+  {
+   "khatian_uid": "K0016",
+   "survey": "BS",
+   "mouza_id": "M002",
+   "khatian_no": "42",
+   "plot_no": "1010",
+   "owners": [
+    {
+     "name": "Mizan Miah",
+     "party_id": "P0015",
+     "share": "1/2"
+    },
+    {
+     "name": "Nasima Hossain",
+     "party_id": "P0016",
+     "share": "1/2"
+    }
+   ],
+   "area_dec": 125.36,
+   "land_class": "cultivated",
+   "survey_year": 2018,
+   "lineage": "L04"
+  },
+  {
+   "khatian_uid": "K0017",
+   "survey": "CS",
+   "mouza_id": "M003",
+   "khatian_no": "116",
+   "plot_no": "120",
+   "owners": [
+    {
+     "name": "Sumon Khan",
+     "party_id": "P0014",
+     "share": "1"
+    }
+   ],
+   "area_dec": 242.62,
+   "land_class": "cultivated",
+   "survey_year": 1910,
+   "lineage": "L05"
+  },
+  {
+   "khatian_uid": "K0018",
+   "survey": "SA",
+   "mouza_id": "M003",
+   "khatian_no": "146",
+   "plot_no": "162",
+   "owners": [
+    {
+     "name": "Sumon Khan",
+     "party_id": "P0014",
+     "share": "1"
+    }
+   ],
+   "area_dec": 242.62,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L05"
+  },
+  {
+   "khatian_uid": "K0019",
+   "survey": "RS",
+   "mouza_id": "M003",
+   "khatian_no": "1140",
+   "plot_no": "231",
+   "owners": [
+    {
+     "name": "Habib Sarker",
+     "party_id": "P0018",
+     "share": "1"
+    }
+   ],
+   "area_dec": 242.62,
+   "land_class": "cultivated",
+   "survey_year": 2000,
+   "lineage": "L05"
+  },
+  {
+   "khatian_uid": "K0020",
+   "survey": "BS",
+   "mouza_id": "M003",
+   "khatian_no": "2664",
+   "plot_no": "515",
+   "owners": [
+    {
+     "name": "Jamal Mia",
+     "party_id": "P0019",
+     "share": "1/2"
+    },
+    {
+     "name": "Morzina Khan",
+     "party_id": "P0020",
+     "share": "1/2"
+    }
+   ],
+   "area_dec": 242.62,
+   "land_class": "homestead",
+   "survey_year": 2005,
+   "lineage": "L05"
+  },
+  {
+   "khatian_uid": "K0021",
+   "survey": "CS",
+   "mouza_id": "M001",
+   "khatian_no": "268",
+   "plot_no": "125",
+   "owners": [
+    {
+     "name": "Nasir Mia",
+     "party_id": "P0023",
+     "share": "1"
+    }
+   ],
+   "area_dec": 132.28,
+   "land_class": "cultivated",
+   "survey_year": 1910,
+   "lineage": "L06"
+  },
+  {
+   "khatian_uid": "K0022",
+   "survey": "SA",
+   "mouza_id": "M001",
+   "khatian_no": "787",
+   "plot_no": "152",
+   "owners": [
+    {
+     "name": "Nasir Mia",
+     "party_id": "P0023",
+     "share": "1"
+    }
+   ],
+   "area_dec": 132.28,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L06"
+  },
+  {
+   "khatian_uid": "K0023",
+   "survey": "RS",
+   "mouza_id": "M001",
+   "khatian_no": "1068",
+   "plot_no": "277",
+   "owners": [
+    {
+     "name": "Billal Biswas",
+     "party_id": "P0024",
+     "share": "1"
+    }
+   ],
+   "area_dec": 132.28,
+   "land_class": "cultivated",
+   "survey_year": 2000,
+   "lineage": "L06"
+  },
+  {
+   "khatian_uid": "K0024",
+   "survey": "BS",
+   "mouza_id": "M001",
+   "khatian_no": "1881",
+   "plot_no": "472",
+   "owners": [
+    {
+     "name": "Hasan Akand",
+     "party_id": "P0025",
+     "share": "1"
+    }
+   ],
+   "area_dec": 132.28,
+   "land_class": "homestead",
+   "survey_year": 2012,
+   "lineage": "L06"
+  },
+  {
+   "khatian_uid": "K0025",
+   "survey": "CS",
+   "mouza_id": "M002",
+   "khatian_no": "148",
+   "plot_no": "561",
+   "owners": [
+    {
+     "name": "Abdul Akand",
+     "party_id": "P0027",
+     "share": "1"
+    }
+   ],
+   "area_dec": 167.14,
+   "land_class": "cultivated",
+   "survey_year": 1925,
+   "lineage": "L07"
+  },
+  {
+   "khatian_uid": "K0026",
+   "survey": "SA",
+   "mouza_id": "M002",
+   "khatian_no": "754",
+   "plot_no": "589",
+   "owners": [
+    {
+     "name": "Abdul Akand",
+     "party_id": "P0027",
+     "share": "1"
+    }
+   ],
+   "area_dec": 167.14,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L07"
+  },
+  {
+   "khatian_uid": "K0027",
+   "survey": "RS",
+   "mouza_id": "M002",
+   "khatian_no": "904",
+   "plot_no": "755",
+   "owners": [
+    {
+     "name": "Kabir Biswas",
+     "party_id": "P0009",
+     "share": "1"
+    }
+   ],
+   "area_dec": 167.14,
+   "land_class": "cultivated",
+   "survey_year": 2000,
+   "lineage": "L07"
+  },
+  {
+   "khatian_uid": "K0028",
+   "survey": "BS",
+   "mouza_id": "M002",
+   "khatian_no": "2332",
+   "plot_no": "857",
+   "owners": [
+    {
+     "name": "Habib Sarker",
+     "party_id": "P0018",
+     "share": "1"
+    }
+   ],
+   "area_dec": 167.14,
+   "land_class": "pond",
+   "survey_year": 2012,
+   "lineage": "L07"
+  },
+  {
+   "khatian_uid": "K0029",
+   "survey": "CS",
+   "mouza_id": "M003",
+   "khatian_no": "218",
+   "plot_no": "215",
+   "owners": [
+    {
+     "name": "Jamal Hossain",
+     "party_id": "P0029",
+     "share": "1"
+    }
+   ],
+   "area_dec": 105.8,
+   "land_class": "cultivated",
+   "survey_year": 1925,
+   "lineage": "L08"
+  },
+  {
+   "khatian_uid": "K0030",
+   "survey": "SA",
+   "mouza_id": "M003",
+   "khatian_no": "792",
+   "plot_no": "245",
+   "owners": [
+    {
+     "name": "Jamal Hossain",
+     "party_id": "P0029",
+     "share": "1"
+    }
+   ],
+   "area_dec": 105.8,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L08"
+  },
+  {
+   "khatian_uid": "K0031",
+   "survey": "RS",
+   "mouza_id": "M003",
+   "khatian_no": "1229",
+   "plot_no": "397",
+   "owners": [
+    {
+     "name": "Faruk Bhuiyan",
+     "party_id": "P0030",
+     "share": "1"
+    }
+   ],
+   "area_dec": 105.8,
+   "land_class": "cultivated",
+   "survey_year": 2000,
+   "lineage": "L08"
+  },
+  {
+   "khatian_uid": "K0032",
+   "survey": "BS",
+   "mouza_id": "M003",
+   "khatian_no": "1786",
+   "plot_no": "459",
+   "owners": [
+    {
+     "name": "Karim Akand",
+     "party_id": "P0031",
+     "share": "1/2"
+    },
+    {
+     "name": "Morzina Khan",
+     "party_id": "P0020",
+     "share": "1/2"
+    }
+   ],
+   "area_dec": 105.8,
+   "land_class": "homestead",
+   "survey_year": 2005,
+   "lineage": "L08"
+  },
+  {
+   "khatian_uid": "K0033",
+   "survey": "CS",
+   "mouza_id": "M001",
+   "khatian_no": "166",
+   "plot_no": "882",
+   "owners": [
+    {
+     "name": "Faruk Khan",
+     "party_id": "P0033",
+     "share": "1"
+    }
+   ],
+   "area_dec": 240.43,
+   "land_class": "cultivated",
+   "survey_year": 1925,
+   "lineage": "L09"
+  },
+  {
+   "khatian_uid": "K0034",
+   "survey": "SA",
+   "mouza_id": "M001",
+   "khatian_no": "361",
+   "plot_no": "926",
+   "owners": [
+    {
+     "name": "Faruk Khan",
+     "party_id": "P0033",
+     "share": "1"
+    }
+   ],
+   "area_dec": 240.43,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L09"
+  },
+  {
+   "khatian_uid": "K0035",
+   "survey": "RS",
+   "mouza_id": "M001",
+   "khatian_no": "138",
+   "plot_no": "1058",
+   "owners": [
+    {
+     "name": "Kabir Howlader",
+     "party_id": "P0034",
+     "share": "1"
+    }
+   ],
+   "area_dec": 240.43,
+   "land_class": "cultivated",
+   "survey_year": 2000,
+   "lineage": "L09"
+  },
+  {
+   "khatian_uid": "K0036",
+   "survey": "BS",
+   "mouza_id": "M001",
+   "khatian_no": "2309",
+   "plot_no": "1181",
+   "owners": [
+    {
+     "name": "Mizan Bhuiyan",
+     "party_id": "P0035",
+     "share": "1/2"
+    },
+    {
+     "name": "Rabeya Hossain",
+     "party_id": "P0036",
+     "share": "1/2"
+    }
+   ],
+   "area_dec": 240.43,
+   "land_class": "homestead",
+   "survey_year": 2012,
+   "lineage": "L09"
+  },
+  {
+   "khatian_uid": "K0037",
+   "survey": "CS",
+   "mouza_id": "M002",
+   "khatian_no": "281",
+   "plot_no": "121",
+   "owners": [
+    {
+     "name": "Faruk Akand",
+     "party_id": "P0039",
+     "share": "1"
+    }
+   ],
+   "area_dec": 249.3,
+   "land_class": "cultivated",
+   "survey_year": 1925,
+   "lineage": "L10"
+  },
+  {
+   "khatian_uid": "K0038",
+   "survey": "SA",
+   "mouza_id": "M002",
+   "khatian_no": "858",
+   "plot_no": "166",
+   "owners": [
+    {
+     "name": "Faruk Akand",
+     "party_id": "P0039",
+     "share": "1"
+    }
+   ],
+   "area_dec": 249.3,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L10"
+  },
+  {
+   "khatian_uid": "K0039",
+   "survey": "RS",
+   "mouza_id": "M002",
+   "khatian_no": "876",
+   "plot_no": "205",
+   "owners": [
+    {
+     "name": "Shafiq Hossain",
+     "party_id": "P0040",
+     "share": "1"
+    }
+   ],
+   "area_dec": 249.3,
+   "land_class": "cultivated",
+   "survey_year": 2000,
+   "lineage": "L10"
+  },
+  {
+   "khatian_uid": "K0040",
+   "survey": "BS",
+   "mouza_id": "M002",
+   "khatian_no": "2115",
+   "plot_no": "345",
+   "owners": [
+    {
+     "name": "Abdul Talukder",
+     "party_id": "P0041",
+     "share": "1"
+    }
+   ],
+   "area_dec": 249.3,
+   "land_class": "cultivated",
+   "survey_year": 2005,
+   "lineage": "L10"
+  },
+  {
+   "khatian_uid": "K0041",
+   "survey": "CS",
+   "mouza_id": "M003",
+   "khatian_no": "279",
+   "plot_no": "559",
+   "owners": [
+    {
+     "name": "Jamal Chowdhury",
+     "party_id": "P0043",
+     "share": "1"
+    }
+   ],
+   "area_dec": 224.66,
+   "land_class": "cultivated",
+   "survey_year": 1936,
+   "lineage": "L11"
+  },
+  {
+   "khatian_uid": "K0042",
+   "survey": "SA",
+   "mouza_id": "M003",
+   "khatian_no": "660",
+   "plot_no": "566",
+   "owners": [
+    {
+     "name": "Jamal Chowdhury",
+     "party_id": "P0043",
+     "share": "1"
+    }
+   ],
+   "area_dec": 224.66,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L11"
+  },
+  {
+   "khatian_uid": "K0043",
+   "survey": "RS",
+   "mouza_id": "M003",
+   "khatian_no": "1066",
+   "plot_no": "631",
+   "owners": [
+    {
+     "name": "Habib Talukder",
+     "party_id": "P0044",
+     "share": "1"
+    }
+   ],
+   "area_dec": 224.66,
+   "land_class": "cultivated",
+   "survey_year": 2010,
+   "lineage": "L11"
+  },
+  {
+   "khatian_uid": "K0044",
+   "survey": "BS",
+   "mouza_id": "M003",
+   "khatian_no": "1929",
+   "plot_no": "847",
+   "owners": [
+    {
+     "name": "Habib Biswas",
+     "party_id": "P0045",
+     "share": "1"
+    }
+   ],
+   "area_dec": 224.66,
+   "land_class": "homestead",
+   "survey_year": 2005,
+   "lineage": "L11"
+  },
+  {
+   "khatian_uid": "K0045",
+   "survey": "CS",
+   "mouza_id": "M001",
+   "khatian_no": "216",
+   "plot_no": "509",
+   "owners": [
+    {
+     "name": "Anwar Sarker",
+     "party_id": "P0047",
+     "share": "1"
+    }
+   ],
+   "area_dec": 56.75,
+   "land_class": "cultivated",
+   "survey_year": 1910,
+   "lineage": "L12"
+  },
+  {
+   "khatian_uid": "K0046",
+   "survey": "SA",
+   "mouza_id": "M001",
+   "khatian_no": "205",
+   "plot_no": "527",
+   "owners": [
+    {
+     "name": "Anwar Sarker",
+     "party_id": "P0047",
+     "share": "1"
+    }
+   ],
+   "area_dec": 56.75,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L12"
+  },
+  {
+   "khatian_uid": "K0047",
+   "survey": "RS",
+   "mouza_id": "M001",
+   "khatian_no": "429",
+   "plot_no": "678",
+   "owners": [
+    {
+     "name": "Shafiq Khan",
+     "party_id": "P0048",
+     "share": "1"
+    }
+   ],
+   "area_dec": 56.75,
+   "land_class": "cultivated",
+   "survey_year": 2000,
+   "lineage": "L12"
+  },
+  {
+   "khatian_uid": "K0048",
+   "survey": "BS",
+   "mouza_id": "M001",
+   "khatian_no": "1686",
+   "plot_no": "874",
+   "owners": [
+    {
+     "name": "Salam Khan",
+     "party_id": "P0051",
+     "share": "1/2"
+    },
+    {
+     "name": "Rafiq Sheikh",
+     "party_id": "P0049",
+     "share": "1/2"
+    }
+   ],
+   "area_dec": 56.75,
+   "land_class": "homestead",
+   "survey_year": 2018,
+   "lineage": "L12"
+  },
+  {
+   "khatian_uid": "K0049",
+   "survey": "CS",
+   "mouza_id": "M002",
+   "khatian_no": "118",
+   "plot_no": "196",
+   "owners": [
+    {
+     "name": "Abdul Miah",
+     "party_id": "P0053",
+     "share": "1"
+    }
+   ],
+   "area_dec": 36.91,
+   "land_class": "cultivated",
+   "survey_year": 1925,
+   "lineage": "L13"
+  },
+  {
+   "khatian_uid": "K0050",
+   "survey": "SA",
+   "mouza_id": "M002",
+   "khatian_no": "402",
+   "plot_no": "251",
+   "owners": [
+    {
+     "name": "Abdul Miah",
+     "party_id": "P0053",
+     "share": "1"
+    }
+   ],
+   "area_dec": 36.91,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L13"
+  },
+  {
+   "khatian_uid": "K0051",
+   "survey": "RS",
+   "mouza_id": "M002",
+   "khatian_no": "694",
+   "plot_no": "328",
+   "owners": [
+    {
+     "name": "Habib Bhuiyan",
+     "party_id": "P0054",
+     "share": "1"
+    }
+   ],
+   "area_dec": 36.91,
+   "land_class": "cultivated",
+   "survey_year": 1990,
+   "lineage": "L13"
+  },
+  {
+   "khatian_uid": "K0052",
+   "survey": "BS",
+   "mouza_id": "M002",
+   "khatian_no": "573",
+   "plot_no": "499",
+   "owners": [
+    {
+     "name": "Nasir Miah",
+     "party_id": "P0055",
+     "share": "1/2"
+    },
+    {
+     "name": "Rabeya Hossain",
+     "party_id": "P0036",
+     "share": "1/2"
+    }
+   ],
+   "area_dec": 36.91,
+   "land_class": "homestead",
+   "survey_year": 2005,
+   "lineage": "L13"
+  },
+  {
+   "khatian_uid": "K0053",
+   "survey": "CS",
+   "mouza_id": "M003",
+   "khatian_no": "191",
+   "plot_no": "202",
+   "owners": [
+    {
+     "name": "Jamal Bhuiyan",
+     "party_id": "P0057",
+     "share": "1"
+    }
+   ],
+   "area_dec": 256.97,
+   "land_class": "cultivated",
+   "survey_year": 1936,
+   "lineage": "L14"
+  },
+  {
+   "khatian_uid": "K0054",
+   "survey": "SA",
+   "mouza_id": "M003",
+   "khatian_no": "681",
+   "plot_no": "228",
+   "owners": [
+    {
+     "name": "Jamal Bhuiyan",
+     "party_id": "P0057",
+     "share": "1"
+    }
+   ],
+   "area_dec": 256.97,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L14"
+  },
+  {
+   "khatian_uid": "K0055",
+   "survey": "RS",
+   "mouza_id": "M003",
+   "khatian_no": "174",
+   "plot_no": "294",
+   "owners": [
+    {
+     "name": "Sumon Mia",
+     "party_id": "P0022",
+     "share": "1"
+    }
+   ],
+   "area_dec": 256.97,
+   "land_class": "cultivated",
+   "survey_year": 1990,
+   "lineage": "L14"
+  },
+  {
+   "khatian_uid": "K0056",
+   "survey": "BS",
+   "mouza_id": "M003",
+   "khatian_no": "2047",
+   "plot_no": "566",
+   "owners": [
+    {
+     "name": "Nasir Khan",
+     "party_id": "P0058",
+     "share": "1"
+    }
+   ],
+   "area_dec": 256.97,
+   "land_class": "pond",
+   "survey_year": 2012,
+   "lineage": "L14"
+  },
+  {
+   "khatian_uid": "K0057",
+   "survey": "CS",
+   "mouza_id": "M001",
+   "khatian_no": "13",
+   "plot_no": "352",
+   "owners": [
+    {
+     "name": "Rafiq Khan",
+     "party_id": "P0060",
+     "share": "1"
+    }
+   ],
+   "area_dec": 124.26,
+   "land_class": "cultivated",
+   "survey_year": 1910,
+   "lineage": "L15"
+  },
+  {
+   "khatian_uid": "K0058",
+   "survey": "SA",
+   "mouza_id": "M001",
+   "khatian_no": "196",
+   "plot_no": "409",
+   "owners": [
+    {
+     "name": "Rafiq Khan",
+     "party_id": "P0060",
+     "share": "1"
+    }
+   ],
+   "area_dec": 124.26,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L15"
+  },
+  {
+   "khatian_uid": "K0059",
+   "survey": "RS",
+   "mouza_id": "M001",
+   "khatian_no": "1091",
+   "plot_no": "499",
+   "owners": [
+    {
+     "name": "Sumon Bhuiyan",
+     "party_id": "P0061",
+     "share": "1"
+    }
+   ],
+   "area_dec": 124.26,
+   "land_class": "cultivated",
+   "survey_year": 1990,
+   "lineage": "L15"
+  },
+  {
+   "khatian_uid": "K0060",
+   "survey": "BS",
+   "mouza_id": "M001",
+   "khatian_no": "2513",
+   "plot_no": "638",
+   "owners": [
+    {
+     "name": "Nasir Khan",
+     "party_id": "P0058",
+     "share": "1"
+    }
+   ],
+   "area_dec": 124.26,
+   "land_class": "pond",
+   "survey_year": 2018,
+   "lineage": "L15"
+  },
+  {
+   "khatian_uid": "K0061",
+   "survey": "CS",
+   "mouza_id": "M002",
+   "khatian_no": "249",
+   "plot_no": "612",
+   "owners": [
+    {
+     "name": "Kabir Khan",
+     "party_id": "P0063",
+     "share": "1"
+    }
+   ],
+   "area_dec": 74.51,
+   "land_class": "cultivated",
+   "survey_year": 1925,
+   "lineage": "L16"
+  },
+  {
+   "khatian_uid": "K0062",
+   "survey": "SA",
+   "mouza_id": "M002",
+   "khatian_no": "395",
+   "plot_no": "648",
+   "owners": [
+    {
+     "name": "Kabir Khan",
+     "party_id": "P0063",
+     "share": "1"
+    }
+   ],
+   "area_dec": 74.51,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L16"
+  },
+  {
+   "khatian_uid": "K0063",
+   "survey": "RS",
+   "mouza_id": "M002",
+   "khatian_no": "925",
+   "plot_no": "713",
+   "owners": [
+    {
+     "name": "Rahim Sheikh",
+     "party_id": "P0064",
+     "share": "1"
+    }
+   ],
+   "area_dec": 74.51,
+   "land_class": "cultivated",
+   "survey_year": 2000,
+   "lineage": "L16"
+  },
+  {
+   "khatian_uid": "K0064",
+   "survey": "BS",
+   "mouza_id": "M002",
+   "khatian_no": "2344",
+   "plot_no": "957",
+   "owners": [
+    {
+     "name": "Hasan Biswas",
+     "party_id": "P0065",
+     "share": "1"
+    }
+   ],
+   "area_dec": 74.51,
+   "land_class": "pond",
+   "survey_year": 2012,
+   "lineage": "L16"
+  },
+  {
+   "khatian_uid": "K0065",
+   "survey": "CS",
+   "mouza_id": "M003",
+   "khatian_no": "3",
+   "plot_no": "347",
+   "owners": [
+    {
+     "name": "Nasir Akand",
+     "party_id": "P0067",
+     "share": "1"
+    }
+   ],
+   "area_dec": 64.13,
+   "land_class": "cultivated",
+   "survey_year": 1910,
+   "lineage": "L17"
+  },
+  {
+   "khatian_uid": "K0066",
+   "survey": "SA",
+   "mouza_id": "M003",
+   "khatian_no": "756",
+   "plot_no": "407",
+   "owners": [
+    {
+     "name": "Nasir Akand",
+     "party_id": "P0067",
+     "share": "1"
+    }
+   ],
+   "area_dec": 64.13,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L17"
+  },
+  {
+   "khatian_uid": "K0067",
+   "survey": "RS",
+   "mouza_id": "M003",
+   "khatian_no": "430",
+   "plot_no": "481",
+   "owners": [
+    {
+     "name": "Kabir Talukder",
+     "party_id": "P0071",
+     "share": "1"
+    }
+   ],
+   "area_dec": 64.13,
+   "land_class": "cultivated",
+   "survey_year": 2010,
+   "lineage": "L17"
+  },
+  {
+   "khatian_uid": "K0068",
+   "survey": "BS",
+   "mouza_id": "M003",
+   "khatian_no": "1134",
+   "plot_no": "676",
+   "owners": [
+    {
+     "name": "Faruk Talukder",
+     "party_id": "P0069",
+     "share": "1/2"
+    },
+    {
+     "name": "Rokeya Howlader",
+     "party_id": "P0070",
+     "share": "1/2"
+    }
+   ],
+   "area_dec": 64.13,
+   "land_class": "pond",
+   "survey_year": 2012,
+   "lineage": "L17"
+  },
+  {
+   "khatian_uid": "K0069",
+   "survey": "CS",
+   "mouza_id": "M001",
+   "khatian_no": "137",
+   "plot_no": "879",
+   "owners": [
+    {
+     "name": "Mizan Miah",
+     "party_id": "P0015",
+     "share": "1"
+    }
+   ],
+   "area_dec": 205.84,
+   "land_class": "cultivated",
+   "survey_year": 1936,
+   "lineage": "L18"
+  },
+  {
+   "khatian_uid": "K0070",
+   "survey": "SA",
+   "mouza_id": "M001",
+   "khatian_no": "568",
+   "plot_no": "886",
+   "owners": [
+    {
+     "name": "Mizan Miah",
+     "party_id": "P0015",
+     "share": "1"
+    }
+   ],
+   "area_dec": 205.84,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L18"
+  },
+  {
+   "khatian_uid": "K0071",
+   "survey": "RS",
+   "mouza_id": "M001",
+   "khatian_no": "658",
+   "plot_no": "973",
+   "owners": [
+    {
+     "name": "Kabir Akand",
+     "party_id": "P0072",
+     "share": "1"
+    }
+   ],
+   "area_dec": 205.84,
+   "land_class": "cultivated",
+   "survey_year": 2000,
+   "lineage": "L18"
+  },
+  {
+   "khatian_uid": "K0072",
+   "survey": "BS",
+   "mouza_id": "M001",
+   "khatian_no": "2861",
+   "plot_no": "1271",
+   "owners": [
+    {
+     "name": "Billal Talukder",
+     "party_id": "P0073",
+     "share": "1"
+    }
+   ],
+   "area_dec": 205.84,
+   "land_class": "pond",
+   "survey_year": 2005,
+   "lineage": "L18"
+  },
+  {
+   "khatian_uid": "K0073",
+   "survey": "CS",
+   "mouza_id": "M002",
+   "khatian_no": "113",
+   "plot_no": "847",
+   "owners": [
+    {
+     "name": "Jamal Miah",
+     "party_id": "P0075",
+     "share": "1"
+    }
+   ],
+   "area_dec": 138.32,
+   "land_class": "cultivated",
+   "survey_year": 1936,
+   "lineage": "L19"
+  },
+  {
+   "khatian_uid": "K0074",
+   "survey": "SA",
+   "mouza_id": "M002",
+   "khatian_no": "547",
+   "plot_no": "872",
+   "owners": [
+    {
+     "name": "Jamal Miah",
+     "party_id": "P0075",
+     "share": "1"
+    }
+   ],
+   "area_dec": 138.32,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L19"
+  },
+  {
+   "khatian_uid": "K0075",
+   "survey": "RS",
+   "mouza_id": "M002",
+   "khatian_no": "232",
+   "plot_no": "960",
+   "owners": [
+    {
+     "name": "Habib Akand",
+     "party_id": "P0076",
+     "share": "1"
+    }
+   ],
+   "area_dec": 138.32,
+   "land_class": "cultivated",
+   "survey_year": 1990,
+   "lineage": "L19"
+  },
+  {
+   "khatian_uid": "K0076",
+   "survey": "BS",
+   "mouza_id": "M002",
+   "khatian_no": "1447",
+   "plot_no": "1195",
+   "owners": [
+    {
+     "name": "Karim Biswas",
+     "party_id": "P0077",
+     "share": "1"
+    }
+   ],
+   "area_dec": 138.32,
+   "land_class": "pond",
+   "survey_year": 2012,
+   "lineage": "L19"
+  },
+  {
+   "khatian_uid": "K0077",
+   "survey": "CS",
+   "mouza_id": "M003",
+   "khatian_no": "177",
+   "plot_no": "234",
+   "owners": [
+    {
+     "name": "Faruk Sarker",
+     "party_id": "P0079",
+     "share": "1"
+    }
+   ],
+   "area_dec": 213.73,
+   "land_class": "cultivated",
+   "survey_year": 1925,
+   "lineage": "L20"
+  },
+  {
+   "khatian_uid": "K0078",
+   "survey": "SA",
+   "mouza_id": "M003",
+   "khatian_no": "440",
+   "plot_no": "285",
+   "owners": [
+    {
+     "name": "Faruk Sarker",
+     "party_id": "P0079",
+     "share": "1"
+    }
+   ],
+   "area_dec": 213.73,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L20"
+  },
+  {
+   "khatian_uid": "K0079",
+   "survey": "RS",
+   "mouza_id": "M003",
+   "khatian_no": "754",
+   "plot_no": "433",
+   "owners": [
+    {
+     "name": "Rafiq Howlader",
+     "party_id": "P0080",
+     "share": "1"
+    }
+   ],
+   "area_dec": 213.73,
+   "land_class": "cultivated",
+   "survey_year": 1990,
+   "lineage": "L20"
+  },
+  {
+   "khatian_uid": "K0080",
+   "survey": "BS",
+   "mouza_id": "M003",
+   "khatian_no": "334",
+   "plot_no": "610",
+   "owners": [
+    {
+     "name": "Government of Bangladesh (Khas)",
+     "party_id": "P0081",
+     "share": "1"
+    }
+   ],
+   "area_dec": 213.73,
+   "land_class": "khas",
+   "survey_year": 2018,
+   "lineage": "L20"
+  },
+  {
+   "khatian_uid": "K0081",
+   "survey": "CS",
+   "mouza_id": "M001",
+   "khatian_no": "16",
+   "plot_no": "438",
+   "owners": [
+    {
+     "name": "Habib Sarker",
+     "party_id": "P0018",
+     "share": "1"
+    }
+   ],
+   "area_dec": 253.84,
+   "land_class": "cultivated",
+   "survey_year": 1936,
+   "lineage": "L21"
+  },
+  {
+   "khatian_uid": "K0082",
+   "survey": "SA",
+   "mouza_id": "M001",
+   "khatian_no": "583",
+   "plot_no": "496",
+   "owners": [
+    {
+     "name": "Habib Sarker",
+     "party_id": "P0018",
+     "share": "1"
+    }
+   ],
+   "area_dec": 253.84,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L21"
+  },
+  {
+   "khatian_uid": "K0083",
+   "survey": "RS",
+   "mouza_id": "M001",
+   "khatian_no": "161",
+   "plot_no": "621",
+   "owners": [
+    {
+     "name": "Sumon Sheikh",
+     "party_id": "P0083",
+     "share": "1"
+    }
+   ],
+   "area_dec": 253.84,
+   "land_class": "cultivated",
+   "survey_year": 2000,
+   "lineage": "L21"
+  },
+  {
+   "khatian_uid": "K0084",
+   "survey": "BS",
+   "mouza_id": "M001",
+   "khatian_no": "2860",
+   "plot_no": "690",
+   "owners": [
+    {
+     "name": "Anwar Miah",
+     "party_id": "P0084",
+     "share": "1"
+    }
+   ],
+   "area_dec": 253.84,
+   "land_class": "pond",
+   "survey_year": 2018,
+   "lineage": "L21"
+  },
+  {
+   "khatian_uid": "K0085",
+   "survey": "CS",
+   "mouza_id": "M002",
+   "khatian_no": "196",
+   "plot_no": "122",
+   "owners": [
+    {
+     "name": "Anwar Miah",
+     "party_id": "P0084",
+     "share": "1"
+    }
+   ],
+   "area_dec": 278.9,
+   "land_class": "cultivated",
+   "survey_year": 1925,
+   "lineage": "L22"
+  },
+  {
+   "khatian_uid": "K0086",
+   "survey": "SA",
+   "mouza_id": "M002",
+   "khatian_no": "449",
+   "plot_no": "131",
+   "owners": [
+    {
+     "name": "Anwar Miah",
+     "party_id": "P0084",
+     "share": "1"
+    }
+   ],
+   "area_dec": 278.9,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L22"
+  },
+  {
+   "khatian_uid": "K0087",
+   "survey": "RS",
+   "mouza_id": "M002",
+   "khatian_no": "1109",
+   "plot_no": "258",
+   "owners": [
+    {
+     "name": "Faruk Bhuiyan",
+     "party_id": "P0030",
+     "share": "1"
+    }
+   ],
+   "area_dec": 278.9,
+   "land_class": "cultivated",
+   "survey_year": 2010,
+   "lineage": "L22"
+  },
+  {
+   "khatian_uid": "K0088",
+   "survey": "BS",
+   "mouza_id": "M002",
+   "khatian_no": "2230",
+   "plot_no": "465",
+   "owners": [
+    {
+     "name": "Mizan Chowdhury",
+     "party_id": "P0086",
+     "share": "1/2"
+    },
+    {
+     "name": "Amena Howlader",
+     "party_id": "P0004",
+     "share": "1/2"
+    }
+   ],
+   "area_dec": 278.9,
+   "land_class": "cultivated",
+   "survey_year": 2012,
+   "lineage": "L22"
+  },
+  {
+   "khatian_uid": "K0089",
+   "survey": "CS",
+   "mouza_id": "M003",
+   "khatian_no": "285",
+   "plot_no": "115",
+   "owners": [
+    {
+     "name": "Rafiq Sarker",
+     "party_id": "P0087",
+     "share": "1"
+    }
+   ],
+   "area_dec": 284.34,
+   "land_class": "cultivated",
+   "survey_year": 1936,
+   "lineage": "L23"
+  },
+  {
+   "khatian_uid": "K0090",
+   "survey": "SA",
+   "mouza_id": "M003",
+   "khatian_no": "730",
+   "plot_no": "133",
+   "owners": [
+    {
+     "name": "Rafiq Sarker",
+     "party_id": "P0087",
+     "share": "1"
+    }
+   ],
+   "area_dec": 284.34,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L23"
+  },
+  {
+   "khatian_uid": "K0091",
+   "survey": "RS",
+   "mouza_id": "M003",
+   "khatian_no": "841",
+   "plot_no": "312",
+   "owners": [
+    {
+     "name": "Shafiq Talukder",
+     "party_id": "P0088",
+     "share": "1"
+    }
+   ],
+   "area_dec": 284.34,
+   "land_class": "cultivated",
+   "survey_year": 2000,
+   "lineage": "L23"
+  },
+  {
+   "khatian_uid": "K0092",
+   "survey": "BS",
+   "mouza_id": "M003",
+   "khatian_no": "1510",
+   "plot_no": "385",
+   "owners": [
+    {
+     "name": "Abdul Akand",
+     "party_id": "P0027",
+     "share": "1/2"
+    },
+    {
+     "name": "Shirin Chowdhury",
+     "party_id": "P0089",
+     "share": "1/2"
+    }
+   ],
+   "area_dec": 284.34,
+   "land_class": "pond",
+   "survey_year": 2012,
+   "lineage": "L23"
+  },
+  {
+   "khatian_uid": "K0093",
+   "survey": "CS",
+   "mouza_id": "M001",
+   "khatian_no": "82",
+   "plot_no": "321",
+   "owners": [
+    {
+     "name": "Hasan Bhuiyan",
+     "party_id": "P0090",
+     "share": "1"
+    }
+   ],
+   "area_dec": 203.04,
+   "land_class": "cultivated",
+   "survey_year": 1925,
+   "lineage": "L24"
+  },
+  {
+   "khatian_uid": "K0094",
+   "survey": "SA",
+   "mouza_id": "M001",
+   "khatian_no": "45",
+   "plot_no": "326",
+   "owners": [
+    {
+     "name": "Hasan Bhuiyan",
+     "party_id": "P0090",
+     "share": "1"
+    }
+   ],
+   "area_dec": 203.04,
+   "land_class": "cultivated",
+   "survey_year": 1960,
+   "lineage": "L24"
+  },
+  {
+   "khatian_uid": "K0095",
+   "survey": "RS",
+   "mouza_id": "M001",
+   "khatian_no": "1346",
+   "plot_no": "482",
+   "owners": [
+    {
+     "name": "Abdul Chowdhury",
+     "party_id": "P0091",
+     "share": "1"
+    }
+   ],
+   "area_dec": 203.04,
+   "land_class": "cultivated",
+   "survey_year": 1990,
+   "lineage": "L24"
+  },
+  {
+   "khatian_uid": "K0096",
+   "survey": "BS",
+   "mouza_id": "M001",
+   "khatian_no": "2581",
+   "plot_no": "577",
+   "owners": [
+    {
+     "name": "Karim Sarker",
+     "party_id": "P0005",
+     "share": "1/2"
+    },
+    {
+     "name": "Shirin Chowdhury",
+     "party_id": "P0089",
+     "share": "1/2"
+    }
+   ],
+   "area_dec": 203.04,
+   "land_class": "cultivated",
+   "survey_year": 2012,
+   "lineage": "L24"
+  }
+ ],
+ "deeds": [
+  {
+   "deed_uid": "D0001",
+   "deed_no": "9334/2020",
+   "type": "sale",
+   "registration_date": "2020-07-14",
+   "sub_registry": "Mollahat SRO",
+   "mouza_id": "M002",
+   "seller": "Billal Hossain",
+   "seller_party_id": "P0003",
+   "buyer": "Karim Sarker",
+   "buyer_party_id": "P0005",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "831",
+   "area_sold_dec": 49.27,
+   "share_sold": "1/2",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0002",
+   "deed_no": "3596/2019",
+   "type": "sale",
+   "registration_date": "2019-06-07",
+   "sub_registry": "Sreepur SRO",
+   "mouza_id": "M003",
+   "seller": "Faruk Chowdhury",
+   "seller_party_id": "P0008",
+   "buyer": "Kabir Biswas",
+   "buyer_party_id": "P0009",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "778",
+   "area_sold_dec": 67.99,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0003",
+   "deed_no": "1780/2021",
+   "type": "sale",
+   "registration_date": "2021-06-08",
+   "sub_registry": "Faridpur Sadar SRO",
+   "mouza_id": "M001",
+   "seller": "Shafiq Howlader",
+   "seller_party_id": "P0012",
+   "buyer": "Habib Howlader",
+   "buyer_party_id": "P0013",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "812",
+   "area_sold_dec": 117.22,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0004",
+   "deed_no": "6720/2018",
+   "type": "sale",
+   "registration_date": "2018-09-19",
+   "sub_registry": "Mollahat SRO",
+   "mouza_id": "M002",
+   "seller": "Mizan Miah",
+   "seller_party_id": "P0015",
+   "buyer": "Sumon Chowdhury",
+   "buyer_party_id": "P0017",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "1010",
+   "area_sold_dec": 62.68,
+   "share_sold": "1/2",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0005",
+   "deed_no": "5797/2023",
+   "type": "sale",
+   "registration_date": "2023-05-31",
+   "sub_registry": "Sreepur SRO",
+   "mouza_id": "M003",
+   "seller": "Jamal Mia",
+   "seller_party_id": "P0019",
+   "buyer": "Rahim Mia",
+   "buyer_party_id": "P0021",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "515",
+   "area_sold_dec": 121.31,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0006",
+   "deed_no": "8410/2023",
+   "type": "sale",
+   "registration_date": "2023-07-11",
+   "sub_registry": "Sreepur SRO",
+   "mouza_id": "M003",
+   "seller": "Jamal Mia",
+   "seller_party_id": "P0019",
+   "buyer": "Sumon Mia",
+   "buyer_party_id": "P0022",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "515",
+   "area_sold_dec": 121.31,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0007",
+   "deed_no": "3088/2022",
+   "type": "sale",
+   "registration_date": "2022-08-29",
+   "sub_registry": "Faridpur Sadar SRO",
+   "mouza_id": "M001",
+   "seller": "Hasan Akand",
+   "seller_party_id": "P0025",
+   "buyer": "Habib Miah",
+   "buyer_party_id": "P0026",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "472",
+   "area_sold_dec": 66.14,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0008",
+   "deed_no": "4147/2025",
+   "type": "sale",
+   "registration_date": "2025-04-05",
+   "sub_registry": "Mollahat SRO",
+   "mouza_id": "M002",
+   "seller": "Habib Sarker",
+   "seller_party_id": "P0018",
+   "buyer": "Jamal Howlader",
+   "buyer_party_id": "P0028",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "857",
+   "area_sold_dec": 167.14,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0009",
+   "deed_no": "8486/2024",
+   "type": "sale",
+   "registration_date": "2024-10-07",
+   "sub_registry": "Sreepur SRO",
+   "mouza_id": "M003",
+   "seller": "Karim Akand",
+   "seller_party_id": "P0031",
+   "buyer": "Anwar Talukder",
+   "buyer_party_id": "P0032",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "459",
+   "area_sold_dec": 52.9,
+   "share_sold": "1/2",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0010",
+   "deed_no": "9217/2022",
+   "type": "sale",
+   "registration_date": "2022-01-23",
+   "sub_registry": "Faridpur Sadar SRO",
+   "mouza_id": "M001",
+   "seller": "Mizan Bhuiyan",
+   "seller_party_id": "P0035",
+   "buyer": "Mizan Akand",
+   "buyer_party_id": "P0037",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "1181",
+   "area_sold_dec": 168.3,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0011",
+   "deed_no": "1576/2022",
+   "type": "sale",
+   "registration_date": "2022-08-11",
+   "sub_registry": "Faridpur Sadar SRO",
+   "mouza_id": "M001",
+   "seller": "Mizan Bhuiyan",
+   "seller_party_id": "P0035",
+   "buyer": "Rahim Akand",
+   "buyer_party_id": "P0038",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "1181",
+   "area_sold_dec": 144.26,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0012",
+   "deed_no": "3969/2016",
+   "type": "sale",
+   "registration_date": "2016-11-19",
+   "sub_registry": "Mollahat SRO",
+   "mouza_id": "M002",
+   "seller": "Abdul Talukder",
+   "seller_party_id": "P0041",
+   "buyer": "Anwar Akand",
+   "buyer_party_id": "P0042",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "345",
+   "area_sold_dec": 124.65,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0013",
+   "deed_no": "7065/2018",
+   "type": "sale",
+   "registration_date": "2018-03-02",
+   "sub_registry": "Sreepur SRO",
+   "mouza_id": "M003",
+   "seller": "Habib Biswas",
+   "seller_party_id": "P0045",
+   "buyer": "Rahim Khan",
+   "buyer_party_id": "P0046",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "847",
+   "area_sold_dec": 224.66,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0014",
+   "deed_no": "3471/2024",
+   "type": "sale",
+   "registration_date": "2024-04-18",
+   "sub_registry": "Faridpur Sadar SRO",
+   "mouza_id": "M001",
+   "seller": "Salam Khan",
+   "seller_party_id": "P0051",
+   "buyer": "Karim Mia",
+   "buyer_party_id": "P0052",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "874",
+   "area_sold_dec": 56.75,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0015",
+   "deed_no": "3470/2016",
+   "type": "sale",
+   "registration_date": "2016-10-19",
+   "sub_registry": "Mollahat SRO",
+   "mouza_id": "M002",
+   "seller": "Nasir Miah",
+   "seller_party_id": "P0055",
+   "buyer": "Shafiq Chowdhury",
+   "buyer_party_id": "P0056",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "499",
+   "area_sold_dec": 18.45,
+   "share_sold": "1/2",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0016",
+   "deed_no": "6962/2023",
+   "type": "sale",
+   "registration_date": "2023-06-02",
+   "sub_registry": "Sreepur SRO",
+   "mouza_id": "M003",
+   "seller": "Nasir Khan",
+   "seller_party_id": "P0058",
+   "buyer": "Rahim Sarker",
+   "buyer_party_id": "P0059",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "566",
+   "area_sold_dec": 256.97,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0017",
+   "deed_no": "4554/2017",
+   "type": "sale",
+   "registration_date": "2017-12-16",
+   "sub_registry": "Faridpur Sadar SRO",
+   "mouza_id": "M001",
+   "seller": "Nasir Khan",
+   "seller_party_id": "P0058",
+   "buyer": "Abdul Mia",
+   "buyer_party_id": "P0062",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "638",
+   "area_sold_dec": 31.07,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0018",
+   "deed_no": "7422/2021",
+   "type": "sale",
+   "registration_date": "2021-08-25",
+   "sub_registry": "Mollahat SRO",
+   "mouza_id": "M002",
+   "seller": "Hasan Biswas",
+   "seller_party_id": "P0065",
+   "buyer": "Sumon Biswas",
+   "buyer_party_id": "P0066",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "957",
+   "area_sold_dec": 74.51,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0019",
+   "deed_no": "3700/2019",
+   "type": "sale",
+   "registration_date": "2019-01-22",
+   "sub_registry": "Faridpur Sadar SRO",
+   "mouza_id": "M001",
+   "seller": "Billal Talukder",
+   "seller_party_id": "P0073",
+   "buyer": "Faruk Howlader",
+   "buyer_party_id": "P0074",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "1271",
+   "area_sold_dec": 102.92,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0020",
+   "deed_no": "9157/2025",
+   "type": "sale",
+   "registration_date": "2025-10-17",
+   "sub_registry": "Mollahat SRO",
+   "mouza_id": "M002",
+   "seller": "Karim Biswas",
+   "seller_party_id": "P0077",
+   "buyer": "Rafiq Bhuiyan",
+   "buyer_party_id": "P0078",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "1195",
+   "area_sold_dec": 138.32,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0021",
+   "deed_no": "6588/2024",
+   "type": "sale",
+   "registration_date": "2024-01-30",
+   "sub_registry": "Sreepur SRO",
+   "mouza_id": "M003",
+   "seller": "Rafiq Howlader",
+   "seller_party_id": "P0080",
+   "buyer": "Habib Mia",
+   "buyer_party_id": "P0082",
+   "schedule_survey": "RS",
+   "schedule_plot_no": "433",
+   "area_sold_dec": 213.73,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0022",
+   "deed_no": "1209/2018",
+   "type": "sale",
+   "registration_date": "2018-09-18",
+   "sub_registry": "Faridpur Sadar SRO",
+   "mouza_id": "M001",
+   "seller": "Anwar Miah",
+   "seller_party_id": "P0084",
+   "buyer": "Rahim Hossain",
+   "buyer_party_id": "P0085",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "690",
+   "area_sold_dec": 126.92,
+   "share_sold": "full",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0023",
+   "deed_no": "3003/2025",
+   "type": "sale",
+   "registration_date": "2025-01-05",
+   "sub_registry": "Mollahat SRO",
+   "mouza_id": "M002",
+   "seller": "Mizan Chowdhury",
+   "seller_party_id": "P0086",
+   "buyer": "Karim Mia",
+   "buyer_party_id": "P0052",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "465",
+   "area_sold_dec": 139.45,
+   "share_sold": "full",
+   "qr_valid": false,
+   "signature_consistent": false
+  },
+  {
+   "deed_uid": "D0024",
+   "deed_no": "8137/2017",
+   "type": "sale",
+   "registration_date": "2017-11-17",
+   "sub_registry": "Sreepur SRO",
+   "mouza_id": "M003",
+   "seller": "Abdul Akand",
+   "seller_party_id": "P0027",
+   "buyer": "Abdul Howlader",
+   "buyer_party_id": "P0068",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "385",
+   "area_sold_dec": 142.17,
+   "share_sold": "1/2",
+   "qr_valid": true,
+   "signature_consistent": true
+  },
+  {
+   "deed_uid": "D0025",
+   "deed_no": "8701/2020",
+   "type": "sale",
+   "registration_date": "2020-09-16",
+   "sub_registry": "Faridpur Sadar SRO",
+   "mouza_id": "M001",
+   "seller": "Karim Sarker",
+   "seller_party_id": "P0005",
+   "buyer": "Abdul Sheikh",
+   "buyer_party_id": "P0092",
+   "schedule_survey": "BS",
+   "schedule_plot_no": "577",
+   "area_sold_dec": 101.52,
+   "share_sold": "1/2",
+   "qr_valid": true,
+   "signature_consistent": true
+  }
+ ],
+ "mutations": [
+  {
+   "mutation_case": "MC0001",
+   "deed_uid": "D0001",
+   "status": "approved",
+   "applied_on": "2020-08-07",
+   "decided_on": "2020-09-01",
+   "area_mutated_dec": 49.27,
+   "new_khatian": "K-NEW-D0001",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0002",
+   "deed_uid": "D0002",
+   "status": "approved",
+   "applied_on": "2019-06-29",
+   "decided_on": "2019-07-22",
+   "area_mutated_dec": 67.99,
+   "new_khatian": "K-NEW-D0002",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0003",
+   "deed_uid": "D0003",
+   "status": "approved",
+   "applied_on": "2021-06-12",
+   "decided_on": "2021-06-28",
+   "area_mutated_dec": 187.56,
+   "new_khatian": "K-NEW-D0003",
+   "note": "approved"
+  },
+  {
+   "mutation_case": "MC0004",
+   "deed_uid": "D0004",
+   "status": "approved",
+   "applied_on": "2018-10-23",
+   "decided_on": "2018-11-13",
+   "area_mutated_dec": 62.68,
+   "new_khatian": "K-NEW-D0004",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0005",
+   "deed_uid": "D0005",
+   "status": "approved",
+   "applied_on": "2023-06-09",
+   "decided_on": "2023-06-30",
+   "area_mutated_dec": 121.31,
+   "new_khatian": "K-NEW-D0005",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0006",
+   "deed_uid": "D0006",
+   "status": "pending",
+   "applied_on": "2023-07-30",
+   "decided_on": null,
+   "area_mutated_dec": null,
+   "new_khatian": null,
+   "note": "awaiting hearing"
+  },
+  {
+   "mutation_case": "MC0007",
+   "deed_uid": "D0007",
+   "status": "approved",
+   "applied_on": "2022-10-03",
+   "decided_on": "2022-10-24",
+   "area_mutated_dec": 66.14,
+   "new_khatian": "K-NEW-D0007",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0008",
+   "deed_uid": "D0008",
+   "status": "rejected",
+   "applied_on": "2025-04-10",
+   "decided_on": "2025-05-08",
+   "area_mutated_dec": null,
+   "new_khatian": null,
+   "note": "missing dag schedule / DCR"
+  },
+  {
+   "mutation_case": "MC0009",
+   "deed_uid": "D0008",
+   "status": "pending",
+   "applied_on": "2025-05-25",
+   "decided_on": null,
+   "area_mutated_dec": null,
+   "new_khatian": null,
+   "note": "resubmitted"
+  },
+  {
+   "mutation_case": "MC0010",
+   "deed_uid": "D0009",
+   "status": "approved",
+   "applied_on": "2024-11-14",
+   "decided_on": "2024-12-01",
+   "area_mutated_dec": 52.9,
+   "new_khatian": "K-NEW-D0009",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0011",
+   "deed_uid": "D0010",
+   "status": "approved",
+   "applied_on": "2022-01-28",
+   "decided_on": "2022-02-17",
+   "area_mutated_dec": 168.301,
+   "new_khatian": "K-NEW-D0010",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0012",
+   "deed_uid": "D0012",
+   "status": "approved",
+   "applied_on": "2016-12-27",
+   "decided_on": "2017-01-19",
+   "area_mutated_dec": 124.65,
+   "new_khatian": "K-NEW-D0012",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0013",
+   "deed_uid": "D0013",
+   "status": "approved",
+   "applied_on": "2018-03-30",
+   "decided_on": "2018-04-12",
+   "area_mutated_dec": 224.66,
+   "new_khatian": "K-NEW-D0013",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0014",
+   "deed_uid": "D0014",
+   "status": "rejected",
+   "applied_on": "2024-04-25",
+   "decided_on": "2024-05-23",
+   "area_mutated_dec": null,
+   "new_khatian": null,
+   "note": "share exceeds record"
+  },
+  {
+   "mutation_case": "MC0015",
+   "deed_uid": "D0015",
+   "status": "approved",
+   "applied_on": "2016-11-26",
+   "decided_on": "2016-12-06",
+   "area_mutated_dec": 18.45,
+   "new_khatian": "K-NEW-D0015",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0016",
+   "deed_uid": "D0017",
+   "status": "approved",
+   "applied_on": "2017-12-24",
+   "decided_on": "2018-01-09",
+   "area_mutated_dec": 31.07,
+   "new_khatian": "K-NEW-D0017",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0017",
+   "deed_uid": "D0018",
+   "status": "approved",
+   "applied_on": "2021-08-29",
+   "decided_on": "2021-09-20",
+   "area_mutated_dec": 74.51,
+   "new_khatian": "K-NEW-D0018",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0018",
+   "deed_uid": "D0019",
+   "status": "approved",
+   "applied_on": "2019-02-19",
+   "decided_on": "2019-03-18",
+   "area_mutated_dec": 102.92,
+   "new_khatian": "K-NEW-D0019",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0019",
+   "deed_uid": "D0020",
+   "status": "approved",
+   "applied_on": "2025-11-20",
+   "decided_on": "2025-12-07",
+   "area_mutated_dec": 138.32,
+   "new_khatian": "K-NEW-D0020",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0020",
+   "deed_uid": "D0022",
+   "status": "approved",
+   "applied_on": "2018-09-29",
+   "decided_on": "2018-10-16",
+   "area_mutated_dec": 126.92,
+   "new_khatian": "K-NEW-D0022",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0021",
+   "deed_uid": "D0023",
+   "status": "pending",
+   "applied_on": "2025-01-17",
+   "decided_on": null,
+   "area_mutated_dec": null,
+   "new_khatian": null,
+   "note": "verification requested"
+  },
+  {
+   "mutation_case": "MC0022",
+   "deed_uid": "D0024",
+   "status": "approved",
+   "applied_on": "2017-11-27",
+   "decided_on": "2017-12-20",
+   "area_mutated_dec": 142.17,
+   "new_khatian": "K-NEW-D0024",
+   "note": "normal"
+  },
+  {
+   "mutation_case": "MC0023",
+   "deed_uid": "D0025",
+   "status": "approved",
+   "applied_on": "2020-10-04",
+   "decided_on": "2020-10-25",
+   "area_mutated_dec": 101.52,
+   "new_khatian": "K-NEW-D0025",
+   "note": "normal"
+  }
+ ],
+ "anomaly_labels": [
+  {
+   "lineage": "L03",
+   "problem_area": "P3",
+   "anomaly": "deed_vs_mutation_area_mismatch",
+   "records": [
+    "D0003"
+   ]
+  },
+  {
+   "lineage": "L05",
+   "problem_area": "P3",
+   "anomaly": "duplicate_sale",
+   "records": [
+    "D0005",
+    "D0006"
+   ]
+  },
+  {
+   "lineage": "L07",
+   "problem_area": "P4",
+   "anomaly": "rejected_then_resubmitted",
+   "records": [
+    "D0008"
+   ]
+  },
+  {
+   "lineage": "L09",
+   "problem_area": "P3",
+   "anomaly": "overlapping_transfer_area_exceeds_plot",
+   "records": [
+    "D0010",
+    "D0011"
+   ]
+  },
+  {
+   "lineage": "L12",
+   "problem_area": "P3",
+   "anomaly": "ownership_share_conflict",
+   "records": [
+    "D0014"
+   ]
+  },
+  {
+   "lineage": "L14",
+   "problem_area": "P4",
+   "anomaly": "registered_not_mutated",
+   "records": [
+    "D0016"
+   ]
+  },
+  {
+   "lineage": "L17",
+   "problem_area": "P3",
+   "anomaly": "chain_break_SA_to_RS_no_link_deed",
+   "records": [
+    "K0066",
+    "K0067"
+   ]
+  },
+  {
+   "lineage": "L20",
+   "problem_area": "P5",
+   "anomaly": "khas_claim_conflicts_with_deed",
+   "records": [
+    "D0021",
+    "K0080"
+   ]
+  },
+  {
+   "lineage": "L22",
+   "problem_area": "P2",
+   "anomaly": "invalid_qr_and_signature_mismatch",
+   "records": [
+    "D0023"
+   ]
+  }
+ ]
+}
