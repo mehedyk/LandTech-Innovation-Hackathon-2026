@@ -1,1 +1,563 @@
 
+
+
+<!-- Start of picture text -->
+IEEE Access<br><!-- End of picture text -->
+
+Received 3 December 2024, accepted 8 January 2025, date of publication 13 January 2025, date of current version 23 January 2025. _Digital Object Identifier 10.1109/ACCESS.2025.3528457_ 
+
+# Multi-Tier Blockchain-Based Land Registry Using Fog Computing 
+
+## ASHANK PRIYADARSHI AND THANKARAJA RAJA SREE 
+
+School of Computer Science and Engineering, Vellore Institute of Technology, Chennai, Tamil Nadu 600127, India 
+
+Corresponding author: Thankaraja Raja Sree (trajasree87@gmail.com) 
+
+- **ABSTRACT** The conventional method of selling and purchasing land has several drawbacks because it requires a lot of time, a lengthy verification procedure, and prolonged final processing. Various blockchain-based solutions have been implemented to tackle the problems of the existing land record. The government of India is currently developing its blockchain-based network to store and verify land records. The solutions cannot handle large amounts of hard-copy documents and rely on a single-tier block network, which affects integrity and decentralization. In this paper, we address the existing problem by introducing a blockchain network at the ground level for monitored lands. Each country will have an associated device as part of the blockchain network to carry out the verification process, thereby distributing the control and workload across two tiers. The devices will interact using the concept of fog computing over the decentralized blockchain network, forming a peer-to-peer network. The proposed solution is compared with an existing solution in terms of cost, computational time complexity, and overall computation cost. 
+
+**INDEX TERMS** Blockchain, fog computing, Merkle tree, deep learning. 
+
+### **I. INTRODUCTION** 
+
+Land is a valuable asset that provides a means of livelihood and also offers investment opportunities. Consequently, ownership of land is fiercely contested. The ownership details can be viewed from the registrar’s office by collecting the physical documents, such as deeds, registrations, mutations, etc. Unfortunately, the prevalence of bribery in the land records management by law enforcement personnel and even within the judicial system exacerbates the situation. 
+
+Land sharks colluding with authorities exploit the loopholes in the current procedures to fabricate documents, fraudulently claim ownership, or forcefully seize land, resulting in a staggering number of civil disputes in the judiciary system. Resolving these cases can take months, years, or even decades, resulting in significant time and money that is often unbearable for the common citizen. While the government has initiated the process of digitizing the Record of Rights (ROR), it is still in a developmental phase 
+
+The associate editor coordinating the review of this manuscript and approving it for publication was Aysegul Ucar Co) . 
+
+and is restricted to archival endeavors. Therefore, it is crucial to implement an elaborate system that seamlessly integrates with ongoing digitization efforts while incorporating current land transactions (such as transfer, purchase, sale, gift, mortgage, inheritance, and partition deeds) with greater trustworthiness and honesty. 
+
+The main issue with the current system is that data is dispersed among numerous agencies and is not effectively coordinated, which makes it difficult to ensure uniformity in the way they process legal documents. The protocols of each entity may result in discrepancies in storing and processing the land documents. Fraudulent activities become more prevalent due to a lack of transparency in land registries or legal documentation. Unauthorized alterations to legal documents can go unnoticed in these systems, further compromising data integrity. A centralized approach will not be sufficient in this situation to deal with the many land titling frauds. Blockchain and other forms of Distributed Ledger Technology (DLT) can offer some significant solutions to this issue. Each node in DLT stores an exact duplicate of the ledger and is connected to other nodes in a peer-to-peer 
+
+2025 The Authors. This work is licensed under a Creative Commons Attribution 4.0 License. For more information, see https://creativecommons.org/licenses/by/4.0/ 
+
+13238 
+
+VOLUME 13, 2025 
+
+A. Priyadarshi, T. R. Sree: Multi-Tier Blockchain-Based Land Registry Using Fog Computing 
+
+
+
+network. It is highly difficult for any single node or group of nodes to falsify the ledger since each alteration must be approved by the majority (e.g., Proof-of-Work (PoW), Proofof-Stake (PoS)) among the nodes that are linked together. 
+
+Land titles have characteristics that are inextricably tied to their ownership history and evolve through time. The document chain ensures that land ownership is authentic, which is consistent with the core idea of blockchain. Every new block in the blockchain is linked to the one before it, forming an unbreakable chain that can be traced back to the root node. Transfers of land ownership are compatible with this functionality. Once approved by the peer-to-peer blockchain community, a new block becomes immutable and nearly impossible to change. This blockchain feature is useful in preventing document fraud by influential people. Moreover, every node in the blockchain network maintains a complete copy of the entire ledger, ensuring transparency. Although other DLTs such as Tangle and Hashgraph exist, they have not yet been tested in this domain, unlike blockchain, which has been proposed for similar applications. Since every country has its own unique cultural and historical model of land title management, it is crucial to find an appropriate solution for the maintenance of land ROR in India using modern technology such as blockchain. The current system suffers from a major issue of fragmented information scattered across multiple government offices that is poorly synchronized, and corrupt individuals can conspire to manipulate legal documents. Thus, a centralized system alone would not suffice to tackle the various land titling frauds. However, DLT, such as blockchain, can offer valuable solutions to this problem. DLT is a database model that connects multiple nodes in a peer-to-peer network, with each node storing a complete copy of the ledger. Any change made to the ledger is subject to approval by a majority (e.g., PoW, PoS) of the connected nodes, making it highly resistant to falsification by any single node or group of nodes. 
+
+Since its creation by Satoshi Nakamoto in 2008, blockchain has been transforming the technology landscape. Although its early version, Blockchain 1.0, was primarily used for cryptocurrencies like Bitcoin, newer versions of Blockchain, including 2.0, 3.0, and 4.0, have presented immense opportunities. over the past decade. In these newer models, smart contracts play a vital role, acting as small scripts that ensure that data-related policies are verified before a new block is added to the blockchain ledger through a successful mining operation. Given that millions of smart contracts are deployed in public blockchain ecosystems, it is crucial to focus on their security vulnerabilities. Additionally, the growing adoption of 5G technologies present opportunities for increased incorporation of IoT and AI in the blockchain domain. Smart contracts in the age of 5G, IoT, and AI can provide further improvements to the land titling model in India. 
+
+The land management policy in India currently relies on a paper-based system, which is both traditional and 
+
+cumbersome. This system suffers from a lack of synchronization between different departments, leading to various types of fraudulent activities. Moreover, transferring the Record of Rights can take several months, and identifying court cases or bank leases during the registration of Ownership transfers are also challenging. To overcome these issues, we propose incorporating blockchain technology, which offers inherent properties such as transparency, immutable record management, easier synchronization, and wider accessibility. 
+
+The digitization process in India is something that has started very recently. A lot of information is still on paper, which is going through the process of digitization. One such source of information is the land record registry. The whole ownership of the land record registry is with the government, and various verification tasks rely on the government. Moreover, a single data point is prone to attacks and hacks. People can also tamper with information due to corruption. This tampering affects the genuine owners of the land, who might be uneducated and unaware. Blockchain has been a new evolution in technology, allowing total control for the user and providing state-of-the-art encryption capabilities. Though blockchain has been used to store land records and other records as well, the government still has major control, and the verification process is still time-consuming. The only addition in this layer is the bank, which still makes the process time-consuming. We need another layer, a new framework, at the ground level that makes the verification process faster and more secure and, at the same time, gives control to the user (owner of the land). 
+
+Technology is ever-evolving, which means that our current frameworks need to keep up and adapt to the changes. The current land registry system needs a change from its single data source. Blockchain is a new concept that has gained a lot of attention over the last few years. The need for a new registry system, and the features of blockchain go hand in hand. The main motivation is to provide the concept of decentralization at the root level in terms of the land system of India and make a faster and more efficient verification system. A faster and more secure verification system will further lead to many applications, such as land bidding, land acquisition, and the construction of new properties for further development. 
+
+The main objectives of this paper are the following: 
+
+- Developing a blockchain-based framework for the land verification system. 
+
+- Developing an efficient and automated process of storing previous hard copy land records into the network using deep learning-based information extraction. 
+
+- Implementing attribute-based fog devices over a blockchain network. 
+
+- Adding a ground-level verification system on top of the current planned layer by the government. 
+
+### **II. RELATED WORK** 
+
+Major blockchain-based solutions for land registry systems provide only a single-tier validation framework, which 
+
+13239 
+
+VOLUME 13, 2025 
+
+A. Priyadarshi, T. R. Sree: Multi-Tier Blockchain-Based Land Registry Using Fog Computing 
+
+
+
+is heavily dependent on the government. This leads to inefficiency and does not follow the decentralization concept on which blockchain is based. Moreover, no research has provided a solution to tackle the existing hard-copy papers available and deploy them to a blockchain network. The solutions also do not take into account the partitioning of various lands at the regional level, which takes place unofficially. This leads to illegal activities. 
+
+### _A. LITERATURE SURVEY_ 
+
+The concept of a Named Data Network (NDN) [1] is a highly efficient and sophisticated architecture that can be used to store documents. The concept is new and has a lower adoption rate as it is still a work in progress. NDN will be used at a deep level in the IPFS configuration. The paper Attribute-Based Access Control (ABAC) [2] provides a workable blockchain method for decentralized policy management and evaluation. The method is fast but has not been proven to be scalable. Optical Character Recognition [3], as suggested in a paper, uses the concept of creating a combination of 2D barcodes, digital signatures, and cryptographic hashing to store on a blockchain. The method, however, is time-consuming and highly encrypted. This paper [4] proposes the architecture for the land registry system. The proposed land registry blockchain network consists of 12 nodes that calculate the proof of work. The tasks of confirming a transaction, mining new blocks, and adding those blocks to the blockchain are carried out by nodes. The idea employs SHA26 and elliptic curve cryptography to reduce latency; however, scaling is difficult. This paper [5] offers a stage-by-stage adoption paradigm for blockchain technology, starting with a public blockchain ledger and progressively including two tiers of hybrid blockchain. The drawback of this system is that it has a single entry point for validation, making it vulnerable. This article [6] outlines a broad approach to developing an information extraction system that combines supervised learning techniques and regular expressions. This approach uses a set of classifiers rather than complex linguistic evaluations to guide the extraction decisions. Although it performs quickly, processing times grow longer with larger documents. This study [7] addresses this shortcoming and presents a thorough literature evaluation of cutting-edge methods for a variety of big data sets that combine all kinds of data. The article [8] provides a description of the country’s current system for maintaining land records and registering properties as well as a discussion of the difficulties that were found while using blockchain technology, including concerns with security, privacy, and public key infrastructure. A neural network architecture is suggested in this paper [9] that learns a dense representation of each candidate based on nearby words in the document and an extraction system that generates extraction candidates based on knowledge of the kinds of target fields. The paper uses loss functions and tokenization for segmentation, making it highly efficient, but it is still a work in progress. The experiment in the paper [10] proves that the security effect of e-commerce user information 
+
+encryption technology based on the Merkle hash tree is obviously improved compared with traditional classical encryption technology. This paper [11] proposes the use of a custom-built DeepLabc3plus model to extract information from multi-source data. Though it has a low adoption rate, it has category accuracy, making it reliable for small datasets. This paper [12] uses fuzzy logic to extract information from stock-related documents. The results are calculated using the Mean Absolute Percentage Error (MAPE) approach. This paper [13] applies an energy-reducing algorithmic engineering technique for Merkle tree root calculations, a principal element of blockchain computations, as a means to preserve the promised security benefits but with less compromise to system availability. The paper [14] proposes a novel blockchain model called blockchain-secured Merkle hash zero correlation distinguisher (BSMH-ZCD) which is suitable for IoT devices within the cloud infrastructure. 
+
+Ameyaw et al. explore the adaptation of blockchain technology for land administration services, emphasizing the critical role of socio-cultural elements in its implementation [25]. It highlights how cultural and social factors can impact the acceptance and effectiveness of blockchain solutions in land administration. This study does not address technical challenges or integration issues in depth, focusing primarily on socio-cultural aspects. Additionally, it might overlook variations in socio-cultural contexts across different regions or communities. Junaid et al. investigate the use of blockchain technology to enhance land management systems, focusing on its potential to improve transparency, security, and efficiency in land transactions and records [26]. This system suffers from scalability, integration with existing systems, and regulatory hurdles. Additionally, it may require significant investment in technology and training. 
+
+Ali et al. examine the vulnerabilities in Indonesia’s electronic land certificate system and discuss the legal and regulatory challenges associated with its adoption [27]. It highlights issues related to security, authenticity, and the effectiveness of existing legal frameworks in addressing these vulnerabilities. The limitation of this study is not fully used for regional variations in land registration practices or technological infrastructure across Indonesia, potentially limiting the applicability of its findings. 
+
+Mahmud et al. enhance the scalability of blockchain infrastructure by integrating InterPlanetary File System (IPFS) and a dual blockchain methodology [28].The limitation of this approach is that they face challenges related to interoperability between the two blockchains and the IPFS network. It also increases complexity by integrating IPFS and dual blockchain methodology [29]. The goal is to enhance the efficiency and transparency of land administration in Ghana’s customary areas. It lacks consideration of long-term sustainability trends. Naguji et al. proposed a Greenland - land registration scheme that uses blockchain and AI to enhance transparency, security, and efficiency in the land management process [30]. Even though it prevents fraudulent activities that suffer from 
+
+13240 
+
+VOLUME 13, 2025 
+
+A. Priyadarshi, T. R. Sree: Multi-Tier Blockchain-Based Land Registry Using Fog Computing 
+
+
+
+<!-- Start of picture text -->
+IEEE Access’<br><!-- End of picture text -->
+
+high implementation costs, scalability issues, data privacy issues, and adaptation resilience. 
+
+### _B. LAND DIVISION IN INDIA_ 
+
+In India, a given piece of land is further divided into segments that are associated with their respective owners. A major portion of land in this country is owned by the government, and a lot of times the government leases the particular land to private entities for some duration based on rent or any other economic factor. Fig.1 represents the land division in India. 
+
+
+
+<!-- Start of picture text -->
+ae On Fe<br>Dace sree<br>a 6 6<br>CEES .<br>PUNJABL CH? es 4 HARYANA<br>Ri \<br>Say 4<br><!-- End of picture text -->
+
+**FIGURE 1.** Example of land division in India. 
+
+For example, in Fig. 1, we can see a particular portion of land between Punjab and Haryana, which is further divided into numbered segments. These segments are made by the government and are associated with their respective owners. A lot of times, large landowners would try to forcefully take over small lands by manipulating government records. Moreover, a lot of times, these large landowners would unofficially divide their land and give it to other people. These transactions are not recorded in the official books and hence go unnoticed, and a lot of times illegal activities also take place in such conditions. 
+
+### _C. LAND ACQUISITION IN INDIA_ 
+
+In India, the land acquisition process involves actors (buyer and seller), banks, and government entities. When there is a mutual agreement between two actors that land can be handed over from one actor to another, the process of money transfer is initiated once the land information has been verified at the government entity. Usually, there is a single data point for all land records, and only 30% of the land records in India are in digital format. The other 70% of the land records are stored in paper format in registries, and it takes a huge amount of time to verify the details of the land. Moreover, these paper-based documents can be easily tampered with by 
+
+corrupt officials and misused by other people if they get access to them. 
+
+Once the land details are verified at the government level, the banks are involved in the loan process as per the above diagram. The involvement of banks acts as an additional check for future cases, but again, they are reliant on government entities to confirm land details and transactions, so it becomes a tedious cycle. Once the loan is sanctioned, there is a notarized agreement generated by the government with the help of lawyers that has all the terms with respect to the land, its use, and anything that is considered to be violating Indian law. 
+
+### **III. PROPOSED WORK** 
+
+In this paper, we solve the previously mentioned problem by introducing a blockchain network at ground level with respect to the lands monitored. Each land will have an associated device as part of the block network that will carry out the verification process, thereby distributing the control and workload over two tiers. The devices will interact using the concept of fog computing over the decentralized blockchain network, forming a peer-to-peer network. The proposed solution results are compared with an existing solution in terms of cost, time complexity of computation, and overall computation cost. Fig. 2 represents the architectural diagram. 
+
+The proposed system comprises three different modules covering each aspect of the problem statement. Module 1 is responsible for extracting meaningful and important information from the hard-copy land documents available. Module 2 is responsible for hashing the data in various hash formats for security and efficient transfers over the IPFS protocol. Module 3 validates the information sent to it through algorithm checks and, once validated, adds the data to the IPFS network. For the context of this research, we are using the Pinata Gateway as an access point to the IPFS. The whole blockchain transaction is done on the Ethereum network, thereby using ether as the currency for the transaction. The modules are as follows: 
+
+- Module-1 : Extractor 
+
+   - Module 1.1 : Deep Learning Model Extractor 
+
+   - Module 1.2 : LiLT Transformer Model Extractor 
+
+   - **–** Module 1.3 : LayoutLM Model Extractor 
+
+- Module-2 : Hasher 
+
+- Module-3 : Validator and Adder 
+
+### _A. MODULE-1: EXTRACTOR_ 
+
+The main function of the extractor module is to extract information from hard-copy land documents by understanding the layout of the document and the context to fetch only the information that is necessary and holds value. The extractor module uses computer vision to parse documents and fetch information. We have reviewed various computer visionbased text-extracting tools and used three major extractors for the land document extraction process. The selected extractor 
+
+13241 
+
+VOLUME 13, 2025 
+
+A. Priyadarshi, T. R. Sree: Multi-Tier Blockchain-Based Land Registry Using Fog Computing 
+
+
+
+<!-- Start of picture text -->
+IEEE Access<br><!-- End of picture text -->
+
+**TABLE 1.** Summary of related literatures. 
+
+
+
+<!-- Start of picture text -->
+[Author | Year [ Methodology 1PFS] Decentralized] Merits Demerits<br>Naguji etal. | 2024] Uses blockchain and | No | Yes Prevents fraud; sup - | High implementation<br>AI for land registra - ports Agriculture In - | costs; scalability and<br>tion dustry 5.0 privacy issues<br>Kwakye et | 2024 | Economic No No Focuses on economic | Lacks long - term sus -<br>al modeling for land viability and gover - | tainability trends<br>administration nance:<br>Mahmud et | 2024 | Integrates IPFS with | Yes | No Increase scalability ‘complexity rises and<br>al. dual blockchain interoperability<br>methodology<br>Ali etal 2024 | Examine security, au - | No | No Highlights critical is - | Limited by regional<br>thenticity, and legal sues and vulnerability | variations<br>challenges<br>Junaid et al. 2023 | Enhances No No Improves. Scalability,<br>transparency and. transparency and | integration, and<br>efficiency efficiency regulatory challenges<br>Patan et al. 2022 | Novel blockchain | No ‘Yes. Preserves security High implementation<br>model for loT devices costs; scalability and<br>adaptation issues<br>Lietal. 2022 | Uses Merkle hash | No | No Improved security | Specific toe<br>trees for encryption compared to classical | commerce<br>encryption methods<br>Patan et al. 2021 | Uses neural networks | No No) Highly efficient; | Need further refine -<br>and tokenization for advanced extraction | ment<br>Shuaib et al 2021 | processing Reviewsand blockchainland recordsissues | No No methods. focusland recordson reviewing | NeedSecurity,to concernprivacy,aboutand<br>infrastructure<br>Krishnapriya | 2019 | Network of 12 nodes | No | Yes ‘Strong cryptographic | Complex; resource -<br>etal. for proof of work methods; reduced la - intensive<br>tency<br>‘Wang etal 2019 | Decentralized policy | No | Yes Fast policy manage - | Scalability concerns<br>management with ment<br>blockchain<br>‘Wang et al. 2022 | Use neural networks | No ‘No Highly efficient, Need further refine -<br>and tokenization for advanced — extraction ment<br>Proposed ‘Cpr o cessingmbines Yes | Yes methods.Enhances Less complexity;<br>blockchain for transparency, potential scalability<br>secureforvalidationtransactionand IPFS security,data integrity;and || challengelayer integration;with dual s -<br>storagedecentralized fasterretrieval withdocumentIPFS | i nteroperabilityssues between<br>integration blockchain and IPFS<br><!-- End of picture text -->
+
+
+
+**FIGURE 2.** Architecture diagram. 
+
+modules use various deep-learning techniques, making the context-generation process for documents relatively easier. The conflicting information from different or even the 
+
+same sources is addressed through probabilistic modeling, while structured document layouts help ensure accurate and consistent extraction of information. The workings of each module under the extractor module are covered in detail in the following sections: 
+
+### 1) MODULE-1.1: DEEP LEARNING MODEL EXTRACTOR 
+
+This module uses the unique concept of the attend, copy, and parse method, which uses pattern matching at its core. The first step involved is using computer vision on the input data to fetch all the information available in the document. The data is stored as it is in the memory as part of the ingestion process. Fig.3 represents the deep learning model extractor In the ingestion process, the OCR result is structured in a hierarchical format, where the lowest level contains individual characters and the higher levels consist of words, paragraphs, and blocks. A two-dimensional plane of each document age is created, and each node at every level of the 
+
+13242 
+
+VOLUME 13, 2025 
+
+A. Priyadarshi, T. R. Sree: Multi-Tier Blockchain-Based Land Registry Using Fog Computing ~~recess~~ 
+
+hierarchy has a bounding box that corresponds to its location on the constructed two-dimensional plane. The functions in the ingestion process then arrange the paragraphs in reading order, and the blocks are arranged in a pre-determined order for efficient processing in the later stages. Natural Language Processing (NLP) methods are applied to the stored data line by line to clean the data. The text data is first tokenized into words, and the stop words are removed from the data. This whole action takes place on a copy of the stored data. The reason the action is done on a copy is that the module will use the originally extracted data to compare the context generated in the later stages to improve efficiency. 
+
+After the stop words are removed, a probabilistic language model is applied to the filtered data. This is a popular word and sequence analysis model that basically calculates the probability of a sentence containing a sequence of words. The calculated probabilities are used to determine the important entries in the document. A small amount of vector semantic and sequence labeling is applied wherever the probability calculation is not able to take place or the value is null or undefined. 
+
+The next step involves candidate generation, which is basically the labeling of all the processed data to give a field to all attributes that are considered relevant and meaningful. This process uses various models that were trained on web data for sequence and expression matching of the given text. These models are also capable of performing regular expression matching and heuristic labeling to get the best results. To support all field types in the given system, we assign various candidate generators, which notably use the entity extraction service available in the cloud to identify portions of the OCR text that correspond to a respective type. For example, all the dates (eg: due_date, assign_date, purchase_date) in a land document are considered candidates as per the information in the schema of the target value. Now the system ensures high recall by providing the candidate generators with mechanisms to have high recall and not focus on the precision aspect. The precision is mainly handled by the scoring and assignment processes. 
+
+We use a two-step procedure to extract the proper data for each field extracted in accordance with the schema in the target value after the aforementioned process generates a collection of candidates. 
+
+Firstly, we independently score each candidate using a neural model, assigning a score of [0, 1] to each candidate. Once the score is assigned, we then assign various scores to all the candidates in respective fields with extracted values considered to have a high probability of being a pair in that field. Providing a separation between the scoring process and the assignment process makes the system more efficient, provides representational learning, and allows complex business rules to be encoded while performing the assignment action wherever necessary. For instance, the date of purchase cannot proceed to the date of renewal 
+
+in any given document, so these kinds of modifications and checks can be performed automatically and with ease. 
+
+
+
+**FIGURE 3.** Module 1.1 deep learning model extractor architecture diagram. 
+
+The next step is using the unique concept of attend, copy, and parse, which uses the above-mentioned processes in sync to give us the desired output. The attend method basically parses through all the information generated by the ingestion process and applies candidate generation and CNN to the necessary information based on the scores provided by the scorer method. For each iteration, the context method provides the context or relevance of the information as per the requirement based on its learning through web-based models. For example, the date fields are iterated over by the attend method, but they are only sent further for action when the context method provides a context for them based on deep learning techniques. A middleware method called copy stores information in the same way that data is stored in cache memory. The stored data in the copy method is just a failsafe method if an error arises and we need to roll back to the last data point of iteration through context. The final method parses and converts the data in a systematic format based on the context given by the context method and compares the said data with the model output from the assignment process. 
+
+### 2) MODULE-1.2: LiLT TRANSFORMER MODEL EXTRACTOR 
+
+Language-independent Layout Transformer (LiLT) is a framework that uses the concept of transformers to understand the semantics of structured documents. This transformer does not waste time on providing language support for context generation and is solely focused on the context generation of single-language documents. The transformer can be pre-trained on various single-language documents that are structured. The transformer can also be fine-tuned for other languages using existing pre-trained multilingual text-based models. LiLT uses a Bi-directional Attention Complementation Mechanism (BiACM) and widely recognized Masked Visual Language Modelling (MVLM) to execute the pre-training process. 
+
+The major acting points of this module are: 
+
+- Text Embedding similar to Module 1.1 
+
+- Layout Embedding 
+
+- Application of BiACM and MVLM as part of the pretraining 
+
+13243 
+
+VOLUME 13, 2025 
+
+A. Priyadarshi, T. R. Sree: Multi-Tier Blockchain-Based Land Registry Using Fog Computing 
+
+
+
+<!-- Start of picture text -->
+IEEE Access<br><!-- End of picture text -->
+
+- Determining key point location and cross-modal alignment 
+
+The importance of efficient document analysis cannot be overstated, particularly in today’s world, where a vast amount of information is created and shared daily. To address this challenge, this module utilizes a two-layer architecture, providing an in-depth analysis of documents and their contents. The module can be customized to meet the specific needs of different organizations and industries, allowing them to extract the information they require from documents in a more efficient and effective manner. The use of a two-transformer layer architecture provides a comprehensive and accurate analysis of documents, enabling better decision-making and analysis. By combining the text and layout flow, the module can provide a holistic understanding of the document, enabling more effective and efficient analysis. 
+
+The first layer of the module provides text flow, which primarily analyzes the content of the document. This layer utilizes sophisticated algorithms to extract the relevant information from the document, such as key phrases, topics, and sentiment. By analyzing the text flow, the module can provide a comprehensive understanding of the document’s content, enabling better decision-making and analysis. The second layer of the module provides layout flow, which analyzes the context and layout of the document. This layer considers various factors, such as the placement of images, tables, and other visual elements, to provide a comprehensive understanding of the document’s structure. By analyzing the layout flow, the module can determine the overall structure and hierarchy of the document, facilitating efficient and effective analysis. 
+
+The steps taken as part of the pre-training process are: 
+
+- **Masked Visual-Language Modelling (MVLM):** The model is instructed to reconstruct specific input tokens from the complete vocabulary using the encoded output features using the MVLM approach, which randomly masks some input tokens. This approach enhances the model’s language learning capabilities with the aid of cross-modality information while preserving nontextual information. Additionally, the layout embedding provided by MVLM enables the model to more effectively capture both inter- and intra-sentence relationships. 
+
+- **Key Point Location:** Our proposal aims to improve the model’s comprehension of layout information in structured documents. To achieve this, we introduce KPL, which divides the layout into several regions (by default, 49 regions in a 7×7 grid) and masks some input bounding boxes at random. The model then predicts which regions each key point (top-left corner, bottomright corner, and center point) of the box belongs to using separate heads. This requires the model to have a comprehensive understanding of the text content and to 
+
+- determine the appropriate placement of a specific word or sentence in relation to the surrounding text. 
+
+- **Cross-modal Alignment Identification:** Our approach involves gathering the encoded features of token-box pairs that undergo masking and either misalignment or remain aligned via MVLM and KPL. These token-box pairs represent a combination of textual and visual information, allowing for a more comprehensive understanding of the data. By utilizing these pairs, we can train our model to accurately analyze and interpret various types of data. To improve the accuracy of our model, we have introduced an additional head that determines if each pair is aligned using the model’s cross-modal perception ability. This new task, called Cross-Modal Alignment Identification (CAI), is a binary classification problem that employs cross-entropy loss. By training our model to accurately classify the alignment of token-box pairs, we can significantly improve its overall accuracy and effectiveness. 
+
+
+
+**FIGURE 4.** Module 1.2 architecture diagram. 
+
+This approach has several advantages over traditional models, including its ability to handle complex and diverse data types, its scalability, and its ability to provide a more comprehensive understanding of the data. Furthermore, our model can be customized to meet the specific needs of different organizations and industries, allowing them to extract the information they require from their data in a more efficient and effective manner. 
+
+### 3) MODULE-1.3: LayoutLM MODEL EXTRACTOR 
+
+The LayoutLM Model is based on Bidirectional Encoder Representations from Transformers (BERT) and is a slight improvement over it. The processing of this extractor module is as follows: 
+
+- Pre-training LayoutLM 
+
+- Dataset Fine Tuning 
+
+- LayoutLM Fine Tuning 
+
+- Document Pre-processing 
+
+- Task specific Fine Tuning 
+
+The module uses computer vision to extract information from the given land document. This module is, in a way, an extension of BERT. BERT is basically a deep learning model in which there is a connection between every input and output element. The established connection between the elements is provided with dynamic weightings based on the connection, and the weightings are then further used to 
+
+13244 
+
+VOLUME 13, 2025 
+
+A. Priyadarshi, T. R. Sree: Multi-Tier Blockchain-Based Land Registry Using Fog Computing 
+
+
+
+<!-- Start of picture text -->
+IEEE Access<br><!-- End of picture text -->
+
+generate output for the next set of data. This module leverages this feature of BERT and combines it with computer vision techniques to first extract data and then establish connections and weightings for field and response pairs. 
+
+
+
+<!-- Start of picture text -->
+Image and LayoutLM -<br>Pre-built —<br>(m2PE xO }-—— wt ==]<br>=<br><!-- End of picture text -->
+
+**FIGURE 5.** Module 1.3 architecture diagram. 
+
+### _B. MODULE-2: HASHER_ 
+
+The data generated from Module 1 is in the form of a JSON object, which contains a vast amount of information. This information is then parsed by our module to check for attributes such as government ID, private or public property, and other relevant information. By analyzing these attributes, our module can provide a comprehensive understanding of the data, enabling better decision-making and analysis. 
+
+
+
+<!-- Start of picture text -->
+—<br>nt SL rast iE<br>K<br><!-- End of picture text -->
+
+**FIGURE 6.** Merkle hash tree. 
+
+The module creates a plane object for the positioning of each word after applying text classification, similar to Module 1.1. Each text object is called a text embedding, which is passed over the plane and assigned over coordinates called position embeddings (PE). The embeddings are decided by the deep convolutional network called Faster R- CNN. Since each embedding is treated as an object, the faster R-CNN gives efficient and accurate results. 
+
+Once information is extracted from the document, a Region of Interest (ROI) pooling operation takes place, similar to how modern-day cameras detect people from images or live video streams. The model considers each object as a whole, provides weightage to it, and then positions each field on the plane object created through position embeddings. The position embeddings are only two coordinates at a time, though multiple concurrent embedding processes can take place based on the amount of computing power and memory available. 
+
+There are various models that use BERT to perform various NLP tasks, but typically these models only utilize text information from any input. So BERT alone cannot be used for our use case because we are dealing with hardcopy documents that can be in any language other than English and can vary from region to region. This kind of document contains a huge amount of information that cannot be encoded and processed to pass through a BERT-trained model. We require LayoutLM’s knowledge of different land document layouts and how information is arranged in them in order to resolve issues. 
+
+Moreover, LayoutLM provides various extensions and easy-to-use frameworks that can be used based on the requirements of the user. Various versions of LayoutLM have since been rolled out, which tackle various extraction processes and provide high efficiency and accuracy. 
+
+Once the relevant attributes have been identified, each entry is converted to its md5 hash (a cryptographic hash function that generates a fixed-size output) because each object in the array subsequently becomes too large to process and transfer over the network. These hashes are then passed through a converter, which turns them into a Merkle hash tree. The Merkle hash tree is a powerful data structure that enables efficient and secure verification of the integrity of large data sets. The root hash of the Merkle tree is then sent to Module 3, which utilizes this information to further analyze and interpret the data. By utilizing the root hash, Module 3 can efficiently verify the integrity of the data and ensure that it has not been tampered with in any way. 
+
+The Merkle Hash Tree is a data structure based on the tree data structure, which is used in cryptography. Its most significant use is in the blockchain. Prominent blockchains such as Bitcoin and Ethereum use forms of the Merkle Hash Tree in their workings and various components. The Merkle Hash Tree works by hashing the child nodes and then adding them to create a respective parent node. For example, in the above diagram, L1, L2, L3, and L4 are the data points that need to be processed. These data points are passed as child nodes and are hashed. Then a hash of L1 and a hash of L2 are added and stored in Hash 0 in the diagram. A similar thing is done for Hash 1. Then the top hash is created by adding hash 0 and hash 1, then hashing the result of the addition. The top hash is then created, which stores the whole information in a single place. The top hash is also called the root hash. The Merkle Hash Tree provides easy tracking of each data point, making it convenient and efficient when dealing with large files. 
+
+Once the Merkle Tree is generated, the following data is output from Module 2: 
+
+13245 
+
+VOLUME 13, 2025 
+
+A. Priyadarshi, T. R. Sree: Multi-Tier Blockchain-Based Land Registry Using Fog Computing 
+
+
+
+<!-- Start of picture text -->
+IEEE<br><!-- End of picture text -->
+
+
+
+<!-- Start of picture text -->
+><br><!-- End of picture text -->
+
+**FIGURE 7.** JSON output from module 3. 
+
+### _C. MODULE-3: VALIDATOR AND ADDER_ 
+
+Validator and Adder operates through a two-phase process: validation of the hashed file and the addition of nearby land devices to the blockchain network. 
+
+### VALIDATION PROCESS 
+
+The validator module checks for errors by thoroughly examining the nodes in the hashed file. Each node represents a data point from the extracted document, and this process ensures the integrity and accuracy of the hashed data. The validator compares the nodes with predefined rules or schemas to find any discrepancies or errors that exist in the data structure. 
+
+to be efficient in developing applications involving smart contracts. The main reason to use Ethereum in this research is because of its ability to tackle the 51% attack, which is very common in decentralized networks. 51% attack is basically an attack in which if a particular user or entity gains control over 51% of the devices or machines present in the entire network, they technically get control of the whole network. Another common attack is the Denial of Service (DoS) attack, which can also be tackled by Ethereum. Ethereum tackles these problems by using a concept called proof of stake, where the users who want to transact over the network provide some kind of capital in the form of ether to show as collateral. The other thing about Ethereum is that it works on a hash rate that is very high, which means a DoS attack will not be able to take place by providing the same hash rate every time at each request. 
+
+Interplanetary File System (IPFS) is a network protocol that allows the transfer of files over a decentralized network based on the principle of peer-to-peer computing. IPFS breaks down a particular file into various chunks, which are then distributed over a network of computers or machines that are under the IPFS network. IPFS uses Filecoin as a token of exchange for each transaction. IPFS works on name-based routing, where all the files are accessed through name-based routes and are reconstructed as per demand, giving the user the data they want and thereby saving time and computing resources. Ethereum helps in accessing the IPFS network on its own using various gateways. In our case, we use the Pinate gateway, which is an easy-to-use IPFS access gateway that leverages the power of Ethereum to distribute files over the IPFS network. Pinata also provides a user-friendly dashboard that helps in navigating and managing the files stored over the network. 
+
+### **IV. RESULT ANALYSIS AND COMPARISON** 
+
+### ERROR-FREE VERIFICATION 
+
+If no errors are detected, the system moves on to the next phase viz., the Adder module. The key aspect of an adder is finding the nearby land divisions, which are checked through the JSON data earlier generated. 
+
+### _A. MODULE-1.1: RESULT_ 
+
+The following table shows the F1 score for each value of the document. The attend, copy, and parse method gives a high F1 score of 0.83, proving that the context generation is up to the mark. The overall accuracy provided by this module came to around 0.83. 
+
+### HANDLING MISSING DATA 
+
+If no nearby land data is found, the system assigns a random value with an address key to maintain completeness. 
+
+### BLOCKCHAIN ADDITION 
+
+Validated data is added to a set list and integrated into the blockchain network, any user can access the information and cannot tamper with it. 
+
+### _D. ETHEREUEM, IPFS, AND PINATA_ 
+
+The Ethereum blockchain is used because of its popularity and reliability in the modern world. It is easy to integrate with existing blockchain networks and can interact with various decentralized services. Ethereum uses ether as a currency for all transactions. The test network of Ethereum has proven 
+
+**TABLE 2.** Module 1.1 field scores. 
+
+
+
+<!-- Start of picture text -->
+Prod-I _ | Attend,<br>Copy,<br>Parse<br>0.78 087<br>0.82 0.84<br>0.70 0.80<br>0.77 081<br>0.73 0.79<br>0.77 0.80<br>0.68 0.87<br>0.75 0.83<br><!-- End of picture text -->
+
+
+
+<!-- Start of picture text -->
+Number<br>Order id<br>Date<br>Total<br>Sub Total<br>Tax Total<br>Tax Percent<br>Average<br><!-- End of picture text -->
+
+This table hereby shows us that Module 1.1 can be used for the extractor module. 
+
+13246 
+
+VOLUME 13, 2025 
+
+A. Priyadarshi, T. R. Sree: Multi-Tier Blockchain-Based Land Registry Using Fog Computing 
+
+
+
+<!-- Start of picture text -->
+IEEE Access<br><!-- End of picture text -->
+
+### _B. COMPARISON BETWEEN MODULE-1 2 AND MODULE-1 3_ 
+
+Now to select the next module out of the three for going forward, we test Module 1.2 and Module 1.3 on the same dataset and check various factors. 
+
+The following table shows the pre-training task information based on the F1 score (both models were tested on the FUNSD dataset): 
+
+**TABLE 3.** Module 1.2 and Module 1.3 F1 score comparision. 
+
+
+
+<!-- Start of picture text -->
+0.7840<br>0.7901<br>0.7947<br>0.7950.<br>0.7935<br>0.7963<br><!-- End of picture text -->
+
+
+
+<!-- Start of picture text -->
+0.6957<br>07249<br>0.7266<br>0.7427<br>0.7538<br>0.7592<br><!-- End of picture text -->
+
+
+
+<!-- Start of picture text -->
+TO epochs<br>20 epochs<br>30 epochs<br>40 epochs<br>50 epochs<br>60 epochs<br><!-- End of picture text -->
+
+The following table shows the comparison based on precision, recall, and F1 score (Both models were tested on the FUNSD dataset): 
+
+**TABLE 4.** Module 1.2 and Module 1.3 F1 Score, Precision, Recall Comparison. 
+
+
+
+<!-- Start of picture text -->
+oT Precision [ Recall [Fi<br>BERT BASE I 0.5469 | 0.6710 | 0.6026<br> LAYOUTLM BASE 4 0.7597 | 08155 | 0.7866<br>LAYOUTLMv2 BASE7 | 0.8029 | 0.8539 | 0.8276<br> ur 0.5469 | 0.8965 | 0.8841<br>LILTINFOXLM 0.8467 | 0.8709 _| 0.8586<br><!-- End of picture text -->
+
+The above data shows that LILT will be the best model for our research, but the data shown below shows the advantages of LayoutLM: 
+
+The accuracy comparison of various models is depicted in Fig.9. It is observed from the experimental results that LILT Infoxlm gives the highest 85.88% accuracy among all other models. This is because it extracts and classifies the information effectively to know the exact property of the owner. Due to the multilingual and multi-modal capabilities of LILT INFOXLM, the performance of the LILT increases. However, the accuracy of Layoutlmv2 base 7 accuracy is close to LILT Infoxlm in understanding the document layouts. Layoutlm captures layout information effectively. 
+
+### _C. COMPARISON BETWEEN EXISTING AND PROPOSED SOLUTION_ 
+
+The potential of IPFS and Filecoin as a decentralized alternative to centralized cloud providers cannot be understated. Not only does this combination offer a more secure and transparent way of storing data, but it also provides an opportunity to disrupt the existing monopoly of a few tech giants in the cloud computing market. 
+
+While the cost difference between AWS and Filecoin is significant, it is important to note that the pricing model of Filecoin is based on a market-driven approach. The 
+
+
+
+<!-- Start of picture text -->
+[BeeaaneySL [eat [Pression [Rea [rt [farms |<br>[pCR [eas lens fess [so |<br>Teat> |[FBERTOLARORLayouiTbase yGOOK.[ome | O.6ES fontons [an[owes [semfist<br>Layout | 50 epochs)<br>Mum — [Een tenant, [oeos fora for Pisa<br>50 epoce)<br>TayouMasyOM, [OTST OTR com TES<br>530 epochs)<br>TayomMibaseyniNg | 07597 o7865 [TSM<br>50 epochs)<br>Layout | 50 epochs)<br>MuIM+ — [TayouEMtaeyring [oriss ——[ors0 ors [Tis wr<br>oc 50 epochs)<br>Text + ‘LayoutLM(largeXIM, | 0.7171 0.7585 aM<br>Layout | 50 epochs)<br>Mum — | Cajon Mageyving [OTS oe aaa<br>TayoaiEMiiareyin,[OTIOT [Oss oTaar [Teor<br>Teas 50 epocke)<br>Layout | soepocie)<br>Image LayoutlM(base11M, | 0.7677 0.7927<br>Mim | s0epocts)<br><!-- End of picture text -->
+
+**FIGURE 8.** LayoutLM comparison with its different extensions. 
+
+
+
+<!-- Start of picture text -->
+100<br>20<br>80<br>.<br>a”<br>b 60<br>& so<br>& 40<br>30<br>20<br>10<br>° BERTBASE1 LAYOUTLMBASE 4 LAYOUTLMy2BASE? — LILT — LILTINFOXLM<br>MODELS<br><!-- End of picture text -->
+
+**FIGURE 9.** Accuracy comparison of various models. 
+
+cost of storing data on Filecoin fluctuates based on supply and demand, which means that it may not always be as cheap as it is currently. However, even with the fluctuation, Filecoin’s pricing is significantly more affordable than that of centralized cloud providers. 
+
+The large number of storage providers in the Filecoin network is also a significant advantage. This means that there is a wider variety of options for users to choose from and less reliance on a single provider. Additionally, the decentralized nature of Filecoin means that there is no single point of failure or vulnerability, unlike centralized cloud providers, where a single hack or outage can result in significant losses. 
+
+Despite its many benefits, there are still some challenges associated with using Filecoin. One of the main challenges is 
+
+13247 
+
+VOLUME 13, 2025 
+
+A. Priyadarshi, T. R. Sree: Multi-Tier Blockchain-Based Land Registry Using Fog Computing 
+
+
+
+the lack of user-friendly interfaces, which makes it difficult for non-technical users to take advantage of the platform. However, efforts are being made to address this issue, and it is likely that the user experience will continue to improve as more people adopt the platform. 
+
+Another challenge is the issue of trust. While Filecoin provides a more secure and transparent way of storing data, users must still trust the storage providers they choose to use. This is because these providers have access to the data and could potentially misuse it. However, the use of smart contracts and reputation systems can help mitigate this risk by holding providers accountable for their actions. 
+
+In conclusion, IPFS and Filecoin offer a powerful alternative to centralized cloud providers, providing increased security, transparency, and cost-effectiveness. While there are still some challenges to overcome, the potential benefits of using these platforms are too significant to ignore. As more people become aware of the benefits and start using them, it is likely that we will see a significant shift in the cloud computing landscape in the years to come. 
+
+### **V. CONCLUSION AND FUTURE WORK** 
+
+Hence, we have been able to develop a system that tackles the major problems of the land registry system in India. We have been able to develop three different modules that cover each aspect of the problem statement. The first module takes into account the enormous number of paper-based land documents that are available and digitizes them for future use by any entity. The second module is responsible for ensuring security and providing an efficient means of data transfer over the network. The third module makes use of IPFS and the most well-known and effective blockchain, Ethereum, to create a decentralized storage solution that is spread throughout a peer-to-peer network and is extremely quick to access. All the modules are designed in such a way that they can be used as standalone components for other research projects as well. 
+
+The future scope of the work would involve finding more efficient algorithms for data extraction from the land documents and also planning to conduct validation in selected regions. The mechanism for fetching the data can be provided to the Indian Government for them to update their digital database of land records and to help with their blockchain project involving the same. The development of simple fog devices for each land region will be used as the next step. These devices would be simple to use and would run under the IPFS protocol, thereby providing faster response times. 
+
+### **DECLARATIONS** 
+
+### **CONFLICT OF INTEREST** 
+
+_The authors do not have conflicts of interest associated with this publication._ 
+
+### **ETHICAL APPROVAL** 
+
+_This article does not contain any studies with human participants performed by any of the authors._ 
+
+### **ACKNOWLEDGMENT** 
+
+The authors would like to thank all the reviewers for their valuable feedback and suggestions. 
+
+### **REFERENCES** 
+
+- [1] P. Kang, Y. Wenzhong, and T. Ding, ‘‘Blockchain document forwarding and proof method based on NDN network,’’ _IEEE Access_ , vol. 10, pp. 75312–75322, 2022. 
+
+- [2] E. Chen, Y. Zhu, Z. Zhou, S.-Y. Lee, W. E. Wong, and W. C. Chu, ‘‘Policychain: A decentralized authorization service with script-driven policy on blockchain for Internet of Things,’’ _IEEE Internet Things J._ , vol. 9, no. 7, pp. 5391–5409, Apr. 2022. 
+
+- [3] S. Mthethwa, N. Dlamini, and G. Barbour, ‘‘Proposing a blockchain-based solution to verify the integrity of hardcopy documents,’’ in _Proc. Int. Conf. Intell. Innov. Comput. Appl. (ICONIC)_ , Dec. 2018, pp. 1–5. 
+
+- [4] S. Krishnapriya and G. Sarath, ‘‘Securing land registration using blockchain,’’ _Proc. Comput. Sci._ , vol. 171, pp. 1708–1715, Jan. 2020. 
+
+- [5] K. M. Alam, J. M. A. Rahman, A. Tasnim, and A. Akther, ‘‘A blockchainbased land title management system for Bangladesh,’’ _J. King Saud Univ.Comput. Inf. Sci._ , vol. 34, no. 6, pp. 3096–3110, Jun. 2022. 
+
+- [6] A. Téllez-Valero, M. Montes-Y-Gómez, and L. Villaseñor-Pineda, ‘‘A machine learning approach to information extraction,’’ in _Proc. Int. Conf. Intell. Text Process. Comput. Linguistics_ . Berlin, Germany: Springer, Feb. 2005, pp. 539–547. 
+
+- [7] K. Adnan and R. Akbar, ‘‘An analytical study of information extraction from unstructured and multidimensional big data,’’ _J. Big Data_ , vol. 6, no. 1, pp. 1–38, Dec. 2019. 
+
+- [8] V. Thakur, M. N. Doja, Y. K. Dwivedi, T. Ahmad, and G. Khadanga, ‘‘Land records on blockchain for implementation of land titling in India,’’ _Int. J. Inf. Manage._ , vol. 52, Jun. 2020, Art. no. 101940. 
+
+- [9] B. P. Majumder, N. Potti, S. Tata, J. B. Wendt, Q. Zhao, and M. Najork, ‘‘Representation learning for information extraction from form-like documents,’’ in _Proc. 58th Annu. Meeting Assoc. Comput. Linguistics_ , 2020, pp. 6495–6504. 
+
+- [10] Q. Li, ‘‘Research on e-commerce user information encryption technology based on Merkle hash tree,’’ in _Proc. Int. Conf. Robots Intell. Syst. (ICRIS)_ , Jun. 2019, pp. 365–369. 
+
+- [11] L. Yang, H. Wang, K. Yan, X. Yu, J. Li, and D. Man, ‘‘Building extraction of multi-source data based on deep learning,’’ in _Proc. IEEE 4th Int. Conf. Image, Vis. Comput. (ICIVC)_ , Jul. 2019, pp. 296–300. 
+
+- [12] H. Junaedi, T. P. Ikhsan, and D. D. Purwanto, ‘‘Information extraction from ICMD documents to determine the ratio factors function performance using fuzzy,’’ in _Proc. 3rd East Indonesia Conf. Comput. Inf. Technol. (EIConCIT)_ , Apr. 2021, pp. 244–247. 
+
+- [13] C. Castellon, S. Roy, P. Kreidl, A. Dutta, and L. Bölöni, ‘‘Energy efficient Merkle trees for blockchains,’’ in _Proc. IEEE 20th Int. Conf. Trust, Secur. Privacy Comput. Commun. (TrustCom)_ , Oct. 2021, pp. 1093–1099. 
+
+- [14] R. Patan, R. Manikandan, R. Parameshwaran, S. Perumal, M. Daneshmand, and A. H. Gandomi, ‘‘Blockchain security using Merkle hash zero correlation distinguisher for the IoT in smart cities,’’ _IEEE Internet Things J._ , vol. 9, no. 19, pp. 19296–19306, Oct. 2022. 
+
+- [15] R. B. Palm, F. Laws, and O. Winther, ‘‘Attend, copy, parse end-to-end information extraction from documents,’’ in _Proc. Int. Conf. Document Anal. Recognit. (ICDAR)_ , Sep. 2019, pp. 329–336. 
+
+- [16] Y. Xu, M. Li, L. Cui, S. Huang, F. Wei, and M. Zhou, ‘‘LayoutLM: Pretraining of text and layout for document image understanding,’’ in _Proc. 26th ACM SIGKDD Int. Conf. Knowl. Discovery Data Mining_ , Aug. 2020, pp. 1192–1200. 
+
+- [17] J. Wang, L. Jin, and K. Ding, ‘‘LiLT: A simple yet effective languageindependent layout transformer for structured document understanding,’’ 2022, _arXiv:2202.13669_ . 
+
+- [18] Y. Psaras and D. Dias, ‘‘The InterPlanetary file system and the filecoin network,’’ in _Proc. 50th Annu. IEEE-IFIP Int. Conf. Dependable Syst. Netw.-Supplemental (DSN-S)_ , Jun. 2020, p. 80. 
+
+- [19] R. Kothari, B. Jakheliya, and V. Sawant, ‘‘Implementation of a distributed P2P storage network,’’ in _Proc. IEEE Int. Conf. Innov. Technol. (INOCON)_ , Nov. 2020, pp. 1–7. 
+
+13248 
+
+VOLUME 13, 2025 
+
+A. Priyadarshi, T. R. Sree: Multi-Tier Blockchain-Based Land Registry Using Fog Computing 
+
+
+
+- [20] K. Nabben, ‘‘Decentralized technology in practice: Social and technical resilience in IPFS,’’ in _Proc. IEEE 42nd Int. Conf. Distrib. Comput. Syst. Workshops (ICDCSW)_ , Jul. 2022, pp. 66–72. 
+
+- [21] A. A. Povyshev and A. N. Sokolov, ‘‘Proof of storage algorithm for a decentralized cloud system,’’ in _Proc. Ural-Siberian Conf. Biomed. Eng., Radioelectronics Inf. Technol. (USBEREIT)_ , Sep. 2022, pp. 271–274. 
+
+- [22] A. A. Mamun, S. R. Hasan, M. S. Bhuiyan, M. S. Kaiser, and M. A. Yousuf, ‘‘Secure and transparent KYC for banking system using IPFS and blockchain technology,’’ in _Proc. IEEE Region Symp. (TENSYMP)_ , Jun. 2020, pp. 348–351. 
+
+- [23] E. Daniel and F. Tschorsch, ‘‘Passively measuring IPFS churn and network size,’’ in _Proc. IEEE 42nd Int. Conf. Distrib. Comput. Syst. Workshops (ICDCSW)_ , Jul. 2022, pp. 60–65. 
+
+ASHANK PRIYADARSHI is currently pursuing the degree in computer science and engineering, recognized for his expertise in web development and cloud computing. He has won numerous hackathons and is a sought-after speaker at tech conferences and meetups. He is also the Founder of a popular tech community, where he shares his insights and knowledge with a broad audience. He was a Microsoft Learn Student and an Ambassadar. His research interests include the intersection of cloud computing, cybersecurity, blockchain, and digital transactions. 
+
+- [24] Y. Lin and C. Zhang, ‘‘A method for protecting private data in IPFS,’’ in _Proc. IEEE 24th Int. Conf. Comput. Supported Cooperat. Work Design (CSCWD)_ , May 2021, pp. 404–409. 
+
+- [25] P. D. Ameyaw and W. T. de Vries, ‘‘Blockchain technology adaptation for land administration services: The importance of socio-cultural elements,’’ _Land Use Policy_ , vol. 125, Feb. 2023, Art. no. 106485. 
+
+- [26] L. Junaid, K. Bilal, O. Khalid, and A. Erbad, ‘‘Blockchain-enabled land management systems,’’ _Telecommun. Syst._ , vol. 84, no. 3, pp. 421–442, Nov. 2023. 
+
+- [27] M. Ali, R. S. Ismail, and W. Erwiningsih, ‘‘The vulnerabilities of electronic land certificates and legal adaptation in indonesia’s land registration system,’’ _Pakistan J. Criminol._ , vol. 16, no. 2, pp. 1–12, 2024. 
+
+- [28] M. Mahmud, M. S. H. Sohan, S. Reno, M. A. B. Sikder, and F. S. Hossain, ‘‘Advancements in scalability of blockchain infrastructure through IPFS and dual blockchain methodology,’’ _J. Supercomput._ , vol. 80, no. 6, pp. 8383–8405, Apr. 2024. 
+
+- [29] B. Kwakye and A. Sasu, ‘‘Determinants of sustainable customary land secretariats in Ghana: An economic modelling approach,’’ _Land Use Policy_ , vol. 146, Nov. 2024, Art. no. 107327. 
+
+- [30] F. Naguji, N. Kumar Jadav, S. Tanwar, G. Pau, G. Sharma, F. Alqahtani, and A. Tolba, ‘‘GreenLand: A secure land registration scheme for blockchain and AI-enabled agriculture industry 5.0,’’ _IEEE Access_ , vol. 12, pp. 120994–121009, 2024. 
+
+THANKARAJA RAJA SREE received the B.Tech. degree from the Department of Information Technology, Anna University, Chennai, India, in 2008, the M.Tech. degree from the Department of Information Technology, Anna University, Coimbatore, in 2010, and the Ph.D. degree from the Department of Computer Science and Engineering, National Institute of Technology, Tiruchirappalli, India, in 2018. She is currently an Assistant Professor Senior with the Department of Computer Science 
+
+
+
+and Engineering, Vellore Institute of Technology, Chennai. She was an Ad-Hoc Faculty with the Department of Computer Science and Engineering, National Institute of Technology, Calicut, India. She has more than ten years of teaching experience at the bachelor’s and master’s levels. Her research interests include cloud computing, cloud security, cloud forensics, and fog computing. 
+
+13249 
+
+VOLUME 13, 2025 
+
