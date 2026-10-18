@@ -1,8 +1,8 @@
-# Demo video script (limit: 90 seconds, aim for 80 to 85)
+# Demo video script (limit: 90 seconds [1], aim for 80 to 85)
 
 **Language:** the app opens in Bangla. For the English voice-over, tap **English** in the header first. For the Bangla voice-over, leave it as is; the example buttons are then: সঠিক বিক্রি, একই জমি দুইবার বিক্রি, সরকারি (খাস) জমি, জাল QR কোড. Keep the role on **Both**.
 
-**Setup:** record the live site in a desktop browser at 1280x720, bookmarks bar hidden, page zoom 110%. Voice-over in English (Bangla version below is optional). Add captions: judges often watch muted. Do one dry run before recording. Trim to under 90 s.
+**Setup:** record the live site [19] in a desktop browser at 1280x720, bookmarks bar hidden, page zoom 110%. Voice-over in English (Bangla version below is optional). Add captions: judges often watch muted. Do one dry run before recording. Trim to under 90 s.
 
 | Time | On screen (click path) | Voice-over |
 |---|---|---|
@@ -27,3 +27,33 @@ About 170 words, which fits 90 seconds with pauses.
 4. "কর্মকর্তারা কারণসহ সতর্কতার তালিকা পান, প্রতিটিতে দেখার মতো রেকর্ড দেওয়া থাকে। প্রতিটি সতর্কতা থেকে জমির পুরো রেকর্ড-ধারা দেখা যায়।"
 5. "ডামি ডেটায় আমরা নিয়মগুলো পরীক্ষা করেছি: যাচাইযোগ্য আটটির আটটিই ধরা পড়েছে। এটি ছোট কৃত্রিম পরীক্ষা, বাস্তব নির্ভুলতা নয়, আর সেটা আমরা পাতায় স্পষ্ট লিখেছি।"
 6. "Ardh Guard মালিকানা ঠিক করে না, কর্মকর্তারা করেন। পরের ধাপ: মালিককে সতর্কবার্তা, অডিট ট্রেইল, বাংলা নাম মেলানো, আর একটি সাব-রেজিস্ট্রি অফিসে পাইলট। আমরা টিম আর্ধ।"
+
+<!-- refs:start -->
+## References
+
+[1] LandTech Innovation Hackathon 2026 Rule Book, version 1.2. Department of CSE and CSE-TECH, Daffodil International University. [LandTech Innovation Hackathon 2026 Rule Book (v1.2)](https://landtech.diu.edu.bd/landtech)  
+[19] Team Ardh (2026). Ardh Guard live prototype. [Ardh Guard: live prototype](https://land-tech-innovation-hackathon-2026.vercel.app/)  
+
+### Other project references
+
+- [2] [Errors in the Land Record of Rights (Khatiyan) and the Remedial Procedure in Bangladesh: An Analysis of Existing Regulatory Framework and Future Reforms](https://doi.org/10.55327/jaash.v10i2.335)
+- [3] [Essentiality of Reforms of the Registration Act 1908: E-Registration Perspective](https://doi.org/10.3329/fuj.v3i1.86557)
+- [4] [The Prospect of Integrated Land Administration and Management System (ILAMS) for Improving Land Related Service Delivery in Bangladesh](https://doi.org/10.36609/bjpa.v30i2.360)
+- [5] [Citizens' Perspective on Land E-Mutation at Upazila Land Offices in Mymensingh](https://doi.org/10.34104/ajssls.023.02910305)
+- [6] [A Blockchain-based Land Title Management System for Bangladesh](https://doi.org/10.1016/j.jksuci.2020.10.011)
+- [7] [Digitizing Land Governance in Bangladesh: A Qualitative Study of Urban and Rural Citizens' Experiences with the Digital Land Record Management System](https://doi.org/10.36481/jsp.v01.i01.3vmg5j09)
+- [8] [The Impact of E-services on People's Empowerment: An Investigation into E-mutation Service of Bangladesh](https://doi.org/10.53808/KUS.2024.21.02.1177-ss)
+- [9] [Digitalization of the Land Record System in Bangladesh: Prospects and Challenges](https://ssrn.com/abstract=5012153)
+- [10] [Digitising land records seen as a paradigm shift](https://observerbd.com/news/555055)
+- [11] [Consensus: AI research assistant](https://consensus.app)
+- [12] [Claude (Anthropic)](https://www.anthropic.com/claude)
+- [13] [React](https://react.dev)
+- [14] [Vite](https://vite.dev)
+- [15] [Tailwind CSS](https://tailwindcss.com)
+- [16] [Vercel](https://vercel.com)
+- [17] [Supabase](https://supabase.com)
+- [18] [Hugging Face](https://huggingface.co)
+- [20] [Ardh Guard: pitch deck](https://land-tech-innovation-hackathon-2026.vercel.app/deck/)
+
+Numbers are the same in every file. Full list with notes on what we read: [`docs/REFERENCES.md`](REFERENCES.md).
+<!-- refs:end -->
