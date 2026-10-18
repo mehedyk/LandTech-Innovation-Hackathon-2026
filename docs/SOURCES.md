@@ -1,37 +1,69 @@
 # Source triage
 
-Keep the PDFs **locally** (not in the public repo). Cite only what you have read and can link by DOI.
+Keep the PDFs **locally** (not in the public repo). Cite only what you have read, with its DOI. Numbers like [2] match [`REFERENCES.md`](REFERENCES.md).
 
-## Core (read these, cite these)
-| File | What it is | Use for |
+## Core: opened and checked
+| File | What it is | Used for |
 |---|---|---|
-| `This_is_the_rule_book_i_am_thingking_this_type_P3.pdf` | Consensus.app AI report: gap analysis for P3 (misnamed file) | Positioning, scope, evaluation plan |
-| `1_CSSARSBS_...pdf` | Consensus.app report on CS/SA/RS/BS chain + suggested registry schema | Survey-chain explanation, data model |
-| `The_Impact_of_E-services_...pdf` | Consensus.app report on e-services and land governance | Problem framing |
-| `paper_ec7c709d...pdf` | Ayatullah (2026), Feni Univ. Journal: e-registration reform | Inter-checking Sub-Registrar / AC Land, property alerts |
-| `Template+final+updated.pdf` | Raziv et al. (2024): errors in khatian | Why khatian alone is not proof of ownership |
-| `Imam+2023.pdf` | ILAMS paper, Bangladesh Journal of Public Administration 30(2) | Fragmented records / registration / management (the AI reports cite this as "Emam"; **check the spelling on the paper itself**) |
+| `Template+final+updated.pdf` | Raziv et al. (2024), errors in the khatian [2] | Khatians carry known kinds of errors |
+| `paper_ec7c709d...pdf` | Ayatullah (2024), Feni University Journal [3] | Inter-checking between Registering Officers and AC (Land); property conveyance alert; record-update lag |
+| `Imam+2023.pdf` | **Emam (2022)**, ILAMS, Bangladesh Journal of Public Administration [4]. The file is misnamed "Imam"; the author on the paper is Emam | Records, registration and management run by three detached authorities |
+| `1-s2.0-S1319157820304912-main.pdf` | Alam et al. (2022), blockchain land titles for Bangladesh [6] | Prior art to contrast with: they store titles, we check conflicts |
+| `HIGHLI_1.pdf` | Begum (2023), e-mutation in Mymensingh [5] | Mutation time and cost; coordination problems remain |
+| `Volume1-Issue1-Paper5.pdf` | Debnath et al. (2026), DIU *Journal of Society and Progress* [7] | Rural and urban citizen experience of digital land records. Published by your own university |
+| `This_is_the_rule_book_i_am_thingking_this_type_P3.pdf`, `1_CSSARSBS_...pdf`, `The_Impact_of_E-services_...pdf` | Consensus.app AI reports [11] | Scoping only, never cited as evidence |
 
-## Useful (skim, cite if needed)
-| File | Use |
+## Useful, only skimmed
+| File | Note |
 |---|---|
-| `1-s2.0-S1319157820304912-main.pdf` (Alam et al., blockchain land title for Bangladesh) | Prior art to contrast with: they store records, we check conflicts |
-| `HIGHLI_1.pdf` (Begum 2023, e-mutation, Mymensingh) | Mutation pain points from citizens |
-| `190-201_removed.pdf` (Khulna Univ. Studies, e-mutation) | Optional, e-mutation impact |
-| `ssrn-5012153.pdf` (N. Rahman, digitalization of land records, 47 pp.) | Legal framing |
-| `Volume1-Issue1-Paper5.pdf` (DIU *Journal of Society and Progress*, July 2026) | Published by your own university, worth citing once you have read it |
+| `190-201_removed.pdf`: Ali et al. (2024) [8] | Abstract read only |
+| `ssrn-5012153.pdf`: N. Rahman (2024) [9] | 47 pages, not read in full |
 
 ## Skip
 | File | Why |
 |---|---|
-| `Multi-Tier_Blockchain_...Fog_Computing.pdf` | Indian blockchain architecture paper, not our approach |
+| `Multi-Tier_Blockchain_...Fog_Computing.pdf` | Blockchain architecture paper, not our approach |
 | `Operationalizing_the_Right_to_Informatio.pdf` | RTI and e-governance, not land |
 | `TraditionalVSDigital_UDC_DPA.pdf` (+ `(1)` copy) | Union Digital Centres, not land |
 | `Template+final updated (1).pdf` | Exact duplicate of `Template+final+updated.pdf` |
 
 ## Practitioner notes (not citable)
-`Class -1(Khatian and hissa poddoti & Others).pdf`: a commercial course by a land-law advocate (Bangla, 39 pp.). Its buyer due-diligence checklist (check khatian/dakhila, khas or vested property, mortgage, pending cases, power of attorney, stamp and signature checks) matches our rules well. Use it for ideas and for mentor conversations. Do not copy from it or put it in the repo.
+`Class -1(Khatian and hissa poddoti & Others).pdf`: a commercial course by a land-law advocate (Bangla, 39 pp.). Its buyer due-diligence checklist matches our rules well. Use it for ideas and mentor conversations. Do not copy from it or put it in the repo.
+
+## Newspaper source
+Ahana (2025), *The Daily Observer*, reports that more than 70 per cent of civil disputes arise from land-related conflicts, citing Ministry of Law figures [10]. It is a secondary source, so write "reported".
 
 ## Warnings
-- The three Consensus reports are AI-generated literature summaries. Open every DOI before citing it. A few listed entries look off-topic (for example a fishery supply-chain paper), so drop those.
-- The "21 papers / 1 paper" counts in the P3 report come from Consensus' own search, not from a systematic review. Say "in our literature search", never "the literature proves".
+- The Consensus reports [11] are AI-generated summaries. They had the ILAMS author right (Emam) and the Feni paper year wrong in places, so check every detail against the paper itself.
+- Safeguard studies (Karusala et al. 2024; Huggins 2021), the OCR paper (Hasan et al. 2026) and Safiullah (2021) appear only through the Consensus reports. Do not cite them until you have opened them.
+- The "21 papers / 1 paper" counts come from Consensus' own search, not a systematic review. Say "in our literature search".
+
+<!-- refs:start -->
+## References
+
+[2] Raziv, M. M. H., Jalil, M. A., Mia, M. T. and Mahmud, F. U. (2024). Journal of Asian and African Social Science and Humanities, 10(2), 31-44. [Errors in the Land Record of Rights (Khatiyan) and the Remedial Procedure in Bangladesh: An Analysis of Existing Regulatory Framework and Future Reforms](https://doi.org/10.55327/jaash.v10i2.335)  
+[3] Ayatullah, M. (2024). Feni University Journal, 3(1), 211-222. [Essentiality of Reforms of the Registration Act 1908: E-Registration Perspective](https://doi.org/10.3329/fuj.v3i1.86557)  
+[4] Emam, J. (2022). Bangladesh Journal of Public Administration, 30(2), 47-62. [The Prospect of Integrated Land Administration and Management System (ILAMS) for Improving Land Related Service Delivery in Bangladesh](https://doi.org/10.36609/bjpa.v30i2.360)  
+[5] Begum, S. (2023). Asian Journal of Social Sciences and Legal Studies, 5(6), 291-305. [Citizens' Perspective on Land E-Mutation at Upazila Land Offices in Mymensingh](https://doi.org/10.34104/ajssls.023.02910305)  
+[6] Alam, K. M., Rahman, J. M. A., Tasnim, A. and Akther, A. (2022). Journal of King Saud University - Computer and Information Sciences, 34, 3096-3110. [A Blockchain-based Land Title Management System for Bangladesh](https://doi.org/10.1016/j.jksuci.2020.10.011)  
+[7] Debnath, A., Reza, S., Islam, M. R. and Rahman, M. A. (2026). Journal of Society and Progress, 1(1), 71-86. [Digitizing Land Governance in Bangladesh: A Qualitative Study of Urban and Rural Citizens' Experiences with the Digital Land Record Management System](https://doi.org/10.36481/jsp.v01.i01.3vmg5j09)  
+[8] Ali, M. Y., Pasha, G. M., Jahan, K. and Paul, P. (2024). Khulna University Studies, 21(2). [The Impact of E-services on People's Empowerment: An Investigation into E-mutation Service of Bangladesh](https://doi.org/10.53808/KUS.2024.21.02.1177-ss)  
+[9] Rahman, N. (2024). SSRN working paper 5012153. [Digitalization of the Land Record System in Bangladesh: Prospects and Challenges](https://ssrn.com/abstract=5012153)  
+[10] Ahana, S. I. (2025, 23 November). The Daily Observer. [Digitising land records seen as a paradigm shift](https://observerbd.com/news/555055)  
+[11] Consensus (2026). AI-generated literature search reports used for scoping (P3 gap analysis; CS, SA, RS, BS chain; e-services). [Consensus: AI research assistant](https://consensus.app)  
+
+### Other project references
+
+- [1] [LandTech Innovation Hackathon 2026 Rule Book (v1.2)](https://landtech.diu.edu.bd/landtech)
+- [12] [Claude (Anthropic)](https://www.anthropic.com/claude)
+- [13] [React](https://react.dev)
+- [14] [Vite](https://vite.dev)
+- [15] [Tailwind CSS](https://tailwindcss.com)
+- [16] [Vercel](https://vercel.com)
+- [17] [Supabase](https://supabase.com)
+- [18] [Hugging Face](https://huggingface.co)
+- [19] [Ardh Guard: live prototype](https://land-tech-innovation-hackathon-2026.vercel.app/)
+- [20] [Ardh Guard: pitch deck](https://land-tech-innovation-hackathon-2026.vercel.app/deck/)
+
+Numbers are the same in every file. Full list with notes on what we read: [`docs/REFERENCES.md`](REFERENCES.md).
+<!-- refs:end -->
