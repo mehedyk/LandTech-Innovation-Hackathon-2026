@@ -9,7 +9,7 @@
 ## Write
 - [ ] Concept note, **3 pages**, PDF (outline in `CONCEPT_NOTE_OUTLINE.md`). Open and check every citation.
 - [ ] README TODOs filled: other AI tools, license
-- [ ] Short deck, 6 to 8 slides, PDF (the platform email lists a slide deck; the final needs one anyway)
+- [ ] Short deck: done as an interactive page at `/deck/` and as PDFs in `docs/deck/` (8 slides, Bangla and English). Read the speaker notes (press N) and rehearse once. Final round rule: 5 minutes pitch + live demo, then 3 minutes of questions.
 
 ## Record
 - [ ] Demo video, 90 s or less (`VIDEO_SCRIPT.md`), captions on
