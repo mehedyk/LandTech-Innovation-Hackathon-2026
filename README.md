@@ -159,6 +159,8 @@ supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
 - The citizen page does not check mortgages, court cases or land tax.
 - Ardh Guard flags cases for officers. It does not decide ownership and is not a legal title check.
 
+**Pitch deck:** interactive and bilingual at [`/deck/`](https://land-tech-innovation-hackathon-2026.vercel.app/deck/) (arrow keys, `N` notes, `O` overview, `L` language, `F` fullscreen); PDFs in [`docs/deck/`](docs/deck).
+
 More in [`docs/`](docs): [plan](docs/PLAN.md) · [research notes](docs/RESEARCH_NOTES.md) · [sources](docs/SOURCES.md) · [concept note outline](docs/CONCEPT_NOTE_OUTLINE.md)
 
 ## Team Ardh
