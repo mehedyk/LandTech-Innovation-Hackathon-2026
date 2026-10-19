@@ -41,12 +41,19 @@ Every check opens as a full audit view: a verdict banner, four summary tiles (ch
 
 Reports follow the language you are using (Bangla or English). Each has a report ID, a short reference for that one check; it is **not** an official certificate. Everything is built in the browser, so nothing is uploaded. CSV files open correctly in Excel, including Bangla.
 
+### Map, identity step and the locked NID box
+
+- **Parcel map.** Every check, every parcel page and the citizen page show the plot on a sketch of its mouza, with **RS**, **BS** or both outlines (BS dashed) so you can see how two surveys can disagree. Officers see neighbouring parcel ids and can open them; citizens see only their own plot.
+- **Identity check (officer view, simulated).** A "scan fingerprint" button shows a made-up stored result (match, no match, not enrolled) after a short delay. There is no sensor, no photo and no biometric data. The result is advisory: it does not change the rule verdict and it is not in the reports.
+- **NID (locked).** A collapsible box with a lock sign says that we would add NID matching here too, but the hackathon rules forbid NID and similar personal data, so the box is a disabled placeholder. What a real pilot would need first is in [`docs/INTEGRATION.md`](docs/INTEGRATION.md#7-legal-privacy-and-security).
+- **Data behind it.** [`data/parcel_geometry.json`](data/parcel_geometry.json) (made-up outlines on a 100 x 70 sheet per mouza) and [`data/identity_demo.json`](data/identity_demo.json) (one made-up status per person), both from [`data/gen_geometry.py`](data/gen_geometry.py). The registry and the rules are unchanged, so every verdict and the benchmark are the same as before.
+
 ### Two languages, two views
 
 - **Bangla by default**, with an English toggle. The Bangla is written by context, not word for word: land-office terms follow how people say them (দলিল, খতিয়ান, নামজারি, দাগ, শতাংশ). See [`docs/GLOSSARY_BN.md`](docs/GLOSSARY_BN.md).
 - **Citizen / buyer** view: a plain-language "check before you buy" page that never shows details of other people's deeds.
 - **Officer / admin** view: deed checks, alerts and decisions, parcels, benchmark.
-- **Both** shows every page together (the default for judges). The switch is a demo control, not a login.
+- **Both** (the default for judges) opens a **side-by-side screen**: the officer view in a green frame on the left and the citizen view in a blue frame on the right, each with its own form and result and a tag saying who it is for. On a phone the two frames stack. In this mode every tab also carries an *Officer* or *Citizen* tag. The switch is a demo control, not a login.
 
 The classic double sale, as Ardh Guard sees it:
 
@@ -69,11 +76,12 @@ sequenceDiagram
 | | |
 |---|---|
 | **Check a deed (officer, Bangla)**<br>Enter a deed, get hold, review or clear with reasons.<br><img src="docs/media/check.png" alt="Check a deed screen in Bangla showing a Hold verdict"> | **Check before you buy (citizen)**<br>Plain-language warning, record history and next steps.<br><img src="docs/media/buy.png" alt="Citizen check before you buy page"> |
-| **Full audit view**<br>Summary tiles, checks grid, record chain, parties and report panel.<br><img src="docs/media/audit.png" alt="Full audit view with summary tiles and checks grid"> | **Downloadable report**<br>The HTML report saved from the audit view (also JSON and print to PDF).<br><img src="docs/media/report.png" alt="Downloaded check report"> |
-| **Same screen in English**<br>One tap on the language toggle.<br><img src="docs/media/check-en.png" alt="Check a deed screen in English"> | **Dark theme**<br>The choice is remembered.<br><img src="docs/media/check-dark.png" alt="Check a deed screen in the dark theme"> |
-| **Alerts for officers**<br>Filter by checkpoint and severity, then decide; export as CSV.<br><img src="docs/media/alerts.png" alt="Alerts inbox"> | **Parcels**<br>The CS, SA, RS, BS chain with deeds and mutations.<br><img src="docs/media/parcel.png" alt="Parcel page"> |
-| **Benchmark**<br>Which planted anomalies the rules caught, with caveats.<br><img src="docs/media/benchmark.png" alt="Benchmark page"> | **How it works**<br>The flow, the two checkpoints and all eight checks.<br><img src="docs/media/how.png" alt="How it works page"> |
-| **Roadmap and limits**<br>What is built, what is next, what it cannot do.<br><img src="docs/media/roadmap.png" alt="Roadmap and limits page"> |  |
+| **Officer and citizen, side by side**<br>The Both view: two framed views on one screen.<br><img src="docs/media/split.png" alt="Officer and citizen views side by side"> | **Full audit view**<br>Summary tiles, checks grid, record chain, parties and report panel.<br><img src="docs/media/audit.png" alt="Full audit view with summary tiles and checks grid"> |
+| **Parcel map**<br>RS and BS outlines on a made-up sketch of the mouza.<br><img src="docs/media/map.png" alt="Parcel map with RS and BS outlines"> | **Identity step and locked NID box**<br>A simulated result, and a locked box explaining why NID is off.<br><img src="docs/media/identity.png" alt="Simulated fingerprint step and the locked NID box"> |
+| **Downloadable report**<br>The HTML report saved from the audit view (also JSON and print to PDF).<br><img src="docs/media/report.png" alt="Downloaded check report"> | **Dark theme**<br>The choice is remembered.<br><img src="docs/media/check-dark.png" alt="Check a deed screen in the dark theme"> |
+| **Same screen in English**<br>One tap on the language toggle.<br><img src="docs/media/check-en.png" alt="Check a deed screen in English"> | **Alerts for officers**<br>Filter by checkpoint and severity, then decide; export as CSV.<br><img src="docs/media/alerts.png" alt="Alerts inbox"> |
+| **Parcels**<br>The map and the CS, SA, RS, BS chain with deeds and mutations.<br><img src="docs/media/parcel.png" alt="Parcel page"> | **Benchmark**<br>Which planted anomalies the rules caught, with caveats.<br><img src="docs/media/benchmark.png" alt="Benchmark page"> |
+| **How it works**<br>The flow, the two checkpoints and all eight checks.<br><img src="docs/media/how.png" alt="How it works page"> | **Roadmap and limits**<br>What is built, what is next, what it cannot do.<br><img src="docs/media/roadmap.png" alt="Roadmap and limits page"> |
 
 <p align="center"><img src="docs/media/mobile.png" alt="Mobile view" width="260"> <img src="docs/media/mobile-dark.png" alt="Mobile view, dark theme" width="260"><br><sub>Works on a phone too, with a bottom tab bar and a dark theme.</sub></p>
 
@@ -198,9 +206,9 @@ npm test           # engine checks (6 live scenarios, 6 planted anomalies) + lan
 ```
 src/engine/      rules, types, benchmark evaluation (no dependencies)
 src/pages/       Check (officer), Buy (citizen), Inbox (alerts), Cases (parcels), Benchmark, HowItWorks, About
-src/components/  audit view pieces, chain strip and UI pieces
+src/components/  audit view pieces, parcel map, identity step, chain strip and UI pieces
 src/lib/         dummy data access, strings.ts (Bangla + English), language and role providers, officer decisions, report.ts and download.ts (reports and CSV), summary.ts (check rows, report ID)
-data/            dummy registry (JSON/CSV), generator script, labelled anomalies, notes
+data/            dummy registry (JSON/CSV), generator scripts, labelled anomalies, map outlines and simulated identity results, notes
 docs/            plan, integration plan, research notes, source triage, concept note outline, media
 scripts/         evaluate.ts, test-rules.ts, make-media.py (README screenshots)
 supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
@@ -232,6 +240,7 @@ supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
 - Full audit view on the Check and Buy pages (summary tiles, pass/flag checks grid, richer record chain, parties and transfer panel, report panel) and downloads: HTML, JSON and print-to-PDF reports, CSV for alerts and benchmark, an HTML parcel record. The Check page now keeps the inputs a verdict was run with, so the chain, parties and report always match the verdict shown.
 - New visual design from the mockups in [`design/potential-designs/`](design/potential-designs): forest-green civic palette, two-tier header, card layout, tinted status banners, light and dark themes (the choice is remembered), and a bottom tab bar on phones.
 - Bangla now uses the Kalpurush typeface (self-hosted, SIL OFL 1.0); Latin text and numerals use Inter.
+- Added a parcel map, a simulated identity step with a locked NID box, and a side-by-side officer and citizen screen for the Both view; new dummy data files for the map and the identity results.
 - Docs updated: new [integration plan](docs/INTEGRATION.md), roadmap and plan extended with the mockup features we have not built, new screenshots, deck and concept note refreshed.
 - New README section on [where Ardh Guard fits in the land system](#where-ardh-guard-fits-in-the-land-system), with the target integration flow.
 - MIT licence added.
@@ -246,7 +255,8 @@ supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
 - Each parcel arrives with a lineage id. Linking plots across surveys is the hard part in reality.
 - The citizen / officer / both switch is a demo control, not sign-in or access control.
 - The citizen page does not check mortgages, court cases or land tax. Neither view checks vested property, heirship, price against mouza rates, or identity.
-- The mockups also show a cadastral map, NID and photos, a fingerprint match, digital notices and an official seal. None is in the app; the first needs map data, the middle ones need legal authority, and the fingerprint match is out of scope ([why](docs/INTEGRATION.md#8-what-the-portal-mockups-showed-and-what-each-needs)).
+- The map outlines and the fingerprint step are made up, and the NID box is a locked placeholder. Real versions need survey data and a legal basis. Digital notices and an official seal are not in the app ([why](docs/INTEGRATION.md#8-what-the-portal-mockups-showed-and-what-each-needs)).
+- The fingerprint step never touches a sensor and its results are random labels, not evidence of anything.
 - Screenshots in `docs/media/` were made with a stand-in stylesheet and should be regenerated from a real build.
 - Ardh Guard flags cases for officers. It does not decide ownership and is not a legal title check.
 
