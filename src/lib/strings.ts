@@ -22,6 +22,10 @@ export const S: Record<string, [string, string]> = {
   'role.citizen': ['নাগরিক / ক্রেতা', 'Citizen / buyer'],
   'role.officer': ['কর্মকর্তা / অ্যাডমিন', 'Officer / admin'],
   'role.both': ['উভয়', 'Both'],
+  'theme.label': ['থিম', 'Theme'],
+  'theme.light': ['আলো', 'Light'],
+  'theme.dark': ['অন্ধকার', 'Dark'],
+  'brand.tag': ['ভূমি রেকর্ডের দ্বন্দ্ব যাচাই · প্রোটোটাইপ', 'Land-record conflict checks · Prototype'],
   'footer': [
     'ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ · টিম Ardh · শুধু ডামি ডেটা। Ardh Guard কর্মকর্তাদের জন্য সতর্কবার্তা দেয়, মালিকানা নির্ধারণ করে না।',
     'LandTech Innovation Hackathon 2026 · Team Ardh · Dummy data only. Ardh Guard flags cases for officers and never decides ownership.',
