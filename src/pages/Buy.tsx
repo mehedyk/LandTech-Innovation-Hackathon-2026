@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChecksGrid, Notice, ReportRail, SummaryTiles, VerdictBanner, toneOf, type Tile } from '../components/Audit.tsx';
 import ParcelMap from '../components/ParcelMap.tsx';
 import type { Alert } from '../engine/types.ts';
 import { runCheck, sellerFromName, type CheckResult } from '../lib/check.ts';
+import { reportMapOf } from '../lib/geo.ts';
 import { downloadFile, printHtml } from '../lib/download.ts';
 import { useLang } from '../lib/i18n.tsx';
 import { AS_OF, chainOf, mouzaOf, parcelOf, seed } from '../lib/registry.ts';
@@ -25,11 +26,19 @@ function evaluate(s: State): CheckResult {
   return runCheck({ lineage: s.lineage, seller: sellerFromName(s.lineage, s.seller), area: s.area, date: AS_OF, qr: s.qr, sig: true, buyer: '' });
 }
 
-export default function Buy() {
+export default function Buy({ sync }: { sync?: { lineage: string; set: (lineage: string) => void } } = {}) {
   const { t } = useLang();
   const [s, setS] = useState<State>({ lineage: 'L06', seller: ownerName('L06'), area: '30', qr: true });
   const [result, setResult] = useState<CheckResult | null>(null);
   const [shown, setShown] = useState<State>(s); // the inputs the visible result was run with
+  const show = (next: State) => { sync?.set(next.lineage); setS(next); setShown(next); setResult(evaluate(next)); };
+  // Side-by-side screen: follow the parcel the other pane picked, with that parcel's first owner as the seller.
+  useEffect(() => {
+    if (sync && sync.lineage !== s.lineage) {
+      const next = { ...s, lineage: sync.lineage, seller: ownerName(sync.lineage) };
+      setS(next); setShown(next); setResult(evaluate(next));
+    }
+  }, [sync?.lineage]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="ag-stack">
@@ -41,13 +50,13 @@ export default function Buy() {
         <div className="ag-chips">
           {examples().map((ex) => (
             <button key={ex.key} type="button" className="ag-chip-btn"
-              onClick={() => { setS(ex.s); setShown(ex.s); setResult(evaluate(ex.s)); }}>{t(ex.key)}</button>
+              onClick={() => show(ex.s)}>{t(ex.key)}</button>
           ))}
         </div>
 
-        <form className="ag-form" onSubmit={(e) => { e.preventDefault(); setShown(s); setResult(evaluate(s)); }}>
+        <form className="ag-form" onSubmit={(e) => { e.preventDefault(); show(s); }}>
           <label className="ag-field"><span>{t('f.parcel')}</span>
-            <select className="ag-input" value={s.lineage} onChange={(e) => setS({ ...s, lineage: e.target.value })}>
+            <select className="ag-input" value={s.lineage} onChange={(e) => { setS({ ...s, lineage: e.target.value }); sync?.set(e.target.value); }}>
               {seed.parcel_lineages.map((x) => (
                 <option key={x.lineage} value={x.lineage}>{t('cases.row', { id: x.lineage, mouza: mouzaOf(x.mouza_id)?.name ?? '', area: x.area_dec })}</option>
               ))}
@@ -105,6 +114,7 @@ function Result({ alerts, state }: { alerts: Alert[]; state: State }) {
     chain: [], trail: trail.map(({ k, owner }) => ({ survey: k.survey, year: k.survey_year, share: owner?.share ?? null })),
     seller: { name: state.seller || '—', share: latestOwner?.share ?? null },
     buyer: '', areaSold: Number(state.area), date: AS_OF, qr: state.qr, sig: true, alerts,
+    map: reportMapOf(state.lineage, false), // the buyer's map shows only their own plot, no neighbour ids
   });
 
   return (
