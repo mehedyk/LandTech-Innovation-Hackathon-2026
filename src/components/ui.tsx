@@ -10,18 +10,18 @@ export const tone: Record<Severity, { edge: string; chip: string; panel: string 
 
 export function SeverityChip({ severity }: { severity: Severity }) {
   const { t } = useLang();
-  return <span className={`inline-block whitespace-nowrap rounded px-2 py-0.5 text-sm font-semibold ${tone[severity].chip}`}>{t(`sev.${severity}`)}</span>;
+  return <span className={`inline-block whitespace-nowrap rounded-full px-2.5 py-0.5 text-sm font-semibold ring-1 ring-inset ring-current/25 ${tone[severity].chip}`}>{t(`sev.${severity}`)}</span>;
 }
 
 export function Chip({ children, ok }: { children: ReactNode; ok?: boolean }) {
   const cls = ok === undefined ? 'bg-mist text-body' : ok ? 'bg-brand-soft text-brand' : 'bg-danger-soft text-danger';
-  return <span className={`inline-block whitespace-nowrap rounded px-2 py-0.5 text-sm ${cls}`}>{children}</span>;
+  return <span className={`inline-block whitespace-nowrap rounded-full px-2.5 py-0.5 text-sm ring-1 ring-inset ring-current/20 ${cls}`}>{children}</span>;
 }
 
 export function PageTitle({ title, children }: { title: string; children?: ReactNode }) {
   return (
-    <div className="mb-6 max-w-2xl">
-      <h1 className="text-2xl font-semibold sm:text-3xl">{title}</h1>
+    <div className="mb-6 max-w-3xl border-l-4 border-brand pl-4">
+      <h1 className="text-2xl font-bold sm:text-3xl">{title}</h1>
       {children && <p className="mt-2 leading-relaxed">{children}</p>}
     </div>
   );
