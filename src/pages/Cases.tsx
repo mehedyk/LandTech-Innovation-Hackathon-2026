@@ -16,13 +16,13 @@ function List({ missing }: { missing?: string }) {
   return (
     <>
       <PageTitle title={t('cases.title')}>{t('cases.intro')}</PageTitle>
-      {missing && <p role="alert" className="mb-4 rounded border border-caution bg-caution-soft p-3 text-caution">{t('cases.missing', { id: missing })}</p>}
-      <ul className="divide-y divide-line border-y border-line">
+      {missing && <p role="alert" className="mb-4 rounded-lg border border-caution bg-caution-soft p-3 text-caution">{t('cases.missing', { id: missing })}</p>}
+      <ul className="card divide-y divide-line overflow-hidden">
         {rows.map(({ p, alerts }) => {
           const serious = alerts.filter((a) => a.severity !== 'info').length;
           return (
             <li key={p.lineage}>
-              <a href={`#/cases/${p.lineage}`} className="flex flex-wrap items-center justify-between gap-2 py-3 hover:bg-mist">
+              <a href={`#/cases/${p.lineage}`} className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 hover:bg-mist">
                 <span>{t('cases.row', { id: p.lineage, mouza: mouzaOf(p.mouza_id)?.name ?? '', area: p.area_dec })}</span>
                 <span className="text-sm">{serious > 0 ? <Chip ok={false}>{t('cases.look', { n: serious })}</Chip> : alerts.length ? <Chip>{t('cases.notes')}</Chip> : <Chip ok>{t('cases.none')}</Chip>}</span>
               </a>
@@ -50,7 +50,7 @@ function Detail({ id }: { id: string }) {
           const muts = mutationsOf(d.deed_uid);
           const alerts = baseAlerts.filter((a) => a.record === d.deed_uid);
           return (
-            <li key={d.deed_uid} className="border-l-4 border-line pl-4">
+            <li key={d.deed_uid} className="card p-4">
               <p className="font-semibold text-ink">{t('cases.deedHead', { dno: d.deed_no, date: d.registration_date, sro: d.sub_registry })}</p>
               <p>{t('cases.deedLine', { seller: d.seller, buyer: d.buyer, area: d.area_sold_dec, share: lang === 'bn' ? share(d.share_sold) : d.share_sold })}</p>
               <p className="mt-1 flex flex-wrap gap-2 text-sm">
@@ -66,7 +66,7 @@ function Detail({ id }: { id: string }) {
                 ))}
               </p>
               {alerts.map((a) => (
-                <div key={a.rule} className={`mt-3 border-l-4 bg-white py-2 pl-3 ${tone[a.severity].edge}`}>
+                <div key={a.rule} className={`mt-3 rounded-r-md border-l-4 bg-card py-2 pl-3 ${tone[a.severity].edge}`}>
                   <p className="flex flex-wrap items-center gap-2"><SeverityChip severity={a.severity} /> <b className="text-ink">{ruleTitle(a.rule, lang)}</b></p>
                   <p className="mt-1 text-sm">{describe(a, lang)}</p>
                 </div>
