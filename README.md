@@ -96,7 +96,67 @@ flowchart LR
 - **Pure functions.** `analyze(registry)` takes records in and returns alerts out. It is easy to test (`npm test`) and easy to explain.
 - **Hosted on Vercel** [16], deployed from this repository. Live: [19].
 
-**Stack:** TypeScript · React [13] · Vite [14] · Tailwind CSS [15] · Vercel [16] (Supabase [17] planned for decisions and audit)
+**Stack:** TypeScript · React [13] · Vite [14] · Tailwind CSS [15] · Vercel [16] (Supabase [17] planned for decisions and audit) · Kalpurush (Bangla) and Inter (Latin) fonts
+
+## Where Ardh Guard fits in the land system
+
+Ardh Guard is designed as a **read-only advisory layer beside the existing registration and mutation workflow**, not inside it. Each office keeps its own system. Ardh Guard reads what those systems already hold, runs the checks, and hands an authorized officer a result with reasons. The prototype in this repository runs on dummy data; the flow below is the target design for a pilot.
+
+```mermaid
+flowchart TD
+  A["Sub-registry office<br>new deed submitted"] --> GW
+  B["Land records / khatian"] --> GW
+  C["Registration history"] --> GW
+  D["Mutation records"] --> GW
+  E["Authorized mortgage / court /<br>restriction sources"] --> GW
+  GW["Approved integration gateway"] --> ENG["Ardh Guard conflict-check engine"]
+  ENG --> R{"Check result"}
+  R -->|No detected conflict| N["Continue normal legal review"]
+  R -->|Potential conflict| O["Officer reviews evidence"]
+  R -->|Missing or stale data| V["Request verification / manual check"]
+  V --> O
+  O --> DEC["Authorized officer decision"]
+  N --> W["Audited registration workflow"]
+  DEC --> W
+```
+
+### What goes in
+
+| Source | What Ardh Guard reads | In the prototype |
+|---|---|---|
+| Sub-registry office | The new deed: seller, buyer, area and share sold, QR and signature validity | Built (`Deed`) |
+| Land records / khatian | The CS, SA, RS, BS chain, recorded owners and shares, land class (khas) | Built (`Khatian`, `Lineage`) |
+| Registration history | The seller's earlier deeds on the same plot | Built (same `Deed` list) |
+| Mutation records | Mutation case status and the area actually mutated | Built (`Mutation`) |
+| Mortgage / court / restriction sources | Liens, court orders and restrictions on the plot | **Not built.** Planned for v2 |
+
+Today the engine takes one `Registry` (those four record types) and returns a list of `Alert`s. A gateway only has to produce that same shape, so the engine does not change when real sources are connected.
+
+### What comes out
+
+| Check result | Prototype today | What happens next |
+|---|---|---|
+| **No detected conflict** | No hold or review alert | Normal legal review continues. This is not a title guarantee. |
+| **Potential conflict** | Hold or review alerts, each with a plain reason and the records behind it | An officer reviews the evidence and holds, dismisses or escalates (saved only in the browser for now; saved with an audit trail in v1.1) |
+| **Missing or stale data** | Partly: only the "deed never mutated" check looks at staleness | **Planned for v1.1.** A general outcome that requests verification or a manual check, then joins the officer review |
+
+### Rules of integration
+
+1. **Read-only.** Ardh Guard never writes to land records and cannot register, reject or mutate anything.
+2. **Approved gateway only.** Data arrives only through connections agreed with the office that owns it, under a formal agreement. Each source can be switched off on its own.
+3. **A person decides.** The only route to a decision is an authorized officer, and every decision is logged. A draft schema for flags and an audit log is in [`supabase/migrations`](supabase/migrations).
+4. **Every path is audited.** A "no conflict" result is recorded in the workflow too, not only the holds.
+5. **Missing data never reads as clear.** If a source is absent or out of date, the case goes to manual verification rather than passing silently.
+6. **Citizens see only their own check.** The "check before you buy" page never shows other people's deeds (already built and tested).
+
+### Suggested rollout
+
+| Stage | What changes | Status |
+|---|---|---|
+| 0. Prototype | Dummy data, rules engine, officer and citizen views | Built |
+| 1. Shadow mode | Runs next to one sub-registry and AC Land office on real records; alerts are shown but the workflow is unchanged. We measure false alarms and misses. | Proposed |
+| 2. Advisory in the workflow | Hold and review results appear at the pre-registration and pre-mutation checkpoints, with saved decisions and sign-in | Proposed (v1.1 to v2) |
+| 3. More sources and offices | Mortgage, court-case and land-tax sources; more sub-registries | Proposed (v2) |
 
 ## Run it locally
 
@@ -131,22 +191,27 @@ supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
 
 ## AI tools used
 
-- **Claude (Anthropic) [12]:** project planning, drafting the rules engine, UI code and documentation. The team reviewed everything and can explain every file.
+- **Claude (Anthropic) [12]:** project planning, drafting the rules engine, UI code and documentation, and the visual refresh (theme, dark mode, mobile layout) that follows the mockups in [`design/potential-designs/`](design/potential-designs). The team reviewed everything and can explain every file.
 - **Consensus.app [11]:** literature search reports, summarised in [`docs/SOURCES.md`](docs/SOURCES.md).
 - No AI model runs inside the app and none was trained. Planned AI features are listed in the roadmap above.
-- _TODO: add any other tools you used._
 
 ## Roadmap
 
 | | Scope | Status |
 |---|---|---|
 | **v1 (Round 1)** | Rules engine (8 checks) · check a deed · alerts with officer decisions · parcel pages · citizen "check before you buy" page · benchmark · Bangla (default) and English · citizen / officer / both views · in-app docs | Built |
-| **v1.1 (final round)** | Coherent-chain seed and chain-break rule · owner alert and dispute hold · saved decisions with audit trail (Supabase) · sign-in and role-based access · Bangla name matching · **AI: plain-language case summaries in Bangla and English** (pretrained model, officer reviews) · a "messy but innocent" benchmark slice | Next |
+| **v1.1 (final round)** | Coherent-chain seed and chain-break rule · owner alert and dispute hold · saved decisions with audit trail (Supabase) · a "missing or stale data" outcome that asks for manual verification instead of reading as clear · sign-in and role-based access · Bangla name matching · **AI: plain-language case summaries in Bangla and English** (pretrained model, officer reviews) · a "messy but innocent" benchmark slice | Next |
 | **v2** | Plot lineage across surveys · pilot with one sub-registry and AC Land office under a formal agreement · **AI: Bangla OCR for scanned khatians and deeds** (pretrained, officer confirms, the P1 problem) · **AI: ML risk ranking after the rules** once there is enough realistic data (rules and reasons stay) · mortgage, court-case and land-tax checks for citizens | Later |
 
 > All AI items are **plans**. There is no AI model in the app today. Where a model is needed we will use pretrained models (for example from Hugging Face [18]) and list them here.
 
-**Changes since Round 1:** _TODO: list them here before the final._
+**Changes since Round 1:**
+
+- New visual design from the mockups in [`design/potential-designs/`](design/potential-designs): forest-green civic palette, two-tier header, card layout, tinted status banners, light and dark themes (the choice is remembered), and a bottom tab bar on phones.
+- Bangla now uses the Kalpurush typeface (self-hosted, SIL OFL 1.0); Latin text and numerals use Inter.
+- New README section on [where Ardh Guard fits in the land system](#where-ardh-guard-fits-in-the-land-system), with the target integration flow.
+- MIT licence added.
+- No change to the rules engine, the data or the results.
 
 ## Limitations
 
@@ -176,7 +241,7 @@ Built for the LandTech Innovation Hackathon 2026 [1], organized by the Departmen
 
 ## License
 
-_TODO: choose a license (the organizers encourage open source, for example MIT)._
+Code and documentation: [MIT](LICENSE). The Kalpurush font in `public/fonts/` keeps its own licence, the SIL Open Font License 1.0, see [`public/fonts/README.md`](public/fonts/README.md).
 
 <!-- refs:start -->
 ## References
