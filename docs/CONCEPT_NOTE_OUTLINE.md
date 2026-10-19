@@ -17,8 +17,10 @@
 - Evaluation, honestly: a regression test on dummy data, not accuracy.
 
 **Page 3: Nationwide path, next steps, team**
-- Pilot at one sub-registry and its AC Land office; Supabase [17] for decisions and audit; AI items are plans (pretrained models, for example via Hugging Face [18]).
+- Pilot at one sub-registry and its AC Land office, read-only and in shadow mode first (plan: `INTEGRATION.md` [21][22][23]); later checks (mortgage, court case, vested property, land tax) need sources from their owners; Supabase [17] for decisions and audit; AI items are plans (pretrained models, for example via Hugging Face [18]).
 - Limitations. Team and mentors. References.
+
+- The screenshot in the note must come from the redesigned audit view (`check-en.png`); regenerate after any visual change.
 
 **Before exporting:** [ ] names P3 in paragraph 1 · [ ] architecture diagram · [ ] AI tools listed · [ ] exactly 3 pages [1] · [ ] every inline [n] checked against `REFERENCES.md`
 
@@ -37,6 +39,9 @@
 [16] Vercel: hosting platform for the live prototype. [Vercel](https://vercel.com)  
 [17] Supabase: Postgres development platform (planned for saving decisions and the audit trail). [Supabase](https://supabase.com)  
 [18] Hugging Face: platform for pretrained models (planned source for roadmap AI features). [Hugging Face](https://huggingface.co)  
+[21] The Business Standard (2020). Coordinated land registration, mutation to benefit over 1 crore people: Land secretary. [Coordinated land registration, mutation to benefit over 1 crore people: Land secretary](https://www.tbsnews.net/bangladesh/coordinated-land-registration-mutation-benefit-over-1-crore-people-land-secretary-156184)  
+[22] The Daily Star (2025). Bangladesh's Personal Data Protection Ordinance 2025: key takeaways. [Bangladesh's Personal Data Protection Ordinance 2025: key takeaways](https://www.thedailystar.net/tech-startup/news/bangladeshs-personal-data-protection-ordinance-2025-key-takeaways-4015401)  
+[23] The Business Standard (2023). EC to monitor partner organisations to protect NID data. [EC to monitor partner organisations to protect NID data](https://www.tbsnews.net/node/664882)  
 
 ### Other project references
 
