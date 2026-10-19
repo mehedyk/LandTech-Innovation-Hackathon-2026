@@ -14,6 +14,15 @@ export const neighboursOf = (lineage: string): [string, ParcelGeo][] => {
   const g = parcels[lineage];
   return g ? Object.entries(parcels).filter(([id, p]) => id !== lineage && p.mouza_id === g.mouza_id) : [];
 };
+/** Outline data for the downloadable reports. Neighbour ids are included only when `withIds` is true (officer report). */
+export const reportMapOf = (lineage: string, withIds: boolean) => {
+  const g = parcels[lineage];
+  if (!g) return undefined;
+  return {
+    sheet: SHEET, road: roadOf(g.mouza_id), rs: g.rs, bs: g.bs, label: g.label,
+    neighbours: neighboursOf(lineage).map(([id, n]) => ({ ...(withIds ? { id } : {}), rs: n.rs, label: n.label })),
+  };
+};
 export const points = (pts: Pt[]) => pts.map(([x, y]) => `${x},${y}`).join(' ');
 
 /** Made-up result for the simulated fingerprint step. Not a biometric, not stored anywhere. */
