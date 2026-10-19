@@ -44,7 +44,8 @@ Reports follow the language you are using (Bangla or English). Each has a report
 ### Map, identity step and the locked NID box
 
 - **Parcel map.** Every check, every parcel page and the citizen page show the plot on a sketch of its mouza, with **RS**, **BS** or both outlines (BS dashed) so you can see how two surveys can disagree. Officers see neighbouring parcel ids and can open them; citizens see only their own plot.
-- **Identity check (officer view, simulated).** A "scan fingerprint" button shows a made-up stored result (match, no match, not enrolled) after a short delay. There is no sensor, no photo and no biometric data. The result is advisory: it does not change the rule verdict and it is not in the reports.
+- **Identity check (officer view, simulated).** A "scan fingerprint" button shows a made-up stored result (match, no match, not enrolled) after a short delay. There is no sensor, no photo and no biometric data. The result is advisory: it does not change the rule verdict. If the officer ran the scan, the officer report records it, labelled as a simulation (or "not run"); the citizen report never carries it.
+- **In the reports.** The HTML, print and JSON reports include the parcel map (RS shaded, BS dashed). The officer report also shows neighbouring parcel ids and the simulated identity line; the citizen report shows only the buyer's own plot, with no neighbour ids and no identity step. Tests cover this.
 - **NID (locked).** A collapsible box with a lock sign says that we would add NID matching here too, but the hackathon rules forbid NID and similar personal data, so the box is a disabled placeholder. What a real pilot would need first is in [`docs/INTEGRATION.md`](docs/INTEGRATION.md#7-legal-privacy-and-security).
 - **Data behind it.** [`data/parcel_geometry.json`](data/parcel_geometry.json) (made-up outlines on a 100 x 70 sheet per mouza) and [`data/identity_demo.json`](data/identity_demo.json) (one made-up status per person), both from [`data/gen_geometry.py`](data/gen_geometry.py). The registry and the rules are unchanged, so every verdict and the benchmark are the same as before.
 
@@ -53,7 +54,7 @@ Reports follow the language you are using (Bangla or English). Each has a report
 - **Bangla by default**, with an English toggle. The Bangla is written by context, not word for word: land-office terms follow how people say them (দলিল, খতিয়ান, নামজারি, দাগ, শতাংশ). See [`docs/GLOSSARY_BN.md`](docs/GLOSSARY_BN.md).
 - **Citizen / buyer** view: a plain-language "check before you buy" page that never shows details of other people's deeds.
 - **Officer / admin** view: deed checks, alerts and decisions, parcels, benchmark.
-- **Both** (the default for judges) opens a **side-by-side screen**: the officer view in a green frame on the left and the citizen view in a blue frame on the right, each with its own form and result and a tag saying who it is for. On a phone the two frames stack. In this mode every tab also carries an *Officer* or *Citizen* tag. The switch is a demo control, not a login.
+- **Both** (the default for judges) opens a **side-by-side screen**: the officer view in a green frame on the left and the citizen view in a blue frame on the right, each with its own form and result and a tag saying who it is for. Both frames follow the same parcel: pick one on either side and the other side switches to it and runs its own check. On a phone the two frames stack. In this mode every tab also carries an *Officer* or *Citizen* tag. The switch is a demo control, not a login.
 
 The classic double sale, as Ardh Guard sees it:
 
