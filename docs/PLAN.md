@@ -28,7 +28,7 @@ An explainable conflict-detection layer that checks a deed against the khatian c
 
 **Done when:** a stranger can open the live link and run the "double sale" demo in 30 seconds.
 
-**Status:** built locally (Check a deed, Alerts, Parcels, Benchmark, Roadmap and limits). Remaining for Phase 1: push to GitHub and deploy to Vercel for the live link.
+**Status:** done. Live at https://land-tech-innovation-hackathon-2026.vercel.app/. Since Round 1 the interface was redesigned from the mockups in `design/potential-designs/` (light and dark themes, two-tier header, phone tab bar, Kalpurush for Bangla) and gained the full audit view and downloads (HTML, JSON, print to PDF, CSV). The rules engine, data and results did not change.
 
 ## Phase 2: In-product documentation (Sunday late morning)
 This is what cost marks last time, so it lives *in the app*, not only in the README.
@@ -39,7 +39,9 @@ This is what cost marks last time, so it lives *in the app*, not only in the REA
 
 **Phase 2 status:** done. The app has How it works (flow, two checkpoints, all 8 checks with examples), Roadmap and limits, and Data and AI used (inside Roadmap and limits). Engine tests: `npm test`.
 
-## Phase 3: Submission pack (Sunday 1–6 PM)
+## Phase 3: Submission pack
+**Status:** done for Round 1. Re-check the pack after the redesign: regenerate screenshots, deck images and the concept note figure from a real build (`scripts/make-media.py`, `scripts/build-concept-note.py`), and tick `SUBMISSION_CHECKLIST.md`.
+ (Sunday 1–6 PM)
 | Item | Notes |
 |---|---|
 | Concept note PDF | **3 pages** (rulebook [1]; the email says 4, so ask in Telegram). Use `CONCEPT_NOTE_OUTLINE.md` |
@@ -61,10 +63,27 @@ You pay 100 BDT within 3 days of the announcement. Then, in this order:
    - **Supabase** for officer decisions plus the hash-chained audit log (reuse `supabase/archive/0001_prototype_schema.sql`, which was tested).
    - **Bangla name matching** (spelling variants).
    - A tougher benchmark slice: "messy but innocent" cases (spelling variants, delayed mutation, splits) to measure false positives.
+   - **A "missing or stale data" outcome** beside clear and flag, so a case with a missing or late source goes to manual verification instead of reading as clear.
+   - **Left out of the redesign on purpose, buildable on dummy data now:** price check against a published mouza rate table; division, district, upazila and mouza filters and a deed-number search; text-size and high-contrast controls; an installable offline mode (the data is static JSON, so this is cheap).
 4. Add the P1 idea as a clearly labelled *future* module, not a promise.
 
 ## Phase 5: Final day
 Laptop + offline fallback (the app runs from static JSON), phone hotspot, a screen recording as backup, both of you able to explain every file.
+
+---
+
+## Phase 6: After the hackathon (pilot track)
+These were shown in the portal mockups but need a data source, a legal basis or formal authority first. Detail, owners to confirm and exit criteria are in [`INTEGRATION.md`](INTEGRATION.md) [21][22][23]. None is promised for the final.
+
+| Item | Why it waits | First step |
+|---|---|---|
+| Vested and abandoned property, court injunction, bank mortgage, heirship certificate, land development tax | Needs a source from its owning office; five of the portal's seven mandatory checks | Ask each office what can be queried by plot |
+| Cadastral map, RS and BS overlay | Needs plot geometry from the survey authority | Confirm availability and licence |
+| NID match, party photos | Needs a legal basis, consent and an Election Commission agreement; the EC applies strict partner controls [23] | Decide whether any check truly needs it; legal review |
+| Live fingerprint match | Biometric, sensitive data [22] | Not planned |
+| Digital notice or stay, official seal and QR certificate, government header and helpline | Needs formal authority and a digital-signature framework | Not before an agreement |
+| Integration gateway, shadow mode at one sub-registry and AC Land office | Needs a written agreement and security review | Draft the agreement scope |
+| Sign-in, roles, saved decisions, audit log | Our own work, no outside dependency | Supabase, as in Phase 4 |
 
 ---
 
@@ -102,6 +121,9 @@ The written rulebook [1] says: dummy data only; **no real land records; no scrap
 [3] Ayatullah, M. (2024). Feni University Journal, 3(1), 211-222. [Essentiality of Reforms of the Registration Act 1908: E-Registration Perspective](https://doi.org/10.3329/fuj.v3i1.86557)  
 [6] Alam, K. M., Rahman, J. M. A., Tasnim, A. and Akther, A. (2022). Journal of King Saud University - Computer and Information Sciences, 34, 3096-3110. [A Blockchain-based Land Title Management System for Bangladesh](https://doi.org/10.1016/j.jksuci.2020.10.011)  
 [11] Consensus (2026). AI-generated literature search reports used for scoping (P3 gap analysis; CS, SA, RS, BS chain; e-services). [Consensus: AI research assistant](https://consensus.app)  
+[21] The Business Standard (2020). Coordinated land registration, mutation to benefit over 1 crore people: Land secretary. [Coordinated land registration, mutation to benefit over 1 crore people: Land secretary](https://www.tbsnews.net/bangladesh/coordinated-land-registration-mutation-benefit-over-1-crore-people-land-secretary-156184)  
+[22] The Daily Star (2025). Bangladesh's Personal Data Protection Ordinance 2025: key takeaways. [Bangladesh's Personal Data Protection Ordinance 2025: key takeaways](https://www.thedailystar.net/tech-startup/news/bangladeshs-personal-data-protection-ordinance-2025-key-takeaways-4015401)  
+[23] The Business Standard (2023). EC to monitor partner organisations to protect NID data. [EC to monitor partner organisations to protect NID data](https://www.tbsnews.net/node/664882)  
 
 ### Other project references
 
