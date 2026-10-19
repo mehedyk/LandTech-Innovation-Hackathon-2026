@@ -2,7 +2,7 @@ import { PageTitle } from '../components/ui.tsx';
 import { useLang } from '../lib/i18n.tsx';
 
 const COLUMNS = [
-  { head: 'road.v1', state: 'road.built', prefix: 'road.v1.', count: 9 },
+  { head: 'road.v1', state: 'road.built', prefix: 'road.v1.', count: 10 },
   { head: 'road.v11', state: 'road.next', prefix: 'road.v11.', count: 11 },
   { head: 'road.v2', state: 'road.later', prefix: 'road.v2.', count: 10 },
 ];
