@@ -1,28 +1,80 @@
 @import "tailwindcss";
 
+/* Design tokens. Token names are unchanged from the previous theme so every component keeps working;
+   only the values moved to the "Sovereign Civic" palette (forest green, slate neutrals, amber, red).
+   Dark values live under html[data-theme='dark'] below. */
 @theme {
-  --color-ink: #0f1f26;
-  --color-body: #3d5159;
-  --color-paper: #fafcfc;
-  --color-mist: #eaf1f1;
-  --color-line: #d3dfdf;
-  --color-brand: #0f766e;
-  --color-brand-soft: #d9f1ed;
-  --color-caution: #8a5200;
-  --color-caution-soft: #fdf0d3;
-  --color-danger: #b42318;
-  --color-danger-soft: #fde7e4;
-  --font-sans: 'Segoe UI', 'Nirmala UI', system-ui, -apple-system, 'Noto Sans Bengali', 'Helvetica Neue', Arial, sans-serif;
+  --color-ink: #0f172a;
+  --color-body: #334155;
+  --color-paper: #f8fafc;
+  --color-card: #ffffff;
+  --color-mist: #f1f5f9;
+  --color-line: #cbd5e1;
+  --color-brand: #006a4e;
+  --color-brand-deep: #064e3b;
+  --color-brand-soft: #dcfce7;
+  --color-on-brand: #ffffff;
+  --color-caution: #b45309;
+  --color-caution-soft: #fef3c7;
+  --color-danger: #b91c1c;
+  --color-danger-soft: #fee2e2;
+  --color-gold: #f59e0b;
+  --color-bar: #064e3b;
+  --font-sans: 'Inter', 'Kalpurush', 'Segoe UI', 'Nirmala UI', system-ui, -apple-system, 'Noto Sans Bengali', 'Helvetica Neue', Arial, sans-serif;
+  --font-bn: 'Kalpurush', 'Inter', 'Noto Sans Bengali', 'Nirmala UI', sans-serif;
+}
+
+/* Kalpurush (SIL OFL 1.0), self-hosted. Bengali range only, so Latin letters and digits stay in Inter. */
+@font-face {
+  font-family: 'Kalpurush';
+  src: url('/fonts/Kalpurush.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0980-09FF, U+0964-0965, U+200C-200D, U+25CC;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --color-ink: #dfe2ee;
+  --color-body: #b4c2b9;
+  --color-paper: #0f131c;
+  --color-card: #181c24;
+  --color-mist: #1c2028;
+  --color-line: #3c4a42;
+  --color-brand: #4edea3;
+  --color-brand-deep: #6ffbbe;
+  --color-brand-soft: #0c3326;
+  --color-on-brand: #003824;
+  --color-caution: #fbbf24;
+  --color-caution-soft: #34260a;
+  --color-danger: #ffb4ab;
+  --color-danger-soft: #45120f;
+  --color-gold: #fbbf24;
+  --color-bar: #0a0e16;
 }
 
 html { background: var(--color-paper); color: var(--color-body); font-family: var(--font-sans); }
-body { margin: 0; font-variant-numeric: tabular-nums; }
+body { margin: 0; font-variant-numeric: tabular-nums slashed-zero; }
 h1, h2, h3 { color: var(--color-ink); letter-spacing: -0.01em; }
 :focus-visible { outline: 3px solid var(--color-brand); outline-offset: 2px; border-radius: 4px; }
+::selection { background: var(--color-brand); color: var(--color-on-brand); }
 
-/* Bangla needs more line height, and negative tracking breaks its conjuncts. */
-html[lang='bn'] body { line-height: 1.75; }
+/* Bangla: Kalpurush first. It needs more line height, and negative tracking breaks its conjuncts. */
+html[lang='bn'] body { font-family: var(--font-bn); line-height: 1.75; }
+html[lang='bn'] button, html[lang='bn'] input, html[lang='bn'] select { font-family: var(--font-bn); }
 html[lang='bn'] h1, html[lang='bn'] h2, html[lang='bn'] h3 { letter-spacing: 0; line-height: 1.4; }
+button, input, select { font-family: inherit; }
+
+@layer components {
+/* Level 1 plate: white card, 1px slate stroke, barely-there shadow. Level 2 is the active ledger node. */
+.card { background: var(--color-card); border: 1px solid var(--color-line); border-radius: .5rem; box-shadow: 0 1px 2px rgb(15 23 42 / .05); }
+.card-active { border: 1.5px solid var(--color-brand); box-shadow: 0 4px 6px -1px rgb(15 23 42 / .08), 0 2px 4px -2px rgb(15 23 42 / .04); }
+html[data-theme='dark'] .card { box-shadow: none; }
+}
+
+/* Mobile bottom tab bar keeps clear of the home indicator. */
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
 
 /* One deliberate moment: the verdict lands when a check finishes. */
 @keyframes verdict-in { from { opacity: 0; transform: scale(.985); } to { opacity: 1; transform: none; } }
