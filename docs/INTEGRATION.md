@@ -117,9 +117,10 @@ The design mockups in `design/potential-designs/` show more than the prototype h
 | Price against the published mouza rate | Not built | Published rate table; a price field in the data | v1.1 |
 | Division, district, upazila, mouza filters; deed-number search | Not built | Can be built on dummy data now | v1.1 |
 | Text-size and high-contrast controls; installable offline mode | Not built | None; can be built now | v1.1 |
-| Cadastral map and RS vs BS overlay | Not built | Plot geometry from the survey authority | v2 |
-| NID check, party photos | Not built | Legal basis, consent, EC agreement [23] | v2, only if justified |
-| Live fingerprint match | Not planned | Out of scope | none |
+| Cadastral map and RS vs BS overlay | **Sketch built** on made-up outlines (`data/parcel_geometry.json`); real geometry not available | Plot geometry from the survey authority | v2 |
+| NID check, party photos | **Locked placeholder** in the officer view (a collapsible box saying why it is off); photos not kept | Legal basis, consent, EC agreement [23] | v2, only if justified |
+| Live fingerprint match | **Simulated demo only**: a button shows a made-up stored result, no sensor, advisory, not in reports | Out of scope for real use; biometrics are sensitive data [22] | none |
+| Officer and citizen on one screen | **Built** (Both view, side by side) | None | done |
 | Digital notice or stay, official seal and QR certificate | Not built | Formal authority and a signature framework | after v2 |
 | Government header, emblem, helpline | Not used | Authorization to use them | after v2 |
 
