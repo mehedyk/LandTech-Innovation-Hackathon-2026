@@ -27,6 +27,20 @@ A second pair of eyes at **two moments**: before a deed is registered, and befor
 
 <p align="center"><img src="assets/flow.svg" alt="Flow: request arrives, Ardh Guard runs 8 checks, alert with reasons, officer decides" width="880"></p>
 
+### Downloads and the audit view
+
+Every check opens as a full audit view: a verdict banner, four summary tiles (checks passed with a progress ring, verdict, seller on the record, land status), one card per check marked pass or flagged with its reason, the four-survey record chain with khatian, plot, area, land class and owners, the parties and transfer details, and a report panel.
+
+| Where | What you can download | Format |
+|---|---|---|
+| Check a deed (officer) | The full audit report; the same data for other tools; print or save as PDF | HTML · JSON · print dialog |
+| Check before you buy (citizen) | A buyer's report with only your own inputs and the short reasons. It never contains other owners, deeds or evidence ids | HTML · print dialog |
+| Alerts | The filtered list with each decision | CSV |
+| Benchmark | The per-anomaly results | CSV |
+| A parcel | The record chain with its deeds, mutations and alerts | HTML |
+
+Reports follow the language you are using (Bangla or English). Each has a report ID, a short reference for that one check; it is **not** an official certificate. Everything is built in the browser, so nothing is uploaded. CSV files open correctly in Excel, including Bangla.
+
 ### Two languages, two views
 
 - **Bangla by default**, with an English toggle. The Bangla is written by context, not word for word: land-office terms follow how people say them (দলিল, খতিয়ান, নামজারি, দাগ, শতাংশ). See [`docs/GLOSSARY_BN.md`](docs/GLOSSARY_BN.md).
@@ -167,7 +181,7 @@ npm install
 npm run dev        # web app on http://localhost:5173
 npm run build      # typecheck + production build
 npm run eval       # benchmark in the terminal (Node 22.18 or newer)
-npm test           # engine checks (6 live scenarios, 6 planted anomalies) + language checks (every string in Bangla and English, no unresolved placeholders, citizen text leaks nothing)
+npm test           # engine checks (6 live scenarios, 6 planted anomalies) + language checks (every string in Bangla and English, no unresolved placeholders, citizen text leaks nothing) + report checks (reports build in both languages, user input is escaped, the buyer's report leaks nothing)
 ```
 
 <details>
@@ -177,7 +191,7 @@ npm test           # engine checks (6 live scenarios, 6 planted anomalies) + lan
 src/engine/      rules, types, benchmark evaluation (no dependencies)
 src/pages/       Check (officer), Buy (citizen), Inbox (alerts), Cases (parcels), Benchmark, HowItWorks, About
 src/components/  chain strip and UI pieces
-src/lib/         dummy data access, strings.ts (Bangla + English), language and role providers, officer decisions
+src/lib/         dummy data access, strings.ts (Bangla + English), language and role providers, officer decisions, report.ts and download.ts (reports and CSV), summary.ts (check rows, report ID)
 data/            dummy registry (JSON/CSV), generator script, labelled anomalies, notes
 docs/            plan, research notes, source triage, concept note outline, media
 scripts/         evaluate.ts, test-rules.ts, make-media.py (README screenshots)
@@ -207,6 +221,7 @@ supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
 
 **Changes since Round 1:**
 
+- Full audit view on the Check and Buy pages (summary tiles, pass/flag checks grid, richer record chain, parties and transfer panel, report panel) and downloads: HTML, JSON and print-to-PDF reports, CSV for alerts and benchmark, an HTML parcel record. The Check page now keeps the inputs a verdict was run with, so the chain, parties and report always match the verdict shown.
 - New visual design from the mockups in [`design/potential-designs/`](design/potential-designs): forest-green civic palette, two-tier header, card layout, tinted status banners, light and dark themes (the choice is remembered), and a bottom tab bar on phones.
 - Bangla now uses the Kalpurush typeface (self-hosted, SIL OFL 1.0); Latin text and numerals use Inter.
 - New README section on [where Ardh Guard fits in the land system](#where-ardh-guard-fits-in-the-land-system), with the target integration flow.
