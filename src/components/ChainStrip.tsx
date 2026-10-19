@@ -15,11 +15,11 @@ export default function ChainStrip({ lineage }: { lineage: string }) {
       <p className="mb-3 text-sm">
         {t('chain.parcel', { id: lineage, mouza: m?.name ?? '', upazila: m?.upazila ?? '', district: m?.district ?? '', area: parcel.area_dec })}
       </p>
-      <ol className="grid gap-0 md:grid-cols-4">
+      <ol className="grid gap-4 md:grid-cols-4">
         {chain.map((k, i) => {
           const latest = i === chain.length - 1;
           return (
-            <li key={k.khatian_uid} className={`relative border-l-4 py-2 pl-4 pr-2 md:border-l-0 md:border-t-4 md:pl-0 md:pr-4 md:pt-3 ${latest ? 'border-brand' : 'border-line'}`}>
+            <li key={k.khatian_uid} className={`card p-4 ${latest ? 'card-active' : ''}`}>
               <p className="font-semibold text-ink">
                 {t(`survey.${k.survey}`)} <span className="font-normal">· {d(k.survey_year)}</span>
               </p>
