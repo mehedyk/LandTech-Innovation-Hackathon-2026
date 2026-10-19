@@ -6,6 +6,7 @@ import ParcelMap from '../components/ParcelMap.tsx';
 import { Chip } from '../components/ui.tsx';
 import type { Alert } from '../engine/types.ts';
 import { runCheck, startParams, type CheckResult, type Params } from '../lib/check.ts';
+import { reportMapOf, type IdentityResult } from '../lib/geo.ts';
 import { downloadFile, printHtml } from '../lib/download.ts';
 import { useLang } from '../lib/i18n.tsx';
 import { AS_OF, chainOf, mouzaOf, parcelOf, seed } from '../lib/registry.ts';
@@ -22,15 +23,24 @@ const EXAMPLES: { key: string; p: Partial<Params> }[] = [
   { key: 'ex.forged', p: { lineage: 'L17', seller: 'owner:0', area: '30', qr: false, sig: false } },
 ];
 
-export default function Check() {
+export type ParcelSync = { lineage: string; set: (lineage: string) => void };
+
+export default function Check({ sync }: { sync?: ParcelSync } = {}) {
   const { t, lang } = useLang();
   const [p, setP] = useState<Params>(startParams);
   const [result, setResult] = useState<CheckResult>(() => runCheck(startParams));
   const [shown, setShown] = useState<Params>(startParams); // the inputs the visible result was run with
   const [run, setRun] = useState(0);
   const set = (patch: Partial<Params>) => setP((cur) => ({ ...cur, ...patch }));
-  const go = (next: Params) => { setResult(runCheck(next, lang === 'bn' ? 'ক্রেতা' : 'Buyer')); setShown(next); setRun((n) => n + 1); };
+  const go = (next: Params) => { sync?.set(next.lineage); setResult(runCheck(next, lang === 'bn' ? 'ক্রেতা' : 'Buyer')); setShown(next); setRun((n) => n + 1); };
   const owners = chainOf(p.lineage).at(-1)?.owners ?? [];
+  // Side-by-side screen: follow the parcel the other pane picked, and run the check on it.
+  useEffect(() => {
+    if (sync && sync.lineage !== p.lineage) {
+      const next = { ...p, lineage: sync.lineage, seller: 'owner:0' };
+      setP(next); setResult(runCheck(next, lang === 'bn' ? 'ক্রেতা' : 'Buyer')); setShown(next); setRun((n) => n + 1);
+    }
+  }, [sync?.lineage]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="ag-stack">
@@ -50,7 +60,7 @@ export default function Check() {
 
         <form className="ag-form" onSubmit={(e) => { e.preventDefault(); go(p); }}>
           <label className="ag-field"><span>{t('f.parcel')}</span>
-            <select className="ag-input" value={p.lineage} onChange={(e) => set({ lineage: e.target.value, seller: 'owner:0' })}>
+            <select className="ag-input" value={p.lineage} onChange={(e) => { set({ lineage: e.target.value, seller: 'owner:0' }); sync?.set(e.target.value); }}>
               {seed.parcel_lineages.map((x) => (
                 <option key={x.lineage} value={x.lineage}>{t('cases.row', { id: x.lineage, mouza: mouzaOf(x.mouza_id)?.name ?? '', area: x.area_dec })}</option>
               ))}
@@ -89,6 +99,7 @@ export default function Check() {
 function Audit({ alerts, p, focus }: { alerts: Alert[]; p: Params; focus: boolean }) {
   const { t, lang } = useLang();
   const ref = useRef<HTMLDivElement>(null);
+  const [idResult, setIdResult] = useState<IdentityResult | null>(null); // simulated fingerprint result, if the officer ran it
   useEffect(() => { if (focus) ref.current?.scrollIntoView({ block: 'nearest' }); }, [focus]);
 
   const parcel = parcelOf(p.lineage);
@@ -117,6 +128,8 @@ function Audit({ alerts, p, focus }: { alerts: Alert[]; p: Params; focus: boolea
     parcel: { id: p.lineage, mouza: m?.name ?? '', upazila: m?.upazila ?? '', district: m?.district ?? '', area: parcel.area_dec },
     chain, seller: { name: owner?.name ?? (t('f.sellerOther')), share: owner?.share ?? null },
     buyer, areaSold: Number(p.area), date: p.date, qr: p.qr, sig: p.sig, alerts,
+    map: reportMapOf(p.lineage, true),
+    identity: { name: owner?.name ?? t('f.sellerOther'), result: owner && !/^Government/i.test(owner.name) ? idResult : null },
   });
 
   return (
@@ -161,7 +174,7 @@ function Audit({ alerts, p, focus }: { alerts: Alert[]; p: Params; focus: boolea
         ]} />
       </div>
 
-      <IdentitySection partyId={owner && !/^Government/i.test(owner.name) ? owner.party_id : undefined} name={owner?.name ?? t('f.sellerOther')} />
+      <IdentitySection partyId={owner && !/^Government/i.test(owner.name) ? owner.party_id : undefined} name={owner?.name ?? t('f.sellerOther')} onResult={setIdResult} />
 
       <Notice>{t('rep.notice')}</Notice>
     </div>
