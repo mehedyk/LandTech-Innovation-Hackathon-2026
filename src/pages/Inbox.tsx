@@ -10,10 +10,10 @@ const keyOf = (a: Alert) => `${a.record}:${a.rule}`;
 
 function Seg<T extends string>({ value, onChange, options }: { value: T; onChange: (v: T) => void; options: { v: T; label: string }[] }) {
   return (
-    <div className="inline-flex flex-wrap overflow-hidden rounded border border-line bg-white text-sm" role="group">
+    <div className="inline-flex flex-wrap overflow-hidden rounded border border-line bg-card text-sm" role="group">
       {options.map((o) => (
         <button key={o.v} type="button" aria-pressed={value === o.v} onClick={() => onChange(o.v)}
-          className={`px-3 py-1.5 ${value === o.v ? 'bg-ink text-white' : 'text-ink hover:bg-mist'}`}>{o.label}</button>
+          className={`px-3 py-1.5 ${value === o.v ? 'bg-brand text-on-brand' : 'text-ink hover:bg-mist'}`}>{o.label}</button>
       ))}
     </div>
   );
@@ -41,12 +41,12 @@ export default function Inbox() {
         <Seg value={sev} onChange={setSev} options={[{ v: 'all', label: t('inbox.all') }, { v: 'block', label: t('sev.block') }, { v: 'review', label: t('sev.review') }, { v: 'info', label: t('sev.info') }]} />
       </div>
       {rows.length === 0 && <p>{t('inbox.empty')}</p>}
-      <ul className="divide-y divide-line border-y border-line">
+      <ul className="card divide-y divide-line overflow-hidden">
         {rows.map((a) => {
           const d = deedByUid.get(a.record);
           const dec = decisions[keyOf(a)];
           return (
-            <li key={keyOf(a)} className={`border-l-4 py-4 pl-4 ${tone[a.severity].edge}`}>
+            <li key={keyOf(a)} className={`border-l-4 py-4 pl-4 pr-4 ${tone[a.severity].edge}`}>
               <p className="flex flex-wrap items-center gap-2">
                 <SeverityChip severity={a.severity} />
                 <b className="text-ink">{ruleTitle(a.rule, lang)}</b>
@@ -66,7 +66,7 @@ export default function Inbox() {
                 ) : (
                   (['hold', 'dismiss', 'escalate'] as Decision[]).map((x) => (
                     <button key={x} type="button" onClick={() => setDecision(keyOf(a), x)}
-                      className="rounded border border-line bg-white px-3 py-1 text-ink hover:border-brand">{t(`dec.${x}`)}</button>
+                      className="rounded border border-line bg-card px-3 py-1 text-ink hover:border-brand">{t(`dec.${x}`)}</button>
                   ))
                 )}
               </div>
