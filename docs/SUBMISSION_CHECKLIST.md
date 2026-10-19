@@ -8,7 +8,7 @@
 
 ## Write
 - [ ] Concept note, **3 pages**, PDF [1]: built in `docs/concept-note/` (`Ardh-concept-note.bn.pdf` and `.en.pdf`, 3 pages each, with linked references). Upload one; ask your mentors which language. Open each linked source once before you submit.
-- [ ] README TODOs filled: other AI tools, license
+- [x] README TODOs filled: AI tools, changes since Round 1, license (MIT; confirm the team agrees)
 - [ ] Short deck: done as an interactive page at `/deck/` and as PDFs in `docs/deck/` (8 slides, Bangla and English). Read the speaker notes (press N) and rehearse once. Final round rule: 5 minutes pitch + live demo, then 3 minutes of questions.
 
 ## Record
