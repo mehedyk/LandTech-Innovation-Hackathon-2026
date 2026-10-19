@@ -4,6 +4,17 @@ import { describe, describeCitizen, rulePlain, ruleTitle } from './alerts.ts';
 import { checkRows, passedCount, worstOf } from './summary.ts';
 import { format, shareText, toBn, type Lang } from './strings.ts';
 
+export type Pt = [number, number];
+/** Schematic outline data for the report map. Neighbour ids are given only for the officer report. */
+export type ReportMap = {
+  sheet: { w: number; h: number };
+  road?: { x: number; y: number; w: number; h: number };
+  rs: Pt[]; bs: Pt[]; label: Pt;
+  neighbours: { id?: string; rs: Pt[]; label: Pt }[];
+};
+/** Result of the simulated fingerprint step, officer report only. `null` means the officer did not run it. */
+export type ReportIdentity = { name: string; result: 'matched' | 'mismatch' | 'not_enrolled' | null };
+
 export type ReportInput = {
   lang: Lang;
   mode: 'officer' | 'citizen';
@@ -22,6 +33,8 @@ export type ReportInput = {
   qr: boolean;
   sig: boolean;
   alerts: Alert[];
+  map?: ReportMap;
+  identity?: ReportIdentity;
 };
 
 export const esc = (s: string | number) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -50,6 +63,26 @@ td.k{width:34%;color:#475569}
 @media print{body{background:#fff}main{padding:0}table,.verdict,header{break-inside:avoid}}`;
 
 const t = (lang: Lang, key: string, p?: Record<string, string | number>) => format(lang, key, p);
+
+const MAP_TONE = { block: ['#fee2e2', '#b91c1c'], review: ['#fef3c7', '#b45309'], clear: ['#dcfce7', '#15803d'] } as const;
+const pts = (p: Pt[]) => p.map(([x, y]) => `${x},${y}`).join(' ');
+
+/** Static SVG of the schematic parcel map for the reports. Colours are fixed so it prints the same everywhere. */
+export function mapSvg(m: ReportMap, tone: 'block' | 'review' | 'clear', label: string, areaLabel: string): string {
+  const [fill, stroke] = MAP_TONE[tone];
+  const pad = 2;
+  const nb = m.neighbours.map((n) => `<polygon points="${pts(n.rs)}" fill="#fff" stroke="#cbd5e1" stroke-width=".5"/>${n.id ? `<text x="${n.label[0]}" y="${n.label[1]}" text-anchor="middle" font-size="3.2" fill="#475569">${esc(n.id)}</text>` : ''}`).join('');
+  return `<svg viewBox="${-pad} ${-pad} ${m.sheet.w + pad * 2} ${m.sheet.h + pad * 2}" role="img" aria-label="${esc(label)}" style="width:100%;height:auto;border:1px solid #cbd5e1;border-radius:8px;background:#f1f5f9">`
+    + (m.road ? `<rect x="${m.road.x}" y="${m.road.y}" width="${m.road.w}" height="${m.road.h}" fill="#cbd5e1" opacity=".55"/>` : '')
+    + nb
+    + `<polygon points="${pts(m.rs)}" fill="${fill}" stroke="${stroke}" stroke-width=".9" stroke-linejoin="round"/>`
+    + `<polygon points="${pts(m.bs)}" fill="none" stroke="#0f172a" stroke-width=".5" stroke-dasharray="1.6 1.1"/>`
+    + `<text x="${m.label[0]}" y="${m.label[1] - 1}" text-anchor="middle" font-size="4.4" font-weight="700" fill="#0f172a">${esc(label)}</text>`
+    + `<text x="${m.label[0]}" y="${m.label[1] + 4.5}" text-anchor="middle" font-size="3.4" fill="#334155">${esc(areaLabel)}</text></svg>`;
+}
+
+const identityLine = (L: Lang, r: ReportIdentity['result']) =>
+  r === null ? t(L, 'id.notRun') : t(L, r === 'matched' ? 'id.matched' : r === 'mismatch' ? 'id.mismatch' : 'id.notEnrolled');
 
 /** Verdict heading and sentence, worded for the officer or for the buyer. */
 export function verdictText(lang: Lang, mode: 'officer' | 'citizen', alerts: Alert[]) {
@@ -99,8 +132,10 @@ export function checkReportHtml(i: ReportInput): string {
 <h2>${esc(t(L, 'rep.doc.inputs'))}</h2><table>${inputs}</table>
 <h2>${esc(t(L, 'sec.checks'))} · ${esc(t(L, 'tile.checksOf', { n: passedCount(rows), total: rows.length }))}</h2>
 <table><tr><th>${esc(t(L, 'rep.th.check'))}</th><th>${esc(t(L, 'rep.th.status'))}</th><th>${esc(t(L, 'rep.th.detail'))}</th></tr>${checks}</table>
+${i.map ? `<h2>${esc(t(L, 'sec.map'))}</h2>${mapSvg(i.map, tone, i.parcel.id, t(L, 'chain.areaVal', { area: i.parcel.area }))}<p class="meta">${esc(t(L, 'rep.mapLegend'))} ${esc(t(L, 'map.note'))}</p>` : ''}
 <h2>${esc(t(L, i.mode === 'officer' ? 'sec.chain' : 'buy.trail'))}</h2>
 <p class="meta">${esc(t(L, 'chain.parcel', { id: i.parcel.id, mouza: i.parcel.mouza, upazila: i.parcel.upazila, district: i.parcel.district, area: i.parcel.area }))}</p>${chain}
+${i.mode === 'officer' && i.identity ? `<h2>${esc(t(L, 'id.title'))}</h2><table>${kv(t(L, 'id.person'), i.identity.name)}${kv(t(L, 'rep.th.status'), identityLine(L, i.identity.result))}</table><p class="meta">${esc(t(L, 'rep.idNote'))}</p>` : ''}
 ${i.mode === 'citizen' ? `<h2>${esc(t(L, 'buy.next'))}</h2><ol>${['buy.next1', 'buy.next2', 'buy.next3', 'buy.next4'].map((k) => `<li>${esc(t(L, k))}</li>`).join('')}</ol>` : ''}
 <p class="note">${esc(t(L, 'rep.notice'))}</p></main></body></html>`;
 }
@@ -115,6 +150,8 @@ export function checkReportJson(i: ReportInput): string {
     notice: t(i.lang, 'rep.notice'),
     verdict: { level: v.worst ?? 'clear', headline: v.head },
     parcel: i.parcel,
+    ...(i.map ? { parcel_map: { schematic: true, note: t(i.lang, 'map.note'), sheet: i.map.sheet, rs_outline: i.map.rs, bs_outline: i.map.bs } } : {}),
+    ...(i.mode === 'officer' && i.identity ? { identity_check_simulated: { person: i.identity.name, result: i.identity.result, note: t(i.lang, 'rep.idNote') } } : {}),
     inputs: i.mode === 'officer'
       ? { seller: i.seller.name, seller_share_on_record: i.seller.share, buyer: i.buyer, area_sold_dec: i.areaSold, deed_date: i.date, qr_verified: i.qr, signature_matches: i.sig }
       : { seller: i.seller.name, seller_share_on_record: i.seller.share, area_sold_dec: i.areaSold, qr_verified: i.qr },
@@ -131,6 +168,7 @@ export type ParcelReportInput = {
   lang: Lang; generated: string; asOf: string; fontUrl?: string;
   parcel: { id: string; mouza: string; upazila: string; district: string; area: number };
   chain: Khatian[];
+  map?: ReportMap; tone?: 'block' | 'review' | 'clear';
   deeds: { head: string; line: string; flags: string[]; alerts: { title: string; sev: string; sevText: string; text: string }[] }[];
 };
 
@@ -144,6 +182,6 @@ export function parcelReportHtml(i: ParcelReportInput): string {
   return `<!doctype html><html lang="${L}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(t(L, 'cases.detailTitle', { id: i.parcel.id }))}</title><style>${CSS(i.fontUrl)}</style></head><body><main>
 <header><div class="brand">Ardh Guard</div><h1>${esc(t(L, 'cases.detailTitle', { id: i.parcel.id }))}</h1>
 <p class="meta">${esc(t(L, 'chain.parcel', { id: i.parcel.id, mouza: i.parcel.mouza, upazila: i.parcel.upazila, district: i.parcel.district, area: i.parcel.area }))}<br>${esc(t(L, 'rep.asOf', { date: i.asOf }))} · ${esc(t(L, 'rep.generated'))}: ${esc(i.generated)}</p></header>
-<h2>${esc(t(L, 'sec.chain'))}</h2>${chain}<h2>${esc(t(L, 'cases.deedsTitle'))}</h2>${deeds}
+${i.map ? `<h2>${esc(t(L, 'sec.map'))}</h2>${mapSvg(i.map, i.tone ?? 'clear', i.parcel.id, t(L, 'chain.areaVal', { area: i.parcel.area }))}<p class="meta">${esc(t(L, 'rep.mapLegend'))} ${esc(t(L, 'map.note'))}</p>` : ''}<h2>${esc(t(L, 'sec.chain'))}</h2>${chain}<h2>${esc(t(L, 'cases.deedsTitle'))}</h2>${deeds}
 <p class="note">${esc(t(L, 'rep.notice'))}</p></main></body></html>`;
 }
