@@ -1,5 +1,5 @@
 """Regenerate README screenshots and the demo GIF from the running app (Bangla is the default language).
-Writes (also public/deck/img/check*.png for the deck): check, audit (full page), check-dark, check-en, buy, alerts, parcel, benchmark, how, roadmap, report (the downloaded HTML report), mobile, mobile-dark, demo.gif.
+Writes map, identity, split (Both view), (also public/deck/img/check*.png for the deck): check, audit (full page), check-dark, check-en, buy, alerts, parcel, benchmark, how, roadmap, report (the downloaded HTML report), mobile, mobile-dark, demo.gif.
 Optional tool. Needs: pip install playwright pillow && playwright install chromium
 Bangla text needs a Bengali font on the machine (for example fonts-noto-core on Linux).
 Usage: npm run build && npx vite preview --port 4176 &   then   python3 scripts/make-media.py
@@ -45,6 +45,17 @@ with sync_playwright() as p:
 
     # --- screenshots (Bangla) ---
     pg.goto(BASE + '#/check'); pg.wait_for_timeout(400); click(pg, 'twice'); shot(pg, 'check'); shot(pg, 'audit', full=True)
+    # parcel map, identity step with the locked NID box, and the side-by-side (Both) screen
+    pg.add_style_tag(content='header{position:static !important}')  # keep the sticky header out of element shots
+    pg.locator('.ag-map').screenshot(path=f'{OUT}/map.png')
+    pg.get_by_role('button', name='আঙুলের ছাপ স্ক্যান (সিমুলেশন)').click(); pg.wait_for_timeout(1500)
+    pg.locator('.ag-nid summary').click(); pg.wait_for_timeout(200)
+    pg.locator('.ag-identity').screenshot(path=f'{OUT}/identity.png')
+    sp = b.new_page(viewport={'width': 1440, 'height': 1500}, device_scale_factor=1)
+    sp.goto(BASE + '#/split'); sp.wait_for_timeout(500)
+    sp.locator('.ag-pane[data-aud=officer]').get_by_role('button', name=EX['twice'], exact=True).click()
+    sp.locator('.ag-pane[data-aud=citizen]').get_by_role('button', name=EX['twice'], exact=True).click(); sp.wait_for_timeout(500)
+    sp.evaluate('window.scrollTo(0, 0)'); sp.screenshot(path=f'{OUT}/split.png'); sp.close()
     # the report an officer downloads, rendered
     with pg.expect_download() as dl:
         pg.get_by_role('button', name='প্রতিবেদন ডাউনলোড (HTML)').first.click()
