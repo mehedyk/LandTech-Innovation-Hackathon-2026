@@ -1,4 +1,7 @@
+import { DownloadButton } from '../components/Audit.tsx';
 import { Chip, PageTitle, link } from '../components/ui.tsx';
+import { downloadFile } from '../lib/download.ts';
+import { toCsv } from '../lib/summary.ts';
 import { evaluate } from '../engine/evaluate.ts';
 import { ruleTitle } from '../lib/alerts.ts';
 import { useLang } from '../lib/i18n.tsx';
@@ -10,6 +13,14 @@ export default function Benchmark() {
   const { t, lang } = useLang();
   const r = result;
   const fp = r.false_positive_deeds.length;
+  const exportCsv = () => {
+    const head = [t('bm.th.parcel'), t('bm.th.anomaly'), t('bm.th.rules'), t('bm.th.result')];
+    const body = r.per_anomaly.map((row) => [
+      row.lineage, t(`anom.${row.anomaly}`), row.rules.length ? row.rules.map((x) => ruleTitle(x, lang)).join('; ') : t('bm.none'),
+      !row.evaluable ? t('bm.nottest') : row.detected ? t('bm.caught') : t('bm.missed'),
+    ]);
+    downloadFile('ardh-benchmark.csv', 'text/csv', toCsv([head, ...body]));
+  };
   return (
     <>
       <PageTitle title={t('bm.title')}>{t('bm.intro', { n: r.labelled_anomalies })}</PageTitle>
@@ -20,6 +31,7 @@ export default function Benchmark() {
         <p className="font-semibold">{t('bm.noteTitle')}</p>
         <p className="mt-1">{t('bm.noteBody')}</p>
       </div>
+      <div className="ag-toolbar"><DownloadButton label={t('dl.bench')} onClick={exportCsv} /></div>
       <div className="card overflow-x-auto">
         <table className="w-full min-w-[40rem] border-collapse text-left">
           <thead>
