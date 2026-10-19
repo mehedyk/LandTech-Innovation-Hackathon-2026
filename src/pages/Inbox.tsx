@@ -1,5 +1,8 @@
 import { useMemo, useState } from 'react';
+import { DownloadButton } from '../components/Audit.tsx';
 import { Chip, PageTitle, SeverityChip, link, tone } from '../components/ui.tsx';
+import { downloadFile } from '../lib/download.ts';
+import { toCsv } from '../lib/summary.ts';
 import type { Alert, Checkpoint, Severity } from '../engine/types.ts';
 import { describe, ruleTitle } from '../lib/alerts.ts';
 import { useDecisions, type Decision } from '../lib/decisions.ts';
@@ -32,6 +35,15 @@ export default function Inbox() {
     [sev, cp],
   );
   const open = baseAlerts.filter((a) => !decisions[keyOf(a)]).length;
+  const exportCsv = () => {
+    const head = [t('bm.th.parcel'), t('csv.h.rule'), t('csv.h.severity'), t('csv.h.checkpoint'), t('csv.h.reason'), t('csv.h.deed'), t('party.seller'), t('party.buyer'), t('csv.h.decision')];
+    const body = rows.map((a) => {
+      const d = deedByUid.get(a.record);
+      const dec = decisions[keyOf(a)];
+      return [a.lineage, ruleTitle(a.rule, lang), t(`sev.${a.severity}`), t(`cp.${a.checkpoint}`), describe(a, lang), d?.deed_no ?? '', d?.seller ?? '', d?.buyer ?? '', dec ? t(`dec.${dec}Done`) : t('csv.open')];
+    });
+    downloadFile('ardh-alerts.csv', 'text/csv', toCsv([head, ...body]));
+  };
 
   return (
     <>
@@ -40,6 +52,7 @@ export default function Inbox() {
         <Seg value={cp} onChange={setCp} options={[{ v: 'all', label: t('inbox.bothCp') }, { v: 'pre-registration', label: t('cp.pre-registration') }, { v: 'pre-mutation', label: t('cp.pre-mutation') }]} />
         <Seg value={sev} onChange={setSev} options={[{ v: 'all', label: t('inbox.all') }, { v: 'block', label: t('sev.block') }, { v: 'review', label: t('sev.review') }, { v: 'info', label: t('sev.info') }]} />
       </div>
+      <div className="ag-toolbar"><DownloadButton label={t('dl.alerts')} onClick={exportCsv} /></div>
       {rows.length === 0 && <p>{t('inbox.empty')}</p>}
       <ul className="card divide-y divide-line overflow-hidden">
         {rows.map((a) => {
