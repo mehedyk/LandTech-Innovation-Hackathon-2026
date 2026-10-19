@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
+import { Notice, PartyCard, ReportRail, SummaryTiles, ChecksGrid, VerdictBanner, toneOf, type Tile } from '../components/Audit.tsx';
 import ChainStrip from '../components/ChainStrip.tsx';
-import { PageTitle, SeverityChip, tone, link } from '../components/ui.tsx';
+import { Chip } from '../components/ui.tsx';
 import type { Alert } from '../engine/types.ts';
-import { describe, ruleTitle } from '../lib/alerts.ts';
 import { runCheck, startParams, type CheckResult, type Params } from '../lib/check.ts';
+import { downloadFile, printHtml } from '../lib/download.ts';
 import { useLang } from '../lib/i18n.tsx';
-import { chainOf, mouzaOf, seed } from '../lib/registry.ts';
+import { AS_OF, chainOf, mouzaOf, parcelOf, seed } from '../lib/registry.ts';
+import { checkReportHtml, checkReportJson, landClass, verdictText, type ReportInput } from '../lib/report.ts';
 import { shareText } from '../lib/strings.ts';
+import { PRE_REG, checkRows, passedCount, reportId } from '../lib/summary.ts';
 
 const EXAMPLES: { key: string; p: Partial<Params> }[] = [
   { key: 'ex.clean', p: { lineage: 'L06', seller: 'owner:0', area: '30' } },
@@ -21,101 +24,140 @@ export default function Check() {
   const { t, lang } = useLang();
   const [p, setP] = useState<Params>(startParams);
   const [result, setResult] = useState<CheckResult>(() => runCheck(startParams));
+  const [shown, setShown] = useState<Params>(startParams); // the inputs the visible result was run with
   const [run, setRun] = useState(0);
   const set = (patch: Partial<Params>) => setP((cur) => ({ ...cur, ...patch }));
-  const go = (next: Params) => { setResult(runCheck(next, lang === 'bn' ? 'ক্রেতা' : 'Buyer')); setRun((n) => n + 1); };
+  const go = (next: Params) => { setResult(runCheck(next, lang === 'bn' ? 'ক্রেতা' : 'Buyer')); setShown(next); setRun((n) => n + 1); };
   const owners = chainOf(p.lineage).at(-1)?.owners ?? [];
 
-  const field = 'mt-1 w-full rounded-md border border-line bg-card px-3 py-2 text-ink shadow-inner focus:border-brand';
   return (
-    <>
-      <PageTitle title={t('check.title')}>{t('check.intro')}</PageTitle>
+    <div className="ag-stack">
+      <section className="card ag-hero">
+        <h1>{t('check.title')}</h1>
+        <p className="ag-lead">{t('check.intro')}</p>
 
-      <div className="mb-6">
-        <p className="mb-2 text-sm font-medium text-ink">{t('ex.label')}</p>
-        <div className="flex flex-wrap gap-2">
+        <p className="ag-eg-label">{t('ex.label')}</p>
+        <div className="ag-chips">
           {EXAMPLES.map((ex) => (
-            <button key={ex.key} type="button" className="rounded-full border border-line bg-card px-3 py-1.5 text-sm text-ink hover:border-brand"
+            <button key={ex.key} type="button" className="ag-chip-btn"
               onClick={() => { const next = { ...startParams, ...ex.p }; setP(next); go(next); }}>
               {t(ex.key)}
             </button>
           ))}
         </div>
-      </div>
 
-      <div className="grid gap-8 lg:grid-cols-[22rem_1fr]">
-        <form className="card h-fit space-y-4 p-5" onSubmit={(e) => { e.preventDefault(); go(p); }}>
-          <label className="block text-sm font-medium text-ink">{t('f.parcel')}
-            <select className={field} value={p.lineage} onChange={(e) => set({ lineage: e.target.value, seller: 'owner:0' })}>
+        <form className="ag-form" onSubmit={(e) => { e.preventDefault(); go(p); }}>
+          <label className="ag-field"><span>{t('f.parcel')}</span>
+            <select className="ag-input" value={p.lineage} onChange={(e) => set({ lineage: e.target.value, seller: 'owner:0' })}>
               {seed.parcel_lineages.map((x) => (
                 <option key={x.lineage} value={x.lineage}>{t('cases.row', { id: x.lineage, mouza: mouzaOf(x.mouza_id)?.name ?? '', area: x.area_dec })}</option>
               ))}
             </select>
           </label>
-          <label className="block text-sm font-medium text-ink">{t('f.seller')}
-            <select className={field} value={p.seller} onChange={(e) => set({ seller: e.target.value })}>
+          <label className="ag-field"><span>{t('f.seller')}</span>
+            <select className="ag-input" value={p.seller} onChange={(e) => set({ seller: e.target.value })}>
               {owners.map((o, i) => <option key={o.party_id} value={`owner:${i}`}>{t('f.sellerOpt', { name: o.name, share: shareText(lang, o.share) })}</option>)}
               <option value="other">{t('f.sellerOther')}</option>
             </select>
           </label>
-          <label className="block text-sm font-medium text-ink">{t('f.buyer')}
-            <input className={field} value={p.buyer} placeholder={t('f.buyerPh')} onChange={(e) => set({ buyer: e.target.value })} />
+          <label className="ag-field"><span>{t('f.buyer')}</span>
+            <input className="ag-input" value={p.buyer} placeholder={t('f.buyerPh')} onChange={(e) => set({ buyer: e.target.value })} />
           </label>
-          <div className="grid grid-cols-2 gap-3">
-            <label className="block text-sm font-medium text-ink">{t('f.area')}
-              <input className={field} inputMode="decimal" value={p.area} onChange={(e) => set({ area: e.target.value })} />
-            </label>
-            <label className="block text-sm font-medium text-ink">{t('f.date')}
-              <input className={field} type="date" value={p.date} onChange={(e) => set({ date: e.target.value })} />
-            </label>
-          </div>
-          <fieldset className="space-y-2 text-sm text-ink">
-            <legend className="font-medium">{t('f.docs')}</legend>
-            <label className="flex items-center gap-2"><input type="checkbox" checked={p.qr} onChange={(e) => set({ qr: e.target.checked })} /> {t('f.qr')}</label>
-            <label className="flex items-center gap-2"><input type="checkbox" checked={p.sig} onChange={(e) => set({ sig: e.target.checked })} /> {t('f.sig')}</label>
+          <label className="ag-field"><span>{t('f.area')}</span>
+            <input className="ag-input" inputMode="decimal" value={p.area} onChange={(e) => set({ area: e.target.value })} />
+          </label>
+          <label className="ag-field"><span>{t('f.date')}</span>
+            <input className="ag-input" type="date" value={p.date} onChange={(e) => set({ date: e.target.value })} />
+          </label>
+          <button className="ag-btn ag-btn-primary" type="submit">{t('f.submit')}</button>
+          <fieldset className="ag-docs">
+            <legend>{t('f.docs')}</legend>
+            <label><input type="checkbox" checked={p.qr} onChange={(e) => set({ qr: e.target.checked })} /> {t('f.qr')}</label>
+            <label><input type="checkbox" checked={p.sig} onChange={(e) => set({ sig: e.target.checked })} /> {t('f.sig')}</label>
           </fieldset>
-          <button className="w-full rounded-lg bg-brand px-4 py-2.5 font-semibold text-on-brand hover:bg-brand-deep" type="submit">{t('f.submit')}</button>
         </form>
+      </section>
 
-        <div className="min-w-0 space-y-8">
-          {!result.ok && <p role="alert" className="rounded border border-danger bg-danger-soft p-3 text-danger">{t(`err.${result.error}`)}</p>}
-          {result.ok && <Verdict key={run} alerts={result.alerts} focus={run > 0} />}
-          <ChainStrip lineage={p.lineage} />
-        </div>
-      </div>
-    </>
+      {!result.ok && <p role="alert" className="ag-notice" style={{ borderColor: 'var(--color-danger)', background: 'var(--color-danger-soft)', color: 'var(--color-danger)' }}>{t(`err.${result.error}`)}</p>}
+      {result.ok && <Audit key={run} alerts={result.alerts} p={shown} focus={run > 0} />}
+    </div>
   );
 }
 
-function Verdict({ alerts, focus }: { alerts: Alert[]; focus: boolean }) {
+function Audit({ alerts, p, focus }: { alerts: Alert[]; p: Params; focus: boolean }) {
   const { t, lang } = useLang();
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => { if (focus) ref.current?.scrollIntoView({ block: 'nearest' }); }, [focus]);
-  const worst = alerts.some((a) => a.severity === 'block') ? 'block' : alerts.some((a) => a.severity === 'review') ? 'review' : null;
-  const head = worst === 'block' ? t('v.block') : worst === 'review' ? t('v.review') : t('v.clear');
-  const sub = worst ? (alerts.length === 1 ? t('v.sub1') : t('v.subN', { n: alerts.length })) : t('v.subClear');
-  const panel = worst ? tone[worst].panel : 'bg-brand-soft border-brand';
+
+  const parcel = parcelOf(p.lineage);
+  const chain = chainOf(p.lineage);
+  const latest = chain.at(-1);
+  if (!parcel || !latest) return null;
+  const m = mouzaOf(parcel.mouza_id);
+  const owner = p.seller.startsWith('owner:') ? latest.owners[Number(p.seller.slice(6))] : undefined;
+  const buyer = p.buyer || (lang === 'bn' ? 'ক্রেতা' : 'Buyer');
+  const rows = checkRows(alerts);
+  const passed = passedCount(rows);
+  const { worst, head, sub } = verdictText(lang, 'officer', alerts);
+  const tone = toneOf(worst);
+  const khas = alerts.some((a) => a.rule === 'KHAS_CONFLICT');
+  const id = reportId([p.lineage, p.seller, p.area, p.date, p.buyer, p.qr, p.sig, AS_OF]);
+
+  const tiles: Tile[] = [
+    { label: t('tile.checks'), value: t('tile.checksOf', { n: passed, total: PRE_REG.length }), tone, ring: passed / PRE_REG.length },
+    { label: t('tile.verdict'), value: worst ? t(`sev.${worst}`) : t('cases.none'), tone },
+    { label: t('tile.seller'), value: owner ? t('tile.sellerYes', { share: shareText(lang, owner.share) }) : t('tile.sellerNo'), sub: t('tile.sellerSub'), tone: owner ? 'ok' : 'bad' },
+    { label: t('tile.land'), value: khas ? t('tile.landKhas') : t('tile.landOk'), sub: landClass(lang, latest.land_class), tone: khas ? 'bad' : 'ok' },
+  ];
+
+  const input = (): ReportInput => ({
+    lang, mode: 'officer', id, asOf: AS_OF, generated: new Date().toISOString().slice(0, 16).replace('T', ' '), fontUrl: `${location.origin}/fonts/Kalpurush.ttf`,
+    parcel: { id: p.lineage, mouza: m?.name ?? '', upazila: m?.upazila ?? '', district: m?.district ?? '', area: parcel.area_dec },
+    chain, seller: { name: owner?.name ?? (t('f.sellerOther')), share: owner?.share ?? null },
+    buyer, areaSold: Number(p.area), date: p.date, qr: p.qr, sig: p.sig, alerts,
+  });
+
   return (
-    <section ref={ref} className={`verdict-in rounded-lg border border-l-8 p-4 ${panel}`} aria-live="polite">
-      <h2 className="text-xl font-semibold">{head}</h2>
-      <p className="mt-1 text-sm">{sub}</p>
-      {alerts.length > 0 && (
-        <ul className="mt-4 space-y-3">
-          {alerts.map((a) => {
-            const ev = a.evidence.filter((e) => e !== 'NEW-CHECK');
-            return (
-              <li key={a.rule} className="rounded-md bg-card/80 p-3">
-                <p className="flex flex-wrap items-center gap-2"><SeverityChip severity={a.severity} /> <b className="text-ink">{ruleTitle(a.rule, lang)}</b></p>
-                <p className="mt-1">{describe(a, lang)}</p>
-                <p className="mt-1 text-sm">
-                  {ev.length > 0 && <>{t('v.evidence', { list: ev.join(', ') })} · </>}
-                  <a className={link} href={`#/cases/${a.lineage}`}>{t('v.openParcel', { id: a.lineage })}</a>
-                </p>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </section>
+    <div className="ag-stack" ref={ref}>
+      <VerdictBanner tone={tone} head={head} sub={sub} />
+      <SummaryTiles tiles={tiles} />
+      <ChecksGrid rows={rows} mode="officer" />
+
+      <section className="card ag-section">
+        <h2>{t('sec.chain')}</h2>
+        <ChainStrip lineage={p.lineage} />
+      </section>
+
+      <div className="ag-split">
+        <section className="card ag-section" aria-label={t('sec.parties')}>
+          <h2>{t('sec.parties')}</h2>
+          <div className="ag-parties" style={{ marginTop: '1rem' }}>
+            <PartyCard role={t('party.seller')} name={owner?.name ?? t('f.sellerOther')}
+              chip={{ text: owner ? t('party.onRecord') : t('party.notOnRecord'), ok: !!owner }}
+              lines={owner ? [[t('party.share'), shareText(lang, owner.share)]] : []} />
+            <PartyCard role={t('party.buyer')} name={buyer} lines={[]} />
+          </div>
+          <div className="ag-xfer">
+            <dl className="ag-dl">
+              <div><dt>{t('xfer.area')}</dt><dd>{t('chain.areaVal', { area: p.area })}</dd></div>
+              <div><dt>{t('xfer.parcelArea')}</dt><dd>{t('chain.areaVal', { area: latest.area_dec })}</dd></div>
+              <div><dt>{t('f.date')}</dt><dd>{p.date}</dd></div>
+            </dl>
+            <div className="ag-flags">
+              <Chip ok={p.qr}>{t(p.qr ? 'chip.qrOk' : 'chip.qrBad')}</Chip>
+              <Chip ok={p.sig}>{t(p.sig ? 'chip.sigOk' : 'chip.sigBad')}</Chip>
+            </div>
+          </div>
+        </section>
+
+        <ReportRail id={id} asOf={AS_OF} actions={[
+          { label: t('rep.html'), primary: true, onClick: () => downloadFile(`ardh-report-${id}.html`, 'text/html', checkReportHtml(input())) },
+          { label: t('rep.print'), onClick: () => printHtml(checkReportHtml(input())) },
+          { label: t('rep.json'), onClick: () => downloadFile(`ardh-report-${id}.json`, 'application/json', checkReportJson(input())) },
+        ]} />
+      </div>
+
+      <Notice>{t('rep.notice')}</Notice>
+    </div>
   );
 }
