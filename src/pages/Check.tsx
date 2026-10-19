@@ -26,7 +26,7 @@ export default function Check() {
   const go = (next: Params) => { setResult(runCheck(next, lang === 'bn' ? 'ক্রেতা' : 'Buyer')); setRun((n) => n + 1); };
   const owners = chainOf(p.lineage).at(-1)?.owners ?? [];
 
-  const field = 'mt-1 w-full rounded border border-line bg-white px-3 py-2 text-ink';
+  const field = 'mt-1 w-full rounded-md border border-line bg-card px-3 py-2 text-ink shadow-inner focus:border-brand';
   return (
     <>
       <PageTitle title={t('check.title')}>{t('check.intro')}</PageTitle>
@@ -35,7 +35,7 @@ export default function Check() {
         <p className="mb-2 text-sm font-medium text-ink">{t('ex.label')}</p>
         <div className="flex flex-wrap gap-2">
           {EXAMPLES.map((ex) => (
-            <button key={ex.key} type="button" className="rounded-full border border-line bg-white px-3 py-1.5 text-sm text-ink hover:border-brand"
+            <button key={ex.key} type="button" className="rounded-full border border-line bg-card px-3 py-1.5 text-sm text-ink hover:border-brand"
               onClick={() => { const next = { ...startParams, ...ex.p }; setP(next); go(next); }}>
               {t(ex.key)}
             </button>
@@ -44,7 +44,7 @@ export default function Check() {
       </div>
 
       <div className="grid gap-8 lg:grid-cols-[22rem_1fr]">
-        <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); go(p); }}>
+        <form className="card h-fit space-y-4 p-5" onSubmit={(e) => { e.preventDefault(); go(p); }}>
           <label className="block text-sm font-medium text-ink">{t('f.parcel')}
             <select className={field} value={p.lineage} onChange={(e) => set({ lineage: e.target.value, seller: 'owner:0' })}>
               {seed.parcel_lineages.map((x) => (
@@ -74,7 +74,7 @@ export default function Check() {
             <label className="flex items-center gap-2"><input type="checkbox" checked={p.qr} onChange={(e) => set({ qr: e.target.checked })} /> {t('f.qr')}</label>
             <label className="flex items-center gap-2"><input type="checkbox" checked={p.sig} onChange={(e) => set({ sig: e.target.checked })} /> {t('f.sig')}</label>
           </fieldset>
-          <button className="w-full rounded bg-brand px-4 py-2.5 font-semibold text-white hover:bg-ink" type="submit">{t('f.submit')}</button>
+          <button className="w-full rounded-lg bg-brand px-4 py-2.5 font-semibold text-on-brand hover:bg-brand-deep" type="submit">{t('f.submit')}</button>
         </form>
 
         <div className="min-w-0 space-y-8">
@@ -96,7 +96,7 @@ function Verdict({ alerts, focus }: { alerts: Alert[]; focus: boolean }) {
   const sub = worst ? (alerts.length === 1 ? t('v.sub1') : t('v.subN', { n: alerts.length })) : t('v.subClear');
   const panel = worst ? tone[worst].panel : 'bg-brand-soft border-brand';
   return (
-    <section ref={ref} className={`verdict-in rounded border-l-8 p-4 ${panel}`} aria-live="polite">
+    <section ref={ref} className={`verdict-in rounded-lg border border-l-8 p-4 ${panel}`} aria-live="polite">
       <h2 className="text-xl font-semibold">{head}</h2>
       <p className="mt-1 text-sm">{sub}</p>
       {alerts.length > 0 && (
@@ -104,7 +104,7 @@ function Verdict({ alerts, focus }: { alerts: Alert[]; focus: boolean }) {
           {alerts.map((a) => {
             const ev = a.evidence.filter((e) => e !== 'NEW-CHECK');
             return (
-              <li key={a.rule} className="rounded bg-white/80 p-3">
+              <li key={a.rule} className="rounded-md bg-card/80 p-3">
                 <p className="flex flex-wrap items-center gap-2"><SeverityChip severity={a.severity} /> <b className="text-ink">{ruleTitle(a.rule, lang)}</b></p>
                 <p className="mt-1">{describe(a, lang)}</p>
                 <p className="mt-1 text-sm">
