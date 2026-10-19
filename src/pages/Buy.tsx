@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { PageTitle, tone } from '../components/ui.tsx';
+import { ChecksGrid, Notice, ReportRail, SummaryTiles, VerdictBanner, toneOf, type Tile } from '../components/Audit.tsx';
 import type { Alert } from '../engine/types.ts';
-import { describeCitizen } from '../lib/alerts.ts';
 import { runCheck, sellerFromName, type CheckResult } from '../lib/check.ts';
+import { downloadFile, printHtml } from '../lib/download.ts';
 import { useLang } from '../lib/i18n.tsx';
-import { AS_OF, chainOf, mouzaOf, seed } from '../lib/registry.ts';
+import { AS_OF, chainOf, mouzaOf, parcelOf, seed } from '../lib/registry.ts';
+import { checkReportHtml, landClass, verdictText, type ReportInput } from '../lib/report.ts';
 import { shareText, toBn } from '../lib/strings.ts';
+import { PRE_REG, checkRows, passedCount, reportId } from '../lib/summary.ts';
 
 type State = { lineage: string; seller: string; area: string; qr: boolean };
 const ownerName = (lineage: string, i = 0) => chainOf(lineage).at(-1)?.owners[i]?.name ?? '';
@@ -23,86 +25,120 @@ function evaluate(s: State): CheckResult {
 }
 
 export default function Buy() {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const [s, setS] = useState<State>({ lineage: 'L06', seller: ownerName('L06'), area: '30', qr: true });
   const [result, setResult] = useState<CheckResult | null>(null);
-  const d = (x: string | number) => (lang === 'bn' ? toBn(x) : String(x));
-  const field = 'mt-1 w-full rounded-md border border-line bg-card px-3 py-2 text-ink shadow-inner focus:border-brand';
+  const [shown, setShown] = useState<State>(s); // the inputs the visible result was run with
 
   return (
-    <>
-      <PageTitle title={t('buy.title')}>{t('buy.intro')}</PageTitle>
-      <div className="mb-6">
-        <p className="mb-2 text-sm font-medium text-ink">{t('ex.label')}</p>
-        <div className="flex flex-wrap gap-2">
+    <div className="ag-stack">
+      <section className="card ag-hero">
+        <h1>{t('buy.title')}</h1>
+        <p className="ag-lead">{t('buy.intro')}</p>
+
+        <p className="ag-eg-label">{t('ex.label')}</p>
+        <div className="ag-chips">
           {examples().map((ex) => (
-            <button key={ex.key} type="button" className="rounded-full border border-line bg-card px-3 py-1.5 text-sm text-ink hover:border-brand"
-              onClick={() => { setS(ex.s); setResult(evaluate(ex.s)); }}>{t(ex.key)}</button>
+            <button key={ex.key} type="button" className="ag-chip-btn"
+              onClick={() => { setS(ex.s); setShown(ex.s); setResult(evaluate(ex.s)); }}>{t(ex.key)}</button>
           ))}
         </div>
-      </div>
 
-      <div className="grid gap-8 lg:grid-cols-[22rem_1fr]">
-        <form className="card h-fit space-y-4 p-5" onSubmit={(e) => { e.preventDefault(); setResult(evaluate(s)); }}>
-          <label className="block text-sm font-medium text-ink">{t('f.parcel')}
-            <select className={field} value={s.lineage} onChange={(e) => setS({ ...s, lineage: e.target.value })}>
+        <form className="ag-form" onSubmit={(e) => { e.preventDefault(); setShown(s); setResult(evaluate(s)); }}>
+          <label className="ag-field"><span>{t('f.parcel')}</span>
+            <select className="ag-input" value={s.lineage} onChange={(e) => setS({ ...s, lineage: e.target.value })}>
               {seed.parcel_lineages.map((x) => (
                 <option key={x.lineage} value={x.lineage}>{t('cases.row', { id: x.lineage, mouza: mouzaOf(x.mouza_id)?.name ?? '', area: x.area_dec })}</option>
               ))}
             </select>
           </label>
-          <label className="block text-sm font-medium text-ink">{t('buy.seller')}
-            <input className={field} value={s.seller} placeholder={t('buy.sellerPh')} onChange={(e) => setS({ ...s, seller: e.target.value })} />
+          <label className="ag-field"><span>{t('buy.seller')}</span>
+            <input className="ag-input" value={s.seller} placeholder={t('buy.sellerPh')} onChange={(e) => setS({ ...s, seller: e.target.value })} />
           </label>
-          <label className="block text-sm font-medium text-ink">{t('buy.area')}
-            <input className={field} inputMode="decimal" value={s.area} onChange={(e) => setS({ ...s, area: e.target.value })} />
+          <label className="ag-field"><span>{t('buy.area')}</span>
+            <input className="ag-input" inputMode="decimal" value={s.area} onChange={(e) => setS({ ...s, area: e.target.value })} />
           </label>
-          <label className="flex items-center gap-2 text-sm text-ink"><input type="checkbox" checked={s.qr} onChange={(e) => setS({ ...s, qr: e.target.checked })} /> {t('buy.qr')}</label>
-          <button className="w-full rounded-lg bg-brand px-4 py-2.5 font-semibold text-on-brand hover:bg-brand-deep" type="submit">{t('buy.submit')}</button>
-          <p className="text-sm">{t('buy.privacy')}</p>
+          <button className="ag-btn ag-btn-primary" type="submit">{t('buy.submit')}</button>
+          <fieldset className="ag-docs">
+            <label><input type="checkbox" checked={s.qr} onChange={(e) => setS({ ...s, qr: e.target.checked })} /> {t('buy.qr')}</label>
+          </fieldset>
+          <p className="ag-privacy">{t('buy.privacy')}</p>
         </form>
+      </section>
 
-        <div className="min-w-0 space-y-8">
-          {result && !result.ok && <p role="alert" className="rounded border border-danger bg-danger-soft p-3 text-danger">{t(`err.${result.error}`)}</p>}
-          {result && result.ok && <Result alerts={result.alerts} state={s} d={d} />}
-        </div>
-      </div>
-    </>
+      {result && !result.ok && <p role="alert" className="ag-notice" style={{ borderColor: 'var(--color-danger)', background: 'var(--color-danger-soft)', color: 'var(--color-danger)' }}>{t(`err.${result.error}`)}</p>}
+      {result && result.ok && <Result alerts={result.alerts} state={shown} />}
+    </div>
   );
 }
 
-function Result({ alerts, state, d }: { alerts: Alert[]; state: State; d: (x: string | number) => string }) {
+function Result({ alerts, state }: { alerts: Alert[]; state: State }) {
   const { t, lang } = useLang();
-  const worst = alerts.some((a) => a.severity === 'block') ? 'block' : alerts.some((a) => a.severity === 'review') ? 'review' : null;
-  const reasons = [...new Set(alerts.filter((a) => a.severity !== 'info').map((a) => describeCitizen(a, lang)))];
-  const panel = worst ? tone[worst].panel : 'bg-brand-soft border-brand';
-  const trail = chainOf(state.lineage).map((k) => ({ k, owner: k.owners.find((o) => o.name.trim().toLowerCase() === state.seller.trim().toLowerCase()) }));
+  const d = (x: string | number) => (lang === 'bn' ? toBn(x) : String(x));
+  const parcel = parcelOf(state.lineage);
+  const chain = chainOf(state.lineage);
+  const latest = chain.at(-1);
+  if (!parcel || !latest) return null;
+  const m = mouzaOf(parcel.mouza_id);
+  const { worst, head, sub } = verdictText(lang, 'citizen', alerts);
+  const tone = toneOf(worst);
+  const rows = checkRows(alerts);
+  const passed = passedCount(rows);
+  const trail = chain.map((k) => ({ k, owner: k.owners.find((o) => o.name.trim().toLowerCase() === state.seller.trim().toLowerCase()) }));
+  const found = trail.filter((x) => x.owner).length;
+  const khas = alerts.some((a) => a.rule === 'KHAS_CONFLICT');
+  const latestOwner = trail.at(-1)?.owner;
+  const id = reportId(['buyer', state.lineage, state.seller.trim().toLowerCase(), state.area, state.qr, AS_OF]);
+
+  const tiles: Tile[] = [
+    { label: t('tile.checks'), value: t('tile.checksOf', { n: passed, total: PRE_REG.length }), tone, ring: passed / PRE_REG.length },
+    { label: t('tile.verdict'), value: worst ? t(`sev.${worst}`) : t('cases.none'), tone },
+    { label: t('tile.trail'), value: t('tile.trailVal', { n: found }), tone: found === chain.length ? 'ok' : found === 0 ? 'bad' : 'warn' },
+    { label: t('tile.land'), value: khas ? t('tile.landKhas') : t('tile.landOk'), sub: landClass(lang, latest.land_class), tone: khas ? 'bad' : 'ok' },
+  ];
+
+  // The citizen report carries only the buyer's own inputs and the short, private reasons. No other owners or deeds.
+  const input = (): ReportInput => ({
+    lang, mode: 'citizen', id, asOf: AS_OF, generated: new Date().toISOString().slice(0, 16).replace('T', ' '), fontUrl: `${location.origin}/fonts/Kalpurush.ttf`,
+    parcel: { id: state.lineage, mouza: m?.name ?? '', upazila: m?.upazila ?? '', district: m?.district ?? '', area: parcel.area_dec },
+    chain: [], trail: trail.map(({ k, owner }) => ({ survey: k.survey, year: k.survey_year, share: owner?.share ?? null })),
+    seller: { name: state.seller || '—', share: latestOwner?.share ?? null },
+    buyer: '', areaSold: Number(state.area), date: AS_OF, qr: state.qr, sig: true, alerts,
+  });
+
   return (
-    <>
-      <section className={`verdict-in rounded-lg border border-l-8 p-4 ${panel}`} aria-live="polite">
-        <h2 className="text-xl font-semibold">{worst === 'block' ? t('buy.block') : worst === 'review' ? t('buy.review') : t('buy.clear')}</h2>
-        <p className="mt-1 text-sm">{worst ? t('buy.blockSub') : t('buy.clearSub')}</p>
-        {reasons.length > 0 && <ul className="mt-3 list-disc space-y-1.5 pl-5 text-ink">{reasons.map((r) => <li key={r}>{r}</li>)}</ul>}
-      </section>
+    <div className="ag-stack">
+      <VerdictBanner tone={tone} head={head} sub={sub} />
+      <SummaryTiles tiles={tiles} />
+      <ChecksGrid rows={rows} mode="citizen" />
 
-      <section>
-        <h2 className="mb-2 text-lg font-semibold">{t('buy.trail')}</h2>
-        <ul className="card divide-y divide-line overflow-hidden">
-          {trail.map(({ k, owner }) => (
-            <li key={k.khatian_uid} className="flex flex-wrap justify-between gap-2 px-4 py-2.5">
-              <span className="font-medium text-ink">{t(`survey.${k.survey}`)} · {d(k.survey_year)}</span>
-              <span>{owner ? t('buy.found', { share: shareText(lang, owner.share) }) : t('buy.notFound')}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <div className="ag-split">
+        <div className="ag-stack">
+          <section className="card ag-section">
+            <h2>{t('buy.trail')}</h2>
+            <ul className="ag-checks" style={{ marginTop: '1rem' }}>
+              {trail.map(({ k, owner }) => (
+                <li key={k.khatian_uid} className="ag-check" data-state={owner ? 'pass' : 'flag'} data-tone={owner ? 'ok' : 'warn'}>
+                  <div className="ag-check-head"><h3>{t(`survey.${k.survey}`)} · {d(k.survey_year)}</h3></div>
+                  <p>{owner ? t('buy.found', { share: shareText(lang, owner.share) }) : t('buy.notFound')}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="card ag-section">
+            <h2>{t('buy.next')}</h2>
+            <ol style={{ margin: '.75rem 0 0', paddingLeft: '1.25rem' }}>
+              {['buy.next1', 'buy.next2', 'buy.next3', 'buy.next4'].map((k) => <li key={k} style={{ margin: '.35rem 0' }}>{t(k)}</li>)}
+            </ol>
+          </section>
+        </div>
+        <ReportRail id={id} asOf={AS_OF} actions={[
+          { label: t('rep.html'), primary: true, onClick: () => downloadFile(`ardh-buyer-report-${id}.html`, 'text/html', checkReportHtml(input())) },
+          { label: t('rep.print'), onClick: () => printHtml(checkReportHtml(input())) },
+        ]} />
+      </div>
 
-      <section>
-        <h2 className="mb-2 text-lg font-semibold">{t('buy.next')}</h2>
-        <ol className="list-decimal space-y-1.5 pl-5">
-          {['buy.next1', 'buy.next2', 'buy.next3', 'buy.next4'].map((k) => <li key={k}>{t(k)}</li>)}
-        </ol>
-      </section>
-    </>
+      <Notice>{t('rep.notice')}</Notice>
+    </div>
   );
 }
