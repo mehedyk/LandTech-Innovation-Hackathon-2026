@@ -1,5 +1,6 @@
 import { DownloadButton } from '../components/Audit.tsx';
 import ChainStrip from '../components/ChainStrip.tsx';
+import ParcelMap from '../components/ParcelMap.tsx';
 import { downloadFile } from '../lib/download.ts';
 import { parcelReportHtml } from '../lib/report.ts';
 import { Chip, PageTitle, SeverityChip, link, tone } from '../components/ui.tsx';
@@ -66,6 +67,7 @@ function Detail({ id }: { id: string }) {
       <p className="mb-2 text-sm"><a className={link} href="#/cases">{t('cases.all')}</a></p>
       <PageTitle title={t('cases.detailTitle', { id })} />
       <div className="ag-toolbar"><DownloadButton label={t('dl.parcel')} onClick={exportParcel} /></div>
+      <ParcelMap lineage={id} tone="neutral" mode="officer" />
       <section className="card ag-section"><h2>{t('sec.chain')}</h2><ChainStrip lineage={id} /></section>
       <h2 className="mb-3 mt-10 text-xl font-semibold">{t('cases.deedsTitle')}</h2>
       {deeds.length === 0 && <p>{t('cases.noDeeds')}</p>}
