@@ -67,5 +67,25 @@ assert.ok(!/D\d{4}/.test(cit), 'citizen report leaks a deed id');
 assert.ok(!JSON.parse(checkReportJson(base('en', 'citizen'))).record_chain);
 const parcelHtml = parcelReportHtml({ lang: 'en', generated: 'x', asOf: '2026-10-17', parcel: base('en', 'officer').parcel, chain, deeds: [] });
 assert.ok(parcelHtml.includes(`Parcel ${parcel.lineage}`));
+// 5. map and simulated identity in the reports
+const sq = (x: number, y: number): [number, number][] => [[x, y], [x + 10, y], [x + 10, y + 10], [x, y + 10]];
+const withMap = (mode: 'officer' | 'citizen', ids: boolean, identity?: ReportInput['identity']): ReportInput => ({
+  ...base('en', mode), identity,
+  map: { sheet: { w: 100, h: 70 }, rs: sq(0, 0), bs: sq(0.5, 0.5), label: [5, 5], neighbours: [{ ...(ids ? { id: 'L99' } : {}), rs: sq(20, 0), label: [25, 5] }] },
+});
+const offMap = checkReportHtml(withMap('officer', true, { name: 'Test Seller', result: 'mismatch' }));
+assert.ok(offMap.includes('<svg') && offMap.includes('L99') && offMap.includes('Parcel map'), 'officer report has the map with neighbour ids');
+assert.ok(offMap.includes('Identity check (simulated)') && offMap.includes('No match'), 'officer report carries the simulated identity result');
+assert.ok(checkReportHtml(withMap('officer', true, { name: 'Test Seller', result: null })).includes('Not run'));
+const citMap = checkReportHtml(withMap('citizen', false, { name: 'Test Seller', result: 'matched' }));
+assert.ok(citMap.includes('<svg') && !citMap.includes('L99'), 'citizen map has no neighbour ids');
+assert.ok(!citMap.includes('Identity check') && !citMap.includes('Test Seller') && !citMap.includes('fingerprint'), 'citizen report never carries the identity step');
+const jOff = JSON.parse(checkReportJson(withMap('officer', true, { name: 'Test Seller', result: 'matched' })));
+assert.equal(jOff.parcel_map.schematic, true);
+assert.equal(jOff.identity_check_simulated.result, 'matched');
+const jCit = JSON.parse(checkReportJson(withMap('citizen', false, { name: 'Test Seller', result: 'matched' })));
+assert.ok(jCit.parcel_map && !jCit.identity_check_simulated && !JSON.stringify(jCit.parcel_map).includes('L99'));
+for (const lang of ['bn', 'en'] as const) assert.ok(!/\{\w+\}/.test(checkReportHtml({ ...withMap('officer', true, { name: 'X', result: 'not_enrolled' }), lang })));
+console.log('ok   reports carry the map; the identity step is officer-only and the buyer map has no neighbour ids');
 console.log('ok   reports build in both languages, escape input, and the buyer report leaks nothing');
 console.log('all report tests passed');
