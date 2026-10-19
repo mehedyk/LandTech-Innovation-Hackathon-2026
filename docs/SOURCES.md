@@ -64,6 +64,9 @@ Ahana (2025), *The Daily Observer*, reports that more than 70 per cent of civil 
 - [18] [Hugging Face](https://huggingface.co)
 - [19] [Ardh Guard: live prototype](https://land-tech-innovation-hackathon-2026.vercel.app/)
 - [20] [Ardh Guard: pitch deck](https://land-tech-innovation-hackathon-2026.vercel.app/deck/)
+- [21] [Coordinated land registration, mutation to benefit over 1 crore people: Land secretary](https://www.tbsnews.net/bangladesh/coordinated-land-registration-mutation-benefit-over-1-crore-people-land-secretary-156184)
+- [22] [Bangladesh's Personal Data Protection Ordinance 2025: key takeaways](https://www.thedailystar.net/tech-startup/news/bangladeshs-personal-data-protection-ordinance-2025-key-takeaways-4015401)
+- [23] [EC to monitor partner organisations to protect NID data](https://www.tbsnews.net/node/664882)
 
 Numbers are the same in every file. Full list with notes on what we read: [`docs/REFERENCES.md`](REFERENCES.md).
 <!-- refs:end -->
