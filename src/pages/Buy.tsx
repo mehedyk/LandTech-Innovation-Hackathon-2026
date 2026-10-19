@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChecksGrid, Notice, ReportRail, SummaryTiles, VerdictBanner, toneOf, type Tile } from '../components/Audit.tsx';
+import ParcelMap from '../components/ParcelMap.tsx';
 import type { Alert } from '../engine/types.ts';
 import { runCheck, sellerFromName, type CheckResult } from '../lib/check.ts';
 import { downloadFile, printHtml } from '../lib/download.ts';
@@ -111,6 +112,8 @@ function Result({ alerts, state }: { alerts: Alert[]; state: State }) {
       <VerdictBanner tone={tone} head={head} sub={sub} />
       <SummaryTiles tiles={tiles} />
       <ChecksGrid rows={rows} mode="citizen" />
+
+      <ParcelMap lineage={state.lineage} tone={tone} mode="citizen" />
 
       <div className="ag-split">
         <div className="ag-stack">
