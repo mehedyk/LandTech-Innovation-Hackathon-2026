@@ -9,16 +9,16 @@ type Phase = 'idle' | 'scanning' | IdentityResult;
  * shows a made-up stored result for the person (data/identity_demo.json) after a short delay. The result is
  * advisory and never changes the rule verdict. NID is a locked placeholder (see the box below it).
  */
-export default function IdentitySection({ partyId, name }: { partyId?: string; name: string }) {
+export default function IdentitySection({ partyId, name, onResult }: { partyId?: string; name: string; onResult?: (r: IdentityResult | null) => void }) {
   const { t } = useLang();
   const [phase, setPhase] = useState<Phase>('idle');
   const timer = useRef(0);
-  useEffect(() => { setPhase('idle'); return () => window.clearTimeout(timer.current); }, [partyId]);
+  useEffect(() => { setPhase('idle'); onResult?.(null); return () => window.clearTimeout(timer.current); }, [partyId]);
 
   const scan = () => {
     if (!partyId) return;
     setPhase('scanning');
-    timer.current = window.setTimeout(() => setPhase(identityOf(partyId)), 1100);
+    timer.current = window.setTimeout(() => { const r = identityOf(partyId); setPhase(r); onResult?.(r); }, 1100);
   };
   const tone = phase === 'matched' ? 'ok' : phase === 'mismatch' ? 'bad' : phase === 'not_enrolled' ? 'warn' : 'neutral';
 
