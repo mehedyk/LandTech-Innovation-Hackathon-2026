@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Notice, PartyCard, ReportRail, SummaryTiles, ChecksGrid, VerdictBanner, toneOf, type Tile } from '../components/Audit.tsx';
 import ChainStrip from '../components/ChainStrip.tsx';
+import IdentitySection from '../components/Identity.tsx';
+import ParcelMap from '../components/ParcelMap.tsx';
 import { Chip } from '../components/ui.tsx';
 import type { Alert } from '../engine/types.ts';
 import { runCheck, startParams, type CheckResult, type Params } from '../lib/check.ts';
@@ -123,6 +125,8 @@ function Audit({ alerts, p, focus }: { alerts: Alert[]; p: Params; focus: boolea
       <SummaryTiles tiles={tiles} />
       <ChecksGrid rows={rows} mode="officer" />
 
+      <ParcelMap lineage={p.lineage} tone={tone} mode="officer" />
+
       <section className="card ag-section">
         <h2>{t('sec.chain')}</h2>
         <ChainStrip lineage={p.lineage} />
@@ -156,6 +160,8 @@ function Audit({ alerts, p, focus }: { alerts: Alert[]; p: Params; focus: boolea
           { label: t('rep.json'), onClick: () => downloadFile(`ardh-report-${id}.json`, 'application/json', checkReportJson(input())) },
         ]} />
       </div>
+
+      <IdentitySection partyId={owner && !/^Government/i.test(owner.name) ? owner.party_id : undefined} name={owner?.name ?? t('f.sellerOther')} />
 
       <Notice>{t('rep.notice')}</Notice>
     </div>
