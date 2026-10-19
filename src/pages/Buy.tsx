@@ -27,7 +27,7 @@ export default function Buy() {
   const [s, setS] = useState<State>({ lineage: 'L06', seller: ownerName('L06'), area: '30', qr: true });
   const [result, setResult] = useState<CheckResult | null>(null);
   const d = (x: string | number) => (lang === 'bn' ? toBn(x) : String(x));
-  const field = 'mt-1 w-full rounded border border-line bg-white px-3 py-2 text-ink';
+  const field = 'mt-1 w-full rounded-md border border-line bg-card px-3 py-2 text-ink shadow-inner focus:border-brand';
 
   return (
     <>
@@ -36,14 +36,14 @@ export default function Buy() {
         <p className="mb-2 text-sm font-medium text-ink">{t('ex.label')}</p>
         <div className="flex flex-wrap gap-2">
           {examples().map((ex) => (
-            <button key={ex.key} type="button" className="rounded-full border border-line bg-white px-3 py-1.5 text-sm text-ink hover:border-brand"
+            <button key={ex.key} type="button" className="rounded-full border border-line bg-card px-3 py-1.5 text-sm text-ink hover:border-brand"
               onClick={() => { setS(ex.s); setResult(evaluate(ex.s)); }}>{t(ex.key)}</button>
           ))}
         </div>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-[22rem_1fr]">
-        <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); setResult(evaluate(s)); }}>
+        <form className="card h-fit space-y-4 p-5" onSubmit={(e) => { e.preventDefault(); setResult(evaluate(s)); }}>
           <label className="block text-sm font-medium text-ink">{t('f.parcel')}
             <select className={field} value={s.lineage} onChange={(e) => setS({ ...s, lineage: e.target.value })}>
               {seed.parcel_lineages.map((x) => (
@@ -58,7 +58,7 @@ export default function Buy() {
             <input className={field} inputMode="decimal" value={s.area} onChange={(e) => setS({ ...s, area: e.target.value })} />
           </label>
           <label className="flex items-center gap-2 text-sm text-ink"><input type="checkbox" checked={s.qr} onChange={(e) => setS({ ...s, qr: e.target.checked })} /> {t('buy.qr')}</label>
-          <button className="w-full rounded bg-brand px-4 py-2.5 font-semibold text-white hover:bg-ink" type="submit">{t('buy.submit')}</button>
+          <button className="w-full rounded-lg bg-brand px-4 py-2.5 font-semibold text-on-brand hover:bg-brand-deep" type="submit">{t('buy.submit')}</button>
           <p className="text-sm">{t('buy.privacy')}</p>
         </form>
 
@@ -79,7 +79,7 @@ function Result({ alerts, state, d }: { alerts: Alert[]; state: State; d: (x: st
   const trail = chainOf(state.lineage).map((k) => ({ k, owner: k.owners.find((o) => o.name.trim().toLowerCase() === state.seller.trim().toLowerCase()) }));
   return (
     <>
-      <section className={`verdict-in rounded border-l-8 p-4 ${panel}`} aria-live="polite">
+      <section className={`verdict-in rounded-lg border border-l-8 p-4 ${panel}`} aria-live="polite">
         <h2 className="text-xl font-semibold">{worst === 'block' ? t('buy.block') : worst === 'review' ? t('buy.review') : t('buy.clear')}</h2>
         <p className="mt-1 text-sm">{worst ? t('buy.blockSub') : t('buy.clearSub')}</p>
         {reasons.length > 0 && <ul className="mt-3 list-disc space-y-1.5 pl-5 text-ink">{reasons.map((r) => <li key={r}>{r}</li>)}</ul>}
@@ -87,9 +87,9 @@ function Result({ alerts, state, d }: { alerts: Alert[]; state: State; d: (x: st
 
       <section>
         <h2 className="mb-2 text-lg font-semibold">{t('buy.trail')}</h2>
-        <ul className="divide-y divide-line border-y border-line">
+        <ul className="card divide-y divide-line overflow-hidden">
           {trail.map(({ k, owner }) => (
-            <li key={k.khatian_uid} className="flex flex-wrap justify-between gap-2 py-2">
+            <li key={k.khatian_uid} className="flex flex-wrap justify-between gap-2 px-4 py-2.5">
               <span className="font-medium text-ink">{t(`survey.${k.survey}`)} · {d(k.survey_year)}</span>
               <span>{owner ? t('buy.found', { share: shareText(lang, owner.share) }) : t('buy.notFound')}</span>
             </li>
