@@ -2,20 +2,23 @@
 
 **Language:** the app opens in Bangla. For the English voice-over, tap **English** in the header first. For the Bangla voice-over, leave it as is; the example buttons are then: সঠিক বিক্রি, একই জমি দুইবার বিক্রি, সরকারি (খাস) জমি, জাল QR কোড. Keep the role on **Both**.
 
+**Layout note:** since the redesign the Check page shows a green or red banner, four summary tiles, a checks grid and a report panel under the form. The click paths below still work; the example buttons sit in the form card at the top. The theme toggle is in the dark green bar above the header; stay on light for the recording.
+
 **Setup:** record the live site [19] in a desktop browser at 1280x720, bookmarks bar hidden, page zoom 110%. Voice-over in English (Bangla version below is optional). Add captions: judges often watch muted. Do one dry run before recording. Trim to under 90 s.
 
 | Time | On screen (click path) | Voice-over |
 |---|---|---|
 | 0:00 to 0:12 | Check a deed page, top of screen | "In Bangladesh, deeds, khatians and mutations sit in different offices, and nobody cross-checks them before a sale. So the same land gets sold twice." |
 | 0:12 to 0:22 | Click **Clean sale**. The green "No conflicts found" appears | "This is Ardh Guard, our answer to problem P3. It checks a deed against the record chain before registration, and again before mutation." |
-| 0:22 to 0:42 | Click **Sold twice**. Pause on the red verdict and the reason. Then click **Government land**, then **Forged QR**, about 2 seconds each | "A clean sale passes. Now the same seller sells again. Ardh Guard says hold, and explains why: the total sold is above what the seller owns. It also catches government khas land and altered documents." |
-| 0:42 to 0:55 | Click **Alerts**. Click **Confirm hold** on the first alert. Click **Open parcel** to show the CS, SA, RS, BS chain | "Officers get an inbox of alerts, each with reasons and the records to open. Every alert links to the parcel's full record chain." |
+| 0:22 to 0:42 | Click **Sold twice**. Pause on the red banner and the reason, then scroll slowly past the tiles and checks grid (the failed check is marked). Then click **Government land**, then **Forged QR**, about 2 seconds each | "A clean sale passes. Now the same seller sells again. Ardh Guard says hold, and explains why: the total sold is above what the seller owns. It also catches government khas land and altered documents." |
+| 0:42 to 0:55 | Click **Alerts**. Click **Confirm hold** on the first alert. Click **Open parcel** to show the CS, SA, RS, BS chain | "Officers get an inbox of alerts, each with reasons and the records to open. Every alert links to the parcel's full record chain." Optional, 3 s: back on a verdict, click **Download report (HTML)** in the report panel. |
 | 0:55 to 1:12 | Click **Benchmark**. Pause on the caveat box | "We tested the rules on a labelled dummy registry: eight of eight testable anomalies caught. It is a small synthetic test, a regression check and not real-world accuracy, and we say so on the page." |
-| 1:12 to 1:28 | Click **Roadmap and limits**. End on a title card: Team Ardh and the live link | "Ardh Guard never decides ownership. Officers do. Next: owner alerts, an audit trail, Bangla name matching, and a pilot with a sub-registry office. We are Team Ardh." (Optionally show the citizen page for 5 seconds: "Citizens get a plain-language check before they buy.") |
+| 1:12 to 1:28 | Click **Roadmap and limits**. End on a title card: Team Ardh and the live link | "Ardh Guard never decides ownership. Officers do. Next: owner alerts, an audit trail, Bangla name matching, more checks such as mortgage and court cases, and a pilot with a sub-registry office. We are Team Ardh." (Optionally show the citizen page for 5 seconds: "Citizens get a plain-language check before they buy.") |
 
 About 170 words, which fits 90 seconds with pauses.
 
 ## Rules for the recording
+- Check the button names on the live site before recording; this script was written without a real build to look at.
 - Use only the dummy data on screen. Do not show real names, NID numbers, or any government site.
 - Do not claim "AI-powered" or an accuracy figure. The honest line is the one in the script.
 - Keep the mouse slow and deliberate. Click, pause, let the verdict land, then talk.
@@ -54,6 +57,9 @@ About 170 words, which fits 90 seconds with pauses.
 - [17] [Supabase](https://supabase.com)
 - [18] [Hugging Face](https://huggingface.co)
 - [20] [Ardh Guard: pitch deck](https://land-tech-innovation-hackathon-2026.vercel.app/deck/)
+- [21] [Coordinated land registration, mutation to benefit over 1 crore people: Land secretary](https://www.tbsnews.net/bangladesh/coordinated-land-registration-mutation-benefit-over-1-crore-people-land-secretary-156184)
+- [22] [Bangladesh's Personal Data Protection Ordinance 2025: key takeaways](https://www.thedailystar.net/tech-startup/news/bangladeshs-personal-data-protection-ordinance-2025-key-takeaways-4015401)
+- [23] [EC to monitor partner organisations to protect NID data](https://www.tbsnews.net/node/664882)
 
 Numbers are the same in every file. Full list with notes on what we read: [`docs/REFERENCES.md`](REFERENCES.md).
 <!-- refs:end -->
