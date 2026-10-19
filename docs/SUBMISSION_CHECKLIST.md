@@ -1,6 +1,10 @@
 # Round 1 submission checklist (deadline Sun 18 Oct, 11:59 PM [1]; target 6 PM)
 
 ## Now
+- [ ] **After the redesign:** run `npm install && npm test && npm run build` once (not possible where the redesign was made), then open the preview and look at every page in light, dark and on a phone
+- [ ] Regenerate screenshots with `scripts/make-media.py` from the real build, then rebuild the deck images and the concept note (`scripts/build-concept-note.py`, still 3 pages)
+- [ ] Download each report (HTML, JSON, print to PDF, alerts CSV, benchmark CSV, parcel HTML) on a phone and a laptop; open the CSVs in Excel to check Bangla text
+- [ ] Kalpurush loads (Network tab) and Latin text stays in Inter
 - [ ] Live site [19] works on a phone and a laptop (click all six examples): https://land-tech-innovation-hackathon-2026.vercel.app/
 - [ ] Public GitHub repo has the latest code, README and `docs/media`
 - [ ] Data question sent in writing to the organizers; both mentors messaged
@@ -8,7 +12,7 @@
 
 ## Write
 - [ ] Concept note, **3 pages**, PDF [1]: built in `docs/concept-note/` (`Ardh-concept-note.bn.pdf` and `.en.pdf`, 3 pages each, with linked references). Upload one; ask your mentors which language. Open each linked source once before you submit.
-- [x] README TODOs filled: AI tools, changes since Round 1, license (MIT; confirm the team agrees)
+- [x] README TODOs filled: AI tools, changes since Round 1, license (MIT; confirm the team agrees; the Kalpurush font stays under SIL OFL 1.0, see `public/fonts/README.md`)
 - [ ] Short deck: done as an interactive page at `/deck/` and as PDFs in `docs/deck/` (8 slides, Bangla and English). Read the speaker notes (press N) and rehearse once. Final round rule: 5 minutes pitch + live demo, then 3 minutes of questions.
 
 ## Record
@@ -21,6 +25,9 @@
 - [ ] Links: repository, live site, video, deck, concept note
 - [ ] **Mark it FINAL.** A draft is not judged.
 - [ ] Reopen the submission and confirm it shows as final
+
+## Later (not for Round 1)
+- [ ] Read `INTEGRATION.md` and agree which items go in the final pitch as plans; check the data-protection law status with a lawyer before any pilot talk
 
 ## Both of you
 - [ ] Each can explain `src/engine/rules.ts` line by line (about 100 lines). The rulebook disqualifies code you cannot explain [1].
@@ -52,6 +59,9 @@
 - [17] [Supabase](https://supabase.com)
 - [18] [Hugging Face](https://huggingface.co)
 - [20] [Ardh Guard: pitch deck](https://land-tech-innovation-hackathon-2026.vercel.app/deck/)
+- [21] [Coordinated land registration, mutation to benefit over 1 crore people: Land secretary](https://www.tbsnews.net/bangladesh/coordinated-land-registration-mutation-benefit-over-1-crore-people-land-secretary-156184)
+- [22] [Bangladesh's Personal Data Protection Ordinance 2025: key takeaways](https://www.thedailystar.net/tech-startup/news/bangladeshs-personal-data-protection-ordinance-2025-key-takeaways-4015401)
+- [23] [EC to monitor partner organisations to protect NID data](https://www.tbsnews.net/node/664882)
 
 Numbers are the same in every file. Full list with notes on what we read: [`docs/REFERENCES.md`](REFERENCES.md).
 <!-- refs:end -->
