@@ -6,13 +6,15 @@ import Cases from './pages/Cases.tsx';
 import Check from './pages/Check.tsx';
 import HowItWorks from './pages/HowItWorks.tsx';
 import Inbox from './pages/Inbox.tsx';
+import Split from './pages/Split.tsx';
 import { useLang } from './lib/i18n.tsx';
 import { baseAlerts } from './lib/registry.ts';
-import { ROLE_HOME, ROLE_PAGES, useRole, type Page, type Role } from './lib/role.tsx';
+import { PAGE_AUDIENCE, ROLE_HOME, ROLE_PAGES, useRole, type Page, type Role } from './lib/role.tsx';
 import { toBn } from './lib/strings.ts';
 import mark from '../assets/logo-mark.svg';
 
 const NAV: { to: Page; label: string }[] = [
+  { to: 'split', label: 'nav.split' },
   { to: 'check', label: 'nav.check' },
   { to: 'buy', label: 'nav.buy' },
   { to: 'alerts', label: 'nav.alerts' },
@@ -39,6 +41,7 @@ function useRoute() {
 
 /** Stroke icons for the mobile bottom tab bar (24x24 viewBox). */
 const ICONS: Record<Page, string[]> = {
+  split: ['M4 5h7v14H4z', 'M13 5h7v14h-7z'],
   check: ['M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z', 'M9 12l2 2 4-4'],
   buy: ['M3 4h2l2.4 10.2a1 1 0 001 .8h8.4a1 1 0 001-.8L20 8H6', 'M9 20h.01', 'M17 20h.01'],
   alerts: ['M6 9a6 6 0 1112 0c0 6 2 7 2 7H4s2-1 2-7', 'M10 20a2 2 0 004 0'],
@@ -127,6 +130,7 @@ export default function App() {
                 <a key={n.to} href={`#/${n.to}`} aria-current={page === n.to ? 'page' : undefined}
                   className={`whitespace-nowrap rounded px-3 py-2 text-sm font-medium ${page === n.to ? 'bg-brand text-on-brand' : 'text-ink hover:bg-mist'}`}>
                   {fullLabel(n)}
+                  {role === 'both' && PAGE_AUDIENCE[n.to] !== 'both' && <span className="ag-aud-tag">{t(`aud.${PAGE_AUDIENCE[n.to]}`)}</span>}
                 </a>
               ))}
             </nav>
@@ -141,6 +145,7 @@ export default function App() {
           : page === 'how' ? <HowItWorks />
           : page === 'about' ? <About />
           : page === 'buy' ? <Buy />
+          : page === 'split' ? <Split />
           : <Check />}
       </main>
 
