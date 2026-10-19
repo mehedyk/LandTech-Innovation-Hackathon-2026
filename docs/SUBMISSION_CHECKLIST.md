@@ -5,7 +5,8 @@
 - [ ] Regenerate screenshots with `scripts/make-media.py` from the real build, then rebuild the deck images and the concept note (`scripts/build-concept-note.py`, still 3 pages)
 - [ ] Download each report (HTML, JSON, print to PDF, alerts CSV, benchmark CSV, parcel HTML) on a phone and a laptop; open the CSVs in Excel to check Bangla text
 - [ ] Both view: on a laptop the officer and citizen frames sit side by side, on a phone they stack; every tab shows an Officer or Citizen tag
-- [ ] Parcel map shows on Check, Buy and parcel pages; RS, BS and both buttons work; the NID box opens and its field and button stay disabled; the fingerprint button shows a result and nothing in the reports mentions it
+- [ ] Parcel map shows on Check, Buy and parcel pages; RS, BS and both buttons work; the NID box opens and its field and button stay disabled; the fingerprint button shows a result; download the officer report after scanning and confirm it lists the identity line as simulated, and that the citizen report has the map but no neighbour ids and no identity step
+- [ ] Both view: pick a parcel on one side and confirm the other side follows and runs its check
 - [ ] Kalpurush loads (Network tab) and Latin text stays in Inter
 - [ ] Live site [19] works on a phone and a laptop (click all six examples): https://land-tech-innovation-hackathon-2026.vercel.app/
 - [ ] Public GitHub repo has the latest code, README and `docs/media`
