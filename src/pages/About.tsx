@@ -14,7 +14,7 @@ export default function About() {
       <PageTitle title={t('about.title')}>{t('about.intro')}</PageTitle>
       <div className="grid gap-8 md:grid-cols-3">
         {COLUMNS.map((c) => (
-          <section key={c.head}>
+          <section key={c.head} className="card p-5">
             <h2 className="text-lg font-semibold">{t(c.head)}</h2>
             <p className="mb-2 text-sm font-medium text-brand">{t(c.state)}</p>
             <ul className="list-disc space-y-1.5 pl-5">
@@ -23,7 +23,7 @@ export default function About() {
           </section>
         ))}
       </div>
-      <p className="mt-6 max-w-3xl rounded border-l-8 border-caution bg-caution-soft p-3 text-caution">{t('road.aiNote')}</p>
+      <p className="mt-6 max-w-3xl rounded-lg border border-l-8 border-caution bg-caution-soft p-3 text-caution">{t('road.aiNote')}</p>
 
       <h2 className="mb-2 mt-12 text-lg font-semibold">{t('about.limitsTitle')}</h2>
       <ul className="max-w-2xl list-disc space-y-1.5 pl-5">
