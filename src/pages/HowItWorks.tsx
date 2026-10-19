@@ -20,9 +20,9 @@ export default function HowItWorks() {
     <>
       <PageTitle title={t('how.title')}>{t('how.intro')}</PageTitle>
 
-      <ol className="grid gap-0 md:grid-cols-4" aria-label={t('how.flow.aria')}>
+      <ol className="grid gap-4 md:grid-cols-4" aria-label={t('how.flow.aria')}>
         {[1, 2, 3, 4].map((n) => (
-          <li key={n} className="border-l-4 border-brand py-2 pl-4 pr-3 md:border-l-0 md:border-t-4 md:pl-0 md:pt-3">
+          <li key={n} className="card border-t-4 border-t-brand p-4">
             <p className="text-sm font-medium text-brand">{t('how.step', { n })}</p>
             <p className="font-semibold text-ink">{t(`how.s${n}.t`)}</p>
             <p className="mt-1 text-sm">{t(`how.s${n}.d`)}</p>
@@ -49,9 +49,9 @@ export default function HowItWorks() {
 
       <h2 className="mb-1 mt-12 text-xl font-semibold">{t('how.checks.title')}</h2>
       <p className="mb-4 max-w-2xl text-sm">{t('how.checks.legend')}</p>
-      <ul className="divide-y divide-line border-y border-line">
+      <ul className="card divide-y divide-line overflow-hidden">
         {CHECKS.map((c) => (
-          <li key={c.id} className="py-4">
+          <li key={c.id} className="p-4">
             <p className="flex flex-wrap items-center gap-2">
               <SeverityChip severity={c.sev} />
               <b className="text-ink">{ruleTitle(c.id, lang)}</b>
@@ -66,7 +66,7 @@ export default function HowItWorks() {
         ))}
       </ul>
 
-      <div className="mt-10 max-w-2xl rounded border-l-8 border-line bg-mist p-4">
+      <div className="mt-10 max-w-2xl rounded-lg border border-l-8 border-line bg-mist p-4">
         <h2 className="font-semibold text-ink">{t('how.not.title')}</h2>
         <ul className="mt-2 list-disc space-y-1 pl-5">
           {[1, 2, 3].map((n) => <li key={n}>{t(`how.not.${n}`)}</li>)}
