@@ -64,6 +64,7 @@ You pay 100 BDT within 3 days of the announcement. Then, in this order:
    - **Bangla name matching** (spelling variants).
    - A tougher benchmark slice: "messy but innocent" cases (spelling variants, delayed mutation, splits) to measure false positives.
    - **A "missing or stale data" outcome** beside clear and flag, so a case with a missing or late source goes to manual verification instead of reading as clear.
+   - **Done after Round 1 (dummy data):** parcel map sketch with RS and BS outlines, simulated fingerprint step, locked NID box, and a side-by-side officer and citizen screen for the Both view.
    - **Left out of the redesign on purpose, buildable on dummy data now:** price check against a published mouza rate table; division, district, upazila and mouza filters and a deed-number search; text-size and high-contrast controls; an installable offline mode (the data is static JSON, so this is cheap).
 4. Add the P1 idea as a clearly labelled *future* module, not a promise.
 
@@ -78,9 +79,9 @@ These were shown in the portal mockups but need a data source, a legal basis or 
 | Item | Why it waits | First step |
 |---|---|---|
 | Vested and abandoned property, court injunction, bank mortgage, heirship certificate, land development tax | Needs a source from its owning office; five of the portal's seven mandatory checks | Ask each office what can be queried by plot |
-| Cadastral map, RS and BS overlay | Needs plot geometry from the survey authority | Confirm availability and licence |
-| NID match, party photos | Needs a legal basis, consent and an Election Commission agreement; the EC applies strict partner controls [23] | Decide whether any check truly needs it; legal review |
-| Live fingerprint match | Biometric, sensitive data [22] | Not planned |
+| Real cadastral map (a made-up sketch exists) | Needs plot geometry from the survey authority | Confirm availability and licence |
+| Real NID match and photos (a locked placeholder exists) | Needs a legal basis, consent and an Election Commission agreement; the EC applies strict partner controls [23] | Decide whether any check truly needs it; legal review |
+| Real fingerprint match (a simulated demo exists) | Biometric, sensitive data [22] | Not planned |
 | Digital notice or stay, official seal and QR certificate, government header and helpline | Needs formal authority and a digital-signature framework | Not before an agreement |
 | Integration gateway, shadow mode at one sub-registry and AC Land office | Needs a written agreement and security review | Draft the agreement scope |
 | Sign-in, roles, saved decisions, audit log | Our own work, no outside dependency | Supabase, as in Phase 4 |
