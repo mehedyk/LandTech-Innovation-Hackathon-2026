@@ -2,9 +2,9 @@ import { PageTitle } from '../components/ui.tsx';
 import { useLang } from '../lib/i18n.tsx';
 
 const COLUMNS = [
-  { head: 'road.v1', state: 'road.built', prefix: 'road.v1.', count: 7 },
-  { head: 'road.v11', state: 'road.next', prefix: 'road.v11.', count: 7 },
-  { head: 'road.v2', state: 'road.later', prefix: 'road.v2.', count: 5 },
+  { head: 'road.v1', state: 'road.built', prefix: 'road.v1.', count: 9 },
+  { head: 'road.v11', state: 'road.next', prefix: 'road.v11.', count: 11 },
+  { head: 'road.v2', state: 'road.later', prefix: 'road.v2.', count: 10 },
 ];
 
 export default function About() {
@@ -27,7 +27,7 @@ export default function About() {
 
       <h2 className="mb-2 mt-12 text-lg font-semibold">{t('about.limitsTitle')}</h2>
       <ul className="max-w-2xl list-disc space-y-1.5 pl-5">
-        {Array.from({ length: 8 }, (_, i) => <li key={i}>{t(`limit.${i + 1}`)}</li>)}
+        {Array.from({ length: 10 }, (_, i) => <li key={i}>{t(`limit.${i + 1}`)}</li>)}
       </ul>
 
       <h2 className="mb-2 mt-12 text-lg font-semibold">{t('about.dataTitle')}</h2>
