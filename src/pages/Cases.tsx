@@ -2,6 +2,7 @@ import { DownloadButton } from '../components/Audit.tsx';
 import ChainStrip from '../components/ChainStrip.tsx';
 import ParcelMap from '../components/ParcelMap.tsx';
 import { downloadFile } from '../lib/download.ts';
+import { reportMapOf } from '../lib/geo.ts';
 import { parcelReportHtml } from '../lib/report.ts';
 import { Chip, PageTitle, SeverityChip, link, tone } from '../components/ui.tsx';
 import { describe, ruleTitle } from '../lib/alerts.ts';
@@ -49,7 +50,8 @@ function Detail({ id }: { id: string }) {
     downloadFile(`ardh-parcel-${id}.html`, 'text/html', parcelReportHtml({
       lang, asOf: AS_OF, generated: new Date().toISOString().slice(0, 16).replace('T', ' '), fontUrl: `${location.origin}/fonts/Kalpurush.ttf`,
       parcel: { id, mouza: m?.name ?? '', upazila: m?.upazila ?? '', district: m?.district ?? '', area: parcel.area_dec },
-      chain: chainOf(id),
+      chain: chainOf(id), map: reportMapOf(id, true),
+      tone: baseAlerts.some((a) => a.lineage === id && a.severity === 'block') ? 'block' : baseAlerts.some((a) => a.lineage === id && a.severity === 'review') ? 'review' : 'clear',
       deeds: deeds.map((d) => {
         const muts = mutationsOf(d.deed_uid);
         return {
