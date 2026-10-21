@@ -28,7 +28,24 @@ An explainable conflict-detection layer that checks a deed against the khatian c
 
 **Done when:** a stranger can open the live link and run the "double sale" demo in 30 seconds.
 
-**Status:** done. Live at https://land-tech-innovation-hackathon-2026.vercel.app/. Since Round 1 the interface was redesigned from the mockups in `design/potential-designs/` (light and dark themes, two-tier header, phone tab bar, Kalpurush for Bangla) and gained the full audit view and downloads (HTML, JSON, print to PDF, CSV). The rules engine, data and results did not change.
+**Status:** done. Live at https://land-tech-innovation-hackathon-2026.vercel.app/. Since Round 1 the interface was redesigned from the mockups in `design/potential-designs/` (light and dark themes, two-tier header, Kalpurush for Bangla; the phone bottom tab bar was later replaced by a hamburger drawer, see Phase 1b) and gained the full audit view and downloads (HTML, JSON, print to PDF, CSV). The rules engine, data and results did not change.
+
+## Phase 1b: Sign-in, role dashboards and navigation (the "v2 shell", added after Round 1)
+**Why:** the first screens had a "View as" switch and a Both mode, one full-width map of rectangles and no way to tell the offices apart. The interface needed to show *who is using it* and give each office its own starting point, without touching the rules engine.
+
+**What was built**
+1. **Sign-in** (`#/login`) with four demo accounts, one per actor, shown on the page: citizen/buyer, sub-registrar, AC Land officer, admin/auditor. A **sign-up page is written out but not active** (submitting shows a notice and stores nothing).
+2. **One dashboard per role**, same forest green and gold, more modern shapes (leaf-cornered cards, hexagon icons, ring and bar charts, a small flag-disc accent). Every number is computed from the registry and the rules (`src/lib/stats.ts`); none is invented.
+3. **Role scoping.** Sub-registrar: dashboard, check a deed, alerts for the *pre-registration* checkpoint, parcels. AC Land officer: dashboard, alerts for the *pre-mutation* checkpoint, parcels. Admin/auditor: everything, **read-only**, plus the benchmark and the side-by-side view (the old Both view, kept for judges). Citizen: dashboard and check before you buy. Only the two offices can record decisions.
+4. **Navigation:** a bar with a "More" menu and a user menu on wide screens, and a hamburger drawer below 1280 px (replaces the phone bottom tab bar). The drawer closes on Esc or a click outside, keeps Tab inside, and returns focus.
+5. **Parcel map:** small (about 21 rem), zoomed on the plot, made of irregular rounded shapes from an area-weighted Voronoi layout (`data/gen_geometry.py`). The road rectangle was dropped. Reports use the same window.
+6. Fixed a duplicate string key (`rep.idNote`) that broke `npm run build`.
+
+**How the role split was decided.** The sub-registrar's office registers the deed after checking the record of rights in the AC (Land) database; the registration details and a copy then go to the AC (Land) office, which completes the mutation (an e-mutation case is opened from the registration copy, with no separate application) [news reports, 2020; procedures may have changed: [The Business Standard](https://www.tbsnews.net/bangladesh/mutation-application-no-longer-needed-land-office-171619), [The Financial Express](https://old.thefinancialexpress.com.bd/national/land-mutation-to-be-completed-within-eight-days-of-registration-1604929836)]. The engine already tags each alert as *pre-registration* or *pre-mutation*, so each office simply sees its own. The sub-registrar also gets parcels because alerts link to the parcel record. The auditor decides nothing, so the oversight role cannot change the outcome it reviews.
+
+**Still demo-only (do not present as real):** the four passwords are public and nothing is checked on a server; roles are a front-end filter; decisions are stored in the browser only. Real sign-in, per-office accounts, server-side roles and the hash-chained audit log stay in Phase 4 and Phase 6.
+
+**Status:** done. Checked in a browser at 1366, 1280 and 390 px, in light and dark, in Bangla and English; `npm run build` and `npm test` pass. README screenshots were regenerated with `scripts/make-media.py` (it now signs in as the demo auditor). **Not regenerated:** the PDF deck and concept notes (`Ardh-pitch-deck.*.pdf`, `docs/concept-note/*`) and `public/deck`; see `SUBMISSION_CHECKLIST.md`.
 
 ## Phase 2: In-product documentation (Sunday late morning)
 This is what cost marks last time, so it lives *in the app*, not only in the README.
@@ -40,7 +57,7 @@ This is what cost marks last time, so it lives *in the app*, not only in the REA
 **Phase 2 status:** done. The app has How it works (flow, two checkpoints, all 8 checks with examples), Roadmap and limits, and Data and AI used (inside Roadmap and limits). Engine tests: `npm test`.
 
 ## Phase 3: Submission pack
-**Status:** done for Round 1. Re-check the pack after the redesign: regenerate screenshots, deck images and the concept note figure from a real build (`scripts/make-media.py`, `scripts/build-concept-note.py`), and tick `SUBMISSION_CHECKLIST.md`.
+**Status:** done for Round 1. After the v2 shell the README screenshots and `public/deck/img/check*.png` were regenerated; the PDF deck and concept notes still show the old interface. Re-check the pack after the redesign: regenerate screenshots, deck images and the concept note figure from a real build (`scripts/make-media.py`, `scripts/build-concept-note.py`), and tick `SUBMISSION_CHECKLIST.md`.
  (Sunday 1–6 PM)
 | Item | Notes |
 |---|---|
@@ -64,7 +81,7 @@ You pay 100 BDT within 3 days of the announcement. Then, in this order:
    - **Bangla name matching** (spelling variants).
    - A tougher benchmark slice: "messy but innocent" cases (spelling variants, delayed mutation, splits) to measure false positives.
    - **A "missing or stale data" outcome** beside clear and flag, so a case with a missing or late source goes to manual verification instead of reading as clear.
-   - **Done after Round 1 (dummy data):** parcel map sketch with RS and BS outlines, simulated fingerprint step, locked NID box, and a side-by-side officer and citizen screen for the Both view.
+   - **Done after Round 1 (dummy data):** parcel map sketch with RS and BS outlines, simulated fingerprint step, locked NID box, and a side-by-side officer and citizen screen (the Both view, now admin-only). **Done (v2 shell):** demo sign-in for four roles, role dashboards, hamburger navigation, small irregular parcel map (Phase 1b).
    - **Left out of the redesign on purpose, buildable on dummy data now:** price check against a published mouza rate table; division, district, upazila and mouza filters and a deed-number search; text-size and high-contrast controls; an installable offline mode (the data is static JSON, so this is cheap).
 4. Add the P1 idea as a clearly labelled *future* module, not a promise.
 
@@ -84,7 +101,7 @@ These were shown in the portal mockups but need a data source, a legal basis or 
 | Real fingerprint match (a simulated demo exists) | Biometric, sensitive data [22] | Not planned |
 | Digital notice or stay, official seal and QR certificate, government header and helpline | Needs formal authority and a digital-signature framework | Not before an agreement |
 | Integration gateway, shadow mode at one sub-registry and AC Land office | Needs a written agreement and security review | Draft the agreement scope |
-| Sign-in, roles, saved decisions, audit log | Our own work, no outside dependency | Supabase, as in Phase 4 |
+| Real sign-in, server-side roles, saved decisions, audit log (a front-end demo sign-in with four roles exists, Phase 1b) | Our own work, no outside dependency | Supabase, as in Phase 4 |
 
 ---
 
@@ -111,6 +128,7 @@ The written rulebook [1] says: dummy data only; **no real land records; no scrap
 - We do not leave data sources out of the README or the reports: the rulebook requires listing the data used, and a hidden source is a false-information risk.
 
 ## Risks
+- The demo sign-in could be read as real security. The sign-in page, the footer, the README and the limits page all say it is a demo gate; keep it that way and never reuse these passwords anywhere.
 - Time: if Sunday slips, cut "Should" items first, never the live link, the Roadmap/Limitations pages or the video.
 - Benchmark numbers look perfect because the rules were written with the seed in mind. Present as a regression test.
 - Verify every citation before it goes in the concept note.
