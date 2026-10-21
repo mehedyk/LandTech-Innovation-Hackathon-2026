@@ -2,11 +2,16 @@
 
 ## Now
 - [ ] **After the redesign:** run `npm install && npm test && npm run build` once (not possible where the redesign was made), then open the preview and look at every page in light, dark and on a phone
-- [ ] Regenerate screenshots with `scripts/make-media.py` from the real build, then rebuild the deck images and the concept note (`scripts/build-concept-note.py`, still 3 pages)
+- [ ] README screenshots and `public/deck/img/check*.png` were regenerated after the v2 shell. **Still to do:** rebuild the PDF decks (`Ardh-pitch-deck.*.pdf`) and the concept notes (`scripts/build-concept-note.py`, still 3 pages) so they match the new interface and the four roles
 - [ ] Download each report (HTML, JSON, print to PDF, alerts CSV, benchmark CSV, parcel HTML) on a phone and a laptop; open the CSVs in Excel to check Bangla text
-- [ ] Both view: on a laptop the officer and citizen frames sit side by side, on a phone they stack; every tab shows an Officer or Citizen tag
+- [ ] Side-by-side view (admin/auditor only, `#/split`): on a laptop the officer and citizen frames sit side by side, on a phone they stack
+- [ ] **Sign-in (v2 shell):** all four demo accounts on `#/login` work (press a card, then Sign in); a wrong password shows the error; the sign-up page shows its "not available" notice and stores nothing; Sign out returns to the login page
+- [ ] **Role scoping:** sub-registrar sees only *before registration* alerts and can decide; AC Land officer sees only *before mutation* alerts and can decide; admin/auditor sees all alerts with no decision buttons; opening a page your role does not have goes back to your dashboard
+- [ ] **Dashboards:** each of the four roles opens its own dashboard with sensible numbers, in Bangla and English, light and dark, on a phone and a laptop
+- [ ] **Navigation:** the bar shows from 1280 px wide; below that the hamburger opens the drawer (closes on Esc and on a tap outside; links, theme, language and Sign out work); nothing scrolls sideways at 1024 px in Bangla
+- [ ] **Map:** small, irregular plots, no big rectangles; neighbours show on the officer side only
 - [ ] Parcel map shows on Check, Buy and parcel pages; RS, BS and both buttons work; the NID box opens and its field and button stay disabled; the fingerprint button shows a result; download the officer report after scanning and confirm it lists the identity line as simulated, and that the citizen report has the map but no neighbour ids and no identity step
-- [ ] Both view: pick a parcel on one side and confirm the other side follows and runs its check
+- [ ] Side-by-side view: pick a parcel on one side and confirm the other side follows and runs its check
 - [ ] Kalpurush loads (Network tab) and Latin text stays in Inter
 - [ ] Live site [19] works on a phone and a laptop (click all six examples): https://land-tech-innovation-hackathon-2026.vercel.app/
 - [ ] Public GitHub repo has the latest code, README and `docs/media`
