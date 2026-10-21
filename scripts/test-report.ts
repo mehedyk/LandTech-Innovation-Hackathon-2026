@@ -71,7 +71,7 @@ assert.ok(parcelHtml.includes(`Parcel ${parcel.lineage}`));
 const sq = (x: number, y: number): [number, number][] => [[x, y], [x + 10, y], [x + 10, y + 10], [x, y + 10]];
 const withMap = (mode: 'officer' | 'citizen', ids: boolean, identity?: ReportInput['identity']): ReportInput => ({
   ...base('en', mode), identity,
-  map: { sheet: { w: 100, h: 70 }, rs: sq(0, 0), bs: sq(0.5, 0.5), label: [5, 5], neighbours: [{ ...(ids ? { id: 'L99' } : {}), rs: sq(20, 0), label: [25, 5] }] },
+  map: { view: { x: 0, y: 0, w: 50, h: 50 }, rs: sq(0, 0), bs: sq(0.5, 0.5), label: [5, 5], neighbours: [{ ...(ids ? { id: 'L99' } : {}), rs: sq(20, 0), label: [25, 5] }] },
 });
 const offMap = checkReportHtml(withMap('officer', true, { name: 'Test Seller', result: 'mismatch' }));
 assert.ok(offMap.includes('<svg') && offMap.includes('L99') && offMap.includes('Parcel map'), 'officer report has the map with neighbour ids');
