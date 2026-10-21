@@ -8,6 +8,7 @@ import { describe, ruleTitle } from '../lib/alerts.ts';
 import { useDecisions, type Decision } from '../lib/decisions.ts';
 import { useLang } from '../lib/i18n.tsx';
 import { SEVERITY, baseAlerts, deedByUid, mouzaOf } from '../lib/registry.ts';
+import { CAN_DECIDE, ROLE_CHECKPOINT, useRole } from '../lib/role.tsx';
 
 const keyOf = (a: Alert) => `${a.record}:${a.rule}`;
 
@@ -25,16 +26,21 @@ function Seg<T extends string>({ value, onChange, options }: { value: T; onChang
 export default function Inbox() {
   const { t, lang } = useLang();
   const [sev, setSev] = useState<Severity | 'all'>('all');
-  const [cp, setCp] = useState<Checkpoint | 'all'>('all');
+  const role = useRole();
+  const fixedCp = ROLE_CHECKPOINT[role];      // an office only works on its own checkpoint
+  const canDecide = CAN_DECIDE[role];
+  const [pickedCp, setCp] = useState<Checkpoint | 'all'>('all');
+  const cp: Checkpoint | 'all' = fixedCp ?? pickedCp;
+  const scope = fixedCp ? baseAlerts.filter((a) => a.checkpoint === fixedCp) : baseAlerts;
   const [decisions, setDecision] = useDecisions();
 
   const rows = useMemo(
-    () => baseAlerts
+    () => scope
       .filter((a) => (sev === 'all' || a.severity === sev) && (cp === 'all' || a.checkpoint === cp))
       .sort((a, b) => SEVERITY[a.severity].order - SEVERITY[b.severity].order || a.lineage.localeCompare(b.lineage)),
-    [sev, cp],
+    [sev, cp, fixedCp], // eslint-disable-line react-hooks/exhaustive-deps
   );
-  const open = baseAlerts.filter((a) => !decisions[keyOf(a)]).length;
+  const open = scope.filter((a) => !decisions[keyOf(a)]).length;
   const exportCsv = () => {
     const head = [t('bm.th.parcel'), t('csv.h.rule'), t('csv.h.severity'), t('csv.h.checkpoint'), t('csv.h.reason'), t('csv.h.deed'), t('party.seller'), t('party.buyer'), t('csv.h.decision')];
     const body = rows.map((a) => {
@@ -47,9 +53,11 @@ export default function Inbox() {
 
   return (
     <>
-      <PageTitle title={t('inbox.title')}>{t('inbox.intro', { open, total: baseAlerts.length })}</PageTitle>
+      <PageTitle title={t('inbox.title')}>{t('inbox.intro', { open, total: scope.length })}</PageTitle>
+      {fixedCp && <p className="ag-dash-note mb-4">{t('inbox.scope', { cp: t(`cp.${fixedCp}`) })}</p>}
+      {!canDecide && <p className="ag-dash-note mb-4">{t('inbox.readOnly')}</p>}
       <div className="mb-6 flex flex-wrap gap-3">
-        <Seg value={cp} onChange={setCp} options={[{ v: 'all', label: t('inbox.bothCp') }, { v: 'pre-registration', label: t('cp.pre-registration') }, { v: 'pre-mutation', label: t('cp.pre-mutation') }]} />
+        {!fixedCp && <Seg value={cp} onChange={setCp} options={[{ v: 'all', label: t('inbox.bothCp') }, { v: 'pre-registration', label: t('cp.pre-registration') }, { v: 'pre-mutation', label: t('cp.pre-mutation') }]} />}
         <Seg value={sev} onChange={setSev} options={[{ v: 'all', label: t('inbox.all') }, { v: 'block', label: t('sev.block') }, { v: 'review', label: t('sev.review') }, { v: 'info', label: t('sev.info') }]} />
       </div>
       <div className="ag-toolbar"><DownloadButton label={t('dl.alerts')} onClick={exportCsv} /></div>
@@ -74,9 +82,9 @@ export default function Inbox() {
                 {dec ? (
                   <>
                     <Chip ok={dec !== 'dismiss'}>{t(`dec.${dec}Done`)}</Chip>
-                    <button className={link} type="button" onClick={() => setDecision(keyOf(a), null)}>{t('dec.undo')}</button>
+                    {canDecide && <button className={link} type="button" onClick={() => setDecision(keyOf(a), null)}>{t('dec.undo')}</button>}
                   </>
-                ) : (
+                ) : !canDecide ? null : (
                   (['hold', 'dismiss', 'escalate'] as Decision[]).map((x) => (
                     <button key={x} type="button" onClick={() => setDecision(keyOf(a), x)}
                       className="rounded border border-line bg-card px-3 py-1 text-ink hover:border-brand">{t(`dec.${x}`)}</button>
