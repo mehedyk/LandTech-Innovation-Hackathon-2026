@@ -19,7 +19,9 @@ for (const p of reg.parcel_lineages) {
   assert.ok(g, `no geometry for ${p.lineage}`);
   assert.equal(g.mouza_id, p.mouza_id);
   for (const ring of [g.rs, g.bs]) {
-    assert.ok(ring.length >= 4);
+    assert.ok(ring.length >= 12, `${p.lineage} outline is too simple`);
+    // not a rectangle: some edge must be neither horizontal nor vertical
+    assert.ok(ring.some((q, i) => { const n = ring[(i + 1) % ring.length]; return Math.abs(q[0] - n[0]) > 0.05 && Math.abs(q[1] - n[1]) > 0.05; }), `${p.lineage} looks like a rectangle`);
     for (const [x, y] of ring) assert.ok(x > -3 && x < 103 && y > -3 && y < 73, `${p.lineage} outside the sheet`);
   }
   assert.ok(points(g.rs).includes(','));
@@ -36,6 +38,7 @@ console.log('ok   simulated identity results cover', reg.parties.length, 'people
 const allowed = new Set(['matched', 'mismatch', 'not_enrolled']);
 for (const v of Object.values(ident.people)) assert.ok(allowed.has(v as string));
 assert.ok(!/nid|photo|finger|template/i.test(JSON.stringify(ident.people)), 'identity data must carry no NID, photo or template');
+assert.ok(!/"road"/.test(geoRaw), 'no road rectangles in the geometry');
 assert.ok(geoRaw.includes('FICTIONAL'), 'geometry file must be labelled fictional');
 console.log('ok   identity data holds only ids and made-up statuses; geometry is labelled fictional');
 console.log('all geo tests passed');
