@@ -117,10 +117,12 @@ The design mockups in `design/potential-designs/` show more than the prototype h
 | Price against the published mouza rate | Not built | Published rate table; a price field in the data | v1.1 |
 | Division, district, upazila, mouza filters; deed-number search | Not built | Can be built on dummy data now | v1.1 |
 | Text-size and high-contrast controls; installable offline mode | Not built | None; can be built now | v1.1 |
-| Cadastral map and RS vs BS overlay | **Sketch built** on made-up outlines (`data/parcel_geometry.json`); real geometry not available | Plot geometry from the survey authority | v2 |
+| Cadastral map and RS vs BS overlay | **Sketch built** on made-up, irregular outlines (`data/parcel_geometry.json`, small zoomed map); real geometry not available | Plot geometry from the survey authority | v2 |
 | NID check, party photos | **Locked placeholder** in the officer view (a collapsible box saying why it is off); photos not kept | Legal basis, consent, EC agreement [23] | v2, only if justified |
 | Live fingerprint match | **Simulated demo only**: a button shows a made-up stored result, no sensor, advisory; recorded in the officer report only, labelled as a simulation, never in the citizen report | Out of scope for real use; biometrics are sensitive data [22] | none |
-| Officer and citizen on one screen | **Built** (Both view, side by side) | None | done |
+| Officer and citizen on one screen | **Built** as a side-by-side view for the admin/auditor role only | None | done |
+| Sign-in and roles | **Demo gate built**: four demo accounts (citizen/buyer, sub-registrar, AC Land officer, admin/auditor), checked in the browser only, public passwords; the sign-up page is shown but not active | Identity provider, per-office accounts, server-side roles, audit log; a security review | v1.1 to v2 |
+| Role dashboards | **Built**: one per role, numbers computed from the registry and rules | Real case volumes once a pilot feed exists | done (dummy data) |
 | Digital notice or stay, official seal and QR certificate | Not built | Formal authority and a signature framework | after v2 |
 | Government header, emblem, helpline | Not used | Authorization to use them | after v2 |
 
@@ -128,7 +130,7 @@ The design mockups in `design/potential-designs/` show more than the prototype h
 
 | Stage | Scope | Exit criteria |
 |---|---|---|
-| 0. Prototype | Dummy data, rules engine, officer and citizen views, downloadable reports | Done |
+| 0. Prototype | Dummy data, rules engine, officer and citizen views, role dashboards, demo sign-in for four roles, downloadable reports | Done |
 | 1. Agreement | A written agreement with one sub-registry and its AC Land office: purpose, fields, retention, security review, a named owner on each side | Signed; legal review done |
 | 2. Shadow mode | Read-only feed; alerts shown to officers; workflow unchanged | Officers can explain each alert; false-alarm rate and miss rate measured on real cases with an agreed target; data freshness met for the agreed share of checks |
 | 3. Checkpoint | Results shown inside the registration and mutation steps; decisions recorded; sign-in and roles live | Audit log verified by an independent reviewer; officer time per case not worse than before |
