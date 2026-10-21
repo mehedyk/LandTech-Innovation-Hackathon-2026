@@ -44,8 +44,8 @@ _Figure 1: Figure 1. How a check flows._  Request arrives → Ardh Guard compare
 - Alert inbox for officers: confirm hold, dismiss or escalate.
 - Parcel pages: the CS, SA, RS, BS chain, deeds and mutations together.
 - Citizen “check before you buy” page that shows nothing about other people’s deeds.
-- Bangla (default) and English; citizen, officer and both views.
-- Parcel map with RS and BS outlines (made-up sketch), a simulated fingerprint step and a locked NID box; officer and citizen views side by side; light and dark themes; CSV export of alerts and benchmark; in-app benchmark, how-it-works, roadmap and limits pages.
+- Bangla (default) and English; demo sign-in for four roles (citizen/buyer, sub-registrar, AC Land officer, admin/auditor), each with its own dashboard.
+- Parcel map with RS and BS outlines (made-up sketch), a simulated fingerprint step and a locked NID box; an admin-only side-by-side view; light and dark themes; CSV export of alerts and benchmark; in-app benchmark, how-it-works, roadmap and limits pages.
 
 ## 5. Using it across the country
 
@@ -73,7 +73,7 @@ _Figure 1: Figure 1. How a check flows._  Request arrives → Ardh Guard compare
 
 > AI items are plans; pretrained models would come from platforms such as Hugging Face [18]. No AI model runs in the prototype today.
 
-**Limitations:** dummy data only; small benchmark; chain-break detection untested; exact name matching; the role switch is a demo control, not access control; mortgage, court, vested-property and tax checks are not built.
+**Limitations:** dummy data only; small benchmark; chain-break detection untested; exact name matching; the sign-in is a demo gate, not real authentication or access control; mortgage, court, vested-property and tax checks are not built.
 
 ## 7. Team and tools
 
