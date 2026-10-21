@@ -2,6 +2,8 @@
 
 **Language:** the app opens in Bangla. For the English voice-over, tap **English** in the header first. For the Bangla voice-over, leave it as is; the example buttons are then: সঠিক বিক্রি, একই জমি দুইবার বিক্রি, সরকারি (খাস) জমি, জাল QR কোড. The role now opens on **Both**, which lands on the side-by-side screen (officer frame left, citizen frame right). For the main click path switch the role to **Officer / admin** (or click the **Check a deed** tab), because the full-width layout reads better on video. Optional 5 seconds at the end: switch to **Both** to show the two frames.
 
+**Sign-in (v2 shell):** the app now opens on a sign-in page. Press the **Sub-registrar** card (`registrar@ardh.demo` / `Regis@2026`), then **Sign in**, before you start recording. That role can run **Check a deed** and decide on alerts. The **Benchmark** is visible only to the admin/auditor (`auditor@ardh.demo` / `Audit@2026`, read-only, no decision buttons), so record the 0:55 to 1:12 benchmark part as a second take after signing out and in as the auditor, and join the two takes. The "Roadmap and limits" page is open to every role.
+
 **Layout note:** since the redesign the Check page shows a green or red banner, four summary tiles, a checks grid and a report panel under the form. The click paths below still work; the example buttons sit in the form card at the top. The theme toggle is in the dark green bar above the header; stay on light for the recording.
 
 **Setup:** record the live site [19] in a desktop browser at 1280x720, bookmarks bar hidden, page zoom 110%. Voice-over in English (Bangla version below is optional). Add captions: judges often watch muted. Do one dry run before recording. Trim to under 90 s.
