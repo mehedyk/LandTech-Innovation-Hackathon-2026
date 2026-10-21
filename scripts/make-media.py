@@ -1,5 +1,5 @@
 """Regenerate README screenshots and the demo GIF from the running app (Bangla is the default language).
-Writes map, identity, split (Both view), (also public/deck/img/check*.png for the deck): check, audit (full page), check-dark, check-en, buy, alerts, parcel, benchmark, how, roadmap, report (the downloaded HTML report), mobile, mobile-dark, demo.gif.
+Signs in as the demo admin/auditor (who can open every page), so the session is pre-set; also writes dashboard and login. Writes map, identity, split (admin-only side-by-side view), (also public/deck/img/check*.png for the deck): check, audit (full page), check-dark, check-en, buy, alerts, parcel, benchmark, how, roadmap, report (the downloaded HTML report), mobile, mobile-dark, demo.gif.
 Optional tool. Needs: pip install playwright pillow && playwright install chromium
 Bangla text needs a Bengali font on the machine (for example fonts-noto-core on Linux).
 Usage: npm run build && npx vite preview --port 4176 &   then   python3 scripts/make-media.py
@@ -15,6 +15,15 @@ os.makedirs(OUT, exist_ok=True)
 EX = {'clean': 'সঠিক বিক্রি', 'twice': 'একই জমি দুইবার বিক্রি', 'overrun': 'মালিকানার চেয়ে বেশি বিক্রি',
       'khas': 'সরকারি (খাস) জমি', 'forged': 'জাল QR কোড'}
 
+# The app now needs a sign-in. The admin/auditor demo account can open every page, so all captures use it.
+SESSION = "try{localStorage.setItem('ardh.session.v2','auditor@ardh.demo')}catch(e){}"
+
+def new_page(b, signed_in=True, **kw):
+    c = b.new_context(**kw)
+    if signed_in:
+        c.add_init_script(SESSION)
+    return c.new_page()
+
 def shot(pg, name, full=False):
     pg.evaluate('window.scrollTo(0, 0)')
     pg.wait_for_timeout(350)
@@ -29,7 +38,7 @@ def click(pg, key):
 
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM) if CHROMIUM else p.chromium.launch()
-    pg = b.new_page(viewport={'width': 1200, 'height': 900}, device_scale_factor=1)
+    pg = new_page(b, viewport={'width': 1280, 'height': 900}, device_scale_factor=1)
 
     # --- demo GIF: officer examples, then the citizen page, alerts, parcel, benchmark ---
     pg.goto(BASE + '#/check'); pg.wait_for_timeout(500)
@@ -51,7 +60,7 @@ with sync_playwright() as p:
     pg.get_by_role('button', name='আঙুলের ছাপ স্ক্যান (সিমুলেশন)').click(); pg.wait_for_timeout(1500)
     pg.locator('.ag-nid summary').click(); pg.wait_for_timeout(200)
     pg.locator('.ag-identity').screenshot(path=f'{OUT}/identity.png')
-    sp = b.new_page(viewport={'width': 1440, 'height': 1500}, device_scale_factor=1)
+    sp = new_page(b, viewport={'width': 1440, 'height': 1500}, device_scale_factor=1)
     sp.goto(BASE + '#/split'); sp.wait_for_timeout(500)
     sp.locator('.ag-pane[data-aud=officer]').get_by_role('button', name=EX['twice'], exact=True).click()
     sp.locator('.ag-pane[data-aud=citizen]').get_by_role('button', name=EX['twice'], exact=True).click(); sp.wait_for_timeout(500)
@@ -60,7 +69,7 @@ with sync_playwright() as p:
     with pg.expect_download() as dl:
         pg.get_by_role('button', name='প্রতিবেদন ডাউনলোড (HTML)').first.click()
     html = open(dl.value.path(), encoding='utf-8').read()
-    rp = b.new_page(viewport={'width': 900, 'height': 1000}, device_scale_factor=1)
+    rp = new_page(b, viewport={'width': 900, 'height': 1000}, device_scale_factor=1)
     rp.set_content(html); rp.wait_for_timeout(300); rp.screenshot(path=f'{OUT}/report.png', full_page=True); rp.close()
     # dark theme
     pg.evaluate("localStorage.setItem('ardh.theme','dark')"); pg.reload(); pg.wait_for_timeout(400); click(pg, 'overrun'); shot(pg, 'check-dark')
@@ -76,7 +85,7 @@ with sync_playwright() as p:
     pg.get_by_role('button', name='Sold twice', exact=True).click(); shot(pg, 'check-en')
     pg.get_by_role('button', name='বাংলা', exact=True).click()
 
-    m = b.new_page(viewport={'width': 390, 'height': 844}, device_scale_factor=2)
+    m = new_page(b, viewport={'width': 390, 'height': 844}, device_scale_factor=2)
     m.goto(BASE + '#/check'); m.wait_for_timeout(400); click(m, 'twice'); m.wait_for_timeout(400)
     m.evaluate("window.scrollTo(0, document.querySelector('.ag-banner').offsetTop - 150)"); m.wait_for_timeout(200)
     m.screenshot(path=f'{OUT}/mobile.png')
@@ -85,7 +94,7 @@ with sync_playwright() as p:
     m.screenshot(path=f'{OUT}/mobile-dark.png')
     # deck slide images (1200x760), scrolled so the verdict banner and tiles are in view
     DECK = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'public', 'deck', 'img')
-    dk = b.new_page(viewport={'width': 1200, 'height': 760}, device_scale_factor=1)
+    dk = new_page(b, viewport={'width': 1280, 'height': 760}, device_scale_factor=1)
     dk.goto(BASE + '#/check'); dk.wait_for_timeout(400); click(dk, 'twice'); dk.wait_for_timeout(300)
     dk.evaluate("window.scrollTo(0, document.querySelector('.ag-banner').offsetTop - 120)"); dk.wait_for_timeout(300)
     dk.screenshot(path=f'{DECK}/check.png')
@@ -93,5 +102,9 @@ with sync_playwright() as p:
     dk.get_by_role('button', name='Sold twice', exact=True).click(); dk.wait_for_timeout(300)
     dk.evaluate("window.scrollTo(0, document.querySelector('.ag-banner').offsetTop - 120)"); dk.wait_for_timeout(300)
     dk.screenshot(path=f'{DECK}/check-en.png')
+    # --- v2 shell: the admin dashboard and the sign-in page (no session) ---
+    pg.goto(BASE + '#/dashboard'); pg.wait_for_timeout(500); shot(pg, 'dashboard', full=True)
+    lg = new_page(b, signed_in=False, viewport={'width': 1280, 'height': 900}, device_scale_factor=1)
+    lg.goto(BASE + '#/login'); lg.wait_for_timeout(500); lg.screenshot(path=f'{OUT}/login.png')
     b.close()
 print('media written to docs/media')
