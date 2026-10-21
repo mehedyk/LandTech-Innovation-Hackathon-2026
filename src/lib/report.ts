@@ -7,8 +7,7 @@ import { format, shareText, toBn, type Lang } from './strings.ts';
 export type Pt = [number, number];
 /** Schematic outline data for the report map. Neighbour ids are given only for the officer report. */
 export type ReportMap = {
-  sheet: { w: number; h: number };
-  road?: { x: number; y: number; w: number; h: number };
+  view: { x: number; y: number; w: number; h: number };
   rs: Pt[]; bs: Pt[]; label: Pt;
   neighbours: { id?: string; rs: Pt[]; label: Pt }[];
 };
@@ -70,10 +69,8 @@ const pts = (p: Pt[]) => p.map(([x, y]) => `${x},${y}`).join(' ');
 /** Static SVG of the schematic parcel map for the reports. Colours are fixed so it prints the same everywhere. */
 export function mapSvg(m: ReportMap, tone: 'block' | 'review' | 'clear', label: string, areaLabel: string): string {
   const [fill, stroke] = MAP_TONE[tone];
-  const pad = 2;
   const nb = m.neighbours.map((n) => `<polygon points="${pts(n.rs)}" fill="#fff" stroke="#cbd5e1" stroke-width=".5"/>${n.id ? `<text x="${n.label[0]}" y="${n.label[1]}" text-anchor="middle" font-size="3.2" fill="#475569">${esc(n.id)}</text>` : ''}`).join('');
-  return `<svg viewBox="${-pad} ${-pad} ${m.sheet.w + pad * 2} ${m.sheet.h + pad * 2}" role="img" aria-label="${esc(label)}" style="width:100%;height:auto;border:1px solid #cbd5e1;border-radius:8px;background:#f1f5f9">`
-    + (m.road ? `<rect x="${m.road.x}" y="${m.road.y}" width="${m.road.w}" height="${m.road.h}" fill="#cbd5e1" opacity=".55"/>` : '')
+  return `<svg viewBox="${m.view.x} ${m.view.y} ${m.view.w} ${m.view.h}" role="img" aria-label="${esc(label)}" style="width:100%;max-width:360px;height:auto;border:1px solid #cbd5e1;border-radius:18px 8px 18px 8px;background:#f1f5f9">`
     + nb
     + `<polygon points="${pts(m.rs)}" fill="${fill}" stroke="${stroke}" stroke-width=".9" stroke-linejoin="round"/>`
     + `<polygon points="${pts(m.bs)}" fill="none" stroke="#0f172a" stroke-width=".5" stroke-dasharray="1.6 1.1"/>`
@@ -135,7 +132,7 @@ export function checkReportHtml(i: ReportInput): string {
 ${i.map ? `<h2>${esc(t(L, 'sec.map'))}</h2>${mapSvg(i.map, tone, i.parcel.id, t(L, 'chain.areaVal', { area: i.parcel.area }))}<p class="meta">${esc(t(L, 'rep.mapLegend'))} ${esc(t(L, 'map.note'))}</p>` : ''}
 <h2>${esc(t(L, i.mode === 'officer' ? 'sec.chain' : 'buy.trail'))}</h2>
 <p class="meta">${esc(t(L, 'chain.parcel', { id: i.parcel.id, mouza: i.parcel.mouza, upazila: i.parcel.upazila, district: i.parcel.district, area: i.parcel.area }))}</p>${chain}
-${i.mode === 'officer' && i.identity ? `<h2>${esc(t(L, 'id.title'))}</h2><table>${kv(t(L, 'id.person'), i.identity.name)}${kv(t(L, 'rep.th.status'), identityLine(L, i.identity.result))}</table><p class="meta">${esc(t(L, 'rep.idNote'))}</p>` : ''}
+${i.mode === 'officer' && i.identity ? `<h2>${esc(t(L, 'id.title'))}</h2><table>${kv(t(L, 'id.person'), i.identity.name)}${kv(t(L, 'rep.th.status'), identityLine(L, i.identity.result))}</table><p class="meta">${esc(t(L, 'rep.simNote'))}</p>` : ''}
 ${i.mode === 'citizen' ? `<h2>${esc(t(L, 'buy.next'))}</h2><ol>${['buy.next1', 'buy.next2', 'buy.next3', 'buy.next4'].map((k) => `<li>${esc(t(L, k))}</li>`).join('')}</ol>` : ''}
 <p class="note">${esc(t(L, 'rep.notice'))}</p></main></body></html>`;
 }
@@ -150,8 +147,8 @@ export function checkReportJson(i: ReportInput): string {
     notice: t(i.lang, 'rep.notice'),
     verdict: { level: v.worst ?? 'clear', headline: v.head },
     parcel: i.parcel,
-    ...(i.map ? { parcel_map: { schematic: true, note: t(i.lang, 'map.note'), sheet: i.map.sheet, rs_outline: i.map.rs, bs_outline: i.map.bs } } : {}),
-    ...(i.mode === 'officer' && i.identity ? { identity_check_simulated: { person: i.identity.name, result: i.identity.result, note: t(i.lang, 'rep.idNote') } } : {}),
+    ...(i.map ? { parcel_map: { schematic: true, note: t(i.lang, 'map.note'), view: i.map.view, rs_outline: i.map.rs, bs_outline: i.map.bs } } : {}),
+    ...(i.mode === 'officer' && i.identity ? { identity_check_simulated: { person: i.identity.name, result: i.identity.result, note: t(i.lang, 'rep.simNote') } } : {}),
     inputs: i.mode === 'officer'
       ? { seller: i.seller.name, seller_share_on_record: i.seller.share, buyer: i.buyer, area_sold_dec: i.areaSold, deed_date: i.date, qr_verified: i.qr, signature_matches: i.sig }
       : { seller: i.seller.name, seller_share_on_record: i.seller.share, area_sold_dec: i.areaSold, qr_verified: i.qr },
