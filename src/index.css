@@ -475,7 +475,7 @@ html[data-theme='dark'] .card { box-shadow: none; }
   body { background: #fff; }
 }
 
-/* Mobile bottom tab bar keeps clear of the home indicator. */
+/* Safe-area padding helper (the old phone bottom tab bar was replaced by the hamburger drawer). */
 .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
 
 /* One deliberate moment: the verdict lands when a check finishes. */
