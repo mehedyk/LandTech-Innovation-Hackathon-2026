@@ -3,14 +3,14 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
 import { LangProvider } from './lib/i18n.tsx';
-import { RoleProvider } from './lib/role.tsx';
+import { AuthProvider } from './lib/role.tsx';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
     <LangProvider>
-      <RoleProvider>
+      <AuthProvider>
         <App />
-      </RoleProvider>
+      </AuthProvider>
     </LangProvider>
   </StrictMode>,
 );
