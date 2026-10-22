@@ -34,6 +34,20 @@ assert.ok(csv.startsWith('﻿'));
 assert.ok(csv.includes('"b,c"') && csv.includes('"he said ""hi"""') && csv.includes('"x\ny"') && csv.includes('দলিল'));
 console.log('ok   csv quoting and Bangla');
 
+// 3b. CSV injection (CWE-1236): text cells that start with a formula character get a leading quote; real numbers do not
+const inj = toCsv([['=HYPERLINK("http://x","y")', '+1', '-1', '@SUM(A1)', '\tx', 'safe'], [-5, 3]]);
+assert.ok(inj.includes(`"'=HYPERLINK(""http://x"",""y"")"`) && inj.includes(",'+1,") && inj.includes(",'-1,") && inj.includes(",'@SUM(A1),") && inj.includes("'\tx"));
+assert.ok(inj.includes('safe') && inj.includes('\r\n-5,3'));
+console.log('ok   csv formula injection neutralised');
+
+// 3c. saved decisions: bad shapes are dropped, good ones kept
+const { sanitize } = await import('../src/lib/decisions.ts');
+assert.deepEqual(sanitize(null), {});
+assert.deepEqual(sanitize([1, 2]), {});
+assert.deepEqual(sanitize('x'), {});
+assert.deepEqual(sanitize({ a: 'hold', b: 'nope', c: 5, d: 'escalate' }), { a: 'hold', d: 'escalate' });
+console.log('ok   saved decisions are validated');
+
 // 4. reports
 const parcel = reg.parcel_lineages.find((p) => p.lineage === dbl[0].lineage)!;
 const kh = (uid: string) => reg.khatians.find((k) => k.khatian_uid === uid)!;
@@ -88,4 +102,16 @@ assert.ok(jCit.parcel_map && !jCit.identity_check_simulated && !JSON.stringify(j
 for (const lang of ['bn', 'en'] as const) assert.ok(!/\{\w+\}/.test(checkReportHtml({ ...withMap('officer', true, { name: 'X', result: 'not_enrolled' }), lang })));
 console.log('ok   reports carry the map; the identity step is officer-only and the buyer map has no neighbour ids');
 console.log('ok   reports build in both languages, escape input, and the buyer report leaks nothing');
+// 6. hostile input (regression for the security audit): every name field is escaped, the CSP meta is present,
+//    and the font URL cannot break out of the stylesheet
+const hostile = [`"><img src=x onerror=alert(1)>`, `'><svg/onload=alert(1)>`, `</style><script>alert(1)</script>`, `</title><script>alert(1)</script>`, `&#60;script&#62;`];
+for (const pl of hostile) for (const mode of ['officer', 'citizen'] as const) for (const lang of ['en', 'bn'] as const) {
+  const html = checkReportHtml({ ...base(lang, mode), seller: { name: pl, share: null }, buyer: pl, fontUrl: `http://x/f.ttf');}body{background:url(//evil)}/*` });
+  assert.ok(html.includes('http-equiv="Content-Security-Policy"') && html.includes("default-src 'none'"), 'report CSP meta missing');
+  assert.ok(!/<(img|svg|script)\b[^>]*(onerror|onload|alert)/i.test(html.replace(/<script>[^<]*<\/script>/g, '')), `unescaped: ${pl}`);
+  assert.ok(!html.includes('</style><script>') && !html.includes('</title><script>') && !html.includes('//evil'), `breakout: ${pl}`);
+  JSON.parse(checkReportJson({ ...base(lang, mode), seller: { name: pl, share: null }, buyer: pl }));
+}
+assert.ok(checkReportHtml({ ...base('en', 'officer'), fontUrl: 'https://app.example/fonts/Kalpurush.ttf' }).includes("font-src https://app.example;"));
+console.log('ok   hostile names and font URL cannot break out of the report; CSP meta present');
 console.log('all report tests passed');
