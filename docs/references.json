@@ -136,5 +136,77 @@
     "title": "EC to monitor partner organisations to protect NID data",
     "url": "https://www.tbsnews.net/node/664882",
     "note": "Read. On 13 July 2023 the Election Commission put 171 partner organisations under round-the-clock surveillance, required an ICT Division security certificate to be eligible for an NID data agreement, and planned audits every three to six months."
+  },
+  "24": {
+    "cite": "OWASP Cheat Sheet Series. Content Security Policy Cheat Sheet.",
+    "title": "Content Security Policy Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html",
+    "note": "Read. Calls a strict CSP current leading practice, describes frame-ancestors, base-uri and object-src, and says CSP is a second layer, not the only XSS defence."
+  },
+  "25": {
+    "cite": "OWASP Cheat Sheet Series. HTTP Headers Cheat Sheet.",
+    "title": "HTTP Security Response Headers Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html",
+    "note": "Read. Source for nosniff, Referrer-Policy strict-origin-when-cross-origin, Permissions-Policy, COOP same-origin and HSTS values. It also warns to understand HSTS preload risks first, so we did not set preload."
+  },
+  "26": {
+    "cite": "OWASP Cheat Sheet Series. Clickjacking Defense Cheat Sheet.",
+    "title": "Clickjacking Defense Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
+    "note": "Read. Prefers CSP frame-ancestors; X-Frame-Options is described as obsoleted by it."
+  },
+  "27": {
+    "cite": "OWASP Cheat Sheet Series. Cross Site Scripting Prevention Cheat Sheet.",
+    "title": "Cross Site Scripting Prevention Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+    "note": "Read. HTML-entity rule covers five characters: & < > \" and '. This is why we added ' to esc()."
+  },
+  "28": {
+    "cite": "OWASP Foundation. CSV Injection.",
+    "title": "CSV Injection",
+    "url": "https://community.owasp.org/attacks/CSV_Injection",
+    "note": "Read. Lists = + - @ tab CR LF and full-width forms as formula starters; recommends a leading single quote; notes Excel may drop the quote after a save and reopen, so it is a mitigation, not a guarantee."
+  },
+  "29": {
+    "cite": "MITRE. CWE-1236: Improper Neutralization of Formula Elements in a CSV File.",
+    "title": "CWE-1236: Improper Neutralization of Formula Elements in a CSV File",
+    "url": "https://cwe.mitre.org/data/definitions/1236.html",
+    "note": "Read. Official weakness name and definition."
+  },
+  "30": {
+    "cite": "Supabase Docs. Row Level Security.",
+    "title": "Row Level Security | Supabase Docs",
+    "url": "https://supabase.com/docs/guides/database/postgres/row-level-security",
+    "note": "Read. Enable RLS on every exposed table; anon and authenticated roles; the service_role (secret key) bypasses RLS."
+  },
+  "31": {
+    "cite": "PostgreSQL Documentation. CREATE FUNCTION.",
+    "title": "CREATE FUNCTION (PostgreSQL documentation)",
+    "url": "https://www.postgresql.org/docs/current/sql-createfunction.html",
+    "note": "Read. EXECUTE is granted to PUBLIC by default; for SECURITY DEFINER set search_path and revoke PUBLIC, then grant selectively."
+  },
+  "32": {
+    "cite": "Vite documentation. Env Variables and Modes.",
+    "title": "Env Variables and Modes | Vite",
+    "url": "https://vite.dev/guide/env-and-mode",
+    "note": "Read. VITE_ variables are put into the client bundle and must not hold sensitive information such as API keys."
+  },
+  "33": {
+    "cite": "Rack, J. and Staicu, C.-A. (2023). Proceedings of the 2023 ACM SIGSAC Conference on Computer and Communications Security.",
+    "title": "Jack-in-the-box: An Empirical Study of JavaScript Bundling on the Web and its Security Implications",
+    "url": "https://doi.org/10.1145/3576915.3623140",
+    "note": "Existence and venue confirmed through the CISPA publication record. We did not open the full text; the claim we use (bundled third-party code can hide vulnerable packages) comes from the Consensus summary [11]."
+  },
+  "34": {
+    "cite": "Likaj, X., Khodayari, S. and Pellegrino, G. (2021). Proceedings of the 24th International Symposium on Research in Attacks, Intrusions and Defenses (RAID).",
+    "title": "Where We Stand (or Fall): An Analysis of CSRF Defenses in Web Frameworks",
+    "url": "https://doi.org/10.1145/3471621.3471846",
+    "note": "Existence and venue confirmed through the CISPA publication record. We did not open the full text; the claim we use (defences are often missing or misused, so checklists alone are not enough) comes from the Consensus summary [11]."
+  },
+  "35": {
+    "cite": "Gorijala, H. (2026). IEEE Access, 14, 148273-148302.",
+    "title": "Secrets That Survive Everything: Runtime Credential Exposure in Production Web Applications",
+    "url": "https://doi.org/10.1109/access.2026.3734984",
+    "note": "Listed in the Consensus report [11]. The DOI page did not load for us and a web search did not settle the venue, so treat the venue and figures as unverified until opened. We use it only for the general point that secrets can sit in compiled bundles that source scanners miss."
   }
 }
