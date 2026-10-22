@@ -30,6 +30,12 @@ export function reportId(parts: (string | number | boolean)[]): string {
 
 /** CSV that opens correctly in Excel, including Bangla (UTF-8 BOM, CRLF, quoted fields). */
 export function toCsv(rows: (string | number)[][]): string {
-  const cell = (v: string | number) => { const s = String(v); return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
+  // Cells that start with = + - @ tab CR LF (or their full-width forms) can run as formulas in Excel/Sheets (CSV injection, CWE-1236): prefix a quote.
+  // Numbers are passed through as they are, so a real negative number stays numeric.
+  const cell = (v: string | number) => {
+    let s = String(v);
+    if (typeof v === 'string' && /^[=+\-@\t\r\n\uFF1D\uFF0B\uFF0D\uFF20]/.test(s)) s = `'${s}`;
+    return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+  };
   return '﻿' + rows.map((r) => r.map(cell).join(',')).join('\r\n') + '\r\n';
 }
