@@ -47,6 +47,16 @@ An explainable conflict-detection layer that checks a deed against the khatian c
 
 **Status:** done. Checked in a browser at 1366, 1280 and 390 px, in light and dark, in Bangla and English; `npm run build` and `npm test` pass. README screenshots were regenerated with `scripts/make-media.py` (it now signs in as the demo auditor). **Not regenerated:** the PDF deck and concept notes (`Ardh-pitch-deck.*.pdf`, `docs/concept-note/*`) and `public/deck`; see `SUBMISSION_CHECKLIST.md`.
 
+## Phase 1c: Security audit and hardening (added after the v2 shell)
+**Why:** the app had no security headers, loaded a third-party font, and would have exported spreadsheet formulas unchanged. Before any pilot talk we wanted evidence, not guesses.
+
+**What was done** (details, tests and sources in [`docs/SECURITY_AUDIT.md`](docs/SECURITY_AUDIT.md) [24][25][28])
+1. Audited code, dependencies, reports and the Supabase SQL; ran proof-of-concept tests (framing, storage tampering, hostile report input, CSV formulas).
+2. Fixed: CSP and security headers, self-hosted Inter, CSV neutralising, validated saved decisions plus an error boundary, report CSP and `'` escaping, CI with audit, secret scan and Dependabot.
+3. Left for the pilot: real authentication, per-role RLS, `verify_deed` exposure, server-side decisions with actor and time, MFA, a scanner run on staging.
+
+**Done when:** `npm run build` and `npm test` pass and the report lists what was and was not tested. Status: done.
+
 ## Phase 2: In-product documentation (Sunday late morning)
 This is what cost marks last time, so it lives *in the app*, not only in the README.
 - **Roadmap page:** v1 → v1.1 → v2 with the "what we will do next" list (below).
@@ -143,6 +153,9 @@ The written rulebook [1] says: dummy data only; **no real land records; no scrap
 [21] The Business Standard (2020). Coordinated land registration, mutation to benefit over 1 crore people: Land secretary. [Coordinated land registration, mutation to benefit over 1 crore people: Land secretary](https://www.tbsnews.net/bangladesh/coordinated-land-registration-mutation-benefit-over-1-crore-people-land-secretary-156184)  
 [22] The Daily Star (2025). Bangladesh's Personal Data Protection Ordinance 2025: key takeaways. [Bangladesh's Personal Data Protection Ordinance 2025: key takeaways](https://www.thedailystar.net/tech-startup/news/bangladeshs-personal-data-protection-ordinance-2025-key-takeaways-4015401)  
 [23] The Business Standard (2023). EC to monitor partner organisations to protect NID data. [EC to monitor partner organisations to protect NID data](https://www.tbsnews.net/node/664882)  
+[24] OWASP Cheat Sheet Series. Content Security Policy Cheat Sheet. [Content Security Policy Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html)  
+[25] OWASP Cheat Sheet Series. HTTP Headers Cheat Sheet. [HTTP Security Response Headers Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html)  
+[28] OWASP Foundation. CSV Injection. [CSV Injection](https://community.owasp.org/attacks/CSV_Injection)  
 
 ### Other project references
 
@@ -162,6 +175,15 @@ The written rulebook [1] says: dummy data only; **no real land records; no scrap
 - [18] [Hugging Face](https://huggingface.co)
 - [19] [Ardh Guard: live prototype](https://land-tech-innovation-hackathon-2026.vercel.app/)
 - [20] [Ardh Guard: pitch deck](https://land-tech-innovation-hackathon-2026.vercel.app/deck/)
+- [26] [Clickjacking Defense Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html)
+- [27] [Cross Site Scripting Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
+- [29] [CWE-1236: Improper Neutralization of Formula Elements in a CSV File](https://cwe.mitre.org/data/definitions/1236.html)
+- [30] [Row Level Security | Supabase Docs](https://supabase.com/docs/guides/database/postgres/row-level-security)
+- [31] [CREATE FUNCTION (PostgreSQL documentation)](https://www.postgresql.org/docs/current/sql-createfunction.html)
+- [32] [Env Variables and Modes | Vite](https://vite.dev/guide/env-and-mode)
+- [33] [Jack-in-the-box: An Empirical Study of JavaScript Bundling on the Web and its Security Implications](https://doi.org/10.1145/3576915.3623140)
+- [34] [Where We Stand (or Fall): An Analysis of CSRF Defenses in Web Frameworks](https://doi.org/10.1145/3471621.3471846)
+- [35] [Secrets That Survive Everything: Runtime Credential Exposure in Production Web Applications](https://doi.org/10.1109/access.2026.3734984)
 
 Numbers are the same in every file. Full list with notes on what we read: [`docs/REFERENCES.md`](REFERENCES.md).
 <!-- refs:end -->
