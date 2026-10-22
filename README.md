@@ -135,7 +135,23 @@ flowchart LR
 - **Pure functions.** `analyze(registry)` takes records in and returns alerts out. It is easy to test (`npm test`) and easy to explain.
 - **Hosted on Vercel** [16], deployed from this repository. Live: [19].
 
-**Stack:** TypeScript · React [13] · Vite [14] · Tailwind CSS [15] · Vercel [16] (Supabase [17] planned for decisions and audit) · Kalpurush (Bangla) and Inter (Latin) fonts
+**Stack:** TypeScript · React [13] · Vite [14] · Tailwind CSS [15] · Vercel [16] (Supabase [17] planned for decisions and audit) · Kalpurush (Bangla) and Inter (Latin) fonts, both self-hosted
+
+## Security
+
+We audited the app ourselves and fixed what we found. The full report, with the tests we ran and what we could not test, is in **[`docs/SECURITY_AUDIT.md`](docs/SECURITY_AUDIT.md)**. Each choice follows published guidance rather than our own intuition:
+
+| What we did | Why (source) |
+|---|---|
+| Content Security Policy with `object-src 'none'`, `base-uri 'none'`, `frame-ancestors 'none'`, and no third-party requests | OWASP CSP guidance [24]; clickjacking defence [26] |
+| `nosniff`, `Referrer-Policy`, `Permissions-Policy`, COOP and HSTS headers (no HSTS preload, on purpose) | OWASP HTTP headers guidance [25] |
+| Inter font self-hosted instead of Google Fonts | Lets the CSP stay strict and stops sending visitors' IPs to a third party [24] |
+| Spreadsheet formula characters neutralised in CSV exports | CWE-1236 [29]; OWASP CSV injection [28] (the fix lowers risk but cannot guarantee it in Excel) |
+| Report HTML escapes `'` too, carries its own CSP, and has a permanent hostile-input test | OWASP XSS prevention rules [27] |
+| `service_role` key never in a `VITE_` variable; RLS, `revoke ... from public` and per-role policies planned before real data | Vite [32], Supabase [30], PostgreSQL [31] |
+| CI with `npm audit`, secret scanning and Dependabot | Bundled code can hide vulnerable packages [33]; secrets can sit in compiled bundles [35] |
+
+What is still open: the sign-in is a demo gate (not real authentication), and decisions are not yet stored server-side with who and when. Both are in the roadmap and the report. Three of the cited papers [33][34][35] we know only through the Consensus summary [11] and publication records, not the full text; [`docs/REFERENCES.md`](docs/REFERENCES.md) says exactly what we opened and what we did not.
 
 ## Where Ardh Guard fits in the land system
 
@@ -274,6 +290,7 @@ supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
 - Chain-break detection is untested: the seed has no coherent ownership chains.
 - Names are matched exactly; Bangla spelling variants are not handled, and the dummy names are in Latin script.
 - Each parcel arrives with a lineage id. Linking plots across surveys is the hard part in reality.
+- Security: headers are set in `vercel.json` and were tested on a local copy of the rules, not yet on the live site. See [`docs/SECURITY_AUDIT.md`](docs/SECURITY_AUDIT.md).
 - The sign-in is a demo gate in the browser: the four demo passwords are shown on the page, nothing is checked on a server, and the sign-up page does nothing. It is not real authentication or access control.
 - The citizen page does not check mortgages, court cases or land tax. Neither view checks vested property, heirship, price against mouza rates, or identity.
 - The map outlines (irregular, made up) and the fingerprint step are made up, and the NID box is a locked placeholder. Real versions need survey data and a legal basis. Digital notices and an official seal are not in the app ([why](docs/INTEGRATION.md#8-what-the-portal-mockups-showed-and-what-each-needs)).
@@ -283,7 +300,7 @@ supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
 
 **Concept note (3 pages, Bangla and English):** [`docs/concept-note/`](docs/concept-note). **Pitch deck [20]:** interactive and bilingual at [`/deck/`](https://land-tech-innovation-hackathon-2026.vercel.app/deck/) (arrow keys, `N` notes, `O` overview, `L` language, `F` fullscreen); PDFs in [`docs/deck/`](docs/deck).
 
-More in [`docs/`](docs): [integration plan](docs/INTEGRATION.md) · [plan](docs/PLAN.md) · [research notes](docs/RESEARCH_NOTES.md) · [sources](docs/SOURCES.md) · [concept note outline](docs/CONCEPT_NOTE_OUTLINE.md)
+More in [`docs/`](docs): [integration plan](docs/INTEGRATION.md) · [plan](docs/PLAN.md) · [research notes](docs/RESEARCH_NOTES.md) · [security audit](docs/SECURITY_AUDIT.md) · [sources](docs/SOURCES.md) · [concept note outline](docs/CONCEPT_NOTE_OUTLINE.md)
 
 ## Team Ardh
 
@@ -319,6 +336,18 @@ Code and documentation: [MIT](LICENSE). The Kalpurush font in `public/fonts/` ke
 [18] Hugging Face: platform for pretrained models (planned source for roadmap AI features). [Hugging Face](https://huggingface.co)  
 [19] Team Ardh (2026). Ardh Guard live prototype. [Ardh Guard: live prototype](https://land-tech-innovation-hackathon-2026.vercel.app/)  
 [20] Team Ardh (2026). Ardh Guard pitch deck, interactive and bilingual. [Ardh Guard: pitch deck](https://land-tech-innovation-hackathon-2026.vercel.app/deck/)  
+[24] OWASP Cheat Sheet Series. Content Security Policy Cheat Sheet. [Content Security Policy Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html)  
+[25] OWASP Cheat Sheet Series. HTTP Headers Cheat Sheet. [HTTP Security Response Headers Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html)  
+[26] OWASP Cheat Sheet Series. Clickjacking Defense Cheat Sheet. [Clickjacking Defense Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html)  
+[27] OWASP Cheat Sheet Series. Cross Site Scripting Prevention Cheat Sheet. [Cross Site Scripting Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)  
+[28] OWASP Foundation. CSV Injection. [CSV Injection](https://community.owasp.org/attacks/CSV_Injection)  
+[29] MITRE. CWE-1236: Improper Neutralization of Formula Elements in a CSV File. [CWE-1236: Improper Neutralization of Formula Elements in a CSV File](https://cwe.mitre.org/data/definitions/1236.html)  
+[30] Supabase Docs. Row Level Security. [Row Level Security | Supabase Docs](https://supabase.com/docs/guides/database/postgres/row-level-security)  
+[31] PostgreSQL Documentation. CREATE FUNCTION. [CREATE FUNCTION (PostgreSQL documentation)](https://www.postgresql.org/docs/current/sql-createfunction.html)  
+[32] Vite documentation. Env Variables and Modes. [Env Variables and Modes | Vite](https://vite.dev/guide/env-and-mode)  
+[33] Rack, J. and Staicu, C.-A. (2023). Proceedings of the 2023 ACM SIGSAC Conference on Computer and Communications Security. [Jack-in-the-box: An Empirical Study of JavaScript Bundling on the Web and its Security Implications](https://doi.org/10.1145/3576915.3623140)  
+[34] Likaj, X., Khodayari, S. and Pellegrino, G. (2021). Proceedings of the 24th International Symposium on Research in Attacks, Intrusions and Defenses (RAID). [Where We Stand (or Fall): An Analysis of CSRF Defenses in Web Frameworks](https://doi.org/10.1145/3471621.3471846)  
+[35] Gorijala, H. (2026). IEEE Access, 14, 148273-148302. [Secrets That Survive Everything: Runtime Credential Exposure in Production Web Applications](https://doi.org/10.1109/access.2026.3734984)  
 
 ### Other project references
 
