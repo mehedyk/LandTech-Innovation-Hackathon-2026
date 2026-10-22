@@ -4,8 +4,18 @@ export type Decision = 'hold' | 'dismiss' | 'escalate';
 export const DECISION_LABEL: Record<Decision, string> = { hold: 'Hold confirmed', dismiss: 'Dismissed', escalate: 'Escalated' };
 const KEY = 'ardh.decisions.v1';
 
+const VALID: readonly string[] = ['hold', 'dismiss', 'escalate'];
+
+/** Reads saved decisions and keeps only well-formed entries; anything else (null, arrays, wrong values) is dropped. */
+export function sanitize(raw: unknown): Record<string, Decision> {
+  const out: Record<string, Decision> = {};
+  if (typeof raw !== 'object' || raw === null || Array.isArray(raw)) return out;
+  for (const [k, v] of Object.entries(raw)) if (typeof v === 'string' && VALID.includes(v)) out[k] = v as Decision;
+  return out;
+}
+
 function load(): Record<string, Decision> {
-  try { return JSON.parse(localStorage.getItem(KEY) ?? '{}'); } catch { return {}; }
+  try { return sanitize(JSON.parse(localStorage.getItem(KEY) ?? '{}')); } catch { return {}; }
 }
 
 /** Officer decisions are saved in this browser only (Supabase persistence is on the roadmap). */
