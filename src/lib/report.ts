@@ -36,11 +36,18 @@ export type ReportInput = {
   identity?: ReportIdentity;
 };
 
-export const esc = (s: string | number) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+export const esc = (s: string | number) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 const num = (lang: Lang, x: string | number) => (lang === 'bn' ? toBn(x) : String(x));
 
+/** Only a plain http(s) URL without quotes or brackets may go into the stylesheet. */
+const safeUrl = (u?: string) => (u && /^https?:\/\/[\w.:/-]+$/.test(u) ? u : undefined);
+/** The report is static: no scripts, no network except the font, images only as data URIs. */
+const CSP = (fontUrl?: string) => {
+  const u = safeUrl(fontUrl);
+  return `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; font-src ${u ? new URL(u).origin : "'none'"}; base-uri 'none'; form-action 'none'">`;
+};
 const CSS = (fontUrl?: string) => `
-${fontUrl ? `@font-face{font-family:'Kalpurush';src:url('${fontUrl}') format('truetype')}` : ''}
+${safeUrl(fontUrl) ? `@font-face{font-family:'Kalpurush';src:url('${safeUrl(fontUrl)}') format('truetype')}` : ''}
 *{box-sizing:border-box}
 body{margin:0;background:#f8fafc;color:#334155;font:15px/1.7 'Inter','Kalpurush','Noto Sans Bengali','Nirmala UI',system-ui,sans-serif}
 main{max-width:860px;margin:0 auto;padding:28px 20px 40px}
@@ -122,7 +129,7 @@ export function checkReportHtml(i: ReportInput): string {
     : `<table><tr><th>${esc(t(L, 'rep.th.survey'))}</th><th>${esc(t(L, 'rep.th.status'))}</th></tr>${
         (i.trail ?? []).map((x) => `<tr><td>${esc(t(L, `survey.${x.survey}`))} · ${esc(num(L, x.year))}</td><td>${esc(x.share ? t(L, 'buy.found', { share: shareText(L, x.share) }) : t(L, 'buy.notFound'))}</td></tr>`).join('')}</table>`;
   const title = t(L, i.mode === 'citizen' ? 'rep.doc.citizenTitle' : 'rep.doc.title');
-  return `<!doctype html><html lang="${L}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} · ${esc(i.id)}</title><style>${CSS(i.fontUrl)}</style></head><body><main>
+  return `<!doctype html><html lang="${L}"><head><meta charset="utf-8">${CSP(i.fontUrl)}<meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} · ${esc(i.id)}</title><style>${CSS(i.fontUrl)}</style></head><body><main>
 <header><div class="brand">Ardh Guard</div><h1>${esc(title)}</h1>
 <p class="meta">${esc(t(L, 'rep.id'))}: <b>${esc(i.id)}</b> · ${esc(t(L, 'rep.asOf', { date: i.asOf }))} · ${esc(t(L, 'rep.generated'))}: ${esc(i.generated)}</p></header>
 <section class="verdict ${tone}"><h2>${esc(head)}</h2><p>${esc(sub)}</p></section>
@@ -176,7 +183,7 @@ export function parcelReportHtml(i: ParcelReportInput): string {
   const deeds = i.deeds.length === 0 ? `<p>${esc(t(L, 'cases.noDeeds'))}</p>` : i.deeds.map((d) =>
     `<table style="margin-bottom:12px"><tr><th>${esc(d.head)}</th></tr><tr><td>${esc(d.line)}<br>${d.flags.map((f) => `<span class="pill p-info">${esc(f)}</span> `).join('')}${
       d.alerts.map((a) => `<br><span class="pill p-${a.sev}">${esc(a.sevText)}</span> <b>${esc(a.title)}</b>: ${esc(a.text)}`).join('')}</td></tr></table>`).join('');
-  return `<!doctype html><html lang="${L}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(t(L, 'cases.detailTitle', { id: i.parcel.id }))}</title><style>${CSS(i.fontUrl)}</style></head><body><main>
+  return `<!doctype html><html lang="${L}"><head><meta charset="utf-8">${CSP(i.fontUrl)}<meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(t(L, 'cases.detailTitle', { id: i.parcel.id }))}</title><style>${CSS(i.fontUrl)}</style></head><body><main>
 <header><div class="brand">Ardh Guard</div><h1>${esc(t(L, 'cases.detailTitle', { id: i.parcel.id }))}</h1>
 <p class="meta">${esc(t(L, 'chain.parcel', { id: i.parcel.id, mouza: i.parcel.mouza, upazila: i.parcel.upazila, district: i.parcel.district, area: i.parcel.area }))}<br>${esc(t(L, 'rep.asOf', { date: i.asOf }))} · ${esc(t(L, 'rep.generated'))}: ${esc(i.generated)}</p></header>
 ${i.map ? `<h2>${esc(t(L, 'sec.map'))}</h2>${mapSvg(i.map, i.tone ?? 'clear', i.parcel.id, t(L, 'chain.areaVal', { area: i.parcel.area }))}<p class="meta">${esc(t(L, 'rep.mapLegend'))} ${esc(t(L, 'map.note'))}</p>` : ''}<h2>${esc(t(L, 'sec.chain'))}</h2>${chain}<h2>${esc(t(L, 'cases.deedsTitle'))}</h2>${deeds}
