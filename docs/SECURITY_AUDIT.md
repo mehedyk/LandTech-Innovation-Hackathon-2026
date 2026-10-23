@@ -40,7 +40,7 @@ Severity is for the app as it is (dummy data). "Pilot" severity is what it would
 4.3 **Routing.** Only constants go to `location.replace`; the hash is never used as a redirect target.
 4.4 **Dependencies.** `npm audit`: 0 vulnerabilities. Every package resolves from `registry.npmjs.org`. The only install script is `fsevents` (optional, macOS). No `postinstall` in the project. No source maps in the production build.
 4.5 **Secrets.** No keys, tokens or private keys in the repo. `.env` is gitignored; `.env.example` has empty placeholders. The only hits were the intentional demo passwords.
-4.6 **Privacy by design.** Existing tests check that the citizen report never carries other people's names, deed numbers or the identity step.
+4.6 **Privacy by design.** Existing tests check that the citizen report never carries other people's names, deed numbers, shares or survey-by-survey history. (The simulated identity step they once also covered has been removed.) Open question for a real deployment: the citizen page takes a typed seller name, so on its own it works as a lookup of who is on the current record; a real version must tie each check to the buyer's own deed draft, log it and rate-limit it (see `docs/INTEGRATION.md`).
 4.7 **No external scripts**, so SRI is not needed.
 
 ## 5. Supabase schema review (static; for the pilot, not live yet)
