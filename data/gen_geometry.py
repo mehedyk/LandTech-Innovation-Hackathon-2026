@@ -1,11 +1,10 @@
-"""Schematic parcel geometry and simulated identity-check results (DUMMY, deterministic).
+"""Schematic parcel geometry (DUMMY, deterministic).
 
-Reads seed_registry.json, writes parcel_geometry.json and identity_demo.json next to it.
-Nothing here is a survey, a real boundary, an NID or a biometric template:
+Reads seed_registry.json, writes parcel_geometry.json next to it.
+Nothing here is a survey or a real boundary:
 - Each mouza is a 100 x 70 sheet in arbitrary units. Parcels are irregular, rounded plots from an area-weighted Voronoi layout (no rectangles, no road).
 - 'rs' and 'bs' are the same parcel as two survey outlines; the BS outline is the RS outline with small drift, so the
   overlay has something to show. The drift is random and means nothing.
-- identity_demo.json holds a made-up result per person for the simulated fingerprint step. No templates, no photos.
 Usage: python3 data/gen_geometry.py   (does not touch the registry or the rules)
 """
 import json, os, random
@@ -92,15 +91,5 @@ for mz in reg['mouzas']:
         cx, cy = centroid([tuple(q) for q in rs])
         out['parcels'][p['lineage']] = {'mouza_id': mz['mouza_id'], 'rs': rs, 'bs': bs, 'label': [round(cx, 2), round(cy, 2)]}
 
-# Simulated fingerprint step: one stored made-up result per person.
-fixed = {}
-for lin, status in {'L17': 'mismatch', 'L03': 'not_enrolled'}.items():
-    p = next(q for q in reg['parcel_lineages'] if q['lineage'] == lin)
-    fixed[khat[p['bs']]['owners'][0]['party_id']] = status
-ident = {'_meta': {'note': 'FICTIONAL. A made-up result per person for a simulated fingerprint step. No sensor, no template, no photo, no NID.',
-                   'values': ['matched', 'mismatch', 'not_enrolled']}, 'people': {}}
-for pt in reg['parties']:
-    ident['people'][pt['party_id']] = fixed.get(pt['party_id'], 'matched' if R.random() < 0.9 else 'not_enrolled')
 json.dump(out, open(os.path.join(HERE, 'parcel_geometry.json'), 'w'), separators=(',', ':'))
-json.dump(ident, open(os.path.join(HERE, 'identity_demo.json'), 'w'), separators=(',', ':'))
-print(len(out['parcels']), 'parcels;', len(ident['people']), 'people')
+print(len(out['parcels']), 'parcels')
