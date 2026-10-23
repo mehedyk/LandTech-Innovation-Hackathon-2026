@@ -25,7 +25,7 @@ export default function Benchmark() {
     <>
       <PageTitle title={t('bm.title')}>{t('bm.intro', { n: r.labelled_anomalies })}</PageTitle>
       <p className="max-w-2xl text-lg text-ink">
-        {t(fp === 0 ? 'bm.result' : 'bm.resultFp', { caught: r.detected, total: r.evaluable, flagged: r.deeds_flagged, all: r.deeds_total, fp })}
+        {t(fp === 0 ? 'bm.result' : 'bm.resultFp', { caught: r.detected, planted: r.labelled_anomalies, untested: r.labelled_anomalies - r.evaluable, flagged: r.deeds_flagged, all: r.deeds_total, fp })}
       </p>
       <div role="note" className="my-6 max-w-2xl rounded-lg border border-l-8 border-caution bg-caution-soft p-4 text-caution">
         <p className="font-semibold">{t('bm.noteTitle')}</p>
