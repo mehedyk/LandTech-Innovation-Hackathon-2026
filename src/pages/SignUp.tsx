@@ -12,7 +12,8 @@ export default function SignUp() {
 
   return (
     <AuthLayout>
-      <h2>{t('signup.title')}</h2>
+      <h2>{t('signup.title')} <span className="ag-sim" style={{ marginInlineStart: '.5rem', verticalAlign: 'middle' }}>{t('signup.badge')}</span></h2>
+      <p role="note" className="ag-auth-note">{t('signup.banner')}</p>
       <p className="ag-auth-sub">{t('signup.sub')}</p>
       <form onSubmit={submit}>
         <label className="ag-field"><span>{t('signup.name')}</span><input className="ag-input" autoComplete="name" /></label>
