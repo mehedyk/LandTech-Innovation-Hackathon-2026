@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { Notice, PartyCard, ReportRail, SummaryTiles, ChecksGrid, VerdictBanner, toneOf, type Tile } from '../components/Audit.tsx';
 import ChainStrip from '../components/ChainStrip.tsx';
-import IdentitySection from '../components/Identity.tsx';
+import NidBox from '../components/NidBox.tsx';
 import ParcelMap from '../components/ParcelMap.tsx';
 import { Chip } from '../components/ui.tsx';
 import type { Alert } from '../engine/types.ts';
 import { runCheck, startParams, type CheckResult, type Params } from '../lib/check.ts';
-import { reportMapOf, type IdentityResult } from '../lib/geo.ts';
+import { reportMapOf } from '../lib/geo.ts';
 import { downloadFile, printHtml } from '../lib/download.ts';
 import { useLang } from '../lib/i18n.tsx';
 import { AS_OF, chainOf, mouzaOf, parcelOf, seed } from '../lib/registry.ts';
@@ -99,7 +99,6 @@ export default function Check({ sync }: { sync?: ParcelSync } = {}) {
 function Audit({ alerts, p, focus }: { alerts: Alert[]; p: Params; focus: boolean }) {
   const { t, lang } = useLang();
   const ref = useRef<HTMLDivElement>(null);
-  const [idResult, setIdResult] = useState<IdentityResult | null>(null); // simulated fingerprint result, if the officer ran it
   useEffect(() => { if (focus) ref.current?.scrollIntoView({ block: 'nearest' }); }, [focus]);
 
   const parcel = parcelOf(p.lineage);
@@ -129,7 +128,6 @@ function Audit({ alerts, p, focus }: { alerts: Alert[]; p: Params; focus: boolea
     chain, seller: { name: owner?.name ?? (t('f.sellerOther')), share: owner?.share ?? null },
     buyer, areaSold: Number(p.area), date: p.date, qr: p.qr, sig: p.sig, alerts,
     map: reportMapOf(p.lineage, true),
-    identity: { name: owner?.name ?? t('f.sellerOther'), result: owner && !/^Government/i.test(owner.name) ? idResult : null },
   });
 
   return (
@@ -174,7 +172,7 @@ function Audit({ alerts, p, focus }: { alerts: Alert[]; p: Params; focus: boolea
         ]} />
       </div>
 
-      <IdentitySection partyId={owner && !/^Government/i.test(owner.name) ? owner.party_id : undefined} name={owner?.name ?? t('f.sellerOther')} onResult={setIdResult} />
+      <NidBox />
 
       <Notice>{t('rep.notice')}</Notice>
     </div>
