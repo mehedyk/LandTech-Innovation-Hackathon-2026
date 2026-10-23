@@ -111,7 +111,12 @@
       "evidence": [
         "D0003",
         "MC0003"
-      ]
+      ],
+      "params": {
+        "mutation": "MC0003",
+        "mutated": 187.56,
+        "sold": 117.22
+      }
     },
     {
       "rule": "SHARE_OVERRUN",
@@ -123,7 +128,14 @@
       "evidence": [
         "D0010",
         "K0036"
-      ]
+      ],
+      "params": {
+        "seller": "Mizan Bhuiyan",
+        "share": "1/2",
+        "held": 120.22,
+        "sold": 168.3,
+        "khatian": "K0036"
+      }
     },
     {
       "rule": "SHARE_OVERRUN",
@@ -135,7 +147,14 @@
       "evidence": [
         "D0011",
         "K0036"
-      ]
+      ],
+      "params": {
+        "seller": "Mizan Bhuiyan",
+        "share": "1/2",
+        "held": 120.22,
+        "sold": 144.26,
+        "khatian": "K0036"
+      }
     },
     {
       "rule": "OVERLAPPING_SALE",
@@ -147,7 +166,15 @@
       "evidence": [
         "D0011",
         "D0010"
-      ]
+      ],
+      "params": {
+        "seller": "Mizan Bhuiyan",
+        "prior": 168.3,
+        "total": 312.56,
+        "held": 120.22,
+        "deeds": "9217/2022",
+        "rejected": ""
+      }
     },
     {
       "rule": "REGISTERED_NOT_MUTATED",
@@ -158,7 +185,10 @@
       "message": "Registered 1528 days ago with no mutation case; the record of rights still shows the old owner.",
       "evidence": [
         "D0011"
-      ]
+      ],
+      "params": {
+        "days": 1528
+      }
     },
     {
       "rule": "REGISTERED_NOT_MUTATED",
@@ -169,7 +199,10 @@
       "message": "Registered 1233 days ago with no mutation case; the record of rights still shows the old owner.",
       "evidence": [
         "D0016"
-      ]
+      ],
+      "params": {
+        "days": 1233
+      }
     },
     {
       "rule": "OVERLAPPING_SALE",
@@ -181,7 +214,15 @@
       "evidence": [
         "D0006",
         "D0005"
-      ]
+      ],
+      "params": {
+        "seller": "Jamal Mia",
+        "prior": 121.31,
+        "total": 242.62,
+        "held": 121.31,
+        "deeds": "5797/2023",
+        "rejected": ""
+      }
     },
     {
       "rule": "KHAS_CONFLICT",
@@ -193,7 +234,12 @@
       "evidence": [
         "D0021",
         "K0080"
-      ]
+      ],
+      "params": {
+        "khatian": "K0080",
+        "survey": "BS",
+        "seller": "Rafiq Howlader"
+      }
     },
     {
       "rule": "REGISTERED_NOT_MUTATED",
@@ -204,7 +250,10 @@
       "message": "Registered 991 days ago with no mutation case; the record of rights still shows the old owner.",
       "evidence": [
         "D0021"
-      ]
+      ],
+      "params": {
+        "days": 991
+      }
     },
     {
       "rule": "SHARE_OVERRUN",
@@ -216,7 +265,14 @@
       "evidence": [
         "D0014",
         "K0048"
-      ]
+      ],
+      "params": {
+        "seller": "Salam Khan",
+        "share": "1/2",
+        "held": 28.38,
+        "sold": 56.75,
+        "khatian": "K0048"
+      }
     },
     {
       "rule": "INVALID_QR_OR_SIGNATURE",
@@ -227,7 +283,12 @@
       "message": "Deed 3003/2025: QR code does not verify and signature is inconsistent with the earlier record.",
       "evidence": [
         "D0023"
-      ]
+      ],
+      "params": {
+        "deed": "3003/2025",
+        "qr": 1,
+        "sig": 1
+      }
     },
     {
       "rule": "REJECTED_THEN_RESUBMITTED",
@@ -238,7 +299,10 @@
       "message": "Mutation was rejected (missing dag schedule / DCR) and has been resubmitted.",
       "evidence": [
         "D0008"
-      ]
+      ],
+      "params": {
+        "reason": "missing dag schedule / DCR"
+      }
     }
   ]
 }
