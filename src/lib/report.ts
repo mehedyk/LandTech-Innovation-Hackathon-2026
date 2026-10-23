@@ -11,8 +11,6 @@ export type ReportMap = {
   rs: Pt[]; bs: Pt[]; label: Pt;
   neighbours: { id?: string; rs: Pt[]; label: Pt }[];
 };
-/** Result of the simulated fingerprint step, officer report only. `null` means the officer did not run it. */
-export type ReportIdentity = { name: string; result: 'matched' | 'mismatch' | 'not_enrolled' | null };
 
 export type ReportInput = {
   lang: Lang;
@@ -24,7 +22,6 @@ export type ReportInput = {
   parcel: { id: string; mouza: string; upazila: string; district: string; area: number };
   chain: Khatian[];
   /** Citizen reports list only where the typed name appears, never the other owners. */
-  trail?: { survey: string; year: number; share: string | null }[];
   seller: { name: string; share: string | null };
   buyer: string;
   areaSold: number;
@@ -33,7 +30,6 @@ export type ReportInput = {
   sig: boolean;
   alerts: Alert[];
   map?: ReportMap;
-  identity?: ReportIdentity;
 };
 
 export const esc = (s: string | number) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -85,9 +81,6 @@ export function mapSvg(m: ReportMap, tone: 'block' | 'review' | 'clear', label: 
     + `<text x="${m.label[0]}" y="${m.label[1] + 4.5}" text-anchor="middle" font-size="3.4" fill="#334155">${esc(areaLabel)}</text></svg>`;
 }
 
-const identityLine = (L: Lang, r: ReportIdentity['result']) =>
-  r === null ? t(L, 'id.notRun') : t(L, r === 'matched' ? 'id.matched' : r === 'mismatch' ? 'id.mismatch' : 'id.notEnrolled');
-
 /** Verdict heading and sentence, worded for the officer or for the buyer. */
 export function verdictText(lang: Lang, mode: 'officer' | 'citizen', alerts: Alert[]) {
   const worst = worstOf(alerts);
@@ -111,7 +104,7 @@ export function checkReportHtml(i: ReportInput): string {
   const kv = (k: string, v: string) => `<tr><td class="k">${esc(k)}</td><td>${esc(v)}</td></tr>`;
   const inputs = [
     kv(t(L, 'f.parcel'), t(L, 'cases.row', { id: i.parcel.id, mouza: i.parcel.mouza, area: i.parcel.area })),
-    kv(t(L, 'party.seller'), i.seller.name + (i.seller.share ? ` (${t(L, 'party.share')}: ${shareText(L, i.seller.share)})` : ` (${t(L, 'party.notOnRecord')})`)),
+    kv(t(L, 'party.seller'), i.seller.name + (i.seller.share ? (i.mode === 'officer' ? ` (${t(L, 'party.share')}: ${shareText(L, i.seller.share)})` : ` (${t(L, 'buy.onRecordYes')})`) : ` (${t(L, 'party.notOnRecord')})`)),
     ...(i.mode === 'officer' ? [kv(t(L, 'party.buyer'), i.buyer)] : []),
     kv(t(L, 'xfer.area'), t(L, 'chain.areaVal', { area: i.areaSold })),
     ...(i.mode === 'officer' ? [kv(t(L, 'f.date'), i.date), kv(t(L, 'f.qr'), yes(i.qr)), kv(t(L, 'f.sig'), yes(i.sig))] : [kv(t(L, 'buy.qr'), yes(i.qr))]),
@@ -126,8 +119,7 @@ export function checkReportHtml(i: ReportInput): string {
   const chain = i.mode === 'officer'
     ? `<table><tr><th>${esc(t(L, 'rep.th.survey'))}</th><th>${esc(t(L, 'chain.khatianLbl'))}</th><th>${esc(t(L, 'chain.plotLbl'))}</th><th>${esc(t(L, 'chain.area'))}</th><th>${esc(t(L, 'chain.class'))}</th><th>${esc(t(L, 'chain.owners'))}</th></tr>${
         i.chain.map((k) => `<tr><td>${esc(t(L, `survey.${k.survey}`))} · ${esc(num(L, k.survey_year))}</td><td>${esc(num(L, k.khatian_no))}</td><td>${esc(num(L, k.plot_no))}</td><td>${esc(t(L, 'chain.areaVal', { area: k.area_dec }))}</td><td>${esc(landClass(L, k.land_class))}</td><td>${esc(k.owners.map((o) => `${o.name} (${shareText(L, o.share)})`).join('; '))}</td></tr>`).join('')}</table>`
-    : `<table><tr><th>${esc(t(L, 'rep.th.survey'))}</th><th>${esc(t(L, 'rep.th.status'))}</th></tr>${
-        (i.trail ?? []).map((x) => `<tr><td>${esc(t(L, `survey.${x.survey}`))} · ${esc(num(L, x.year))}</td><td>${esc(x.share ? t(L, 'buy.found', { share: shareText(L, x.share) }) : t(L, 'buy.notFound'))}</td></tr>`).join('')}</table>`;
+    : '';
   const title = t(L, i.mode === 'citizen' ? 'rep.doc.citizenTitle' : 'rep.doc.title');
   return `<!doctype html><html lang="${L}"><head><meta charset="utf-8">${CSP(i.fontUrl)}<meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} · ${esc(i.id)}</title><style>${CSS(i.fontUrl)}</style></head><body><main>
 <header><div class="brand">Ardh Guard</div><h1>${esc(title)}</h1>
@@ -137,9 +129,8 @@ export function checkReportHtml(i: ReportInput): string {
 <h2>${esc(t(L, 'sec.checks'))} · ${esc(t(L, 'tile.checksOf', { n: passedCount(rows), total: rows.length }))}</h2>
 <table><tr><th>${esc(t(L, 'rep.th.check'))}</th><th>${esc(t(L, 'rep.th.status'))}</th><th>${esc(t(L, 'rep.th.detail'))}</th></tr>${checks}</table>
 ${i.map ? `<h2>${esc(t(L, 'sec.map'))}</h2>${mapSvg(i.map, tone, i.parcel.id, t(L, 'chain.areaVal', { area: i.parcel.area }))}<p class="meta">${esc(t(L, 'rep.mapLegend'))} ${esc(t(L, 'map.note'))}</p>` : ''}
-<h2>${esc(t(L, i.mode === 'officer' ? 'sec.chain' : 'buy.trail'))}</h2>
+<h2>${esc(t(L, i.mode === 'officer' ? 'sec.chain' : 'buy.record'))}</h2>
 <p class="meta">${esc(t(L, 'chain.parcel', { id: i.parcel.id, mouza: i.parcel.mouza, upazila: i.parcel.upazila, district: i.parcel.district, area: i.parcel.area }))}</p>${chain}
-${i.mode === 'officer' && i.identity ? `<h2>${esc(t(L, 'id.title'))}</h2><table>${kv(t(L, 'id.person'), i.identity.name)}${kv(t(L, 'rep.th.status'), identityLine(L, i.identity.result))}</table><p class="meta">${esc(t(L, 'rep.simNote'))}</p>` : ''}
 ${i.mode === 'citizen' ? `<h2>${esc(t(L, 'buy.next'))}</h2><ol>${['buy.next1', 'buy.next2', 'buy.next3', 'buy.next4'].map((k) => `<li>${esc(t(L, k))}</li>`).join('')}</ol>` : ''}
 <p class="note">${esc(t(L, 'rep.notice'))}</p></main></body></html>`;
 }
@@ -155,7 +146,6 @@ export function checkReportJson(i: ReportInput): string {
     verdict: { level: v.worst ?? 'clear', headline: v.head },
     parcel: i.parcel,
     ...(i.map ? { parcel_map: { schematic: true, note: t(i.lang, 'map.note'), view: i.map.view, rs_outline: i.map.rs, bs_outline: i.map.bs } } : {}),
-    ...(i.mode === 'officer' && i.identity ? { identity_check_simulated: { person: i.identity.name, result: i.identity.result, note: t(i.lang, 'rep.simNote') } } : {}),
     inputs: i.mode === 'officer'
       ? { seller: i.seller.name, seller_share_on_record: i.seller.share, buyer: i.buyer, area_sold_dec: i.areaSold, deed_date: i.date, qr_verified: i.qr, signature_matches: i.sig }
       : { seller: i.seller.name, seller_share_on_record: i.seller.share, area_sold_dec: i.areaSold, qr_verified: i.qr },
