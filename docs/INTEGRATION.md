@@ -102,7 +102,7 @@ Owners are **candidates to confirm**. "In prototype" is the matching type in `sr
 
 - **Data protection.** The Personal Data Protection Ordinance 2025 is described as requiring informed consent, purpose limitation, prompt breach notification, equivalent protection for cross-border transfers, and heightened security for sensitive data (which includes legal affairs and geo-location), under a National Data Governance Authority, with penalties of up to seven years in prison and a fine of up to BDT 20,00,000 [22]. Land and deed records are not named in that article, but they reveal legal matters and location, so assume they are covered. At the time of that article the draft awaited gazette and some sections would take effect 18 months later; later headlines report a gazette we did not open. **Check the current legal status and obligations with a lawyer before any pilot.**
 - **NID access is tightly controlled.** In July 2023 the Election Commission put 171 partner organisations under round-the-clock surveillance, made an ICT Division security certificate a condition for a data agreement, and planned audits every three to six months [23]. Plan for that bar, and use NID verification only if the checks truly need it.
-- **Biometrics are out of scope.** The mockups show a live fingerprint match. We do not plan it.
+- **Biometrics are out of scope.** The mockups show a live fingerprint match. We do not plan it, and the app no longer has even a simulated one (it was removed before the final round).
 - **Ownership.** Ardh Guard is not a legal title check and does not decide ownership. Outputs and reports say so.
 - **Official identity and authority.** An official seal, a digital notice or stay, government branding or a helpline link all need formal authority and a digital-signature framework. Until then the app presents itself as a prototype and the report ID is only a reference.
 
@@ -113,15 +113,15 @@ The design mockups in `design/potential-designs/` show more than the prototype h
 | Mockup element | Status | What it needs | Phase |
 |---|---|---|---|
 | Seven mandatory checks (double sale, khas, vested property, court case, bank mortgage, heirship, land tax) | Two covered (double sale, khas); five not | Sources in section 5 | v1.1 to v2 |
-| "Missing or stale data" outcome | Partial | Per-source freshness and the `insufficient_data` result | v1.1 |
+| "Missing or stale data" outcome | Partial: the input check (`DATA_NOT_VERIFIABLE`, Review) catches an unknown plot, an unusable area or date, and a duplicate deed number; stale source records are not checked | Per-source freshness and an `insufficient_data` result for a source that is missing or out of date | v1.1 |
 | Price against the published mouza rate | Not built | Published rate table; a price field in the data | v1.1 |
 | Division, district, upazila, mouza filters; deed-number search | Not built | Can be built on dummy data now | v1.1 |
 | Text-size and high-contrast controls; installable offline mode | Not built | None; can be built now | v1.1 |
 | Cadastral map and RS vs BS overlay | **Sketch built** on made-up, irregular outlines (`data/parcel_geometry.json`, small zoomed map); real geometry not available | Plot geometry from the survey authority | v2 |
 | NID check, party photos | **Locked placeholder** in the officer view (a collapsible box saying why it is off); photos not kept | Legal basis, consent, EC agreement [23] | v2, only if justified |
-| Live fingerprint match | **Simulated demo only**: a button shows a made-up stored result, no sensor, advisory; recorded in the officer report only, labelled as a simulation, never in the citizen report | Out of scope for real use; biometrics are sensitive data [22] | none |
+| Live fingerprint match | **Not built, and the simulated demo was removed.** Biometrics are sensitive data [22] and contradict our own no-biometrics rule | Out of scope | none |
 | Officer and citizen on one screen | **Built** as a side-by-side view for the admin/auditor role only | None | done |
-| Sign-in and roles | **Demo gate built**: four demo accounts (citizen/buyer, sub-registrar, AC Land officer, admin/auditor), checked in the browser only, public passwords; the sign-up page is shown but not active | Identity provider, per-office accounts, server-side roles, audit log; a security review | v1.1 to v2 |
+| Sign-in and roles | **Demo gate built**: four demo accounts (citizen/buyer, sub-registrar, AC Land officer, admin/auditor), checked in the browser only, public passwords; the sign-up page is shown but does not work (it says so on the page) | Identity provider, per-office accounts, server-side roles, audit log; a security review | v1.1 to v2 |
 | Role dashboards | **Built**: one per role, numbers computed from the registry and rules | Real case volumes once a pilot feed exists | done (dummy data) |
 | Digital notice or stay, official seal and QR certificate | Not built | Formal authority and a signature framework | after v2 |
 | Government header, emblem, helpline | Not used | Authorization to use them | after v2 |
