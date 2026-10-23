@@ -127,9 +127,10 @@ li+li{margin-top:16px}
   <aside class="notes"><p class="en">Open the live site in another tab. Click Clean sale, then Sold twice, then Government land. Pause on the reason text. Keep this to about 60 seconds.</p><p class="bn">লাইভ সাইট অন্য ট্যাবে খুলুন। “সঠিক বিক্রি”, তারপর “একই জমি দুইবার বিক্রি”, তারপর “সরকারি (খাস) জমি” চাপুন। কারণের লেখায় থামুন। এটি প্রায় ৬০ সেকেন্ডে শেষ করুন।</p></aside>
 </section>
 
-<section class="slide" data-t-en="Eight checks" data-t-bn="আটটি যাচাই">
-  <h2><span class="en">Eight readable checks</span><span class="bn">আটটি পড়ার মতো যাচাই</span></h2>
+<section class="slide" data-t-en="Nine checks" data-t-bn="নয়টি যাচাই">
+  <h2><span class="en">Nine readable checks</span><span class="bn">নয়টি পড়ার মতো যাচাই</span></h2>
   <ul class="grid">
+    <li class="r b"><span class="en">Input could not be verified</span><span class="bn">তথ্য যাচাই করা যায়নি</span></li>
     <li class="h b"><span class="en">Land sold more than once</span><span class="bn">একই জমি একাধিকবার বিক্রি</span></li>
     <li class="h b"><span class="en">Selling more than the seller owns</span><span class="bn">মালিকানার চেয়ে বেশি জমি বিক্রি</span></li>
     <li class="h b"><span class="en">Government (khas) land</span><span class="bn">সরকারি (খাস) জমি</span></li>
@@ -140,7 +141,7 @@ li+li{margin-top:16px}
     <li class="n b"><span class="en">Mutation resubmitted after rejection</span><span class="bn">প্রত্যাখ্যানের পর নামজারি আবার দাখিল</span></li>
   </ul>
   <p class="legend b"><span class="chip" style="background:var(--redS);color:var(--red)"><span class="en">Hold</span><span class="bn">আটকে রাখুন</span></span> <span class="chip" style="background:var(--amberS);color:var(--amber)"><span class="en">Review</span><span class="bn">পর্যালোচনা</span></span> <span class="chip" style="background:#eaf1f1"><span class="en">Note</span><span class="bn">টীকা</span></span> &nbsp; <span class="en">Every check is a plain rule an officer can explain.</span><span class="bn">প্রতিটি যাচাই একটি সহজ নিয়ম, যা কর্মকর্তা ব্যাখ্যা করতে পারেন।</span></p>
-  <aside class="notes"><p class="en">Why plain rules and not a black box: an officer must explain a refusal. If asked about AI: none runs in the app today; it is on the roadmap.</p><p class="bn">কেন নিয়মভিত্তিক, “ব্ল্যাক বক্স” নয়: কর্মকর্তাকে প্রত্যাখ্যানের কারণ ব্যাখ্যা করতে হয়। AI নিয়ে প্রশ্ন এলে: আজ অ্যাপে কোনো AI চলে না; এটি রোডম্যাপে আছে।</p></aside>
+  <aside class="notes"><p class="en">Why plain rules and not a black box: an officer must explain a refusal. If asked about AI: none runs in the app today; it is on the roadmap. Unreadable input is never shown as clear: the first check sends it to an officer as “not verified”.</p><p class="bn">কেন নিয়মভিত্তিক, “ব্ল্যাক বক্স” নয়: কর্মকর্তাকে প্রত্যাখ্যানের কারণ ব্যাখ্যা করতে হয়। AI নিয়ে প্রশ্ন এলে: আজ অ্যাপে কোনো AI চলে না; এটি রোডম্যাপে আছে। পড়া না যাওয়া তথ্য কখনো “পরিষ্কার” দেখায় না: প্রথম যাচাইটি তা “যাচাই হয়নি” বলে কর্মকর্তার কাছে পাঠায়।</p></aside>
 </section>
 
 <section class="slide" data-t-en="Views and languages" data-t-bn="দেখার ধরন ও ভাষা">
@@ -158,13 +159,14 @@ li+li{margin-top:16px}
   <h2><span class="en">What we can honestly say</span><span class="bn">যা আমরা সততার সঙ্গে বলতে পারি</span></h2>
   <div class="two">
     <div>
-      <p class="big b"><span class="en">8 of 8 testable planted anomalies caught</span><span class="bn">যাচাইযোগ্য ৮টির ৮টি বসানো অসংগতি ধরা পড়েছে</span></p>
-      <p class="warn b"><span class="en">A regression test on dummy data, not accuracy. The rules were written knowing the data.</span><span class="bn">ডামি ডেটায় রিগ্রেশন টেস্ট, নির্ভুলতা নয়। ডেটা জেনেই নিয়ম লেখা হয়েছে।</span></p>
+      <p class="big b"><span class="en">8 of the 9 planted anomalies caught</span><span class="bn">ইচ্ছা করে বসানো ৯টির ৮টি ধরা পড়েছে</span></p>
+      <p class="warn b"><span class="en">A regression test on dummy data, not accuracy. The rules were written knowing the data. The ninth anomaly, a chain break, cannot be tested on this seed.</span><span class="bn">ডামি ডেটায় রিগ্রেশন টেস্ট, নির্ভুলতা নয়। ডেটা জেনেই নিয়ম লেখা হয়েছে। নবম অসংগতি, ধারা-ভাঙা, এই ডেটায় যাচাই করা যায় না।</span></p>
     </div>
     <ul>
       <li class="b"><span class="en">Dummy data only. No real land records</span><span class="bn">শুধু ডামি ডেটা। কোনো বাস্তব ভূমি রেকর্ড নেই</span></li>
       <li class="b"><span class="en">Small benchmark; chain-break detection untested</span><span class="bn">ছোট বেঞ্চমার্ক; রেকর্ডের ধারা ভাঙা শনাক্তের পরীক্ষা হয়নি</span></li>
-      <li class="b"><span class="en">Names matched exactly; Bangla spelling variants not handled</span><span class="bn">নাম হুবহু মেলানো হয়; বাংলা বানানের ভিন্নতা সামলানো যায় না</span></li>
+      <li class="b"><span class="en">Tolerances (0.5%, 2%, 180 days) are our assumptions</span><span class="bn">সহনসীমা (০.৫%, ২%, ১৮০ দিন) আমাদের অনুমান</span></li>
+    <li class="b"><span class="en">Names matched exactly; Bangla spelling variants not handled</span><span class="bn">নাম হুবহু মেলানো হয়; বাংলা বানানের ভিন্নতা সামলানো যায় না</span></li>
       <li class="b"><span class="en">Flags cases for officers; not a legal title check</span><span class="bn">কর্মকর্তাদের জন্য সতর্কবার্তা; আইনি মালিকানা যাচাই নয়</span></li>
     </ul>
   </div>
