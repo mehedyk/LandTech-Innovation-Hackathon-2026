@@ -4,6 +4,7 @@ import { rulePlain, ruleTitle } from '../lib/alerts.ts';
 import { useLang } from '../lib/i18n.tsx';
 
 const CHECKS: { id: RuleId; sev: Severity; cp: 'pre-registration' | 'pre-mutation'; parcel?: string }[] = [
+  { id: 'DATA_NOT_VERIFIABLE', sev: 'review', cp: 'pre-registration' },
   { id: 'OVERLAPPING_SALE', sev: 'block', cp: 'pre-registration', parcel: 'L05' },
   { id: 'SHARE_OVERRUN', sev: 'block', cp: 'pre-registration', parcel: 'L12' },
   { id: 'KHAS_CONFLICT', sev: 'block', cp: 'pre-registration', parcel: 'L20' },
