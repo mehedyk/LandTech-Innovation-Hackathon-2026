@@ -45,7 +45,7 @@ An explainable conflict-detection layer that checks a deed against the khatian c
 
 **Still demo-only (do not present as real):** the four passwords are public and nothing is checked on a server; roles are a front-end filter; decisions are stored in the browser only. Real sign-in, per-office accounts, server-side roles and the hash-chained audit log stay in Phase 4 and Phase 6.
 
-**Status:** done. Checked in a browser at 1366, 1280 and 390 px, in light and dark, in Bangla and English; `npm run build` and `npm test` pass. README screenshots were regenerated with `scripts/make-media.py` (it now signs in as the demo auditor). **Not regenerated:** the PDF deck and concept notes (`Ardh-pitch-deck.*.pdf`, `docs/concept-note/*`) and `public/deck`; see `SUBMISSION_CHECKLIST.md`.
+**Status:** done. Checked in a browser at 1366, 1280 and 390 px, in light and dark, in Bangla and English; `npm run build` and `npm test` pass. README screenshots were regenerated with `scripts/make-media.py` (it now signs in as the demo auditor). The PDF decks were not regenerated in the pre-final pass; see `SUBMISSION_CHECKLIST.md`.
 
 ## Phase 1c: Security audit and hardening (added after the v2 shell)
 **Why:** the app had no security headers, loaded a third-party font, and would have exported spreadsheet formulas unchanged. Before any pilot talk we wanted evidence, not guesses.
@@ -61,10 +61,10 @@ An explainable conflict-detection layer that checks a deed against the khatian c
 This is what cost marks last time, so it lives *in the app*, not only in the README.
 - **Roadmap page:** v1 → v1.1 → v2 with the "what we will do next" list (below).
 - **Limitations page:** dummy data, tiny benchmark, no chain-break evaluation, no Bangla name matching.
-- **How it works page:** architecture diagram, the 8 rules with plain-language examples, the two checkpoints.
+- **How it works page:** architecture diagram, the 9 checks with plain-language examples, the two checkpoints.
 - **Data & AI page:** exactly what data and which AI tools were used (mirrors the README).
 
-**Phase 2 status:** done. The app has How it works (flow, two checkpoints, all 8 checks with examples), Roadmap and limits, and Data and AI used (inside Roadmap and limits). Engine tests: `npm test`.
+**Phase 2 status:** done. The app has How it works (flow, two checkpoints, all 9 checks with examples), Roadmap and limits, and Data and AI used (inside Roadmap and limits). Engine tests: `npm test`.
 
 ## Phase 3: Submission pack
 **Status:** done for Round 1. After the v2 shell the README screenshots and `public/deck/img/check*.png` were regenerated; the PDF deck and concept notes still show the old interface. Re-check the pack after the redesign: regenerate screenshots, deck images and the concept note figure from a real build (`scripts/make-media.py`, `scripts/build-concept-note.py`), and tick `SUBMISSION_CHECKLIST.md`.
@@ -89,9 +89,9 @@ You pay 100 BDT within 3 days of the announcement. Then, in this order:
    - **Owner alert** simulation ("a transfer was attempted on your plot") and **dispute hold** state.
    - **Supabase** for officer decisions plus the hash-chained audit log (reuse `supabase/archive/0001_prototype_schema.sql`, which was tested).
    - **Bangla name matching** (spelling variants).
-   - A tougher benchmark slice: "messy but innocent" cases (spelling variants, delayed mutation, splits) to measure false positives.
-   - **A "missing or stale data" outcome** beside clear and flag, so a case with a missing or late source goes to manual verification instead of reading as clear.
-   - **Done after Round 1 (dummy data):** parcel map sketch with RS and BS outlines, simulated fingerprint step, locked NID box, and a side-by-side officer and citizen screen (the Both view, now admin-only). **Done (v2 shell):** demo sign-in for four roles, role dashboards, hamburger navigation, small irregular parcel map (Phase 1b).
+   - A tougher benchmark slice: "messy but innocent" cases (spelling variants, delayed mutation, splits) to measure false positives. **Started:** `scripts/test-rules.ts` tests a resale before mutation, two honest small sales and a rejected mutation; a measured slice is still to do.
+   - **A "missing or stale data" outcome** beside clear and flag, so a case with a missing or late source goes to manual verification instead of reading as clear. **Half done:** the input check (`DATA_NOT_VERIFIABLE`) sends unreadable deeds to an officer as "not verified"; the stale-record half (per-source freshness) is still to do.
+   - **Done after Round 1 (dummy data):** parcel map sketch with RS and BS outlines, locked NID box, and a side-by-side officer and citizen screen (the Both view, now admin-only). A simulated fingerprint step was also built and then removed before the final round. **Done (v2 shell):** demo sign-in for four roles, role dashboards, hamburger navigation, small irregular parcel map (Phase 1b).
    - **Left out of the redesign on purpose, buildable on dummy data now:** price check against a published mouza rate table; division, district, upazila and mouza filters and a deed-number search; text-size and high-contrast controls; an installable offline mode (the data is static JSON, so this is cheap).
 4. Add the P1 idea as a clearly labelled *future* module, not a promise.
 
@@ -108,7 +108,7 @@ These were shown in the portal mockups but need a data source, a legal basis or 
 | Vested and abandoned property, court injunction, bank mortgage, heirship certificate, land development tax | Needs a source from its owning office; five of the portal's seven mandatory checks | Ask each office what can be queried by plot |
 | Real cadastral map (a made-up sketch exists) | Needs plot geometry from the survey authority | Confirm availability and licence |
 | Real NID match and photos (a locked placeholder exists) | Needs a legal basis, consent and an Election Commission agreement; the EC applies strict partner controls [23] | Decide whether any check truly needs it; legal review |
-| Real fingerprint match (a simulated demo exists) | Biometric, sensitive data [22] | Not planned |
+| Real fingerprint match (the simulated demo was removed) | Biometric, sensitive data [22] | Not planned |
 | Digital notice or stay, official seal and QR certificate, government header and helpline | Needs formal authority and a digital-signature framework | Not before an agreement |
 | Integration gateway, shadow mode at one sub-registry and AC Land office | Needs a written agreement and security review | Draft the agreement scope |
 | Real sign-in, server-side roles, saved decisions, audit log (a front-end demo sign-in with four roles exists, Phase 1b) | Our own work, no outside dependency | Supabase, as in Phase 4 |
