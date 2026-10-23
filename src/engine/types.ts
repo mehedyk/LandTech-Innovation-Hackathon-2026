@@ -24,7 +24,7 @@ export type Checkpoint = 'pre-registration' | 'pre-mutation';
 export type RuleId =
   | 'INVALID_QR_OR_SIGNATURE' | 'SELLER_NOT_RECORDED_OWNER' | 'KHAS_CONFLICT'
   | 'SHARE_OVERRUN' | 'OVERLAPPING_SALE' | 'MUTATION_AREA_MISMATCH'
-  | 'REGISTERED_NOT_MUTATED' | 'REJECTED_THEN_RESUBMITTED';
+  | 'REGISTERED_NOT_MUTATED' | 'REJECTED_THEN_RESUBMITTED' | 'DATA_NOT_VERIFIABLE';
 export type Alert = {
   rule: RuleId; severity: Severity; checkpoint: Checkpoint; record: string; lineage: string;
   message: string;      // plain-language reason shown to the officer
