@@ -1,5 +1,4 @@
 import geoJson from '../../data/parcel_geometry.json';
-import identJson from '../../data/identity_demo.json';
 
 export type Pt = [number, number];
 export type ParcelGeo = { mouza_id: string; rs: Pt[]; bs: Pt[]; label: Pt };
@@ -36,7 +35,3 @@ export const reportMapOf = (lineage: string, withIds: boolean) => {
 };
 export const points = (pts: Pt[]) => pts.map(([x, y]) => `${x},${y}`).join(' ');
 
-/** Made-up result for the simulated fingerprint step. Not a biometric, not stored anywhere. */
-export type IdentityResult = 'matched' | 'mismatch' | 'not_enrolled';
-const people = (identJson as unknown as { people: Record<string, IdentityResult> }).people;
-export const identityOf = (partyId: string): IdentityResult => people[partyId] ?? 'not_enrolled';
