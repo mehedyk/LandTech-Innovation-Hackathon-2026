@@ -25,7 +25,7 @@
 | *(chain break)* | Owner discontinuity across surveys with no link deed | L17, **not evaluable** (see `data/DATA_README.md`) |
 
 ## Benchmark result (run `npm run eval`)
-8 of 8 evaluable anomalies detected; 8 of 25 deeds flagged, none outside the labels.
+8 of the 9 planted anomalies detected; the ninth (chain break, L17) is not testable on this seed and is not counted as caught. 8 of 25 deeds flagged, none outside the labels.
 **Do not present this as accuracy.** The seed is small and synthetic, and the rules were written knowing how it was generated. It is a regression test that the rules do what we designed them to do.
 
 ## Honest open questions
