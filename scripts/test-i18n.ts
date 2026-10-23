@@ -20,7 +20,7 @@ console.log('ok   all', Object.keys(S).length, 'keys have matching Bangla and En
 
 // 2. coverage: every rule and every seeded anomaly has copy
 const reg: Registry = JSON.parse(readFileSync(new URL('../data/seed_registry.json', import.meta.url), 'utf8'));
-const rules: RuleId[] = ['INVALID_QR_OR_SIGNATURE', 'SELLER_NOT_RECORDED_OWNER', 'KHAS_CONFLICT', 'SHARE_OVERRUN', 'OVERLAPPING_SALE', 'MUTATION_AREA_MISMATCH', 'REGISTERED_NOT_MUTATED', 'REJECTED_THEN_RESUBMITTED'];
+const rules: RuleId[] = ['INVALID_QR_OR_SIGNATURE', 'SELLER_NOT_RECORDED_OWNER', 'KHAS_CONFLICT', 'SHARE_OVERRUN', 'OVERLAPPING_SALE', 'MUTATION_AREA_MISMATCH', 'REGISTERED_NOT_MUTATED', 'REJECTED_THEN_RESUBMITTED', 'DATA_NOT_VERIFIABLE'];
 for (const r of rules) for (const k of [`rule.${r}.title`, `rule.${r}.plain`, `msg.${r}`, `how.ex.${r}`]) assert.ok(S[k], `missing ${k}`);
 for (const a of new Set(reg.anomaly_labels.map((l) => l.anomaly))) assert.ok(S[`anom.${a}`], `missing anom.${a}`);
 console.log('ok   every rule and planted anomaly has copy');
@@ -36,6 +36,22 @@ for (const a of alerts) {
   assert.ok(!/\{\w+\}/.test(describeCitizen(a, 'bn')));
 }
 console.log('ok   all', alerts.length, 'alerts render in Bangla and English');
+
+// 3b. the alert shapes the seed never produces (input gate, resale before mutation, rejected mutation noted) also render cleanly
+import type { Alert } from '../src/engine/types.ts';
+const extra: Alert[] = [
+  { rule: 'DATA_NOT_VERIFIABLE', severity: 'review', checkpoint: 'pre-registration', record: 'X', lineage: '', message: '', evidence: ['X'], params: { deed: '12/2026', plot: 1, area: 1, date: 1, future: 1, dup: 1 } },
+  { rule: 'SELLER_NOT_RECORDED_OWNER', severity: 'review', checkpoint: 'pre-registration', record: 'X', lineage: 'L01', message: '', evidence: ['X'], params: { seller: 'A B', khatian: 'K-1', via: '12/2026, 13/2026' } },
+  { rule: 'OVERLAPPING_SALE', severity: 'block', checkpoint: 'pre-registration', record: 'X', lineage: 'L01', message: '', evidence: ['X'], params: { seller: 'A B', prior: 10, total: 20, held: 15, deeds: '12/2026', rejected: '12/2026' } },
+];
+for (const a of extra) for (const lang of ['bn', 'en'] as const) {
+  const text = describe(a, lang);
+  assert.ok(!/\{\w+\}/.test(text), `unresolved placeholder: ${a.rule} ${lang}: ${text}`);
+  assert.ok(!/\{\w+\}/.test(describeCitizen(a, lang)));
+}
+assert.ok(describe(extra[2], 'bn').includes('12/2026') && !/[০-৯]\/২০২৬/.test(describe(extra[2], 'bn')), 'deed numbers keep their digits inside the rejected-mutation note');
+assert.ok(!describeCitizen(extra[1], 'en').includes('12/2026'), 'citizen text for a pending resale names no other deed');
+console.log('ok   input-gate, pending-resale and rejected-mutation alerts render in both languages');
 
 // 4. numbers and ids
 assert.equal(toBn('2012'), '২০১২');
