@@ -18,7 +18,7 @@
   <rect class="box b3" x="670" y="40" width="200" height="90" rx="10"/>
   <g text-anchor="middle">
     <text class="t" x="110" y="80">Deed or mutation</text><text class="s" x="110" y="102">request arrives</text>
-    <text class="t" x="330" y="80">Ardh Guard</text><text class="s" x="330" y="102">8 explainable checks</text>
+    <text class="t" x="330" y="80">Ardh Guard</text><text class="s" x="330" y="102">9 explainable checks</text>
     <text class="t" x="550" y="80">Alert with reasons</text><text class="s" x="550" y="102">what, why, which records</text>
     <text class="t" x="770" y="80">Officer decides</text><text class="s" x="770" y="102">hold, dismiss or escalate</text>
   </g>
