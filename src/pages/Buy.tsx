@@ -28,7 +28,7 @@ function evaluate(s: State): CheckResult {
 
 export default function Buy({ sync }: { sync?: { lineage: string; set: (lineage: string) => void } } = {}) {
   const { t } = useLang();
-  const [s, setS] = useState<State>({ lineage: 'L06', seller: ownerName('L06'), area: '30', qr: true });
+  const [s, setS] = useState<State>({ lineage: 'L06', seller: '', area: '30', qr: true }); // no name is suggested until the person types one or taps an example
   const [result, setResult] = useState<CheckResult | null>(null);
   const [shown, setShown] = useState<State>(s); // the inputs the visible result was run with
   const show = (next: State) => { sync?.set(next.lineage); setS(next); setShown(next); setResult(evaluate(next)); };
@@ -47,6 +47,7 @@ export default function Buy({ sync }: { sync?: { lineage: string; set: (lineage:
         <p className="ag-lead">{t('buy.intro')}</p>
 
         <p className="ag-eg-label">{t('ex.label')}</p>
+        <p className="ag-privacy">{t('buy.egNote')}</p>
         <div className="ag-chips">
           {examples().map((ex) => (
             <button key={ex.key} type="button" className="ag-chip-btn"
@@ -94,16 +95,15 @@ function Result({ alerts, state }: { alerts: Alert[]; state: State }) {
   const tone = toneOf(worst);
   const rows = checkRows(alerts);
   const passed = passedCount(rows);
-  const trail = chain.map((k) => ({ k, owner: k.owners.find((o) => o.name.trim().toLowerCase() === state.seller.trim().toLowerCase()) }));
-  const found = trail.filter((x) => x.owner).length;
+  // The buyer learns only whether the seller they typed is on the current record: no earlier surveys, no other owners, no shares.
+  const latestOwner = latest.owners.find((o) => o.name.trim().toLowerCase() === state.seller.trim().toLowerCase());
   const khas = alerts.some((a) => a.rule === 'KHAS_CONFLICT');
-  const latestOwner = trail.at(-1)?.owner;
   const id = reportId(['buyer', state.lineage, state.seller.trim().toLowerCase(), state.area, state.qr, AS_OF]);
 
   const tiles: Tile[] = [
     { label: t('tile.checks'), value: t('tile.checksOf', { n: passed, total: PRE_REG.length }), tone, ring: passed / PRE_REG.length },
     { label: t('tile.verdict'), value: worst ? t(`sev.${worst}`) : t('cases.none'), tone },
-    { label: t('tile.trail'), value: t('tile.trailVal', { n: found }), tone: found === chain.length ? 'ok' : found === 0 ? 'bad' : 'warn' },
+    { label: t('tile.onRecord'), value: latestOwner ? t('tile.onRecordYes') : t('tile.onRecordNo'), tone: latestOwner ? 'ok' : 'bad' },
     { label: t('tile.land'), value: khas ? t('tile.landKhas') : t('tile.landOk'), sub: landClass(lang, latest.land_class), tone: khas ? 'bad' : 'ok' },
   ];
 
@@ -111,7 +111,7 @@ function Result({ alerts, state }: { alerts: Alert[]; state: State }) {
   const input = (): ReportInput => ({
     lang, mode: 'citizen', id, asOf: AS_OF, generated: new Date().toISOString().slice(0, 16).replace('T', ' '), fontUrl: `${location.origin}/fonts/Kalpurush.ttf`,
     parcel: { id: state.lineage, mouza: m?.name ?? '', upazila: m?.upazila ?? '', district: m?.district ?? '', area: parcel.area_dec },
-    chain: [], trail: trail.map(({ k, owner }) => ({ survey: k.survey, year: k.survey_year, share: owner?.share ?? null })),
+    chain: [],
     seller: { name: state.seller || '—', share: latestOwner?.share ?? null },
     buyer: '', areaSold: Number(state.area), date: AS_OF, qr: state.qr, sig: true, alerts,
     map: reportMapOf(state.lineage, false), // the buyer's map shows only their own plot, no neighbour ids
@@ -127,17 +127,6 @@ function Result({ alerts, state }: { alerts: Alert[]; state: State }) {
 
       <div className="ag-split">
         <div className="ag-stack">
-          <section className="card ag-section">
-            <h2>{t('buy.trail')}</h2>
-            <ul className="ag-checks" style={{ marginTop: '1rem' }}>
-              {trail.map(({ k, owner }) => (
-                <li key={k.khatian_uid} className="ag-check" data-state={owner ? 'pass' : 'flag'} data-tone={owner ? 'ok' : 'warn'}>
-                  <div className="ag-check-head"><h3>{t(`survey.${k.survey}`)} · {d(k.survey_year)}</h3></div>
-                  <p>{owner ? t('buy.found', { share: shareText(lang, owner.share) }) : t('buy.notFound')}</p>
-                </li>
-              ))}
-            </ul>
-          </section>
           <section className="card ag-section">
             <h2>{t('buy.next')}</h2>
             <ol style={{ margin: '.75rem 0 0', paddingLeft: '1.25rem' }}>
