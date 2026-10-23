@@ -99,7 +99,7 @@ function AdminBoard() {
         <Stat icon="alerts" label={t('dash.s.total')} value={num(all.length)} tone="warn" />
         <Stat icon="check" label={t('dash.s.holdRate')} value={`${num(Math.round((flaggedDeeds(all.filter((a) => a.severity === 'block')) / seed.deeds.length) * 100))}%`} hint={`${t('dash.h.deeds', { n: seed.deeds.length })}`} tone="bad" />
         <Stat icon="tick" label={t('dash.s.decRate')} value={`${num(Math.round((done / Math.max(1, all.length)) * 100))}%`} hint={`${num(done)}/${num(all.length)}`} tone="ok" />
-        <Stat icon="benchmark" label={t('dash.s.bench')} value={`${num(bm.detected)}/${num(bm.evaluable)}`} hint={`${t('dash.s.hold')}: ${num(holds)}`} tone="ok" />
+        <Stat icon="benchmark" label={t('dash.s.bench')} value={`${num(bm.detected)}/${num(bm.labelled_anomalies)}`} hint={t('dash.s.benchHint', { n: bm.labelled_anomalies - bm.evaluable })} tone="ok" />
       </StatGrid>
       <div className="ag-dash-cols">
         <Panel title={t('dash.sec.cp')}>
