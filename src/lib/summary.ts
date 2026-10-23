@@ -1,7 +1,7 @@
 import type { Alert, RuleId, Severity } from '../engine/types.ts';
 
-/** The five checks that apply to a new deed before registration (the same five the How it works page lists). */
-export const PRE_REG: RuleId[] = ['OVERLAPPING_SALE', 'SHARE_OVERRUN', 'KHAS_CONFLICT', 'SELLER_NOT_RECORDED_OWNER', 'INVALID_QR_OR_SIGNATURE'];
+/** The six checks that apply to a new deed before registration (the same six the How it works page lists). The input check runs first. */
+export const PRE_REG: RuleId[] = ['DATA_NOT_VERIFIABLE', 'OVERLAPPING_SALE', 'SHARE_OVERRUN', 'KHAS_CONFLICT', 'SELLER_NOT_RECORDED_OWNER', 'INVALID_QR_OR_SIGNATURE'];
 
 export type CheckRow = { rule: RuleId; status: 'pass' | 'flag'; severity?: Severity; alert?: Alert };
 
