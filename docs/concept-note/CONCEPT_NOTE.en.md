@@ -20,6 +20,7 @@ Digital services have eased access: e-mutation cut citizens’ time, cost and vi
 
 **Ardh Guard** is an explainable conflict-detection layer with two checkpoints: **before registration** and **before mutation**. It compares a deed with the record chain (CS, SA, RS and BS khatians), the seller’s earlier deeds and the mutation history, and flags the case for a human officer **with plain-language reasons**. It never decides ownership. Every check is a readable rule, so an officer can explain a refusal to a citizen.
 
+- Input could not be verified
 - Land sold more than once
 - Selling more than the seller owns
 - Government (khas) land
@@ -34,18 +35,18 @@ Digital services have eased access: e-mutation cut citizens’ time, cost and vi
 _Figure 1: Figure 1. How a check flows._  Request arrives → Ardh Guard compares → Alert with reasons → Officer decides
 
 - **Engine:** pure TypeScript functions. Input: the registry (deeds, khatian chain, mutations). Output: alerts with structured reasons, which the interface phrases in Bangla or English.
-- **Interface:** React [13], Vite [14] and Tailwind CSS [15], hosted on Vercel [16]. Bangla by default with an English toggle; views for citizen / buyer, officer / admin, or both.
+- **Interface:** React [13], Vite [14] and Tailwind CSS [15], hosted on Vercel [16]. Bangla by default with an English toggle; four demo roles: citizen / buyer, sub-registrar, AC Land officer, admin / auditor.
 - **Data:** a fictional registry (3 mouzas, 24 parcels, 96 khatians, 25 deeds, 23 mutation cases, 9 planted anomalies). No real people, NID numbers, phone numbers or land records, and nothing scraped, as the rule book requires [1].
-- **Evaluation:** the rules caught 8 of 8 testable planted anomalies and raised no alerts outside them. This is a **regression test, not accuracy**: the data is small and the rules were written knowing it.
+- **Evaluation:** the rules caught 8 of the 9 planted anomalies (the ninth, a chain break, cannot be tested on this seed) and raised no alerts outside them. This is a **regression test, not accuracy**: the data is small and the rules were written knowing it.
 
 ## 4. Main features
 
 - Check a deed before registration: a full audit view with the verdict, the checks that passed or failed, the record chain and a downloadable report (HTML, JSON, PDF).
 - Alert inbox for officers: confirm hold, dismiss or escalate.
 - Parcel pages: the CS, SA, RS, BS chain, deeds and mutations together.
-- Citizen “check before you buy” page that shows nothing about other people’s deeds.
+- Citizen “check before you buy” page that shows nothing about other people’s deeds or earlier owners.
 - Bangla (default) and English; demo sign-in for four roles (citizen/buyer, sub-registrar, AC Land officer, admin/auditor), each with its own dashboard.
-- Parcel map with RS and BS outlines (made-up sketch), a simulated fingerprint step and a locked NID box; an admin-only side-by-side view; light and dark themes; CSV export of alerts and benchmark; in-app benchmark, how-it-works, roadmap and limits pages.
+- Parcel map with RS and BS outlines (made-up sketch) and a locked NID box; an admin-only side-by-side view; light and dark themes; CSV export of alerts and benchmark; in-app benchmark, how-it-works, roadmap and limits pages.
 
 ## 5. Using it across the country
 
@@ -60,7 +61,7 @@ _Figure 1: Figure 1. How a check flows._  Request arrives → Ardh Guard compare
 
 - Coherent-chain test data and a chain-break rule
 - Owner alerts, dispute hold, saved decisions with an audit trail (Supabase [17]), sign-in and roles
-- Bangla name matching; a “missing or stale data” outcome; a “messy but innocent” benchmark for false alarms
+- Bangla name matching; the stale-record half of a “missing or stale data” outcome; a “messy but innocent” benchmark for false alarms
 - AI: Bangla and English case summaries from a pretrained language model, reviewed by the officer
 
 **v2 · after the hackathon**
@@ -73,7 +74,7 @@ _Figure 1: Figure 1. How a check flows._  Request arrives → Ardh Guard compare
 
 > AI items are plans; pretrained models would come from platforms such as Hugging Face [18]. No AI model runs in the prototype today.
 
-**Limitations:** dummy data only; small benchmark; chain-break detection untested; exact name matching; the sign-in is a demo gate, not real authentication or access control; mortgage, court, vested-property and tax checks are not built.
+**Limitations:** dummy data only; small benchmark; chain-break detection untested; exact name matching; tolerances are our assumptions; the sign-in is a demo gate, not real authentication or access control; mortgage, court, vested-property and tax checks are not built.
 
 ## 7. Team and tools
 
