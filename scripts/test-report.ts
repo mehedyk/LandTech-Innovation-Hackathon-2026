@@ -57,7 +57,7 @@ const otherOwner = chain.at(-1)!.owners[0].name;
 const base = (lang: 'bn' | 'en', mode: 'officer' | 'citizen'): ReportInput => ({
   lang, mode, id: 'ARDH-TEST0001', asOf: '2026-10-17', generated: '2026-10-18 10:00',
   parcel: { id: parcel.lineage, mouza: m.name, upazila: m.upazila, district: m.district, area: parcel.area_dec },
-  chain, trail: chain.map((k) => ({ survey: k.survey, year: k.survey_year, share: null })),
+  chain,
   seller: { name: '<script>alert(1)</script>', share: null }, buyer: 'Some Buyer', areaSold: 12.5, date: '2026-10-17', qr: true, sig: false, alerts: dbl,
 });
 for (const lang of ['bn', 'en'] as const) {
@@ -81,26 +81,31 @@ assert.ok(!/D\d{4}/.test(cit), 'citizen report leaks a deed id');
 assert.ok(!JSON.parse(checkReportJson(base('en', 'citizen'))).record_chain);
 const parcelHtml = parcelReportHtml({ lang: 'en', generated: 'x', asOf: '2026-10-17', parcel: base('en', 'officer').parcel, chain, deeds: [] });
 assert.ok(parcelHtml.includes(`Parcel ${parcel.lineage}`));
-// 5. map and simulated identity in the reports
+// 5. the map in the reports (there is no identity or fingerprint step in the app)
 const sq = (x: number, y: number): [number, number][] => [[x, y], [x + 10, y], [x + 10, y + 10], [x, y + 10]];
-const withMap = (mode: 'officer' | 'citizen', ids: boolean, identity?: ReportInput['identity']): ReportInput => ({
-  ...base('en', mode), identity,
+const withMap = (mode: 'officer' | 'citizen', ids: boolean): ReportInput => ({
+  ...base('en', mode),
   map: { view: { x: 0, y: 0, w: 50, h: 50 }, rs: sq(0, 0), bs: sq(0.5, 0.5), label: [5, 5], neighbours: [{ ...(ids ? { id: 'L99' } : {}), rs: sq(20, 0), label: [25, 5] }] },
 });
-const offMap = checkReportHtml(withMap('officer', true, { name: 'Test Seller', result: 'mismatch' }));
+const offMap = checkReportHtml(withMap('officer', true));
 assert.ok(offMap.includes('<svg') && offMap.includes('L99') && offMap.includes('Parcel map'), 'officer report has the map with neighbour ids');
-assert.ok(offMap.includes('Identity check (simulated)') && offMap.includes('No match'), 'officer report carries the simulated identity result');
-assert.ok(checkReportHtml(withMap('officer', true, { name: 'Test Seller', result: null })).includes('Not run'));
-const citMap = checkReportHtml(withMap('citizen', false, { name: 'Test Seller', result: 'matched' }));
+const citMap = checkReportHtml(withMap('citizen', false));
 assert.ok(citMap.includes('<svg') && !citMap.includes('L99'), 'citizen map has no neighbour ids');
-assert.ok(!citMap.includes('Identity check') && !citMap.includes('Test Seller') && !citMap.includes('fingerprint'), 'citizen report never carries the identity step');
-const jOff = JSON.parse(checkReportJson(withMap('officer', true, { name: 'Test Seller', result: 'matched' })));
+for (const html of [offMap, citMap]) assert.ok(!/fingerprint|biometric|identity check/i.test(html), 'no fingerprint or identity step in any report');
+const jOff = JSON.parse(checkReportJson(withMap('officer', true)));
 assert.equal(jOff.parcel_map.schematic, true);
-assert.equal(jOff.identity_check_simulated.result, 'matched');
-const jCit = JSON.parse(checkReportJson(withMap('citizen', false, { name: 'Test Seller', result: 'matched' })));
-assert.ok(jCit.parcel_map && !jCit.identity_check_simulated && !JSON.stringify(jCit.parcel_map).includes('L99'));
-for (const lang of ['bn', 'en'] as const) assert.ok(!/\{\w+\}/.test(checkReportHtml({ ...withMap('officer', true, { name: 'X', result: 'not_enrolled' }), lang })));
-console.log('ok   reports carry the map; the identity step is officer-only and the buyer map has no neighbour ids');
+assert.ok(!('identity_check_simulated' in jOff), 'no identity step in the JSON report');
+const jCit = JSON.parse(checkReportJson(withMap('citizen', false)));
+assert.ok(jCit.parcel_map && !JSON.stringify(jCit.parcel_map).includes('L99'));
+for (const lang of ['bn', 'en'] as const) assert.ok(!/\{\w+\}/.test(checkReportHtml({ ...withMap('officer', true), lang })));
+console.log('ok   reports carry the map; the buyer map has no neighbour ids; no identity step anywhere');
+// 6. the buyer report says only "on the current record": no share, no earlier surveys, no other owners
+{
+  const cit = checkReportHtml({ ...base('en', 'citizen'), seller: { name: 'Typed Name', share: '1/2' }, chain: [] });
+  assert.ok(cit.includes('on the current record'), 'citizen report states the seller is on the current record');
+  assert.ok(!cit.includes('1/2') && !/CS ·|SA ·|RS ·|BS ·/.test(cit) && !cit.includes('Where this name appears'), 'citizen report carries no share and no survey-by-survey history');
+  console.log('ok   buyer report shows only whether the seller is on the current record');
+}
 console.log('ok   reports build in both languages, escape input, and the buyer report leaks nothing');
 // 6. hostile input (regression for the security audit): every name field is escaped, the CSP meta is present,
 //    and the font URL cannot break out of the stylesheet
