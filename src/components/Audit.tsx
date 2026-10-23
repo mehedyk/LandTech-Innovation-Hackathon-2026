@@ -77,7 +77,7 @@ export function ChecksGrid({ rows, mode }: { rows: CheckRow[]; mode: 'officer' |
                   : <SeverityChip severity={r.severity!} />}
               </div>
               <p>{r.status === 'pass' ? rulePlain(r.rule, lang) : mode === 'citizen' ? describeCitizen(r.alert as Alert, lang) : describe(r.alert as Alert, lang)}</p>
-              {ev.length > 0 && <p className="ag-evidence">{t('v.evidence', { list: ev.join(', ') })}{r.alert && <> · <a className={link} href={`#/cases/${r.alert.lineage}`}>{t('v.openParcel', { id: r.alert.lineage })}</a></>}</p>}
+              {ev.length > 0 && <p className="ag-evidence">{t('v.evidence', { list: ev.join(', ') })}{r.alert && r.alert.lineage && <> · <a className={link} href={`#/cases/${r.alert.lineage}`}>{t('v.openParcel', { id: r.alert.lineage })}</a></>}</p>}
             </li>
           );
         })}
