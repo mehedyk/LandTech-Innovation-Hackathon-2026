@@ -25,6 +25,7 @@ export const mutationsOf = (deedUid: string) => seed.mutations.filter((m) => m.d
 export const baseAlerts = analyze(seed, AS_OF);
 
 export const RULES: Record<RuleId, { title: string; plain: string }> = {
+  DATA_NOT_VERIFIABLE: { title: 'Input could not be verified', plain: 'The deed\u2019s plot, area or date could not be read or matched to the record. Not verified is never clear.' },
   INVALID_QR_OR_SIGNATURE: { title: 'Document looks altered', plain: 'The QR code or signature does not match the record.' },
   OVERLAPPING_SALE: { title: 'Land sold more than once', plain: 'The same seller has already sold part of this parcel, and the total is more than they own.' },
   SHARE_OVERRUN: { title: 'Selling more than the seller owns', plain: 'The deed claims more land than the seller\u2019s share in the latest record.' },
