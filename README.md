@@ -25,7 +25,7 @@ In Bangladesh, a deed, the khatian chain (CS, SA, RS, BS) and the mutation recor
 
 A second pair of eyes at **two moments**: before a deed is registered, and before a mutation is approved. It compares the paperwork with the record chain and the seller's earlier deeds, then flags the case for a human officer **with plain-language reasons**. It never decides ownership.
 
-<p align="center"><img src="assets/flow.svg" alt="Flow: request arrives, Ardh Guard runs 8 checks, alert with reasons, officer decides" width="880"></p>
+<p align="center"><img src="assets/flow.svg" alt="Flow: request arrives, Ardh Guard runs 9 checks, alert with reasons, officer decides" width="880"></p>
 
 ### Downloads and the audit view
 
@@ -41,13 +41,13 @@ Every check opens as a full audit view: a verdict banner, four summary tiles (ch
 
 Reports follow the language you are using (Bangla or English). Each has a report ID, a short reference for that one check; it is **not** an official certificate. Everything is built in the browser, so nothing is uploaded. CSV files open correctly in Excel, including Bangla.
 
-### Map, identity step and the locked NID box
+### Map and the locked NID box
 
 - **Parcel map.** Every check, every parcel page and the citizen page show the plot on a sketch of its mouza, with **RS**, **BS** or both outlines (BS dashed) so you can see how two surveys can disagree. Officers see neighbouring parcel ids and can open them; citizens see only their own plot.
-- **Identity check (officer view, simulated).** A "scan fingerprint" button shows a made-up stored result (match, no match, not enrolled) after a short delay. There is no sensor, no photo and no biometric data. The result is advisory: it does not change the rule verdict. If the officer ran the scan, the officer report records it, labelled as a simulation (or "not run"); the citizen report never carries it.
-- **In the reports.** The HTML, print and JSON reports include the parcel map (RS shaded, BS dashed). The officer report also shows neighbouring parcel ids and the simulated identity line; the citizen report shows only the buyer's own plot, with no neighbour ids and no identity step. Tests cover this.
+- **In the reports.** The HTML, print and JSON reports include the parcel map (RS shaded, BS dashed). The officer report also shows neighbouring parcel ids; the citizen report shows only the buyer's own plot, with no neighbour ids. Tests cover this.
 - **NID (locked).** A collapsible box with a lock sign says that we would add NID matching here too, but the hackathon rules forbid NID and similar personal data, so the box is a disabled placeholder. What a real pilot would need first is in [`docs/INTEGRATION.md`](docs/INTEGRATION.md#7-legal-privacy-and-security).
-- **Data behind it.** [`data/parcel_geometry.json`](data/parcel_geometry.json) (made-up, irregular plot outlines per mouza, from an area-weighted Voronoi layout) and [`data/identity_demo.json`](data/identity_demo.json) (one made-up status per person), both from [`data/gen_geometry.py`](data/gen_geometry.py). The registry and the rules are unchanged, so every verdict and the benchmark are the same as before.
+- **No biometrics.** An earlier build had a simulated fingerprint step. It was removed before the final round: it contradicted our own rule of no biometrics, and a fake biometric button invites the wrong question. There is no fingerprint, photo or other biometric step anywhere in the app, and none is planned.
+- **Data behind it.** [`data/parcel_geometry.json`](data/parcel_geometry.json) (made-up, irregular plot outlines per mouza, from an area-weighted Voronoi layout), from [`data/gen_geometry.py`](data/gen_geometry.py). It adds no records and changes no rule result.
 
 ### Sign-in, roles and dashboards
 
@@ -89,35 +89,40 @@ sequenceDiagram
 |---|---|
 | **Check a deed (officer, Bangla)**<br>Enter a deed, get hold, review or clear with reasons.<br><img src="docs/media/check.png" alt="Check a deed screen in Bangla showing a Hold verdict"> | **Check before you buy (citizen)**<br>Plain-language warning, record history and next steps.<br><img src="docs/media/buy.png" alt="Citizen check before you buy page"> |
 | **Admin side-by-side view**<br>Two framed views on one screen (admin/auditor only).<br><img src="docs/media/split.png" alt="Officer and citizen views side by side"> | **Full audit view**<br>Summary tiles, checks grid, record chain, parties and report panel.<br><img src="docs/media/audit.png" alt="Full audit view with summary tiles and checks grid"> |
-| **Parcel map**<br>RS and BS outlines on a small, made-up sketch with irregular plots.<br><img src="docs/media/map.png" alt="Parcel map with RS and BS outlines"> | **Identity step and locked NID box**<br>A simulated result, and a locked box explaining why NID is off.<br><img src="docs/media/identity.png" alt="Simulated fingerprint step and the locked NID box"> |
+| **Parcel map**<br>RS and BS outlines on a small, made-up sketch with irregular plots.<br><img src="docs/media/map.png" alt="Parcel map with RS and BS outlines"> | **Locked NID box**<br>A disabled placeholder that explains why NID is off.<br><img src="docs/media/nid.png" alt="The locked NID box"> |
 | **Downloadable report**<br>The HTML report saved from the audit view (also JSON and print to PDF).<br><img src="docs/media/report.png" alt="Downloaded check report"> | **Dark theme**<br>The choice is remembered.<br><img src="docs/media/check-dark.png" alt="Check a deed screen in the dark theme"> |
 | **Same screen in English**<br>One tap on the language toggle.<br><img src="docs/media/check-en.png" alt="Check a deed screen in English"> | **Alerts for officers**<br>Filter by checkpoint and severity, then decide; export as CSV.<br><img src="docs/media/alerts.png" alt="Alerts inbox"> |
 | **Parcels**<br>The map and the CS, SA, RS, BS chain with deeds and mutations.<br><img src="docs/media/parcel.png" alt="Parcel page"> | **Benchmark**<br>Which planted anomalies the rules caught, with caveats.<br><img src="docs/media/benchmark.png" alt="Benchmark page"> |
 | **Dashboard (admin/auditor)**<br>Each role has its own; numbers come from the registry and rules.<br><img src="docs/media/dashboard.png" alt="Admin dashboard"> | **Sign-in**<br>Four demo accounts, one per role; sign-up is shown but not active.<br><img src="docs/media/login.png" alt="Sign-in page with demo accounts"> |
-| **How it works**<br>The flow, the two checkpoints and all eight checks.<br><img src="docs/media/how.png" alt="How it works page"> | **Roadmap and limits**<br>What is built, what is next, what it cannot do.<br><img src="docs/media/roadmap.png" alt="Roadmap and limits page"> |
+| **How it works**<br>The flow, the two checkpoints and all nine checks.<br><img src="docs/media/how.png" alt="How it works page"> | **Roadmap and limits**<br>What is built, what is next, what it cannot do.<br><img src="docs/media/roadmap.png" alt="Roadmap and limits page"> |
 
 <p align="center"><img src="docs/media/mobile.png" alt="Mobile view" width="260"> <img src="docs/media/mobile-dark.png" alt="Mobile view, dark theme" width="260"><br><sub>Works on a phone too, with a hamburger menu and a dark theme.</sub></p>
 
 > The screenshots are generated by `scripts/make-media.py` against the running app. Regenerate them after any visual change (see *Run it locally*).
 
-## The eight checks
+## The nine checks
 
 | Check | Raised | Catches |
 |---|---|---|
-| Land sold more than once | Hold | Same seller's total sales exceed what they own (double sale) |
+| Input could not be verified | Review | The deed's plot is not in the record, the area is not a positive number, the date is missing or invalid or after the check date, or the deed number is already used. Runs first. Unreadable input is **never shown as clear**; it goes to an officer as "not verified". |
+| Land sold more than once | Hold | Same seller's total sales exceed what they own (double sale). A deed whose mutation was rejected **still counts as sold**: registration and mutation are separate steps, so a rejected mutation does not cancel a registered deed. The alert names such deeds. |
 | Selling more than the seller owns | Hold | Deed claims more than the seller's recorded share |
 | Government (khas) land | Hold | Latest record shows the plot as khas or government land |
-| Seller is not on the record | Hold | Seller absent from the latest khatian |
+| Seller is not on the record | Hold, or Review for a resale before mutation | Seller absent from the latest khatian. If the seller bought this parcel from a recorded owner and that mutation is still open (no case yet, or only pending), and they resell no more than they bought, it is a Review. One hop only; longer chains, a rejected purchase or a stranger are held. |
 | Document looks altered | Hold | QR code or signature does not match |
 | Mutation does not match the deed | Review | Mutation changed a different area than the deed transfers |
 | Deed never mutated | Review | Registered long ago, record still shows the old owner |
 | Mutation resubmitted after rejection | Note | A workflow signal for human review |
 
+The tolerances (0.5% on area, 2% on mutation, 180 days for a stale deed) are our assumptions, not land-office rules.
+
 ## Benchmark (dummy data)
 
-On the seed registry the rules caught **8 of 8 testable planted anomalies** and flagged **8 of 25 deeds**, none outside the planted cases. Run it yourself with `npm run eval`.
+The seed registry has **9 planted anomalies**. The rules caught **8 of the 9**. The ninth, a chain break between surveys, **cannot be tested on this seed**, so it is counted as not covered, not as a pass. The rules flagged **8 of 25 deeds**, none outside the planted cases. Run it yourself with `npm run eval`.
 
-> **Read this before quoting the numbers.** The data is small and made up, and the rules were written knowing how it was generated. This is a regression test that the rules do what we designed, **not** a measure of accuracy on real records. Related prior art [6] stores land titles on a blockchain; Ardh Guard instead checks conflicts before a transaction is accepted. The ninth anomaly (a chain break between surveys) is not testable on this seed. See [`data/DATA_README.md`](data/DATA_README.md).
+> **Read this before quoting the numbers.** The data is small and made up, and the rules were written knowing how it was generated. This is a regression test that the rules do what we designed, **not** a measure of accuracy on real records. Related prior art [6] stores land titles on a blockchain; Ardh Guard instead checks conflicts before a transaction is accepted. See [`data/DATA_README.md`](data/DATA_README.md) for why the chain break is excluded.
+>
+> Because the benchmark cannot show false alarms on honest-but-messy deeds, `npm test` also runs a few "messy but innocent" cases built on the seed: a resale before mutation, two small honest sales, and a rejected mutation. They are tests, not a measured false-alarm rate.
 
 ## How it is built
 
@@ -193,7 +198,7 @@ Today the engine takes one `Registry` (those four record types) and returns a li
 |---|---|---|
 | **No detected conflict** | No hold or review alert | Normal legal review continues. This is not a title guarantee. |
 | **Potential conflict** | Hold or review alerts, each with a plain reason and the records behind it | An officer reviews the evidence and holds, dismisses or escalates (saved only in the browser for now; saved with an audit trail in v1.1) |
-| **Missing or stale data** | Partly: only the "deed never mutated" check looks at staleness | **Planned for v1.1.** A general outcome that requests verification or a manual check, then joins the officer review |
+| **Missing or stale data** | Partly. The input check sends a deed it cannot read (unknown plot, bad area or date, duplicate deed number) to an officer as "not verified", never as clear. The "deed never mutated" check looks at one kind of staleness. Out-of-date source records are **not** checked yet | **Planned for v1.1.** The stale-record half, with per-source freshness, then joins the officer review |
 
 The full plan (three connection modes, a draft API contract, candidate data sources, gateway requirements, legal and security notes, exit criteria per stage, and what each mockup feature needs) is in **[`docs/INTEGRATION.md`](docs/INTEGRATION.md)**. The short version:
 
@@ -226,7 +231,7 @@ npm install
 npm run dev        # web app on http://localhost:5173 (sign in with a demo account, see above)
 npm run build      # typecheck + production build
 npm run eval       # benchmark in the terminal (Node 22.18 or newer)
-npm test           # engine checks (6 live scenarios, 6 planted anomalies) + language checks (every string in Bangla and English, no unresolved placeholders, citizen text leaks nothing) + report checks (reports build in both languages, user input is escaped, the buyer's report leaks nothing)
+npm test           # engine checks (6 live scenarios, 6 planted anomalies, messy-but-innocent cases, the input check) + language checks (every string in Bangla and English, no unresolved placeholders, citizen text leaks nothing) + report checks (reports build in both languages, user input is escaped, the buyer's report leaks nothing and shows only whether the seller is on the current record)
 ```
 
 <details>
@@ -235,9 +240,9 @@ npm test           # engine checks (6 live scenarios, 6 planted anomalies) + lan
 ```
 src/engine/      rules, types, benchmark evaluation (no dependencies)
 src/pages/       Login, SignUp (not active), Dashboard (one per role), Check (sub-registrar), Buy (citizen), Inbox (alerts), Cases (parcels), Split (admin), Benchmark, HowItWorks, About
-src/components/  audit view pieces, parcel map, identity step, chain strip, dashboard widgets (dash.tsx), language/theme toggles and UI pieces
+src/components/  audit view pieces, parcel map, locked NID box, chain strip, dashboard widgets (dash.tsx), language/theme toggles and UI pieces
 src/lib/         dummy data access, strings.ts (Bangla + English), language provider, role.tsx (demo accounts, sign-in and which pages and checkpoint each role gets), stats.ts (dashboard numbers), theme.ts, officer decisions, report.ts and download.ts (reports and CSV), summary.ts (check rows, report ID)
-data/            dummy registry (JSON/CSV), generator scripts, labelled anomalies, map outlines and simulated identity results, notes
+data/            dummy registry (JSON/CSV), generator scripts, labelled anomalies, map outlines, notes
 docs/            plan, integration plan, research notes, source triage, concept note outline, media
 scripts/         evaluate.ts, test-rules.ts, make-media.py (README screenshots; signs in as the demo auditor)
 supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
@@ -258,8 +263,8 @@ supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
 
 | | Scope | Status |
 |---|---|---|
-| **v1 (Round 1)** | Rules engine (8 checks) · check a deed · alerts with officer decisions · parcel pages · citizen "check before you buy" page · benchmark · Bangla (default) and English · citizen / officer / both views · in-app docs | Built |
-| **v1.1 (final round)** | Coherent-chain seed and chain-break rule · owner alert and dispute hold · saved decisions with audit trail (Supabase) · a "missing or stale data" outcome that asks for manual verification instead of reading as clear · sign-in and role-based access · Bangla name matching · **AI: plain-language case summaries in Bangla and English** (pretrained model, officer reviews) · a "messy but innocent" benchmark slice · price check against published mouza rates · division, district, upazila and mouza filters and deed-number search · text-size and high-contrast controls, installable offline mode (all buildable on dummy data) | Next |
+| **v1 (Round 1)** | Rules engine (9 checks, including the input check) · check a deed · alerts with officer decisions · parcel pages · citizen "check before you buy" page · benchmark · Bangla (default) and English · four demo roles with dashboards · in-app docs | Built |
+| **v1.1 (final round)** | Coherent-chain seed and chain-break rule · owner alert and dispute hold · saved decisions with audit trail (Supabase) · the stale-record half of the "missing or stale data" outcome (the unreadable-input half is built) · sign-in and role-based access · Bangla name matching · **AI: plain-language case summaries in Bangla and English** (pretrained model, officer reviews) · a full "messy but innocent" benchmark slice (a few such cases are tested today) · price check against published mouza rates · division, district, upazila and mouza filters and deed-number search · text-size and high-contrast controls, installable offline mode (all buildable on dummy data) | Next |
 | **v2** | Plot lineage across surveys · pilot with one sub-registry and AC Land office under a formal agreement · **AI: Bangla OCR for scanned khatians and deeds** (pretrained, officer confirms, the P1 problem) · **AI: ML risk ranking after the rules** once there is enough realistic data (rules and reasons stay) · mortgage, court-case and land-tax checks for citizens · officer-side vested-property, court-injunction and heirship-certificate checks · cadastral map with RS and BS overlay · integration gateway and shadow-mode pilot ([plan](docs/INTEGRATION.md)) · identity (NID) match and party photos only with a legal basis and consent, no biometrics · official seal, QR certificate and digital notices only once there is formal authority and a signature framework | Later |
 
 > All AI items are **plans**. There is no AI model in the app today. Where a model is needed we will use pretrained models (for example from Hugging Face [18]) and list them here.
@@ -269,7 +274,7 @@ supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
 - Full audit view on the Check and Buy pages (summary tiles, pass/flag checks grid, richer record chain, parties and transfer panel, report panel) and downloads: HTML, JSON and print-to-PDF reports, CSV for alerts and benchmark, an HTML parcel record. The Check page now keeps the inputs a verdict was run with, so the chain, parties and report always match the verdict shown.
 - New visual design from the mockups in [`design/potential-designs/`](design/potential-designs): forest-green civic palette, two-tier header, card layout, tinted status banners, light and dark themes (the choice is remembered), and a bottom tab bar on phones.
 - Bangla now uses the Kalpurush typeface (self-hosted, SIL OFL 1.0); Latin text and numerals use Inter.
-- Added a parcel map, a simulated identity step with a locked NID box, and a side-by-side officer and citizen screen for the Both view; new dummy data files for the map and the identity results.
+- Added a parcel map, a simulated identity step with a locked NID box, and a side-by-side officer and citizen screen for the Both view; new dummy data files for the map and the identity results. (The identity step was removed again before the final round; see the next section.)
 - Docs updated: new [integration plan](docs/INTEGRATION.md), roadmap and plan extended with the mockup features we have not built, new screenshots, deck and concept note refreshed.
 - New README section on [where Ardh Guard fits in the land system](#where-ardh-guard-fits-in-the-land-system), with the target integration flow.
 - MIT licence added.
@@ -283,6 +288,15 @@ supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
   - The "View as" switch and the Both mode are gone.
 - No change to the rules engine, the results or the registry. The map outlines and the simulated identity results were regenerated; all other data is unchanged.
 
+**Changes after the pre-final review:**
+
+- **Rules.** A deed whose mutation was rejected now still counts as sold in the double-sale check (before, it was dropped, which let a second sale slip through). A resale before mutation is a Review instead of a Hold (one hop). A new input check sends unreadable deeds to an officer as "not verified" instead of letting them read as clear. Tests added for each, plus a few messy-but-innocent cases. The benchmark result is unchanged (8 of 9 planted, 8 of 25 deeds flagged).
+- **Benchmark wording.** "8 of 8 testable" became "8 of 9 planted, the ninth cannot be tested on this seed" in the app, README, concept notes, deck and docs.
+- **Fingerprint step removed.** The simulated scan, its data file, its report line and its strings are gone; the locked NID box stays. No biometrics anywhere.
+- **Citizen page.** It no longer shows the seller's history across the four surveys or their share; it says only whether the seller is on the current record. No name is pre-filled on load. A note says the examples fill made-up names and that a real version would tie each check to the buyer's own deed draft and log it.
+- **Sign-up page.** Still there, now marked "Not working" with a banner, a changed button label and a changed sign-in link.
+- **Docs.** Roadmap, limits, How it works (the old text still described the removed "Both" switch), checklist and integration notes updated. The stray `research` file (an IEEE Access paper) was removed from the repo root.
+
 ## Limitations
 
 - All data is made up. A real pilot needs an agreement with the land authorities.
@@ -291,10 +305,12 @@ supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
 - Names are matched exactly; Bangla spelling variants are not handled, and the dummy names are in Latin script.
 - Each parcel arrives with a lineage id. Linking plots across surveys is the hard part in reality.
 - Security: headers are set in `vercel.json` and were tested on a local copy of the rules, not yet on the live site. See [`docs/SECURITY_AUDIT.md`](docs/SECURITY_AUDIT.md).
-- The sign-in is a demo gate in the browser: the four demo passwords are shown on the page, nothing is checked on a server, and the sign-up page does nothing. It is not real authentication or access control.
+- The sign-in is a demo gate in the browser: the four demo passwords are shown on the page, nothing is checked on a server, and the sign-up page does not work: it only shows the form and says so. It is not real authentication or access control.
 - The citizen page does not check mortgages, court cases or land tax. Neither view checks vested property, heirship, price against mouza rates, or identity.
-- The map outlines (irregular, made up) and the fingerprint step are made up, and the NID box is a locked placeholder. Real versions need survey data and a legal basis. Digital notices and an official seal are not in the app ([why](docs/INTEGRATION.md#8-what-the-portal-mockups-showed-and-what-each-needs)).
-- The fingerprint step never touches a sensor and its results are random labels, not evidence of anything.
+- The map outlines (irregular, made up) are made up, and the NID box is a locked placeholder. Real versions need survey data and a legal basis. Digital notices and an official seal are not in the app ([why](docs/INTEGRATION.md#8-what-the-portal-mockups-showed-and-what-each-needs)).
+- The tolerances (0.5% on area, 2% on mutation, 180 days) are our assumptions, not land-office rules.
+- A resale before mutation is followed one step only. Whether a deed with a rejected mutation should count as sold is a legal question for the land office; here it does.
+- The citizen page relies on a typed name and tells the buyer only whether the seller is on the current record. A real version must tie each check to the buyer's own deed draft, log it and rate-limit it. The demo also lists every parcel in a drop-down; a real version would ask for the plot or khatian number from the deed draft.
 - Screenshots in `docs/media/` were made with a stand-in stylesheet and should be regenerated from a real build.
 - Ardh Guard flags cases for officers. It does not decide ownership and is not a legal title check.
 
