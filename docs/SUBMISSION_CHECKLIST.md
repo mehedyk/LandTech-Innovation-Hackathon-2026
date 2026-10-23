@@ -1,44 +1,39 @@
-# Round 1 submission checklist (deadline Sun 18 Oct, 11:59 PM [1]; target 6 PM)
+# Final round checklist (tentatively Sat 24 Oct, Knowledge Tower, DIU)
 
-## Now
-- [ ] **After the redesign:** run `npm install && npm test && npm run build` once (not possible where the redesign was made), then open the preview and look at every page in light, dark and on a phone
-- [ ] README screenshots and `public/deck/img/check*.png` were regenerated after the v2 shell. **Still to do:** rebuild the PDF decks (`Ardh-pitch-deck.*.pdf`) and the concept notes (`scripts/build-concept-note.py`, still 3 pages) so they match the new interface and the four roles
-- [ ] Download each report (HTML, JSON, print to PDF, alerts CSV, benchmark CSV, parcel HTML) on a phone and a laptop; open the CSVs in Excel to check Bangla text
-- [ ] Side-by-side view (admin/auditor only, `#/split`): on a laptop the officer and citizen frames sit side by side, on a phone they stack
-- [ ] **Sign-in (v2 shell):** all four demo accounts on `#/login` work (press a card, then Sign in); a wrong password shows the error; the sign-up page shows its "not available" notice and stores nothing; Sign out returns to the login page
-- [ ] **Role scoping:** sub-registrar sees only *before registration* alerts and can decide; AC Land officer sees only *before mutation* alerts and can decide; admin/auditor sees all alerts with no decision buttons; opening a page your role does not have goes back to your dashboard
-- [ ] **Dashboards:** each of the four roles opens its own dashboard with sensible numbers, in Bangla and English, light and dark, on a phone and a laptop
-- [ ] **Navigation:** the bar shows from 1280 px wide; below that the hamburger opens the drawer (closes on Esc and on a tap outside; links, theme, language and Sign out work); nothing scrolls sideways at 1024 px in Bangla
-- [ ] **Map:** small, irregular plots, no big rectangles; neighbours show on the officer side only
-- [ ] Parcel map shows on Check, Buy and parcel pages; RS, BS and both buttons work; the NID box opens and its field and button stay disabled; the fingerprint button shows a result; download the officer report after scanning and confirm it lists the identity line as simulated, and that the citizen report has the map but no neighbour ids and no identity step
-- [ ] Side-by-side view: pick a parcel on one side and confirm the other side follows and runs its check
-- [ ] Kalpurush loads (Network tab) and Latin text stays in Inter
-- [ ] Live site [19] works on a phone and a laptop (click all six examples): https://land-tech-innovation-hackathon-2026.vercel.app/
-- [ ] Public GitHub repo has the latest code, README and `docs/media`
-- [ ] Data question sent in writing to the organizers; both mentors messaged
-- [ ] Platform panel: confirm the team leader name matches the README and concept note (Jobayer)
+Round 1 (deadline Sun 18 Oct) is closed, so the old Round 1 list was replaced by this one. Final-round rule: **5 minutes pitch + live demo, then 3 minutes of questions**. Only the two of you present, both in person, Bangla or English [1].
 
-## Write
-- [ ] Concept note, **3 pages**, PDF [1]: built in `docs/concept-note/` (`Ardh-concept-note.bn.pdf` and `.en.pdf`, 3 pages each, with linked references). Upload one; ask your mentors which language. Open each linked source once before you submit.
-- [x] README TODOs filled: AI tools, changes since Round 1, license (MIT; confirm the team agrees; the Kalpurush font stays under SIL OFL 1.0, see `public/fonts/README.md`)
-- [ ] Short deck: done as an interactive page at `/deck/` and as PDFs in `docs/deck/` (8 slides, Bangla and English). Read the speaker notes (press N) and rehearse once. Final round rule: 5 minutes pitch + live demo, then 3 minutes of questions.
+## Tonight
+- [x] `npm install && npm test && npm run build` pass on the pre-final update (nine checks, input check, resale-before-mutation, rejected-mutation fix, citizen page change, fingerprint step removed)
+- [ ] Push the update to GitHub so Vercel redeploys, then open the live site [19] on a phone and a laptop
+- [ ] On the live site, click all six examples on **Check a deed** and all six on **Check before you buy**; confirm the citizen page shows no name until you tap an example, and shows only "Seller on the current record: Yes/No"
+- [ ] Open `#/signup`: the "Not working" badge and banner show, and the button says it does not work
+- [ ] `#/split` (admin/auditor only): both sides follow the same parcel
+- [ ] Download the officer report and the buyer report once each; the buyer report has the map, no neighbour ids, no share and no survey history
+- [ ] Rebuild the PDFs you will use (`python3 scripts/build-concept-note.py`; the deck PDFs from `/deck/`) so they say "8 of 9 planted" and have no fingerprint step
+- [ ] Phone hotspot, laptop on charge, a screen recording as backup (the app also runs from static JSON, so it works offline)
+- [ ] Confirm the team leader name on the platform matches the README and concept note (Jobayer)
 
-## Record
-- [ ] Demo video, 90 s or less (`VIDEO_SCRIPT.md`), captions on
+## Say these before a judge asks
+- **No AI model runs in the app.** The checks are plain rules, so every alert can be explained to a citizen. AI is on the roadmap, always with officer review.
+- **Benchmark: 8 of the 9 planted anomalies.** The ninth, a chain break, cannot be tested on this seed, so we do not count it. The rules were written knowing the data: it is a regression test, not accuracy.
+- **The tolerances are our assumptions** (0.5% on area, 2% on mutation, 180 days for a stale deed), not land-office rules.
+- **Unreadable input is never "clear".** The input check sends it to an officer as "not verified".
+- **A resale before mutation is a Review, not a Hold**, one hop only. **A deed whose mutation was rejected still counts as sold**, because registration and mutation are separate steps. Whether that is exactly right in law is a question for the land office.
+- **Sign-in is a demo gate** (public passwords, checked in the browser). The sign-up page does not work and says so.
+- **The citizen page relies on a typed name.** It only says whether the seller is on the current record. A real version ties each check to the buyer's own deed draft, logs it and rate-limits it.
+- **No biometrics.** The NID box is locked because the hackathon rules forbid NID data.
 
-## Submit (platform form)
-- [ ] Title and abstract
-- [ ] Problem: **P3, Catch Fraud & Double-Selling**
-- [ ] Solution and tech stack
-- [ ] Links: repository, live site, video, deck, concept note
-- [ ] **Mark it FINAL.** A draft is not judged.
-- [ ] Reopen the submission and confirm it shows as final
-
-## Later (not for Round 1)
-- [ ] Read `INTEGRATION.md` and agree which items go in the final pitch as plans; check the data-protection law status with a lawyer before any pilot talk
+## Likely questions, honest short answers
+- *Is this just if-statements?* Yes, on purpose: explainable rules first, a model only where rules cannot do the job (OCR, ranking), and always with an officer deciding.
+- *Your benchmark is 100%.* Because we wrote the rules knowing the data. We say so on the page. The ninth case is excluded, and a messy-but-innocent slice is on the roadmap (a few such cases are tested today).
+- *What about misspelled names?* Names are matched exactly today; Bangla name matching is on the roadmap.
+- *Where does the data come from?* Today a made-up registry. A pilot would read from the land office systems in shadow mode (see `INTEGRATION.md`).
+- *Can anyone look up who owns what?* On this demo, a typed name only says on/off the current record; see the citizen-page note above.
 
 ## Both of you
-- [ ] Each can explain `src/engine/rules.ts` line by line (about 100 lines). The rulebook disqualifies code you cannot explain [1].
+- [ ] Each can explain `src/engine/rules.ts` (about 135 lines) line by line, including the input gate, the one-hop resale logic and why rejected mutations still count. The rulebook disqualifies code you cannot explain [1].
+- [ ] Run `npm run eval` and `npm test` once together and read the output aloud
+- [ ] Rehearse the 5-minute pitch twice with a timer, once in Bangla and once in English
 - [ ] Commit history is real and untouched (never delete or rewrite it)
 
 <!-- refs:start -->
