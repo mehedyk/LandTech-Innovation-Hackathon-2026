@@ -62,7 +62,8 @@ td.k{width:34%;color:#475569}
 .pill{display:inline-block;border-radius:999px;padding:1px 10px;font-size:13px;font-weight:600;border:1px solid}
 .p-pass{background:#dcfce7;color:#14532d;border-color:#86efac}.p-block{background:#fee2e2;color:#7f1d1d;border-color:#fca5a5}.p-review{background:#fef3c7;color:#78350f;border-color:#fcd34d}.p-info{background:#f1f5f9;color:#334155;border-color:#cbd5e1}
 .note{margin-top:26px;border:1px solid #cbd5e1;border-left:8px solid #94a3b8;background:#f1f5f9;border-radius:8px;padding:10px 16px;font-size:13px}
-@media print{body{background:#fff}main{padding:0}table,.verdict,header{break-inside:avoid}}`;
+  .hint{margin:0 0 1rem;padding:.5rem .75rem;border-radius:.5rem;background:#e8f3ec;color:#14532d;font-size:.85rem}
+@media print{body{background:#fff}main{padding:0}table,.verdict,header,.hint{break-inside:avoid}.hint{display:none}}`;
 
 const t = (lang: Lang, key: string, p?: Record<string, string | number>) => format(lang, key, p);
 
@@ -121,7 +122,7 @@ export function checkReportHtml(i: ReportInput): string {
         i.chain.map((k) => `<tr><td>${esc(t(L, `survey.${k.survey}`))} · ${esc(num(L, k.survey_year))}</td><td>${esc(num(L, k.khatian_no))}</td><td>${esc(num(L, k.plot_no))}</td><td>${esc(t(L, 'chain.areaVal', { area: k.area_dec }))}</td><td>${esc(landClass(L, k.land_class))}</td><td>${esc(k.owners.map((o) => `${o.name} (${shareText(L, o.share)})`).join('; '))}</td></tr>`).join('')}</table>`
     : '';
   const title = t(L, i.mode === 'citizen' ? 'rep.doc.citizenTitle' : 'rep.doc.title');
-  return `<!doctype html><html lang="${L}"><head><meta charset="utf-8">${CSP(i.fontUrl)}<meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} · ${esc(i.id)}</title><style>${CSS(i.fontUrl)}</style></head><body><main>
+  return `<!doctype html><html lang="${L}"><head><meta charset="utf-8">${CSP(i.fontUrl)}<meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} · ${esc(i.id)}</title><style>${CSS(i.fontUrl)}</style></head><body><main><p class="hint">${esc(t(L, 'rep.pdfHint'))}</p>
 <header><div class="brand">Ardh Guard</div><h1>${esc(title)}</h1>
 <p class="meta">${esc(t(L, 'rep.id'))}: <b>${esc(i.id)}</b> · ${esc(t(L, 'rep.asOf', { date: i.asOf }))} · ${esc(t(L, 'rep.generated'))}: ${esc(i.generated)}</p></header>
 <section class="verdict ${tone}"><h2>${esc(head)}</h2><p>${esc(sub)}</p></section>
@@ -173,7 +174,7 @@ export function parcelReportHtml(i: ParcelReportInput): string {
   const deeds = i.deeds.length === 0 ? `<p>${esc(t(L, 'cases.noDeeds'))}</p>` : i.deeds.map((d) =>
     `<table style="margin-bottom:12px"><tr><th>${esc(d.head)}</th></tr><tr><td>${esc(d.line)}<br>${d.flags.map((f) => `<span class="pill p-info">${esc(f)}</span> `).join('')}${
       d.alerts.map((a) => `<br><span class="pill p-${a.sev}">${esc(a.sevText)}</span> <b>${esc(a.title)}</b>: ${esc(a.text)}`).join('')}</td></tr></table>`).join('');
-  return `<!doctype html><html lang="${L}"><head><meta charset="utf-8">${CSP(i.fontUrl)}<meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(t(L, 'cases.detailTitle', { id: i.parcel.id }))}</title><style>${CSS(i.fontUrl)}</style></head><body><main>
+  return `<!doctype html><html lang="${L}"><head><meta charset="utf-8">${CSP(i.fontUrl)}<meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(t(L, 'cases.detailTitle', { id: i.parcel.id }))}</title><style>${CSS(i.fontUrl)}</style></head><body><main><p class="hint">${esc(t(L, 'rep.pdfHint'))}</p>
 <header><div class="brand">Ardh Guard</div><h1>${esc(t(L, 'cases.detailTitle', { id: i.parcel.id }))}</h1>
 <p class="meta">${esc(t(L, 'chain.parcel', { id: i.parcel.id, mouza: i.parcel.mouza, upazila: i.parcel.upazila, district: i.parcel.district, area: i.parcel.area }))}<br>${esc(t(L, 'rep.asOf', { date: i.asOf }))} · ${esc(t(L, 'rep.generated'))}: ${esc(i.generated)}</p></header>
 ${i.map ? `<h2>${esc(t(L, 'sec.map'))}</h2>${mapSvg(i.map, i.tone ?? 'clear', i.parcel.id, t(L, 'chain.areaVal', { area: i.parcel.area }))}<p class="meta">${esc(t(L, 'rep.mapLegend'))} ${esc(t(L, 'map.note'))}</p>` : ''}<h2>${esc(t(L, 'sec.chain'))}</h2>${chain}<h2>${esc(t(L, 'cases.deedsTitle'))}</h2>${deeds}
