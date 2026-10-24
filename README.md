@@ -295,6 +295,7 @@ supabase/archive/ earlier prototype schema, kept for v1.1 (audit chain)
 - **Fingerprint step removed.** The simulated scan, its data file, its report line and its strings are gone; the locked NID box stays. No biometrics anywhere.
 - **Citizen page.** It no longer shows the seller's history across the four surveys or their share; it says only whether the seller is on the current record. No name is pre-filled on load. A note says the examples fill made-up names and that a real version would tie each check to the buyer's own deed draft and log it.
 - **Sign-up page.** Still there, now marked "Not working" with a banner, a changed button label and a changed sign-in link.
+- **Print / PDF button.** It now opens the report in its own tab and prints from there (phones print that reliably; the old hidden frame often printed nothing). If the browser blocks the new tab it falls back to the old way. The report page shows a screen-only line saying the browser's Print or Share menu can save it as a PDF; the line is not on the printed copy. The HTML and JSON downloads were not affected.
 - **Docs.** Roadmap, limits, How it works (the old text still described the removed "Both" switch), checklist and integration notes updated. The stray `research` file (an IEEE Access paper) was removed from the repo root.
 
 ## Limitations
