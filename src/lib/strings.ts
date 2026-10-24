@@ -243,6 +243,7 @@ export const S: Record<string, [string, string]> = {
   'buy.clear': ['আমাদের রেকর্ডে কোনো অসংগতি পাওয়া যায়নি', 'No conflict found in our records'],
   'buy.blockSub': ['নিচের কারণে এই লেনদেনে ঝুঁকি আছে।', 'There is a risk in this deal for the reasons below.'],
   'buy.clearSub': ['এটি নিরাপত্তার নিশ্চয়তা নয়। নিচের ধাপগুলো তবুও সম্পন্ন করুন।', 'This is not a guarantee of safety. Still do the steps below.'],
+  'rep.pdfHint': ['PDF হিসেবে সংরক্ষণ করতে ব্রাউজারের প্রিন্ট বা শেয়ার মেনু থেকে “Save as PDF” বেছে নিন। এই লাইনটি ছাপা কপিতে আসে না।', 'To save this as a PDF, use your browser’s Print or Share menu and choose “Save as PDF”. This line does not appear on the printed copy.'],
   'buy.record': ['জমির বিবরণ', 'The parcel'],
   'buy.onRecordYes': ['বর্তমান রেকর্ডে আছেন', 'on the current record'],
   'buy.next': ['এরপর কী করবেন', 'What to do next'],
