@@ -8,6 +8,7 @@ Round 1 (deadline Sun 18 Oct) is closed, so the old Round 1 list was replaced by
 - [ ] On the live site, click all six examples on **Check a deed** and all six on **Check before you buy**; confirm the citizen page shows no name until you tap an example, and shows only "Seller on the current record: Yes/No"
 - [ ] Open `#/signup`: the "Not working" badge and banner show, and the button says it does not work
 - [ ] `#/split` (admin/auditor only): both sides follow the same parcel
+- [ ] On your own phone, tap **Print / PDF** on a check result: the report opens in a new tab and the print or share sheet appears; choose Save as PDF. If your browser blocks the tab, allow pop-ups for the site or use the HTML download
 - [ ] Download the officer report and the buyer report once each; the buyer report has the map, no neighbour ids, no share and no survey history
 - [ ] Rebuild the PDFs you will use (`python3 scripts/build-concept-note.py`; the deck PDFs from `/deck/`) so they say "8 of 9 planted" and have no fingerprint step
 - [ ] Phone hotspot, laptop on charge, a screen recording as backup (the app also runs from static JSON, so it works offline)
